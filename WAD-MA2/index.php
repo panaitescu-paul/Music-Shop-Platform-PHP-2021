@@ -1,6 +1,6 @@
 <?php
 
-Index page
 
+echo("Index page");
 
 ?>
