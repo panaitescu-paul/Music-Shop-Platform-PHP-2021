@@ -1,3 +1,8 @@
+<!-- Header -->
+<?php
+    include_once('../fragments/header-login.php')
+?>
+
 <?php
     require_once('../src/functions.php');
 
@@ -82,10 +87,7 @@
     }
 ?>
 
-<!-- Header -->
-<?php
-    include_once('../fragments/header-admin.php')
-?>
+
 <header>
     <h1>Films</h1>
 </header>
