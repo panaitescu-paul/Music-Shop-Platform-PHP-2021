@@ -37,6 +37,19 @@ article.item:hover {
     cursor: pointer;
 }
 
+.buttons {
+    width: 100%;
+    /* display: inline-block; */
+    text-align: center;
+}
+.btnLibrary {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: auto;
+    padding-right: auto;
+    width: 80px;
+}
 
 #btnAdd {
     display: block;
@@ -101,10 +114,13 @@ thead tr{
 
 /* Buttons */
 
-.btnUpdate, .btnDelete {
+.btnUpdate, .btnDelete, .btnAddCart {
     display: block;
     margin-left: 5px;
     margin-right: 0px;
     width: 80px;
     float: right;
+}
+.btnAddCart {
+    width: 110px;
 }

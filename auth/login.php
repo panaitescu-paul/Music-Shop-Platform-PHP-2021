@@ -22,7 +22,7 @@
             header('Location: ../admin/admin.php');
         } else {
             console.log("redirected to the User page");
-            header('Location: ../user/user.php');
+            header('Location: ../user/library-tracks.php');
         }
 
     // If the user has filled the login fields, the authentication process is launched
@@ -45,7 +45,7 @@
             $_SESSION['email'] = $email;
 
             console.log("you are a valid User");
-            header('Location: ../user/user.php');
+            header('Location: ../user/library-tracks.php');
         }
     
     // If the admin has filled the password field, the authentication process is launched

@@ -1,5 +1,5 @@
 <?php
-    include_once('../fragments/header-admin.php');
+    include_once('../fragments/header-user.php');
 ?>
 
 <?php
@@ -12,16 +12,20 @@
         header('Location: ../auth/login.php');
     }
     $userID = $_SESSION['userID'];
-    // $firstName = $_SESSION['firstName'];
-    // $lastName = $_SESSION['lastName'];
-    // $email = $_SESSION['email'];
+    $firstName = $_SESSION['firstName'];
+    $lastName = $_SESSION['lastName'];
+    $email = $_SESSION['email'];
 ?>
 
 <!-- Start of Page content -->
 <div class="container">
-    <h1 class="main-title">Artists</h1>
+    <h1 class="main-title">Library Tracks</h1>
     <div class="resultArea">
-        <button type="button" class="btn btn-success mb-2" id="btnAdd">Add Artist</button>
+        <div class="buttons">
+            <button type="button" class="btn btn-primary mb-2 btnLibrary">Artists</button>
+            <button type="button" class="btn btn-primary mb-2 btnLibrary">Albums</button>
+            <button type="button" class="btn btn-primary mb-2 btnLibrary">Tracks</button>
+        </div>
         <table class="table tableList">
             <thead>
                 <tr>
@@ -35,48 +39,42 @@
                     <th>1</th>
                     <td>Paul Panaitescu</td>
                     <td>
-                        <button type="button" class="btn btn-danger btnDelete">Delete</button>
-                        <button type="button" class="btn btn-warning btnUpdate">Update</button>
+                        <button type="button" class="btn btn-success btnAddCart">Add to Cart</button>
                     </td>
                 </tr>
                 <tr>
                     <th>1</th>
                     <td>John Smith</td>
                     <td>
-                        <button type="button" class="btn btn-danger btnDelete">Delete</button>
-                        <button type="button" class="btn btn-warning btnUpdate">Update</button>
+                        <button type="button" class="btn btn-success btnAddCart">Add to Cart</button>
                     </td>
                 </tr>
                 <tr>
                     <th>1</th>
                     <td>Paul Panaitescu</td>
                     <td>
-                        <button type="button" class="btn btn-danger btnDelete">Delete</button>
-                        <button type="button" class="btn btn-warning btnUpdate">Update</button>
+                        <button type="button" class="btn btn-success btnAddCart">Add to Cart</button>
                     </td>
                 </tr>
                 <tr>
                     <th>1</th>
                     <td>John Smith</td>
                     <td>
-                        <button type="button" class="btn btn-danger btnDelete">Delete</button>
-                        <button type="button" class="btn btn-warning btnUpdate">Update</button>
+                        <button type="button" class="btn btn-success btnAddCart">Add to Cart</button>
                     </td>
                 </tr>
                 <tr>
                     <th>1</th>
                     <td>Paul Panaitescu</td>
                     <td>
-                        <button type="button" class="btn btn-danger btnDelete">Delete</button>
-                        <button type="button" class="btn btn-warning btnUpdate">Update</button>
+                        <button type="button" class="btn btn-success btnAddCart">Add to Cart</button>
                     </td>
                 </tr>
                 <tr>
                     <th>1</th>
                     <td>John Smith</td>
                     <td>
-                        <button type="button" class="btn btn-danger btnDelete">Delete</button>
-                        <button type="button" class="btn btn-warning btnUpdate">Update</button>
+                        <button type="button" class="btn btn-success btnAddCart">Add to Cart</button>
                     </td>
                 </tr>
             </tbody>
