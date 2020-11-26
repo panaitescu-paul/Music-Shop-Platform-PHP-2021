@@ -13,4 +13,5 @@
     <script src="js/functions.js"></script>
 </head>
 <body>
-<h1>Music Marketplace</h1>
+    <h1>Music Marketplace</h1>
+    <!-- End of header -->

@@ -88,6 +88,7 @@
     If you do not have a user, you can <a href="signup.php">sign up</a> here!
 </div>
 
+
 <!-- Footer -->
 <?php
     include_once('../footer.php')
