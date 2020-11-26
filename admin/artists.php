@@ -87,5 +87,5 @@
 <!-- Start of Page content -->
 
 <?php
-    include_once('../fragments/footer-admin.php');
+    include_once('../fragments/footer.php');
 ?>

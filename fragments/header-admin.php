@@ -13,11 +13,7 @@
     <script src="../js/functions.js"></script>
 </head>
 <body>
-
-
-
-
-<!-- -sm|-md|-lg|-xl -->
+    <!-- -sm|-md|-lg|-xl -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
         <a class="navbar-brand" href="#">Music Shop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,5 +38,4 @@
             . Log out
         </span>
     </nav>
-
     <!-- End of Header

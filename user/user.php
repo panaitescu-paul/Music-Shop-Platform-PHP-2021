@@ -24,5 +24,5 @@
 <!-- Start of Page content -->
 
 <?php
-    include_once('../fragments/footer-user.php');
+    include_once('../fragments/footer.php');
 ?>

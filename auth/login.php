@@ -71,7 +71,7 @@
             $_SESSION['userID'] = $user->userID;
 
             console.log("you are a valid Admin");
-            header('Location: ../admin/admin.php');
+            header('Location: ../admin/artists.php');
         }
         echo("------- ");
     }
@@ -87,10 +87,7 @@
     }
 ?>
 
-
-<header>
-    <h1>Films</h1>
-</header>
+<!-- Login Page start -->
 
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
   <label class="btn btn-primary active" id="loginUser" onclick="selectUserLogin()">
@@ -117,8 +114,8 @@
     If you do not have a user, you can <a href="signup.php">sign up</a> here!
 </div>
 
-
+<!-- Login Page end -->
 <!-- Footer -->
 <?php
-    include_once('../fragments/footer-admin.php')
+    include_once('../fragments/footer.php')
 ?>
