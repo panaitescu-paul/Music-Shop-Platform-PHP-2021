@@ -18,9 +18,6 @@
 ?>
 
 <!-- Start of Page content -->
-
-
-
 <div class="container">
     <h1 class="main-title">Artists</h1>
     <div class="resultArea">
@@ -30,32 +27,57 @@
                 <tr>
                     <th>No</th>
                     <th>Artist Name</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <th>1</th>
                     <td>Paul Panaitescu</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btnDelete">Delete</button>
+                        <button type="button" class="btn btn-warning btnUpdate">Update</button>
+                    </td>
                 </tr>
                 <tr>
                     <th>1</th>
-                    <td>12 aehgrfawjrfh aweuf34567</td>
+                    <td>John Smith</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btnDelete">Delete</button>
+                        <button type="button" class="btn btn-warning btnUpdate">Update</button>
+                    </td>
                 </tr>
                 <tr>
                     <th>1</th>
                     <td>Paul Panaitescu</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btnDelete">Delete</button>
+                        <button type="button" class="btn btn-warning btnUpdate">Update</button>
+                    </td>
                 </tr>
                 <tr>
                     <th>1</th>
-                    <td>12 aehgrfawjrfh aweuf34567</td>
+                    <td>John Smith</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btnDelete">Delete</button>
+                        <button type="button" class="btn btn-warning btnUpdate">Update</button>
+                    </td>
                 </tr>
                 <tr>
                     <th>1</th>
                     <td>Paul Panaitescu</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btnDelete">Delete</button>
+                        <button type="button" class="btn btn-warning btnUpdate">Update</button>
+                    </td>
                 </tr>
                 <tr>
                     <th>1</th>
-                    <td>12 aehgrfawjrfh aweuf34567</td>
+                    <td>John Smith</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btnDelete">Delete</button>
+                        <button type="button" class="btn btn-warning btnUpdate">Update</button>
+                    </td>
                 </tr>
             </tbody>
         </table>

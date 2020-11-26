@@ -2,6 +2,7 @@
  .container {
     max-width: 550px !important;
     margin-top: 30px;
+    margin-bottom: 100px;
     border: 1px solid #b3bfca;
     border-radius: 5px;
 }
@@ -50,7 +51,7 @@ article.item:hover {
     bottom: 0;
     width: 100%;
     background-color: rgba(2, 123, 255, 1);
-    background-color: rgb(55, 175, 255);
+    /* background-color: rgb(55, 175, 255); */
     color: white;
     /* color: rgb(31, 28, 28); */
     text-align: center;
@@ -95,4 +96,15 @@ thead tr{
     color: #fff;
     font-size: 1.2rem;
     font-weight: 700;
+}
+
+
+/* Buttons */
+
+.btnUpdate, .btnDelete {
+    display: block;
+    margin-left: 5px;
+    margin-right: 0px;
+    width: 80px;
+    float: right;
 }

@@ -41,6 +41,6 @@
         <span class="navbar-text">
             . Log out
         </span>
-    </nav> -->
+    </nav>
 
     <!-- End of Header
