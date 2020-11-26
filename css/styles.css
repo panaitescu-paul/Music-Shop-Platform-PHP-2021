@@ -1,3 +1,49 @@
+
+ .container {
+    max-width: 550px !important;
+    margin-top: 30px;
+    border: 1px solid #b3bfca;
+    border-radius: 5px;
+}
+
+.main-title {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 4rem;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+#resultArea {
+    border: 1px solid #107df5;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Article Item */
+article.item {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #b3bfca;
+    border-radius: 5px;
+}
+
+article.item:hover {
+    border: 1px solid #107df5;
+    background-color: rgba(16, 125, 245, 0.1);
+    cursor: pointer;
+}
+
+
+#btnAdd {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+}
+
 .footer {
     position: fixed;
     left: 0;
@@ -11,3 +57,42 @@
     height: 50px;
     line-height: 20px;
  }
+
+
+ /* Table */
+
+.tableList {
+    margin: 30px 20px;
+    /* width: auto; */
+    /* text-align: center; */
+    max-width: 470px;
+}
+
+.tableList td{
+    padding: 7px;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(234, 236, 239, 1);
+}
+
+tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+tr {
+    border: 1px solid rgba(16, 125, 245, 0.0);
+}
+
+tr:hover {
+    border: 1px solid #107df5;
+    background-color: rgba(16, 125, 245, 0.1);
+    cursor: pointer;
+}
+
+thead tr{
+    background-color: rgba(2, 123, 255, 1) !important;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+}

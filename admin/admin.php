@@ -19,7 +19,48 @@
 
 <!-- Start of Page content -->
 
-<p>Admin page!!! </p>
+
+
+<div class="container">
+    <h1 class="main-title">Artists</h1>
+    <div class="resultArea">
+        <button type="button" class="btn btn-success mb-2" id="btnAdd">Add Artist</button>
+        <table class="table tableList">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Artist Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>1</th>
+                    <td>Paul Panaitescu</td>
+                </tr>
+                <tr>
+                    <th>1</th>
+                    <td>12 aehgrfawjrfh aweuf34567</td>
+                </tr>
+                <tr>
+                    <th>1</th>
+                    <td>Paul Panaitescu</td>
+                </tr>
+                <tr>
+                    <th>1</th>
+                    <td>12 aehgrfawjrfh aweuf34567</td>
+                </tr>
+                <tr>
+                    <th>1</th>
+                    <td>Paul Panaitescu</td>
+                </tr>
+                <tr>
+                    <th>1</th>
+                    <td>12 aehgrfawjrfh aweuf34567</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <!-- Start of Page content -->
 
