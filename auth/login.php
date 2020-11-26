@@ -10,15 +10,18 @@
     if (isset($_POST['logout'])) {
         session_destroy();
 
-    // If the user is already logged in, s/he is redirected to the search page
+    // If the user is already logged in, s/he is redirected to the Admin page, or User page
     } else if (isset($_SESSION['userID'])) {
-        console.log("redirected to the search page");
-        header('Location: ../admin/admin.php');
-        console.log("redirected to the search page");
-
+        if ($_SESSION['userID'] === '0') {
+            console.log("redirected to the Admin page");
+            header('Location: ../admin/admin.php');
+        } else {
+            console.log("redirected to the User page");
+            header('Location: ../user/user.php');
+        }
 
     // If the user has filled the login fields, the authentication process is launched
-    } else if (isset($_POST['email'])) {
+    } else if (isset($_POST['email'])) { // TODO: also check if the button was selected for User login
 
         $userValidation = true;
         require_once('../src/user.php');
@@ -36,11 +39,37 @@
             $_SESSION['lastName'] = $user->lastName;
             $_SESSION['email'] = $email;
 
-            console.log("you are a valid user");
+            console.log("you are a valid User");
+            header('Location: ../user/user.php');
+        }
+    
+    // If the admin has filled the password field, the authentication process is launched
+    } else if (isset($_POST['password'])) { // TODO: also check if the button was selected for admin login
+
+        $userValidation = true;
+        require_once('../src/admin.php');
+
+        // $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        echo("------- ");
+
+        $user = new Admin();
+        echo("------- ");
+        $validUser = $user->validateAdmin($password);
+        echo("------- ");
+        if ($validUser) {
+            echo("validUser ------- ");
+
+            session_start();
+
+            $_SESSION['userID'] = $user->userID;
+
+            console.log("you are a valid Admin");
             header('Location: ../admin/admin.php');
         }
+        echo("------- ");
     }
-
 ?>
 
 <?php
@@ -60,10 +89,20 @@
 <header>
     <h1>Films</h1>
 </header>
+
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+  <label class="btn btn-primary active" id="loginUser" onclick="selectUserLogin()">
+    <input type="radio" name="options" autocomplete="off" checked> User
+  </label>
+  <label class="btn btn-primary" id="loginAdmin" onclick="selectAdminLogin()">
+    <input type="radio" name="options" autocomplete="off"> Admin
+  </label>
+</div>
+
 <form id="frmLogin" action="../auth/login.php" method="POST">
     <fieldset>
     <legend>Login</legend>
-        <label for="txtEmail">Email</label>
+        <label for="txtEmail" id="txtEmailLabel">Email</label>
         <input type="email" id="txtEmail" name="email" required>
         <br>
         <label for="txtPassword">Password</label>

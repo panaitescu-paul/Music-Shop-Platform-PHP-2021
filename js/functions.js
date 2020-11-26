@@ -193,3 +193,34 @@
 // They show and hide the "loading" animated gif
 function loadingStart() { $("#loading").show(); $("#filmResults").empty(); }
 function loadingEnd() { $("#loading").hide(); }
+
+
+
+function selectUserLogin() {
+    console.log("loginUser clicked");
+    document.getElementById("txtEmail").disabled = false;
+    document.getElementById("txtEmail").style.display = "inline-block";
+    document.getElementById("txtEmailLabel").style.display = "inline-block";
+
+    // $('#loginUser').classList.add("active");
+    // $('#loginAdmin').classList.remove("active");
+}
+function selectAdminLogin() {
+    console.log("loginUser clicked");
+    document.getElementById("txtEmail").disabled = true;
+    document.getElementById("txtEmail").style.display = "none";
+    document.getElementById("txtEmailLabel").style.display = "none";
+    // $('#loginUser').classList.remove("active");
+    // $('#loginAdmin').classList.add("active");
+}
+// $('#loginUser').click(function() {
+//     console.log("loginUser clicked");
+//     $('#loginUser').classList.add("active");
+//     $('#loginAdmin').classList.remove("active");
+// });
+// $('#loginAdmin').click(function() {
+//     console.log("loginUser clicked");
+//     $('#loginUser').classList.remove("active");
+//     $('#loginAdmin').classList.add("active");
+// });
+console.log("functions.js");

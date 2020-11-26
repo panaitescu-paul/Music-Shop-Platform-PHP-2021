@@ -1,5 +1,5 @@
 <?php
-    include_once('../fragments/header-admin.php');
+    include_once('../fragments/header-user.php');
 ?>
 
 <?php
@@ -12,17 +12,17 @@
         header('Location: ../auth/login.php');
     }
     $userID = $_SESSION['userID'];
-    // $firstName = $_SESSION['firstName'];
-    // $lastName = $_SESSION['lastName'];
-    // $email = $_SESSION['email'];
+    $firstName = $_SESSION['firstName'];
+    $lastName = $_SESSION['lastName'];
+    $email = $_SESSION['email'];
 ?>
 
 <!-- Start of Page content -->
 
-<p>Admin page!!! </p>
+<p>User page!!! </p>
 
 <!-- Start of Page content -->
 
 <?php
-    include_once('../fragments/footer-admin.php');
+    include_once('../fragments/footer-user.php');
 ?>
