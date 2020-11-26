@@ -1,4 +1,4 @@
-    <!-- Start of footer -->
+    <!-- Start of Footer -->
     <footer>
         &copy; 2020 - Paul Panaitescu
     </footer>

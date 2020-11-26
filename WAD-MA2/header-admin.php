@@ -14,4 +14,4 @@
 </head>
 <body>
     <h1>Music Marketplace</h1>
-    <!-- End of header -->
+    <!-- End of Header -->
