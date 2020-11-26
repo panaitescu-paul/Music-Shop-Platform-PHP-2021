@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f76cfe36-a431-49a3-95ad-85472af87024" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/footer-admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/footer-admin.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1kmfSgPaS4WB0O5bFDERafdsM1Y" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/WAD-MA2/img" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/WAD-MA2" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/WAD-MA2/img" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f76cfe36-a431-49a3-95ad-85472af87024" name="Default Changelist" comment="" />
+      <created>1606310689444</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606310689444</updated>
+      <workItem from="1606310690568" duration="16750000" />
+      <workItem from="1606395137729" duration="2518000" />
+    </task>
+    <task id="LOCAL-00001" summary="test">
+      <created>1606311123304</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1606311123304</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added Login Page">
+      <created>1606333472844</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1606333472844</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added Fragments: Header and Footer">
+      <created>1606333554397</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1606333554397</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added CSS file and Bootstrap">
+      <created>1606333733521</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1606333733521</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added JS file and jQuery">
+      <created>1606333782335</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1606333782335</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added icons/images">
+      <created>1606333810195</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1606333810195</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Established DB connection">
+      <created>1606333853103</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1606333853103</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added Debug File for logging errors">
+      <created>1606333993742</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1606333993742</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Finished Login functionality">
+      <created>1606334021922</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1606334021922</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added Chinook DB">
+      <created>1606334196720</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1606334196720</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Moved Footer and Header to root folder, and changed the paths from other files">
+      <created>1606342446288</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1606342446288</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Login page remake with Session Cookies">
+      <created>1606342520202</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1606342520202</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Remade the User SQL statements">
+      <created>1606342654494</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1606342654494</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Improved the Debug function for logging errors">
+      <created>1606342716117</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1606342716117</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Remade the Login functionality based on Session Cookes">
+      <created>1606342859355</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1606342859355</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Moved the Chinook DB">
+      <created>1606342919011</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1606342919011</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Moved the Chinook DB">
+      <created>1606342954084</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1606342954084</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Improved Footer and Header">
+      <created>1606396418083</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1606396418083</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test" />
+    <MESSAGE value="Added Login Page" />
+    <MESSAGE value="Added Fragments: Header and Footer" />
+    <MESSAGE value="Added CSS file and Bootstrap" />
+    <MESSAGE value="Added JS file and jQuery" />
+    <MESSAGE value="Added icons/images" />
+    <MESSAGE value="Established DB connection" />
+    <MESSAGE value="Added Debug File for logging errors" />
+    <MESSAGE value="Finished Login functionality" />
+    <MESSAGE value="Added Chinook DB" />
+    <MESSAGE value="Moved Footer and Header to root folder, and changed the paths from other files" />
+    <MESSAGE value="Login page remake with Session Cookies" />
+    <MESSAGE value="Remade the User SQL statements" />
+    <MESSAGE value="Improved the Debug function for logging errors" />
+    <MESSAGE value="Remade the Login functionality based on Session Cookes" />
+    <MESSAGE value="Moved the Chinook DB" />
+    <MESSAGE value="Improved Footer and Header" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved Footer and Header" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="292" y="23" key="CommitChangelistDialog2" timestamp="1606396417874">
+      <screen x="0" y="23" width="1440" height="793" />
+    </state>
+    <state x="292" y="23" key="CommitChangelistDialog2/0.23.1440.793@0.23.1440.793" timestamp="1606396417874" />
+    <state x="147" y="91" key="DiffContextDialog" timestamp="1606342789977">
+      <screen x="0" y="23" width="1440" height="793" />
+    </state>
+    <state x="147" y="91" key="DiffContextDialog/0.23.1440.793@0.23.1440.793" timestamp="1606342789977" />
+    <state x="350" y="146" key="Vcs.Push.Dialog.v2" timestamp="1606396423877">
+      <screen x="0" y="23" width="1440" height="793" />
+    </state>
+    <state x="350" y="146" key="Vcs.Push.Dialog.v2/0.23.1440.793@0.23.1440.793" timestamp="1606396423877" />
+    <state x="548" y="340" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606397062946">
+      <screen x="0" y="23" width="1440" height="793" />
+    </state>
+    <state x="548" y="340" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.793@0.23.1440.793" timestamp="1606397062946" />
+  </component>
+</project>
