@@ -74,7 +74,7 @@ $(document).ready(function() {
 
                     if (pData !== false) {
                         alert("Welcome " + pData.FirstName + ' ' + pData.LastName + ' !');
-                        window.location.href = "http://localhost/php/WAD-MA2/WAD-MA2/index.php";
+                        window.location.href = "http://localhost/php/WAD-MA2/admin/admin.php";
                         exit();
                     } else {
                         alert("Cound not find the user! Try again!");

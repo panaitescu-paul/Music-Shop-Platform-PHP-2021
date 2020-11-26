@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f76cfe36-a431-49a3-95ad-85472af87024" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/footer-admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/footer-admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +40,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606310689444</updated>
       <workItem from="1606310690568" duration="16750000" />
-      <workItem from="1606395137729" duration="2518000" />
+      <workItem from="1606395137729" duration="3148000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1606311123304</created>
@@ -207,9 +207,9 @@
       <screen x="0" y="23" width="1440" height="793" />
     </state>
     <state x="350" y="146" key="Vcs.Push.Dialog.v2/0.23.1440.793@0.23.1440.793" timestamp="1606396423877" />
-    <state x="548" y="340" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606397062946">
+    <state x="548" y="340" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606398854601">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state x="548" y="340" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.793@0.23.1440.793" timestamp="1606397062946" />
+    <state x="548" y="340" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.793@0.23.1440.793" timestamp="1606398854601" />
   </component>
 </project>
