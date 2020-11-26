@@ -22,9 +22,15 @@
     <h1 class="main-title">Library Tracks</h1>
     <div class="resultArea">
         <div class="buttons">
-            <button type="button" class="btn btn-primary mb-2 btnLibrary">Artists</button>
-            <button type="button" class="btn btn-primary mb-2 btnLibrary">Albums</button>
-            <button type="button" class="btn btn-primary mb-2 btnLibrary">Tracks</button>
+            <button type="button" class="btn btn-primary mb-2 btnLibrary" 
+                onclick="window.location.href='/php/WAD-MA2/user/library-artists.php'">Artists
+            </button>
+            <button type="button" class="btn btn-primary mb-2 btnLibrary" 
+                onclick="window.location.href='/php/WAD-MA2/user/library-albums.php'">Albums
+            </button>
+            <button type="button" class="btn btn-primary mb-2 btnLibrary active" 
+                onclick="window.location.href='/php/WAD-MA2/user/library-tracks.php'">Tracks
+            </button>
         </div>
         <table class="table tableList">
             <thead>
