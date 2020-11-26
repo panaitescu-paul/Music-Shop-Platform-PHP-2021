@@ -22,16 +22,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Library <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/php/WAD-MA2/user/library-tracks.php">Library <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Cart</a>
+                <a class="nav-link" href="/php/WAD-MA2/user/shopping-cart.php">Cart</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Sign Up</a>
+                <a class="nav-link" href="/php/WAD-MA2/user/sign-up.php">Sign Up</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
+                <a class="nav-link" href="/php/WAD-MA2/user/profile.php">Profile</a>
             </li>
         </div>
         <span class="navbar-text">
