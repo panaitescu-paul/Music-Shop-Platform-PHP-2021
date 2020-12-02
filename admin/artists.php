@@ -21,7 +21,16 @@
 <div class="container">
     <h1 class="main-title">Artists</h1>
     <div class="resultArea">
+    
         <button type="button" class="btn btn-success mb-2" id="btnAdd">Add Artist</button>
+        <button type="button" class="btn btn-success mb-2" id="btnSearchArtist">Get Artist</button>
+        
+        <label for="txtName" id="txtNameLabel">Artist Name</label>
+        <input type="text" id="searchArtistName" name="Name" required>
+        
+        <section id="artistResults">
+        </section>
+
         <table class="table tableList">
             <thead>
                 <tr>
@@ -35,8 +44,22 @@
                     <th>1</th>
                     <td>Paul Panaitescu</td>
                     <td>
-                        <button type="button" class="btn btn-danger btnDelete">Delete</button>
-                        <button type="button" class="btn btn-warning btnUpdate">Update</button>
+                        <button type="button" class="btn btn-danger btnDelete">
+                            <img src="../img/pencil-square.svg" class="icon-delete">
+                        </button>
+                        <button type="button" class="btn btn-warning btnUpdate">
+                            <img src="../img/trash.svg" class="icon-update">
+                        </button>
+                        <button type="button" class="btn btn-success btnShow">
+                            <img src="../img/card-text.svg" class="icon-show" >
+                        </button>
+
+                        <!-- <img src="../img/alarm-fill.svg" alt="" width="32" height="32" title="Bootstrap">
+                        <img src="../img/card-list.svg" alt="" width="32" height="32" title="Bootstrap">
+                        <img src="../img/cart.svg" alt="" width="32" height="32" title="Bootstrap">
+                        <img src="../img/cart2.svg" alt="" width="32" height="32" title="Bootstrap">
+                        <img src="../img/receipt.svg" alt="" width="32" height="32" title="Bootstrap">
+                        <img src="../img/receipt-cutoff.svg" alt="" width="32" height="32" title="Bootstrap"> -->
                     </td>
                 </tr>
                 <tr>
