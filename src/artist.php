@@ -112,6 +112,24 @@
             return $stmt->fetchAll();                
         }
 
+        /**
+         * Retrieves all artists 
+         * 
+         * @return  an array with all artists and their information
+         */
+        
+        function get() {
+            $query = <<<'SQL'
+                SELECT ArtistId, Name
+                FROM artist;
+            SQL;
+
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute();
+            $this->disconnect();
+            return $stmt->fetchAll(); 
+        }
+
 
         
 
