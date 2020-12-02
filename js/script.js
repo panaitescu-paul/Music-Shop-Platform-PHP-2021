@@ -159,7 +159,7 @@ $(document).ready(function() {
             type: "POST",
             data: {
                 entity: "artist",
-                action: "get"
+                action: "getAll"
             },
             success: function(data) {
                 console.log(data);
@@ -183,40 +183,27 @@ $(document).ready(function() {
         console.log("action", action);
         console.log("id", id);
 
-        // $.ajax({
-        //     url: "src/api.php",
-        //     type: "POST",
-        //     data: {
-        //         entity: "movie",
-        //         action: "get",
-        //         id: id
-        //     },
-        //     success: function(data) {
-        //         const movieInfo = JSON.parse(data);
+        $.ajax({
+            url: "../src/api.php",
+            type: "POST",
+            data: {
+                entity: "artist",
+                action: "get",
+                id: id
+            },
+            success: function(data) {
+                console.log(data);
 
-        //         if (userAuthenticated(movieInfo)) {
+                data = JSON.parse(data);
+                console.log(data);
 
-        //             $("#txtTitle").val(movieInfo["title"]);
-        //             $("#txtOverview").val(movieInfo["overview"]);
-        //             $("#txtReleaseDate").val(movieInfo["release_date"]);
-        //             $("#txtRuntime").val(movieInfo["runtime"]);
-
-        //             const lstDirectors = $("<select />");
-        //             for (const director of movieInfo["directors"]) {
-        //                 lstDirectors.append($("<option />", { "value": director["person_id"], "text": director["person_name"] }))
-        //             }
-        //             $("#lstDirector").html(lstDirectors.html());
-
-        //             const lstActors = $("<select />");
-        //             for (const actor of movieInfo["actors"]) {
-        //                 lstActors.append($("<option />", { "value": actor["person_id"], "text": actor["person_name"] }))
-        //             }
-        //             $("#lstActor").html(lstActors.html());
-
-        //             showMovieModal(action, id);
-        //         }
-        //     }
-        // });
+                // if (userAuthenticated(data)) {
+                    // displayArtists(data);
+                    showArtistModal(data);
+                // }
+            }
+        });
+        
     });
 
     // Update Artist
