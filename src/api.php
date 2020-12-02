@@ -3,7 +3,8 @@
     debug($_POST);
 
     session_start();
-    if (!isset($_SESSION['userID'])) {
+    // if (!isset($_SESSION['userID'])) {
+    if (false) {
         debug('Session variable userID not set.<br>');
         leave('User not authenticated.');
     } else {
@@ -14,6 +15,42 @@
             $action = $_POST['action'];
 
             switch ($entity) {
+                case 'artist':
+                    require_once('artist.php');
+                    $artist = new Artist;
+
+                    switch ($action) {
+                        // case 'search':
+                        //     if (!isset($_POST['searchText'])) {
+                        //         leave();
+                        //     } else {
+                        //         echo json_encode($artist->search($_POST['searchText']));
+                        //     }
+                        //     break;
+                        case 'search':
+                            if (!isset($_POST['searchText'])) {
+                                leave();
+                            } else {
+                                echo json_encode($artist->search($_POST['searchText']));
+                            }
+                            break;
+                        // case 'add':
+                        //     if (!isset($_POST['personName'])) {
+                        //         leave();
+                        //     } else {
+                        //         echo json_encode($artist->add($_POST['personName']));
+                        //     }
+                        //     break;
+                        // case 'delete':
+                        //     if (!isset($_POST['personID'])) {
+                        //         leave();
+                        //     } else {
+                        //         echo json_encode($artist->delete($_POST['personID']));
+                        //     }
+                        //     break;
+                    }
+
+                    break;
                 case 'person':
                     require_once('person.php');
                     $person = new Person;
