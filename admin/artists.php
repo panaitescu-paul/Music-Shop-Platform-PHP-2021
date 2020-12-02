@@ -23,15 +23,15 @@
     <div class="resultArea">
     
         <button type="button" class="btn btn-success mb-2" id="btnAdd">Add Artist</button>
-        <button type="button" class="btn btn-success mb-2" id="btnSearchArtist">Get Artist</button>
-        
+        <button type="button" class="btn btn-success mb-2" id="btnShowArtists">Show All Artist</button>
         <label for="txtName" id="txtNameLabel">Artist Name</label>
         <input type="text" id="searchArtistName" name="Name" required>
+        <button type="button" class="btn btn-success mb-2" id="btnSearchArtist">Search Artist</button>
         
         <section id="artistResults">
         </section>
 
-        <table class="table tableList">
+        <!-- <table class="table tableList">
             <thead>
                 <tr>
                     <th>No</th>
@@ -53,13 +53,6 @@
                         <button type="button" class="btn btn-success btnShow">
                             <img src="../img/card-text.svg" class="icon-show" >
                         </button>
-
-                        <!-- <img src="../img/alarm-fill.svg" alt="" width="32" height="32" title="Bootstrap">
-                        <img src="../img/card-list.svg" alt="" width="32" height="32" title="Bootstrap">
-                        <img src="../img/cart.svg" alt="" width="32" height="32" title="Bootstrap">
-                        <img src="../img/cart2.svg" alt="" width="32" height="32" title="Bootstrap">
-                        <img src="../img/receipt.svg" alt="" width="32" height="32" title="Bootstrap">
-                        <img src="../img/receipt-cutoff.svg" alt="" width="32" height="32" title="Bootstrap"> -->
                     </td>
                 </tr>
                 <tr>
@@ -103,7 +96,7 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
     </div>
 </div>
 
