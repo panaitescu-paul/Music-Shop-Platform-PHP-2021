@@ -195,6 +195,17 @@ $(document).ready(function() {
         //     }
         // });
     });
+
+    // Update Artist
+    $(document).on("click", ".updateArtist", function() {
+        const action = 'update';
+        // const action = ($(this)[0].className === "smallButton showMovie" ? 'show' : 'edit');
+        const id = $(this).attr("data-id");
+
+        console.log("action", action);
+        console.log("id", id);
+
+    });
     
 
 });
