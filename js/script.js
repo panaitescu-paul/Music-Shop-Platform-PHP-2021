@@ -125,4 +125,31 @@ $(document).ready(function() {
         }
         
     });
+
+    // Search artist
+    $("#btnSearchArtist").on("click", function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: "../src/api.php",
+            type: "POST",
+            data: {
+                entity: "artist",
+                action: "search",
+                searchText: $("#searchArtistName").val()
+            },
+            success: function(data) {
+                console.log(data);
+
+                data = JSON.parse(data);
+                console.log(data);
+
+                // if (userAuthenticated(data)) {
+                    displayArtists(data);
+                // }
+            }
+        });
+    });
+    
+
 });
