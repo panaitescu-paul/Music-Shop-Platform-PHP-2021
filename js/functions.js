@@ -84,6 +84,8 @@ function displayArtists(artistData) {
             // const row = $("<tr />");
             const row = $("<tr />");
             const artistID = artist["ArtistId"];
+            // "data-toggle": "modal",
+            //             "data-target": "#modal",
             row.
                 append($("<td />", { "text": artist["ArtistId"]})).
                 append($("<td />", { "text": artist["Name"]})).
@@ -95,7 +97,7 @@ function displayArtists(artistData) {
                         "<img src='../img/pencil-square.svg' class='icon-update'>" +
                     "</button>" +
                     "<button data-id='" + artistID + "' type='button' class='btn btn-success btnShow showArtist'>" +
-                        "<img src='../img/card-text.svg' class='icon-show'>" +
+                        "<img src='../img/card-text.svg' class='icon-show' data-toggle='modal' data-target='#modal'>" +
                     "</button>"
                 }))
             tableBody.append(row);
@@ -104,6 +106,21 @@ function displayArtists(artistData) {
         table.appendTo($("section#artistResults"));
     }
 }
+// Shows Artist information in a Modal
+function showArtistModal(artistData) {
+    console.log("-----------");
+    console.log(artistData);
+
+    // Empty the previous Results
+    $("#modalInfoContent1").empty();
+    $("#modalInfoContent2").empty();
+
+    // Add new information
+    $("#modalTitle").html("Artist Information");
+    $("#modalInfoContent1").html("Name: " + artistData["Name"]);
+    $("#modalInfoContent2").html("Id: " + artistData["ArtistId"]);
+}
+
 //
 // function enableMovieModal() {
 //     $("div#modalFilm input, textarea, select").removeAttr("readonly");
