@@ -46,16 +46,64 @@
 //     }
 // }
 //
+
 // // Loads person information in the person listBox
-// function displayPersons(personData) {
-//     $("lstPerson").empty();
-//
-//     const list = $("<select />");
-//     for (const person of personData) {
-//         list.append($("<option />", { "value": person["person_id"], "text": person["person_name"] }));
+// function displayArtists(artistData) {
+//     console.log(artistData);
+//     $("listArtist").empty();
+    
+//     const listArtist = $("<select />");
+//     for (const artist of artistData) {
+//         $(listArtist).append(
+//             '<span class="body">' + artist.ArtistId + ' ' + '</span>',
+//             '<span class="body">' + artist.Name + ' ' + '</span>'
+//         );
 //     }
-//     $("#lstPerson").html(list.html());
+//     $("#listArtist").html(listArtist.html());
 // }
+
+// Loads Artist information in artistResults
+function displayArtists(artistData) {
+    if (artistData.length === 0) {
+        $("section#artistResults").html("There are no artists matching the entered text.");
+    } else {
+        $("section#artistResults").empty();
+
+        const table = $("<table />", {"class": "table tableList"});
+        const header = $("<thead />");
+        const headerRow = $("<tr />");
+        headerRow.
+            append($("<th />", { "text": "Id"})).
+            append($("<th />", { "text": "Name", "class": "number"})).
+            append($("<th />", { "text": "Actions", "class": "number"}))
+        header.append(headerRow);
+        table.append(header);
+
+        const tableBody = $("<tbody />");
+        for (const artist of artistData) {
+            // const row = $("<tr />");
+            const row = $("<tr />");
+            const artistID = artist["ArtistId"];
+            row.
+                append($("<td />", { "text": artist["ArtistId"]})).
+                append($("<td />", { "text": artist["Name"]})).
+                append($("<td />", { "class": "table-actions", "html": 
+                    "<button data-id='" + artistID + "' type='button' class='btn btn-danger btnDelete deleteArtist'>" +
+                        "<img src='../img/trash.svg' class='icon-delete'>" +
+                    "</button>" +
+                    "<button data-id='" + artistID + "' type='button' class='btn btn-warning btnUpdate updateArtist'>" +
+                        "<img src='../img/pencil-square.svg' class='icon-update'>" +
+                    "</button>" +
+                    "<button data-id='" + artistID + "' type='button' class='btn btn-success btnShow showArtist'>" +
+                        "<img src='../img/card-text.svg' class='icon-show'>" +
+                    "</button>"
+                }))
+            tableBody.append(row);
+        }
+        table.append(tableBody);
+        table.appendTo($("section#artistResults"));
+    }
+}
 //
 // function enableMovieModal() {
 //     $("div#modalFilm input, textarea, select").removeAttr("readonly");
