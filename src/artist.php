@@ -118,7 +118,7 @@
          * @return  an array with all artists and their information
          */
         
-        function get() {
+        function getAll() {
             $query = <<<'SQL'
                 SELECT ArtistId, Name
                 FROM artist;
@@ -128,6 +128,25 @@
             $stmt->execute();
             $this->disconnect();
             return $stmt->fetchAll(); 
+        }
+
+        /**
+         * Retrieves artist by id 
+         * 
+         * @return  an artist and their information
+         */
+        
+        function get($id) {
+            $query = <<<'SQL'
+                SELECT ArtistId, Name
+                FROM artist
+                WHERE ArtistId = ?;
+            SQL;
+
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$id]);                
+            $this->disconnect();
+            return $stmt->fetch();
         }
 
 
