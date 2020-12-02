@@ -150,6 +150,51 @@ $(document).ready(function() {
             }
         });
     });
+
+    // Show Artist
+    $(document).on("click", ".showArtist", function() {
+        const action = 'show';
+        // const action = ($(this)[0].className === "smallButton showMovie" ? 'show' : 'edit');
+        const id = $(this).attr("data-id");
+
+        console.log("action", action);
+        console.log("id", id);
+
+        // $.ajax({
+        //     url: "src/api.php",
+        //     type: "POST",
+        //     data: {
+        //         entity: "movie",
+        //         action: "get",
+        //         id: id
+        //     },
+        //     success: function(data) {
+        //         const movieInfo = JSON.parse(data);
+
+        //         if (userAuthenticated(movieInfo)) {
+
+        //             $("#txtTitle").val(movieInfo["title"]);
+        //             $("#txtOverview").val(movieInfo["overview"]);
+        //             $("#txtReleaseDate").val(movieInfo["release_date"]);
+        //             $("#txtRuntime").val(movieInfo["runtime"]);
+
+        //             const lstDirectors = $("<select />");
+        //             for (const director of movieInfo["directors"]) {
+        //                 lstDirectors.append($("<option />", { "value": director["person_id"], "text": director["person_name"] }))
+        //             }
+        //             $("#lstDirector").html(lstDirectors.html());
+
+        //             const lstActors = $("<select />");
+        //             for (const actor of movieInfo["actors"]) {
+        //                 lstActors.append($("<option />", { "value": actor["person_id"], "text": actor["person_name"] }))
+        //             }
+        //             $("#lstActor").html(lstActors.html());
+
+        //             showMovieModal(action, id);
+        //         }
+        //     }
+        // });
+    });
     
 
 });
