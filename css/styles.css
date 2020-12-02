@@ -111,16 +111,55 @@ thead tr{
     font-weight: 700;
 }
 
+.table-actions {
+    display: inline-block;
+    width: 190px;
+}
 
 /* Buttons */
 
-.btnUpdate, .btnDelete, .btnAddCart {
+.btnAddCart {
     display: block;
     margin-left: 5px;
     margin-right: 0px;
     width: 80px;
     float: right;
 }
+
 .btnAddCart {
     width: 110px;
+}
+
+.btnShow, .btnUpdate, .btnDelete {
+    display: block;
+    margin-left: 5px;
+    margin-right: 0px;
+    /* width: 45px;
+    height: 40px; */
+    float: right;
+}
+
+/* Icons */
+
+.icon-show, .icon-update, .icon-delete {
+    width: 22px;
+    height: 22px;
+}
+
+
+div.smallButtons {
+    float: right;
+}
+img.smallButton {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 2px;
+    padding: 2px;
+    border: thin solid black;
+    border-radius: 3px;
+    background-color: lightgray;
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    cursor: pointer;
 }
