@@ -34,6 +34,9 @@
                                 echo json_encode($artist->search($_POST['searchText']));
                             }
                             break;
+                        case 'get':
+                            echo json_encode($artist->get());
+                            break;
                         // case 'add':
                         //     if (!isset($_POST['personName'])) {
                         //         leave();
