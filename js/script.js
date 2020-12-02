@@ -150,6 +150,29 @@ $(document).ready(function() {
             }
         });
     });
+    // Show all Artists
+    $("#btnShowArtists").on("click", function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: "../src/api.php",
+            type: "POST",
+            data: {
+                entity: "artist",
+                action: "get"
+            },
+            success: function(data) {
+                console.log(data);
+
+                data = JSON.parse(data);
+                console.log(data);
+
+                // if (userAuthenticated(data)) {
+                    displayArtists(data);
+                // }
+            }
+        });
+    });
 
     // Show Artist
     $(document).on("click", ".showArtist", function() {
