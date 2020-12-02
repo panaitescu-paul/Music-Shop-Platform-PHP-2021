@@ -206,6 +206,17 @@ $(document).ready(function() {
         console.log("id", id);
 
     });
+
+    // Delete Artist
+    $(document).on("click", ".deleteArtist", function() {
+        const action = 'delete';
+        // const action = ($(this)[0].className === "smallButton showMovie" ? 'show' : 'edit');
+        const id = $(this).attr("data-id");
+
+        console.log("action", action);
+        console.log("id", id);
+
+    });
     
 
 });
