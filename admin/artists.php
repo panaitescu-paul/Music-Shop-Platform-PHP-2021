@@ -22,7 +22,8 @@
     <h1 class="main-title">Artists</h1>
     <div class="resultArea">
     
-        <button type="button" class="btn btn-success mb-2" id="btnAdd">Add Artist</button>
+        <button type="button" class="btn btn-success mb-2 createArtistModal" 
+                id="btnAdd" data-toggle='modal' data-target='#modal'>Create Artist</button>
         <button type="button" class="btn btn-success mb-2" id="btnShowArtists">Show All Artists</button>
         <label for="txtName" id="txtNameLabel">Artist Name</label>
         <input type="text" id="searchArtistName" name="Name" required>
