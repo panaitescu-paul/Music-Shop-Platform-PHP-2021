@@ -117,45 +117,26 @@
         }
 
         /**
-         * Deletes a movie
+         * Deletes an Artist
          * 
-         * @param   ID of the movie to delete
+         * @param   ID of the artist to delete
          * @return  true if success, -1 otherwise
          */
         function delete($id) {            
             try {
-                $this->pdo->beginTransaction();
-
                 $query = <<<'SQL'
-                    DELETE FROM movie_director WHERE movie_id = ?;
+                    DELETE 
+                    FROM artist 
+                    WHERE ArtistId = ?;
                 SQL;
                 $stmt = $this->pdo->prepare($query);
                 $stmt->execute([$id]);
-
-                $query = <<<'SQL'
-                    DELETE FROM movie_cast WHERE movie_id = ?;
-                SQL;
-                $stmt = $this->pdo->prepare($query);
-                $stmt->execute([$id]);
-
-                $query = <<<'SQL'
-                    DELETE FROM movie WHERE movie_id = ?;
-                SQL;
-                $stmt = $this->pdo->prepare($query);
-                $stmt->execute([$id]);
-
-                $this->pdo->commit();
-
                 $return = true;
-
             } catch (Exception $e) {
                 $return = -1;
-                $this->pdo->rollBack();
                 debug($e);
             }
-
             $this->disconnect();
-
             return $return;
         }
     }
