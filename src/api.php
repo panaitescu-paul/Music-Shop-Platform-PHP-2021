@@ -44,13 +44,13 @@
                                 echo json_encode($artist->get($_POST['id']));
                             }
                             break;
-                        // case 'add':
-                        //     if (!isset($_POST['personName'])) {
-                        //         leave();
-                        //     } else {
-                        //         echo json_encode($artist->add($_POST['personName']));
-                        //     }
-                        //     break;
+                        case 'create':
+                            if (!isset($_POST['info'])) {
+                                leave();
+                            } else {
+                                echo json_encode($artist->create($_POST['info']));
+                            }
+                            break;
                         // case 'delete':
                         //     if (!isset($_POST['personID'])) {
                         //         leave();
