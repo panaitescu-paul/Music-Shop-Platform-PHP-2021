@@ -150,10 +150,22 @@ $(document).ready(function() {
             }
         });
     });
-    // Show all Artists
-    $("#btnShowArtists").on("click", function(e) {
-        e.preventDefault();
 
+    $(document).ready(function () {
+        // Get the current page 
+        // Get the last part of the URL after the shash (/)
+        let str = window.location.href;
+        str = str.split("/"); 
+        let page = str[str.length - 1]; 
+        if ( page === "artists.php") {
+            console.log("PAGE artists");
+            ShowAllArtists();
+        } else {
+            console.log("PAGE is NOT artists");
+        }
+    });
+
+    function ShowAllArtists() {
         $.ajax({
             url: "../src/api.php",
             type: "POST",
@@ -162,17 +174,35 @@ $(document).ready(function() {
                 action: "getAll"
             },
             success: function(data) {
-                console.log(data);
-
+                // console.log(data);
                 data = JSON.parse(data);
                 console.log(data);
-
                 // if (userAuthenticated(data)) {
                     displayArtists(data);
                 // }
             }
         });
-    });
+    }
+    // // Show all Artists
+    // $("#btnShowArtists").on("click", function(e) {
+    //     e.preventDefault();
+    //     $.ajax({
+    //         url: "../src/api.php",
+    //         type: "POST",
+    //         data: {
+    //             entity: "artist",
+    //             action: "getAll"
+    //         },
+    //         success: function(data) {
+    //             console.log(data);
+    //             data = JSON.parse(data);
+    //             console.log(data);
+    //             // if (userAuthenticated(data)) {
+    //                 displayArtists(data);
+    //             // }
+    //         }
+    //     });
+    // });
 
     // Open Modal - Create Artist 
     $(document).on("click", ".createArtistModal", function() {
@@ -237,6 +267,12 @@ $(document).ready(function() {
                     data = JSON.parse(data);
                     console.log(data);
                     console.log("Artist created");
+                    ShowAllArtists();
+                    setTimeout(function (){
+                        window.scrollTo(0, document.body.scrollHeight);
+                    }, 700); // Delay in milliseconds
+                    
+
                     // if (userAuthenticated(data)) {
                         // displayArtists(data);
                         // showArtistModal(data);
@@ -247,7 +283,7 @@ $(document).ready(function() {
     });
 
     // Update Artist
-    $(document).on("click", ".updateArtist", function() {
+    $(document).on("click", ".updateArtist", function(e) {
         // e.preventDefault();
         const action = 'update';
         console.log("action", action);
@@ -272,6 +308,16 @@ $(document).ready(function() {
                     data = JSON.parse(data);
                     console.log(data);
                     console.log("Artist updated");
+
+                    // Show the updated List of Artists
+                    ShowAllArtists();
+
+                    // Scroll to the updated Artist
+                    var position = e.pageY;
+                    console.log("position", position);
+                    document.body.scrollTop = position - 100; // For Safari
+                    document.documentElement.scrollTop = position; // For Chrome, Firefox, IE and Opera
+
                     // if (userAuthenticated(data)) {
                         // displayArtists(data);
                         // showArtistModal(data);
@@ -282,7 +328,7 @@ $(document).ready(function() {
     });
 
     // Delete Artist
-    $(document).on("click", ".deleteArtist", function() {
+    $(document).on("click", ".deleteArtist", function(e) {
         // e.preventDefault();
         const action = 'delete';
         const id = $(this).attr("data-id");
@@ -305,16 +351,27 @@ $(document).ready(function() {
                         console.log(data);
                         data = JSON.parse(data);
                         console.log(data);
+
+                        // Show the updated List of Artists
+                        ShowAllArtists();
+
+                        // Scroll to the updated Artist
+                        var position = e.pageY;
+                        console.log("position", position);
+                        document.body.scrollTop = position - 100; // For Safari
+                        document.documentElement.scrollTop = position; // For Chrome, Firefox, IE and Opera
+
                         
                         // if (userAuthenticated(data)) {
                             // displayArtists(data);
                             if (data === true) {
-                                $("button[data-id=" + id + "]").parent().parent().remove();     // The table row is removed
+
+                                // $("button[data-id=" + id + "]").parent().parent().remove();     // The table row is removed
                                 console.log("Artist deleted");
-                                showModal("artistDeleteSuccess");
+                                // showModal("artistDeleteSuccess");
                             } else {
                                 console.log("Artist not deleted");
-                                showModal("artistDeleteFailure");
+                                // showModal("artistDeleteFailure");
                             }
                             
                         // }
@@ -323,7 +380,7 @@ $(document).ready(function() {
             }
         }
     });
-    
+
     // Scroll Up
     $(document).on("click", ".scrollUp", function(e) {
         e.preventDefault();
@@ -335,7 +392,5 @@ $(document).ready(function() {
         e.preventDefault();
         window.scrollTo(0, document.body.scrollHeight);
     });
-    
 
-    
 });
