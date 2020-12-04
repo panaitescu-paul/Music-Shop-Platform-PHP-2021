@@ -323,6 +323,19 @@ $(document).ready(function() {
             }
         }
     });
+    
+    // Scroll Up
+    $(document).on("click", ".scrollUp", function(e) {
+        e.preventDefault();
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+    // Scroll Down
+    $(document).on("click", ".scrollDown", function(e) {
+        e.preventDefault();
+        window.scrollTo(0, document.body.scrollHeight);
+    });
+    
 
     
 });
