@@ -121,6 +121,29 @@ function showArtistModal(artistData) {
     $("#modalInfoContent2").html("Id: " + artistData["ArtistId"]);
 }
 
+// Shows Create Artist Modal
+function showCreateArtistModal() {
+    // Empty the previous Results
+    $("#modalInfoContent1").empty();
+    $("#modalInfoContent2").empty();
+
+    // Add new information
+    $("#modalTitle").html("Create Artist");
+    // $("#modalInfoContent1").html("Name: " + artistData["Name"]);
+    // $("#modalInfoContent2").html("Id: " + artistData["ArtistId"]);
+
+    const form = $("<div />");
+    form.
+        append($("<div />", { "class": "", "html": 
+            `<form id="frmCreateArtist" method="POST">
+                <label for="createArtistName" id="txtArtistLabel">Artist Name</label>
+                <input type="email" id="createArtistName" name="email" required>
+                <button type="button" class="btn btn-success mb-2 createArtist" id="btnCreateArtist">Create Artist</button>
+            </form>`
+        }))
+    $("#modalInfoContent1").append(form);
+}
+
 //
 // function enableMovieModal() {
 //     $("div#modalFilm input, textarea, select").removeAttr("readonly");
