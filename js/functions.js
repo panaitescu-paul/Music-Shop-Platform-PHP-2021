@@ -7,68 +7,12 @@
  */
 "use strict";
 
-// // Creates a table where to display the movie data it receives as a parameter
-// function displayMovies(movieData) {
-//     if (movieData.length === 0) {
-//         $("section#filmResults").html("There are no films matching the entered text.");
-//     } else {
-//         $("section#filmResults").empty();
-//
-//         const table = $("<table />");
-//         const header = $("<thead />");
-//         const headerRow = $("<tr />");
-//         headerRow.
-//         append($("<th />", { "text": "Title"})).
-//         append($("<th />", { "text": "Release date"})).
-//         append($("<th />", { "text": "Running time", "class": "number"})).
-//         append($("<th />", { "class": "action"})).
-//         append($("<th />", { "class": "action"})).
-//         append($("<th />", { "class": "action"}))
-//         header.append(headerRow);
-//         table.append(header);
-//
-//         const tableBody = $("<tbody />");
-//         for (const movie of movieData) {
-//             const row = $("<tr />");
-//             const movieID = movie["movie_id"];
-//             row.
-//             append($("<td />", { "text": movie["title"]})).
-//             append($("<td />", { "text": movie["release_date"]})).
-//             append($("<td />", { "text": movie["runtime"], "class": "number"})).
-//             append($("<td />", { "html": "<img data-id='" + movieID + "' class='smallButton showMovie' src='img/show.png'>", "class": "action"})).
-//             append($("<td />", { "html": "<img data-id='" + movieID + "' class='smallButton editMovie' src='img/edit.png'>", "class": "action"})).
-//             append($("<td />", { "html": "<img data-id='" + movieID + "' class='smallButton deleteMovie' src='img/delete.png'>", "class": "action"}))
-//             tableBody.append(row);
-//         }
-//         table.append(tableBody);
-//
-//         table.appendTo($("section#filmResults"));
-//     }
-// }
-//
-
-// // Loads person information in the person listBox
-// function displayArtists(artistData) {
-//     console.log(artistData);
-//     $("listArtist").empty();
-    
-//     const listArtist = $("<select />");
-//     for (const artist of artistData) {
-//         $(listArtist).append(
-//             '<span class="body">' + artist.ArtistId + ' ' + '</span>',
-//             '<span class="body">' + artist.Name + ' ' + '</span>'
-//         );
-//     }
-//     $("#listArtist").html(listArtist.html());
-// }
-
 // Loads Artist information in artistResults
 function displayArtists(artistData) {
     if (artistData.length === 0) {
         $("section#artistResults").html("There are no artists matching the entered text.");
     } else {
         $("section#artistResults").empty();
-
         const table = $("<table />", {"class": "table tableList"});
         const header = $("<thead />");
         const headerRow = $("<tr />");
@@ -78,14 +22,10 @@ function displayArtists(artistData) {
             append($("<th />", { "text": "Actions", "class": "number"}))
         header.append(headerRow);
         table.append(header);
-
         const tableBody = $("<tbody />");
         for (const artist of artistData) {
-            // const row = $("<tr />");
             const row = $("<tr />");
             const artistID = artist["ArtistId"];
-            // "data-toggle": "modal",
-            //             "data-target": "#modal",
             row.
                 append($("<td />", { "text": artist["ArtistId"]})).
                 append($("<td />", { "text": artist["Name"]})).
@@ -106,22 +46,8 @@ function displayArtists(artistData) {
         table.appendTo($("section#artistResults"));
     }
 }
-// // Shows Artist information in a Modal
-// function showArtist(artistData) {
-//     console.log("-----------");
-//     console.log(artistData);
 
-//     // Empty the previous Results
-//     $("#modalInfoContent1").empty();
-//     $("#modalInfoContent2").empty();
-
-//     // Add new information
-//     $("#modalTitle").html("Artist Information");
-//     $("#modalInfoContent1").html("Name: " + artistData["Name"]);
-//     $("#modalInfoContent2").html("Id: " + artistData["ArtistId"]);
-// }
-
-// Shows Create Artist Modal
+// Artist Modal - show, create, update, delete
 function showModal(action, artistId = 0, artistData = []) {
     // Empty the previous Results
     $("#modalInfoContent1").empty();
@@ -148,7 +74,7 @@ function showModal(action, artistId = 0, artistData = []) {
                     `<form id="frmCreateArtist" method="POST">
                         <label for="createArtistName" id="txtArtistLabel">Artist Name</label>
                         <input type="text" id="createArtistName" name="text" required>
-                        <button type="button" class="btn btn-success mb-2 createArtist" id="btnCreateArtist">Create Artist</button>
+                        <button type="button" class="btn btn-success mb-2 createArtist" id="btnCreateArtist" data-dismiss="modal">Create Artist</button>
                     </form>`
                 }))
             break;
@@ -158,7 +84,7 @@ function showModal(action, artistId = 0, artistData = []) {
                     `<form id="frmUpdateArtist" method="POST">
                         <label for="updateArtistName" id="txtArtistLabel">New Name</label>
                         <input data-id= ` + artistId + ` type="text" id="updateArtistName" name="text" required>
-                        <button type="button" class="btn btn-success mb-2 updateArtist" id="btnUpdateArtist">Update Artist</button>
+                        <button type="button" class="btn btn-success mb-2 updateArtist" id="btnUpdateArtist" data-dismiss="modal">Update Artist</button>
                     </form>`
                 }))
             break;
@@ -183,145 +109,9 @@ function showModal(action, artistId = 0, artistData = []) {
     $("#modalInfoContent1").append(elem);
 }
 
-//
-// function enableMovieModal() {
-//     $("div#modalFilm input, textarea, select").removeAttr("readonly");
-//     $("img#btnAssignDirector, img#btnDeassignDirector").show();
-//     $("img#btnAssignActor, img#btnDeassignActor").show();
-//     $("button#btnFilmOk").show();
-//     $("button#btnFilmCancel").text("Cancel");
-// }
-//
-// // Shows the movie modal
-// function showMovieModal(action, id = 0) {
-//
-//     hideBelowContent('film');
-//     $("div#modalFilm").attr("data-id", id);
-//
-//     switch (action) {
-//         case 'show':
-//             $("h3#headerFilm").text("Film information");
-//             $("div#modalFilm input, textarea, select").attr("readonly", "true");
-//             $("img#btnAssignDirector, img#btnDeassignDirector").hide();
-//             $("img#btnAssignActor, img#btnDeassignActor").hide();
-//             $("button#btnFilmOk").hide();
-//             $("button#btnFilmCancel").text("Ok");
-//             break;
-//         case 'add':
-//             enableMovieModal();
-//             $("h3#headerFilm").text("New film");
-//             $("button#btnFilmOk").text("Add film");
-//             break;
-//         case 'edit':
-//             enableMovieModal();
-//             $("h3#headerFilm").text("Edit film");
-//             $("button#btnFilmOk").text("Ok");
-//             break;
-//         default:
-//             showBelowContent('film');
-//             return;
-//     }
-//     $("div#modalFilm").show();
-// }
-//
-// // Shows the person modal (director or actor)
-// function showPersonModal(personType) {
-//
-//     hideBelowContent('person');
-//
-//     if (personType === 'director') {
-//         $("h3#headerPerson").text("New director");
-//         $("input#txtPerson").siblings("label").text("Search director");
-//         $("select#lstPerson").siblings("label").text("Directors");
-//         $("button#btnPersonOk").text("Assign director");
-//     } else {
-//         $("h3#headerPerson").text("New actor");
-//         $("input#txtPerson").siblings("label").text("Search actor");
-//         $("select#lstPerson").siblings("label").text("Actors");
-//         $("button#btnPersonOk").text("Assign actor");
-//     }
-//
-//     $("div#modalPerson").show();
-// }
-//
-// // Shows a message for a specific entity, action, and operation status
-// function showMessage(entity, action, success) {
-//
-//     showBelowContent('message');
-//
-//     let message;
-//     if (success) {
-//         if (action === "add") {
-//             action += "e";
-//         }
-//         message = "The " + entity + " was " + action + "d successfully";
-//     } else {
-//         message = "There was an error while trying to " + action + " the " + entity;
-//     }
-//     $("div#modalMessage > main").text(message);
-//     $("div#modalMessage").show();
-// }
-//
-// // Hides the modal whose name it receives as a parameter
-// function hideModal(modal) {
-//     switch (modal) {
-//         case "film":
-//             $("div#modalFilm").hide();
-//             $("#txtTitle").val("");
-//             $("#txtOverview").val("");
-//             $("#txtReleaseDate").val("");
-//             $("#txtRuntime").val("");
-//             $("#lstDirector").empty();
-//             $("#lstActor").empty();
-//             break;
-//         case "person":
-//             $("div#modalPerson").hide();
-//             $("#txtPerson").val("");
-//             $("#lstPerson").empty();
-//             break;
-//         case "message":
-//             $("div#modalMessage").hide();
-//             break;
-//     }
-//     showBelowContent(modal);
-// }
-//
-// // It superposes a div on top of the page so that content cannot be interacted with while the modal is in display
-// function hideBelowContent(modal) {
-//
-//     /*
-//         For this scheme to work, it is necessary to establish different levels:
-//         - Level 0:
-//         --- Search page                 z-index: -1
-//         - Level 1
-//         --- Search page cover div       z-index: 0
-//         --- Movie modal                 z-index: 1
-//         - Level 2
-//         --- Movie modal cover div       z-index: 2
-//         --- Person or message modal     z-index: 3
-//     */
-//     let coverClass = "";
-//     if (modal === "film") {
-//         coverClass = "cover";
-//     } else {
-//         coverClass = "cover secondLevel";
-//     }
-//
-//     const cover = $("<div />", { "id": modal, "class": coverClass});
-//
-//     $("body").append(cover);
-// }
-//
-// // It removes the cover div
-// function showBelowContent(modal) {
-//     $("div#" + modal).remove();
-// }
-
 // They show and hide the "loading" animated gif
 function loadingStart() { $("#loading").show(); $("#filmResults").empty(); }
 function loadingEnd() { $("#loading").hide(); }
-
-
 
 function selectUserLogin() {
     console.log("loginUser clicked");
