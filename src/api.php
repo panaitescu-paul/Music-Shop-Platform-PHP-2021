@@ -20,20 +20,6 @@
                     $artist = new Artist;
 
                     switch ($action) {
-                        // case 'search':
-                        //     if (!isset($_POST['searchText'])) {
-                        //         leave();
-                        //     } else {
-                        //         echo json_encode($artist->search($_POST['searchText']));
-                        //     }
-                        //     break;
-                        case 'search':
-                            if (!isset($_POST['searchText'])) {
-                                leave();
-                            } else {
-                                echo json_encode($artist->search($_POST['searchText']));
-                            }
-                            break;
                         case 'getAll':
                             echo json_encode($artist->getAll());
                             break;
@@ -44,11 +30,25 @@
                                 echo json_encode($artist->get($_POST['id']));
                             }
                             break;
+                        case 'search':
+                            if (!isset($_POST['searchText'])) {
+                                leave();
+                            } else {
+                                echo json_encode($artist->search($_POST['searchText']));
+                            }
+                            break;
                         case 'create':
                             if (!isset($_POST['info'])) {
                                 leave();
                             } else {
                                 echo json_encode($artist->create($_POST['info']));
+                            }
+                            break;
+                        case 'update':
+                            if (!isset($_POST['info'])) {
+                                leave();
+                            } else {
+                                echo json_encode($artist->update($_POST['info']));
                             }
                             break;
                         // case 'delete':
@@ -80,6 +80,7 @@
                                 echo json_encode($person->add($_POST['personName']));
                             }
                             break;
+                        
                         case 'delete':
                             if (!isset($_POST['personID'])) {
                                 leave();
