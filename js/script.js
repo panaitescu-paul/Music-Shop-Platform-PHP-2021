@@ -205,6 +205,7 @@ $(document).ready(function() {
         });
         
     });
+    
 
     // Update Artist
     $(document).on("click", ".updateArtist", function() {
@@ -227,6 +228,11 @@ $(document).ready(function() {
         console.log("id", id);
 
     });
-    
 
+    // Open Modal - Create Artist 
+    $(document).on("click", ".createArtistModal", function() {
+        showCreateArtistModal();
+    });
+
+    
 });
