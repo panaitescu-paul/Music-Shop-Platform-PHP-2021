@@ -234,5 +234,46 @@ $(document).ready(function() {
         showCreateArtistModal();
     });
 
+    // Create Artist
+    $(document).on("click", ".createArtist", function() {
+        const action = 'create';
+        // const action = ($(this)[0].className === "smallButton showMovie" ? 'show' : 'edit');
+        // const id = $(this).attr("data-id");
+
+        console.log("action", action);
+        // console.log("id", id);
+
+        console.log("$('#createArtistName').val()", $("#createArtistName").val());
+
+        let info = {
+            "name": $("#createArtistName").val()
+        }
+        console.log("info", info);
+
+        if (info["Name"] !== null) {
+            $.ajax({
+                url: "../src/api.php",
+                type: "POST",
+                data: {
+                    entity: "artist",
+                    action: "create",
+                    info: info
+                },
+    
+                success: function(data) {
+                    console.log(data);
+    
+                    data = JSON.parse(data);
+                    console.log(data);
+                    console.log("Artist created");
+    
+                    // if (userAuthenticated(data)) {
+                        // displayArtists(data);
+                        // showArtistModal(data);
+                    // }
+                }
+            });
+        }
+    });
     
 });
