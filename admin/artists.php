@@ -19,6 +19,13 @@
 
 <!-- Start of Page content -->
 <div class="container">
+
+    <!-- Sidebar navigation -->
+    <div class="sidebar">
+        <button type="button" class="btn btn-primary scrollUp">Up</button>
+        <button type="button" class="btn btn-primary scrollDown">Down</button>
+    </div>
+
     <h1 class="main-title">Artists</h1>
     <div class="resultArea">
     
@@ -29,6 +36,7 @@
         <input type="text" id="searchArtistName" name="Name" required>
         <button type="button" class="btn btn-success mb-2" id="btnSearchArtist">Search Artist</button>
         
+    
         <section id="artistResults">
         </section>
 
