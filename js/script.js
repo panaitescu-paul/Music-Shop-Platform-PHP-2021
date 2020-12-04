@@ -174,14 +174,24 @@ $(document).ready(function() {
         });
     });
 
-    // Show Artist
-    $(document).on("click", ".showArtist", function() {
+    // Open Modal - Create Artist 
+    $(document).on("click", ".createArtistModal", function() {
         // e.preventDefault();
 
-        const action = 'show';
-        // const action = ($(this)[0].className === "smallButton showMovie" ? 'show' : 'edit');
+        showModal('createArtist');
+    });
+    // Open Modal - Update Artist
+    $(document).on("click", ".updateArtistModal", function() {
+        // e.preventDefault();
         const id = $(this).attr("data-id");
+        showModal('updateArtist', id);
+    });
 
+    // Open Modal - Show Artist 
+    $(document).on("click", ".showArtistModal", function() {
+        // e.preventDefault();
+        const action = 'show';
+        const id = $(this).attr("data-id");
         console.log("action", action);
         console.log("id", id);
 
@@ -195,30 +205,13 @@ $(document).ready(function() {
             },
             success: function(data) {
                 console.log(data);
-
                 data = JSON.parse(data);
                 console.log(data);
-
                 // if (userAuthenticated(data)) {
-                    // displayArtists(data);
-                    showArtistModal(data);
+                    showModal('showArtist', id, data);
                 // }
             }
         });
-        
-    });
-    
-    // Open Modal - Create Artist 
-    $(document).on("click", ".createArtistModal", function() {
-        // e.preventDefault();
-
-        showModal('createArtist');
-    });
-    // Open Modal - Update Artist
-    $(document).on("click", ".updateArtistModal", function() {
-        // e.preventDefault();
-        const id = $(this).attr("data-id");
-        showModal('updateArtist', id);
     });
 
     // Create Artist
@@ -288,17 +281,7 @@ $(document).ready(function() {
         }
     });
 
-    // Delete Artist
-    $(document).on("click", ".deleteArtist", function() {
-        // e.preventDefault();
+    
 
-        const action = 'delete';
-        // const action = ($(this)[0].className === "smallButton showMovie" ? 'show' : 'edit');
-        const id = $(this).attr("data-id");
-
-        console.log("action", action);
-        console.log("id", id);
-
-    });
     
 });
