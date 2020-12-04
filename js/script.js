@@ -176,6 +176,8 @@ $(document).ready(function() {
 
     // Show Artist
     $(document).on("click", ".showArtist", function() {
+        // e.preventDefault();
+
         const action = 'show';
         // const action = ($(this)[0].className === "smallButton showMovie" ? 'show' : 'edit');
         const id = $(this).attr("data-id");
@@ -206,51 +208,29 @@ $(document).ready(function() {
         
     });
     
-
-    // Update Artist
-    $(document).on("click", ".updateArtist", function() {
-        const action = 'update';
-        // const action = ($(this)[0].className === "smallButton showMovie" ? 'show' : 'edit');
-        const id = $(this).attr("data-id");
-
-        console.log("action", action);
-        console.log("id", id);
-
-    });
-
-    // Delete Artist
-    $(document).on("click", ".deleteArtist", function() {
-        const action = 'delete';
-        // const action = ($(this)[0].className === "smallButton showMovie" ? 'show' : 'edit');
-        const id = $(this).attr("data-id");
-
-        console.log("action", action);
-        console.log("id", id);
-
-    });
-
     // Open Modal - Create Artist 
     $(document).on("click", ".createArtistModal", function() {
-        showCreateArtistModal();
+        // e.preventDefault();
+
+        showModal('createArtist');
+    });
+    // Open Modal - Update Artist
+    $(document).on("click", ".updateArtistModal", function() {
+        // e.preventDefault();
+        const id = $(this).attr("data-id");
+        showModal('updateArtist', id);
     });
 
     // Create Artist
     $(document).on("click", ".createArtist", function() {
+        // e.preventDefault();
+
         const action = 'create';
-        // const action = ($(this)[0].className === "smallButton showMovie" ? 'show' : 'edit');
-        // const id = $(this).attr("data-id");
-
         console.log("action", action);
-        // console.log("id", id);
-
-        console.log("$('#createArtistName').val()", $("#createArtistName").val());
-
         let info = {
             "name": $("#createArtistName").val()
         }
-        console.log("info", info);
-
-        if (info["Name"] !== null) {
+        if (info["name"] !== null) {
             $.ajax({
                 url: "../src/api.php",
                 type: "POST",
@@ -259,14 +239,11 @@ $(document).ready(function() {
                     action: "create",
                     info: info
                 },
-    
                 success: function(data) {
                     console.log(data);
-    
                     data = JSON.parse(data);
                     console.log(data);
                     console.log("Artist created");
-    
                     // if (userAuthenticated(data)) {
                         // displayArtists(data);
                         // showArtistModal(data);
@@ -274,6 +251,54 @@ $(document).ready(function() {
                 }
             });
         }
+    });
+
+    // Update Artist
+    $(document).on("click", ".updateArtist", function() {
+        // e.preventDefault();
+        const action = 'update';
+        console.log("action", action);
+        console.log("data-id", $("#updateArtistName").attr("data-id"));
+        let info = {
+            "name": $("#updateArtistName").val(),
+            "id": $("#updateArtistName").attr("data-id")
+        }
+        console.log("info", info);
+
+        if (info["name"] !== null && info["id"] !== null) {
+            $.ajax({
+                url: "../src/api.php",
+                type: "POST",
+                data: {
+                    entity: "artist",
+                    action: "update",
+                    info: info
+                },
+                success: function(data) {
+                    console.log(data);
+                    data = JSON.parse(data);
+                    console.log(data);
+                    console.log("Artist updated");
+                    // if (userAuthenticated(data)) {
+                        // displayArtists(data);
+                        // showArtistModal(data);
+                    // }
+                }
+            });
+        }
+    });
+
+    // Delete Artist
+    $(document).on("click", ".deleteArtist", function() {
+        // e.preventDefault();
+
+        const action = 'delete';
+        // const action = ($(this)[0].className === "smallButton showMovie" ? 'show' : 'edit');
+        const id = $(this).attr("data-id");
+
+        console.log("action", action);
+        console.log("id", id);
+
     });
     
 });
