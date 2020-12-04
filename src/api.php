@@ -51,15 +51,14 @@
                                 echo json_encode($artist->update($_POST['info']));
                             }
                             break;
-                        // case 'delete':
-                        //     if (!isset($_POST['personID'])) {
-                        //         leave();
-                        //     } else {
-                        //         echo json_encode($artist->delete($_POST['personID']));
-                        //     }
-                        //     break;
+                        case 'delete':
+                            if (!isset($_POST['id'])) {
+                                leave();
+                            } else {
+                                echo json_encode($artist->delete($_POST['id']));
+                            }
+                            break;
                     }
-
                     break;
                 case 'person':
                     require_once('person.php');
