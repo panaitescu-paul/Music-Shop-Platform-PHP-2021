@@ -60,36 +60,6 @@
                             break;
                     }
                     break;
-                case 'person':
-                    require_once('person.php');
-                    $person = new Person;
-
-                    switch ($action) {
-                        case 'search':
-                            if (!isset($_POST['searchText'])) {
-                                leave();
-                            } else {
-                                echo json_encode($person->search($_POST['searchText']));
-                            }
-                            break;
-                        case 'add':
-                            if (!isset($_POST['personName'])) {
-                                leave();
-                            } else {
-                                echo json_encode($person->add($_POST['personName']));
-                            }
-                            break;
-                        
-                        case 'delete':
-                            if (!isset($_POST['personID'])) {
-                                leave();
-                            } else {
-                                echo json_encode($person->delete($_POST['personID']));
-                            }
-                            break;
-                    }
-
-                    break;
                 case 'user':
                     require_once('user.php');
                     $user = new User;
