@@ -96,8 +96,8 @@ function displayArtists(artistData) {
                     "<button data-id='" + artistID + "' type='button' class='btn btn-warning btnUpdate updateArtistModal' data-toggle='modal' data-target='#modal'>" +
                         "<img src='../img/pencil-square.svg' class='icon-update'>" +
                     "</button>" +
-                    "<button data-id='" + artistID + "' type='button' class='btn btn-success btnShow showArtist'>" +
-                        "<img src='../img/card-text.svg' class='icon-show' data-toggle='modal' data-target='#modal'>" +
+                    "<button data-id='" + artistID + "' type='button' class='btn btn-success btnShow showArtistModal' data-toggle='modal' data-target='#modal'>" +
+                        "<img src='../img/card-text.svg' class='icon-show'>" +
                     "</button>"
                 }))
             tableBody.append(row);
@@ -106,34 +106,42 @@ function displayArtists(artistData) {
         table.appendTo($("section#artistResults"));
     }
 }
-// Shows Artist information in a Modal
-function showArtistModal(artistData) {
-    console.log("-----------");
-    console.log(artistData);
+// // Shows Artist information in a Modal
+// function showArtist(artistData) {
+//     console.log("-----------");
+//     console.log(artistData);
 
-    // Empty the previous Results
-    $("#modalInfoContent1").empty();
-    $("#modalInfoContent2").empty();
+//     // Empty the previous Results
+//     $("#modalInfoContent1").empty();
+//     $("#modalInfoContent2").empty();
 
-    // Add new information
-    $("#modalTitle").html("Artist Information");
-    $("#modalInfoContent1").html("Name: " + artistData["Name"]);
-    $("#modalInfoContent2").html("Id: " + artistData["ArtistId"]);
-}
+//     // Add new information
+//     $("#modalTitle").html("Artist Information");
+//     $("#modalInfoContent1").html("Name: " + artistData["Name"]);
+//     $("#modalInfoContent2").html("Id: " + artistData["ArtistId"]);
+// }
 
 // Shows Create Artist Modal
-function showModal(action, artistId = 0) {
+function showModal(action, artistId = 0, artistData = []) {
     // Empty the previous Results
     $("#modalInfoContent1").empty();
     $("#modalInfoContent2").empty();
-
-    // Add new information
-    // $("#modalTitle").html("Create Artist");
-    // $("#modalInfoContent1").html("Name: " + artistData["Name"]);
-    // $("#modalInfoContent2").html("Id: " + artistData["ArtistId"]);
 
     const elem = $("<div />");
     switch (action) {
+        case 'showArtist': 
+            $("#modalTitle").html("Artist Details");           
+            elem.append($("<div />", { "class": "", "html": 
+                `<p>
+                    <span class="tag">Id</span>
+                    <span class="tag-info"> ` + artistData["ArtistId"]+ ` </span>
+                </p>
+                <p>
+                    <span class="tag">Name</span>
+                    <span class="tag-info"> ` + artistData["Name"]+ ` </span>
+                </p>`
+                }))
+            break;
         case 'createArtist': 
             $("#modalTitle").html("Create Artist");           
             elem.append($("<div />", { "class": "", "html": 
@@ -152,6 +160,18 @@ function showModal(action, artistId = 0) {
                         <input data-id= ` + artistId + ` type="text" id="updateArtistName" name="text" required>
                         <button type="button" class="btn btn-success mb-2 updateArtist" id="btnUpdateArtist">Update Artist</button>
                     </form>`
+                }))
+            break;
+        case 'artistDeleteSuccess':
+            $("#modalTitle").html("Delete Artist");           
+            elem.append($("<div />", { "class": "", "html": 
+                    `<p>Artist Successfuly deleted!</p>`
+                }))
+            break;
+        case 'artistDeleteFailure':
+            $("#modalTitle").html("Delete Artist");           
+            elem.append($("<div />", { "class": "", "html": 
+                    `<p>Artist not deleted!</p>`
                 }))
             break;
         default:
