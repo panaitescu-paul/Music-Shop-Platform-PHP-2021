@@ -177,15 +177,15 @@ img.smallButton {
     margin: 20px;
 }
 
-.movieInfo .tag,
-.personInfo .tag {
+.tag {
     font-weight: 700;
-    border: 1px solid #107df5;
+    /* border: 1px solid #107df5; */
+    border: 1px solid rgba(2, 123, 255, 0.7);
     border-radius: 5px;
-    background-color: rgba(16, 125, 245, 0.1);
+    background-color: rgba(2, 123, 255, 0.1);
     padding: 5px;
     margin-right: 10px;
-    line-height: 37px;
+    line-height: 20px;
 }
 
 .img-actor-small {
@@ -193,3 +193,25 @@ img.smallButton {
     height: 60px;
 }
 /* End Modal */
+
+
+
+/* Sidebar */
+.sidebar {
+    height: 105px; 
+    width: 75px; 
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 100px; /* Stay at the top */
+    left: 0;
+    background-color: rgb(2, 123, 255, 0.1); 
+    overflow-x: hidden; /* Disable horizontal scroll */
+    /* padding-top: 20px; */
+    text-align: center;
+}
+.sidebar button {
+    margin-top: 10px;
+    width: 65px;
+}
+/* End Sidebar */
+
