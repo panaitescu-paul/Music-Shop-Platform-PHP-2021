@@ -281,7 +281,48 @@ $(document).ready(function() {
         }
     });
 
-    
+    // Delete Artist
+    $(document).on("click", ".deleteArtist", function() {
+        // e.preventDefault();
+        const action = 'delete';
+        const id = $(this).attr("data-id");
+        console.log("action", action);
+        console.log("id", id);
+
+        if (confirm("Are you sure that you want to delete this Artist?")) {
+            if (id !== null) {
+
+                //  TODO: Check for Referential Integrity, chek if this artist has tracks???
+                $.ajax({
+                    url: "../src/api.php",
+                    type: "POST",
+                    data: {
+                        entity: "artist",
+                        action: "delete",
+                        id: id
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        data = JSON.parse(data);
+                        console.log(data);
+                        
+                        // if (userAuthenticated(data)) {
+                            // displayArtists(data);
+                            if (data === true) {
+                                $("button[data-id=" + id + "]").parent().parent().remove();     // The table row is removed
+                                console.log("Artist deleted");
+                                showModal("artistDeleteSuccess");
+                            } else {
+                                console.log("Artist not deleted");
+                                showModal("artistDeleteFailure");
+                            }
+                            
+                        // }
+                    }
+                });
+            }
+        }
+    });
 
     
 });
