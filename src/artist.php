@@ -12,46 +12,6 @@
 
     // TODO: Add Try and Catch blocks for every query
     class Artist extends DB {
-        /**
-         * Inserts a new Artist
-         * 
-         * @param   artist info
-         * @return  the ID of the new artist
-         */
-        function create($info) {            
-            $query = <<<'SQL'
-                INSERT INTO artist (Name) VALUES (?);
-                SQL;
-
-            $stmt = $this->pdo->prepare($query);
-            $stmt->execute([$info['name']]);
-            $newID = $this->pdo->lastInsertId();
-            
-            $this->disconnect();
-            return $newID;
-        }
-
-        /**
-         * Retrieves the artists whose name includes a certain text
-         * 
-         * @param   text upon which to execute the search
-         * @return  an array with person information
-         */
-        function search($searchText) {
-            $query = <<<'SQL'
-                SELECT ArtistId, Name
-                FROM artist
-                WHERE Name LIKE ?
-                ORDER BY Name;
-            SQL;
-
-            $stmt = $this->pdo->prepare($query);
-            $stmt->execute(['%' . $searchText . '%']);                
-
-            $this->disconnect();
-
-            return $stmt->fetchAll();                
-        }
 
         /**
          * Retrieves all artists 
@@ -74,6 +34,7 @@
         /**
          * Retrieves artist by id 
          * 
+         * @param   id of the artist
          * @return  an artist and their information
          */
         
@@ -88,6 +49,47 @@
             $stmt->execute([$id]);                
             $this->disconnect();
             return $stmt->fetch();
+        }
+
+        /**
+         * Retrieves the artists whose name includes a certain text
+         * 
+         * @param   searchText upon which to execute the search
+         * @return  an array with person information
+         */
+        function search($searchText) {
+            $query = <<<'SQL'
+                SELECT ArtistId, Name
+                FROM artist
+                WHERE Name LIKE ?
+                ORDER BY Name;
+            SQL;
+
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute(['%' . $searchText . '%']);                
+
+            $this->disconnect();
+
+            return $stmt->fetchAll();                
+        }
+        
+        /**
+         * Inserts a new Artist
+         * 
+         * @param   artist info
+         * @return  the ID of the new artist
+         */
+        function create($info) {            
+            $query = <<<'SQL'
+                INSERT INTO artist (Name) VALUES (?);
+                SQL;
+
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$info['name']]);
+            $newID = $this->pdo->lastInsertId();
+            
+            $this->disconnect();
+            return $newID;
         }
 
         /**
