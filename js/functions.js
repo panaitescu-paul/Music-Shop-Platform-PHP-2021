@@ -93,7 +93,7 @@ function displayArtists(artistData) {
                     "<button data-id='" + artistID + "' type='button' class='btn btn-danger btnDelete deleteArtist'>" +
                         "<img src='../img/trash.svg' class='icon-delete'>" +
                     "</button>" +
-                    "<button data-id='" + artistID + "' type='button' class='btn btn-warning btnUpdate updateArtist'>" +
+                    "<button data-id='" + artistID + "' type='button' class='btn btn-warning btnUpdate updateArtistModal' data-toggle='modal' data-target='#modal'>" +
                         "<img src='../img/pencil-square.svg' class='icon-update'>" +
                     "</button>" +
                     "<button data-id='" + artistID + "' type='button' class='btn btn-success btnShow showArtist'>" +
@@ -122,26 +122,45 @@ function showArtistModal(artistData) {
 }
 
 // Shows Create Artist Modal
-function showCreateArtistModal() {
+function showModal(action, artistId = 0) {
     // Empty the previous Results
     $("#modalInfoContent1").empty();
     $("#modalInfoContent2").empty();
 
     // Add new information
-    $("#modalTitle").html("Create Artist");
+    // $("#modalTitle").html("Create Artist");
     // $("#modalInfoContent1").html("Name: " + artistData["Name"]);
     // $("#modalInfoContent2").html("Id: " + artistData["ArtistId"]);
 
-    const form = $("<div />");
-    form.
-        append($("<div />", { "class": "", "html": 
-            `<form id="frmCreateArtist" method="POST">
-                <label for="createArtistName" id="txtArtistLabel">Artist Name</label>
-                <input type="email" id="createArtistName" name="email" required>
-                <button type="button" class="btn btn-success mb-2 createArtist" id="btnCreateArtist">Create Artist</button>
-            </form>`
-        }))
-    $("#modalInfoContent1").append(form);
+    const elem = $("<div />");
+    switch (action) {
+        case 'createArtist': 
+            $("#modalTitle").html("Create Artist");           
+            elem.append($("<div />", { "class": "", "html": 
+                    `<form id="frmCreateArtist" method="POST">
+                        <label for="createArtistName" id="txtArtistLabel">Artist Name</label>
+                        <input type="text" id="createArtistName" name="text" required>
+                        <button type="button" class="btn btn-success mb-2 createArtist" id="btnCreateArtist">Create Artist</button>
+                    </form>`
+                }))
+            break;
+        case 'updateArtist':
+            $("#modalTitle").html("Update Artist");           
+            elem.append($("<div />", { "class": "", "html": 
+                    `<form id="frmUpdateArtist" method="POST">
+                        <label for="updateArtistName" id="txtArtistLabel">New Name</label>
+                        <input data-id= ` + artistId + ` type="text" id="updateArtistName" name="text" required>
+                        <button type="button" class="btn btn-success mb-2 updateArtist" id="btnUpdateArtist">Update Artist</button>
+                    </form>`
+                }))
+            break;
+        default:
+            elem.append($("<div />", { "class": "", "html": 
+                    `<p>There was an error loading the content!</p>`
+                }))
+            return;
+    }
+    $("#modalInfoContent1").append(elem);
 }
 
 //
