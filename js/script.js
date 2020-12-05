@@ -232,6 +232,13 @@ $(document).ready(function() {
 
         showModal('createArtist');
     });
+
+    // Open Modal - Update Artist
+    $(document).on("click", ".updateArtistModal", function() {
+        // e.preventDefault();
+        const id = $(this).attr("data-id");
+        showModal('updateArtist', id);
+    });
     
 
     // 
