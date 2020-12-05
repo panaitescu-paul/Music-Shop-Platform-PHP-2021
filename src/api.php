@@ -18,7 +18,6 @@
                 case 'artist':
                     require_once('artist.php');
                     $artist = new Artist;
-
                     switch ($action) {
                         case 'getAll':
                             echo json_encode($artist->getAll());
@@ -56,6 +55,50 @@
                                 leave();
                             } else {
                                 echo json_encode($artist->delete($_POST['id']));
+                            }
+                            break;
+                    }
+                    break;
+                case 'album':
+                    require_once('album.php');
+                    $album = new Album;
+                    switch ($action) {
+                        case 'getAll':
+                            echo json_encode($album->getAll());
+                            break;
+                        case 'get':
+                            if (!isset($_POST['id'])) {
+                                leave();
+                            } else {
+                                echo json_encode($album->get($_POST['id']));
+                            }
+                            break;
+                        case 'search':
+                            if (!isset($_POST['searchText'])) {
+                                leave();
+                            } else {
+                                echo json_encode($album->search($_POST['searchText']));
+                            }
+                            break;
+                        case 'create':
+                            if (!isset($_POST['info'])) {
+                                leave();
+                            } else {
+                                echo json_encode($album->create($_POST['info']));
+                            }
+                            break;
+                        case 'update':
+                            if (!isset($_POST['info'])) {
+                                leave();
+                            } else {
+                                echo json_encode($album->update($_POST['info']));
+                            }
+                            break;
+                        case 'delete':
+                            if (!isset($_POST['id'])) {
+                                leave();
+                            } else {
+                                echo json_encode($album->delete($_POST['id']));
                             }
                             break;
                     }
