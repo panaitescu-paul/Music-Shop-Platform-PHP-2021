@@ -47,6 +47,48 @@ function displayArtists(artistData) {
     }
 }
 
+// Loads Albums information in artistResults
+function displayAlbums(albumData) {
+    if (albumData.length === 0) {
+        $("section#results").html("There are no albums matching the entered text.");
+    } else {
+        $("section#results").empty();
+        const table = $("<table />", {"class": "table tableList"});
+        const header = $("<thead />");
+        const headerRow = $("<tr />");
+        headerRow.
+            append($("<th />", { "text": "AlbumId"})).
+            append($("<th />", { "text": "Title", "class": "number"})).
+            append($("<th />", { "text": "ArtistId", "class": "number"})).
+            append($("<th />", { "text": "Actions", "class": "number"}))
+        header.append(headerRow);
+        table.append(header);
+        const tableBody = $("<tbody />");
+        for (const album of albumData) {
+            const row = $("<tr />");
+            const albumID = album["AlbumId"];
+            row.
+                append($("<td />", { "text": album["AlbumId"]})).
+                append($("<td />", { "text": album["Title"]})).
+                append($("<td />", { "text": album["ArtistId"]})).
+                append($("<td />", { "class": "table-actions", "html": 
+                    "<button data-id='" + albumID + "' type='button' class='btn btn-danger btnDelete deleteArtist'>" +
+                        "<img src='../img/trash.svg' class='icon-delete'>" +
+                    "</button>" +
+                    "<button data-id='" + albumID + "' type='button' class='btn btn-warning btnUpdate updateArtistModal' data-toggle='modal' data-target='#modal'>" +
+                        "<img src='../img/pencil-square.svg' class='icon-update'>" +
+                    "</button>" +
+                    "<button data-id='" + albumID + "' type='button' class='btn btn-success btnShow showArtistModal' data-toggle='modal' data-target='#modal'>" +
+                        "<img src='../img/card-text.svg' class='icon-show'>" +
+                    "</button>"
+                }))
+            tableBody.append(row);
+        }
+        table.append(tableBody);
+        table.appendTo($("section#results"));
+    }
+}
+
 // Artist Modal - show, create, update, delete
 function showModal(action, artistId = 0, artistData = []) {
     // Empty the previous Results
