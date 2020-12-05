@@ -239,6 +239,33 @@ $(document).ready(function() {
         const id = $(this).attr("data-id");
         showModal('updateArtist', id);
     });
+
+    // Open Modal - Show Artist 
+    $(document).on("click", ".showArtistModal", function() {
+        // e.preventDefault();
+        const action = 'show';
+        const id = $(this).attr("data-id");
+        console.log("action", action);
+        console.log("id", id);
+
+        $.ajax({
+            url: "../src/api.php",
+            type: "POST",
+            data: {
+                entity: "artist",
+                action: "get",
+                id: id
+            },
+            success: function(data) {
+                console.log(data);
+                data = JSON.parse(data);
+                console.log(data);
+                // if (userAuthenticated(data)) {
+                    showModal('showArtist', id, data);
+                // }
+            }
+        });
+    });
     
 
     // 
