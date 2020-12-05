@@ -35,7 +35,7 @@
         <label for="txtName" id="txtNameLabel">Album Name</label>
         <input type="text" id="searchArtistName" name="Name" required>
         <button type="button" class="btn btn-success mb-2" id="btnSearchArtist">Search Album</button>
-        <section id="artistResults">
+        <section id="results">
         </section>
 
         <!-- Modal-->

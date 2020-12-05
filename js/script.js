@@ -160,6 +160,9 @@ $(document).ready(function() {
         if ( page === "artists.php") {
             console.log("PAGE artists");
             ShowAllArtists();
+        } else if ( page === "albums.php") {
+            console.log("PAGE albums");
+            ShowAllAlbums();
         } else {
             console.log("PAGE is NOT artists");
         }
