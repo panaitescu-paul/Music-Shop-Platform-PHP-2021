@@ -183,6 +183,25 @@ $(document).ready(function() {
             }
         });
     }
+
+    function ShowAllAlbums() {
+        $.ajax({
+            url: "../src/api.php",
+            type: "POST",
+            data: {
+                entity: "album",
+                action: "getAll"
+            },
+            success: function(data) {
+                // console.log(data);
+                data = JSON.parse(data);
+                console.log(data);
+                // if (userAuthenticated(data)) {
+                    displayAlbums(data);
+                // }
+            }
+        });
+    }
     // // Show all Artists
     // $("#btnShowArtists").on("click", function(e) {
     //     e.preventDefault();
