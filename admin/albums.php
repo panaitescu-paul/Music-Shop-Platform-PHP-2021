@@ -29,12 +29,12 @@
 
     <h1 class="main-title">Albums</h1>
     <div class="resultArea">
-        <button type="button" class="btn btn-success mb-2 createArtistModal" 
+        <button type="button" class="btn btn-success mb-2 createAlbumModal" 
                 id="btnAdd" data-toggle='modal' data-target='#modal'>Create Albums</button>
         <!-- <button type="button" class="btn btn-success mb-2" id="btnShowArtists">Show All Artists</button> -->
         <label for="txtName" id="txtNameLabel">Album Name</label>
-        <input type="text" id="searchArtistName" name="Name" required>
-        <button type="button" class="btn btn-success mb-2" id="btnSearchArtist">Search Album</button>
+        <input type="text" id="searchAlbumName" name="Name" required>
+        <button type="button" class="btn btn-success mb-2" id="btnSearchAlbum">Search Album</button>
         <section id="results">
         </section>
 

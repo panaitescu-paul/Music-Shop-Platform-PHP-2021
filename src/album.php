@@ -83,7 +83,7 @@
                 SQL;
 
             $stmt = $this->pdo->prepare($query);
-            $stmt->execute([$info['title']]);
+            $stmt->execute([$info['title'], $info['artistId']]);
             $newID = $this->pdo->lastInsertId();
             
             $this->disconnect();
