@@ -232,15 +232,24 @@ $(document).ready(function() {
 
         showModal('createArtist');
     });
-    // Open Modal - Update Artist
-    $(document).on("click", ".updateArtistModal", function() {
+    
+
+    // 
+    // Open Modal - Create Album 
+    $(document).on("click", ".createAlbumModal", function() {
+        // e.preventDefault();
+
+        showModal('createAlbum');
+    });
+    // Open Modal - Update Album
+    $(document).on("click", ".updateAlbumModal", function() {
         // e.preventDefault();
         const id = $(this).attr("data-id");
-        showModal('updateArtist', id);
+        showModal('updateAlbum', id);
     });
 
-    // Open Modal - Show Artist 
-    $(document).on("click", ".showArtistModal", function() {
+    // Open Modal - Show Album 
+    $(document).on("click", ".showAlbumModal", function() {
         // e.preventDefault();
         const action = 'show';
         const id = $(this).attr("data-id");
@@ -251,7 +260,7 @@ $(document).ready(function() {
             url: "../src/api.php",
             type: "POST",
             data: {
-                entity: "artist",
+                entity: "album",
                 action: "get",
                 id: id
             },
@@ -260,11 +269,13 @@ $(document).ready(function() {
                 data = JSON.parse(data);
                 console.log(data);
                 // if (userAuthenticated(data)) {
-                    showModal('showArtist', id, data);
+                    showModal('showAlbum', id, data);
                 // }
             }
         });
     });
+
+    // 
 
     // Create Artist
     $(document).on("click", ".createArtist", function() {
@@ -288,8 +299,47 @@ $(document).ready(function() {
                     console.log(data);
                     data = JSON.parse(data);
                     console.log(data);
-                    console.log("Artist created");
-                    ShowAllArtists();
+                    console.log("Album created");
+                    ShowAllAlbums();
+                    setTimeout(function (){
+                        window.scrollTo(0, document.body.scrollHeight);
+                    }, 700); // Delay in milliseconds
+                    
+
+                    // if (userAuthenticated(data)) {
+                        // displayArtists(data);
+                        // showArtistModal(data);
+                    // }
+                }
+            });
+        }
+    });
+
+    // Create Album
+    $(document).on("click", ".createAlbum", function() {
+        // e.preventDefault();
+
+        const action = 'create';
+        console.log("action", action);
+        let info = {
+            "title": $("#createAlbumTitle").val(),
+            "artistId": $("#createArtistId").val(),
+        }
+        if (info["title"] !== null) {
+            $.ajax({
+                url: "../src/api.php",
+                type: "POST",
+                data: {
+                    entity: "album",
+                    action: "create",
+                    info: info
+                },
+                success: function(data) {
+                    console.log(data);
+                    data = JSON.parse(data);
+                    console.log(data);
+                    console.log("Album created");
+                    ShowAllAlbums();
                     setTimeout(function (){
                         window.scrollTo(0, document.body.scrollHeight);
                     }, 700); // Delay in milliseconds
@@ -349,6 +399,51 @@ $(document).ready(function() {
         }
     });
 
+    // Update Album
+    $(document).on("click", ".updateAlbum", function(e) {
+        // e.preventDefault();
+        const action = 'update';
+        console.log("action", action);
+        console.log("data-id", $("#updateAlbumTitle").attr("data-id"));
+        let info = {
+            "title": $("#updateAlbumTitle").val(),
+            "id": $("#updateAlbumTitle").attr("data-id")
+        }
+        console.log("info", info);
+
+        if (info["title"] !== null && info["id"] !== null) {
+            $.ajax({
+                url: "../src/api.php",
+                type: "POST",
+                data: {
+                    entity: "album",
+                    action: "update",
+                    info: info
+                },
+                success: function(data) {
+                    console.log(data);
+                    data = JSON.parse(data);
+                    console.log(data);
+                    console.log("Album updated");
+
+                    // Show the updated List of Albums
+                    ShowAllAlbums();
+
+                    // Scroll to the updated Album
+                    var position = e.pageY;
+                    console.log("position", position);
+                    document.body.scrollTop = position - 100; // For Safari
+                    document.documentElement.scrollTop = position; // For Chrome, Firefox, IE and Opera
+
+                    // if (userAuthenticated(data)) {
+                        // displayArtists(data);
+                        // showArtistModal(data);
+                    // }
+                }
+            });
+        }
+    });
+
     // Delete Artist
     $(document).on("click", ".deleteArtist", function(e) {
         // e.preventDefault();
@@ -393,6 +488,60 @@ $(document).ready(function() {
                                 // showModal("artistDeleteSuccess");
                             } else {
                                 console.log("Artist not deleted");
+                                // showModal("artistDeleteFailure");
+                            }
+                            
+                        // }
+                    }
+                });
+            }
+        }
+    });
+
+    // Delete Album
+    $(document).on("click", ".deleteAlbum", function(e) {
+        // e.preventDefault();
+        const action = 'delete';
+        const id = $(this).attr("data-id");
+        console.log("action", action);
+        console.log("id", id);
+
+        if (confirm("Are you sure that you want to delete this Album?")) {
+            if (id !== null) {
+
+                //  TODO: Check for Referential Integrity, chek if this Album ....???
+                $.ajax({
+                    url: "../src/api.php",
+                    type: "POST",
+                    data: {
+                        entity: "album",
+                        action: "delete",
+                        id: id
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        data = JSON.parse(data);
+                        console.log(data);
+
+                        // Show the updated List of Albums
+                        ShowAllAlbums();
+
+                        // Scroll to the deleted Album
+                        var position = e.pageY;
+                        console.log("position", position);
+                        document.body.scrollTop = position - 100; // For Safari
+                        document.documentElement.scrollTop = position; // For Chrome, Firefox, IE and Opera
+
+                        
+                        // if (userAuthenticated(data)) {
+                            // displayArtists(data);
+                            if (data === true) {
+
+                                // $("button[data-id=" + id + "]").parent().parent().remove();     // The table row is removed
+                                console.log("Album deleted");
+                                // showModal("artistDeleteSuccess");
+                            } else {
+                                console.log("Album not deleted");
                                 // showModal("artistDeleteFailure");
                             }
                             
