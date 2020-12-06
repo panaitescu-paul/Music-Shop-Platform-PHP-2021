@@ -176,7 +176,7 @@ $(document).ready(function() {
         });
     }
 
-    // Show selected Artist
+    // Search Artists by name
     $("#btnSearchArtist").on("click", function(e) {
         e.preventDefault();
         $.ajax({
@@ -388,6 +388,46 @@ $(document).ready(function() {
         });
     });
 
+    // Show All Albums in a List
+    function ShowAllAlbums() {
+        $.ajax({
+            url: "../src/api.php",
+            type: "POST",
+            data: {
+                entity: "album",
+                action: "getAll"
+            },
+            success: function(data) {
+                data = JSON.parse(data);
+                console.log(data);
+                // if (userAuthenticated(data)) {
+                    displayAlbums(data);
+                // }
+            }
+        });
+    }
+
+    // Search Albums by name
+    $("#btnSearchAlbum").on("click", function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "../src/api.php",
+            type: "POST",
+            data: {
+                entity: "album",
+                action: "search",
+                searchText: $("#searchAlbumName").val()
+            },
+            success: function(data) {
+                data = JSON.parse(data);
+                console.log(data);
+                // if (userAuthenticated(data)) {
+                    displayAlbums(data);
+                // }
+            }
+        });
+    });
+
     // Create Album
     $(document).on("click", ".createAlbum", function() {
         const action = 'create';
@@ -424,25 +464,6 @@ $(document).ready(function() {
             });
         }
     });
-
-    // Show All Albums in a List
-    function ShowAllAlbums() {
-        $.ajax({
-            url: "../src/api.php",
-            type: "POST",
-            data: {
-                entity: "album",
-                action: "getAll"
-            },
-            success: function(data) {
-                data = JSON.parse(data);
-                console.log(data);
-                // if (userAuthenticated(data)) {
-                    displayAlbums(data);
-                // }
-            }
-        });
-    }
 
     // Update Album
     $(document).on("click", ".updateAlbum", function(e) {

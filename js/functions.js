@@ -126,6 +126,7 @@ function showModal(action, itemId = 0, data = []) {
                     `<form id="frmUpdateArtist" method="POST">
                         <label for="updateArtistName" id="txtArtistLabel">New Name</label>
                         <input data-id= ` + itemId + ` type="text" id="updateArtistName" name="text" required>
+                        </br>
                         <button type="button" class="btn btn-success mb-2 updateArtist" id="btnUpdateArtist" data-dismiss="modal">Update Artist</button>
                     </form>`
                 }))
@@ -148,12 +149,16 @@ function showModal(action, itemId = 0, data = []) {
             $("#modalTitle").html("Album Details");           
             elem.append($("<div />", { "class": "", "html": 
                 `<p>
-                    <span class="tag">AlbumId</span>
+                    <span class="tag">Album Id</span>
                     <span class="tag-info"> ` + data["AlbumId"]+ ` </span>
                 </p>
                 <p>
-                    <span class="tag">Name</span>
+                    <span class="tag">Album Name</span>
                     <span class="tag-info"> ` + data["Title"]+ ` </span>
+                </p>
+                <p>
+                    <span class="tag">Artist Id</span>
+                    <span class="tag-info"> ` + data["ArtistId"]+ ` </span>
                 </p>`
                 }))
             break;
@@ -175,8 +180,10 @@ function showModal(action, itemId = 0, data = []) {
                     `<form id="frmUpdateAlbum" method="POST">
                         <label for="updateAlbumTitle" id="txtAlbumLabel">New Name</label>
                         <input data-id= ` + itemId + ` type="text" id="updateAlbumTitle" name="text" required>
-                        <label for="updateArtistId" id="txtAlbumLabel">ArtistId</label>
+                        </br>
+                        <label for="updateArtistId" id="txtAlbumLabel">Artist Id</label>
                         <input data-id= ` + itemId + ` type="text" id="updateArtistId" name="text" required>
+                        </br>
                         <button type="button" class="btn btn-success mb-2 updateAlbum" id="btnUpdateAlbum" data-dismiss="modal">Update Artist</button>
                     </form>`
                 }))

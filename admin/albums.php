@@ -34,6 +34,7 @@
         <!-- <button type="button" class="btn btn-success mb-2" id="btnShowArtists">Show All Artists</button> -->
         <label for="txtName" id="txtNameLabel">Album Name</label>
         <input type="text" id="searchAlbumName" name="Name" required>
+        </br>
         <button type="button" class="btn btn-success mb-2" id="btnSearchAlbum">Search Album</button>
         <section id="results">
         </section>
