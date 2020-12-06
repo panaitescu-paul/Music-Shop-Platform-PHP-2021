@@ -90,7 +90,7 @@ function displayAlbums(albumData) {
 }
 
 // Artist Modal - show, create, update, delete
-function showModal(action, artistId = 0, data = []) {
+function showModal(action, itemId = 0, data = []) {
     // Empty the previous Results
     $("#modalInfoContent1").empty();
     $("#modalInfoContent2").empty();
@@ -125,7 +125,7 @@ function showModal(action, artistId = 0, data = []) {
             elem.append($("<div />", { "class": "", "html": 
                     `<form id="frmUpdateArtist" method="POST">
                         <label for="updateArtistName" id="txtArtistLabel">New Name</label>
-                        <input data-id= ` + artistId + ` type="text" id="updateArtistName" name="text" required>
+                        <input data-id= ` + itemId + ` type="text" id="updateArtistName" name="text" required>
                         <button type="button" class="btn btn-success mb-2 updateArtist" id="btnUpdateArtist" data-dismiss="modal">Update Artist</button>
                     </form>`
                 }))
@@ -173,8 +173,10 @@ function showModal(action, artistId = 0, data = []) {
             $("#modalTitle").html("Update Album");           
             elem.append($("<div />", { "class": "", "html": 
                     `<form id="frmUpdateAlbum" method="POST">
-                        <label for="updateAlbumName" id="txtAlbumLabel">New Name</label>
-                        <input data-id= ` + albumId + ` type="text" id="updateAlbumName" name="text" required>
+                        <label for="updateAlbumTitle" id="txtAlbumLabel">New Name</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateAlbumTitle" name="text" required>
+                        <label for="updateArtistId" id="txtAlbumLabel">ArtistId</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateArtistId" name="text" required>
                         <button type="button" class="btn btn-success mb-2 updateAlbum" id="btnUpdateAlbum" data-dismiss="modal">Update Artist</button>
                     </form>`
                 }))
