@@ -396,6 +396,8 @@ $(document).ready(function() {
             "title": $("#createAlbumTitle").val(),
             "artistId": $("#createArtistId").val(),
         }
+        console.log("info", info);
+
         if (info["title"] !== null) {
             $.ajax({
                 url: "../src/api.php",
@@ -406,6 +408,8 @@ $(document).ready(function() {
                     info: info
                 },
                 success: function(data) {
+                    console.log(data);
+
                     data = JSON.parse(data);
                     console.log(data);
                     console.log("Album created");
@@ -446,7 +450,8 @@ $(document).ready(function() {
         console.log("action", action);
         let info = {
             "title": $("#updateAlbumTitle").val(),
-            "id": $("#updateAlbumTitle").attr("data-id")
+            "artistId": $("#updateArtistId").val(),
+            "albumId": $("#updateAlbumTitle").attr("data-id")
         }
         console.log("info", info);
 
