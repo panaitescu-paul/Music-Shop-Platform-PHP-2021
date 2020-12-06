@@ -79,7 +79,7 @@
          */
         function create($info) {            
             $query = <<<'SQL'
-                INSERT INTO album (Title, ArtistId) VALUES (?);
+                INSERT INTO album (Title, ArtistId) VALUES (?, ?);
                 SQL;
 
             $stmt = $this->pdo->prepare($query);
