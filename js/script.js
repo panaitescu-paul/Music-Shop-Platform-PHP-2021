@@ -577,6 +577,29 @@ $(document).ready(function() {
         showModal('updateTrack', id);
     });
 
+    // Open Modal - Show Track 
+    $(document).on("click", ".showTrackModal", function() {
+        const action = 'show';
+        const id = $(this).attr("data-id");
+        console.log("action", action, " id", id);
+        $.ajax({
+            url: "../src/api.php",
+            type: "POST",
+            data: {
+                entity: "track",
+                action: "get",
+                id: id
+            },
+            success: function(data) {
+                data = JSON.parse(data);
+                console.log(data);
+                // if (userAuthenticated(data)) {
+                    showModal('showTrack', id, data);
+                // }
+            }
+        });
+    });
+
 // ******************************************************
 // ***                                                ***
 // ***                Scrolling Functionality         ***
