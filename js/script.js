@@ -571,6 +571,12 @@ $(document).ready(function() {
         showModal('createTrack');
     });
 
+    // Open Modal - Update Track
+    $(document).on("click", ".updateTrackModal", function() {
+        const id = $(this).attr("data-id");
+        showModal('updateTrack', id);
+    });
+
 // ******************************************************
 // ***                                                ***
 // ***                Scrolling Functionality         ***
