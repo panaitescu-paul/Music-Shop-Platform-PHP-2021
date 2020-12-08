@@ -118,6 +118,28 @@
             return $return;
         }
 
-
+        /**
+         * Deletes an Track
+         * 
+         * @param   ID of the Track to delete
+         * @return  true if success, -1 otherwise
+         */
+        function delete($id) {            
+            try {
+                $query = <<<'SQL'
+                    DELETE 
+                    FROM track 
+                    WHERE TrackId = ?;
+                SQL;
+                $stmt = $this->pdo->prepare($query);
+                $stmt->execute([$id]);
+                $return = true;
+            } catch (Exception $e) {
+                $return = -1;
+                debug($e);
+            }
+            $this->disconnect();
+            return $return;
+        }
     }
 ?>
