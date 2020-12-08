@@ -255,7 +255,27 @@ function showModal(action, itemId = 0, data = []) {
                 }))
             break;
         
-    
+        // ******************************************************
+        // ***                TRACK Functionality             ***
+        // ******************************************************
+
+        case 'showTrack': 
+            $("#modalTitle").html("Track Details");           
+            elem.append($("<div />", { "class": "", "html": 
+                `<p>
+                    <span class="tag">Track Id</span>
+                    <span class="tag-info"> ` + data["TrackId"]+ ` </span>
+                </p>
+                <p>
+                    <span class="tag">Track Name</span>
+                    <span class="tag-info"> ` + data["Name"]+ ` </span>
+                </p>
+                <p>
+                    <span class="tag">Album Id</span>
+                    <span class="tag-info"> ` + data["AlbumId"]+ ` </span>
+                </p>`
+                }))
+            break;
         default:
             elem.append($("<div />", { "class": "", "html": 
                     `<p>There was an error loading the content!</p>`
