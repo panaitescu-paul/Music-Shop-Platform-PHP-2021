@@ -89,6 +89,50 @@ function displayAlbums(albumData) {
     }
 }
 
+// Loads Tracks information in trackResults
+function displayTracks(trackData) {
+    if (trackData.length === 0) {
+        $("section#results").html("There are no tracks matching the entered text.");
+    } else {
+        $("section#results").empty();
+        const table = $("<table />", {"class": "table tableList"});
+        const header = $("<thead />");
+        const headerRow = $("<tr />");
+        headerRow.
+            append($("<th />", { "text": "TrackId"})).
+            append($("<th />", { "text": "Name", "class": "number"})).
+            append($("<th />", { "text": "AlbumId", "class": "number"})).
+            // append($("<th />", { "text": "GenreId", "class": "number"})).
+            // append($("<th />", { "text": "PriceId", "class": "number"})).
+            append($("<th />", { "text": "Actions", "class": "number"}))
+        header.append(headerRow);
+        table.append(header);
+        const tableBody = $("<tbody />");
+        for (const track of trackData) {
+            const row = $("<tr />");
+            const trackID = track["TrackId"];
+            row.
+                append($("<td />", { "text": track["TrackId"]})).
+                append($("<td />", { "text": track["Name"]})).
+                append($("<td />", { "text": track["AlbumId"]})).
+                append($("<td />", { "class": "table-actions", "html": 
+                    "<button data-id='" + trackID + "' type='button' class='btn btn-danger btnDelete deleteTrack'>" +
+                        "<img src='../img/trash.svg' class='icon-delete'>" +
+                    "</button>" +
+                    "<button data-id='" + trackID + "' type='button' class='btn btn-warning btnUpdate updateTrackModal' data-toggle='modal' data-target='#modal'>" +
+                        "<img src='../img/pencil-square.svg' class='icon-update'>" +
+                    "</button>" +
+                    "<button data-id='" + trackID + "' type='button' class='btn btn-success btnShow showTrackModal' data-toggle='modal' data-target='#modal'>" +
+                        "<img src='../img/card-text.svg' class='icon-show'>" +
+                    "</button>"
+                }))
+            tableBody.append(row);
+        }
+        table.append(tableBody);
+        table.appendTo($("section#results"));
+    }
+}
+
 // Artist Modal - show, create, update, delete
 function showModal(action, itemId = 0, data = []) {
     // Empty the previous Results
@@ -97,6 +141,11 @@ function showModal(action, itemId = 0, data = []) {
 
     const elem = $("<div />");
     switch (action) {
+
+        // ******************************************************
+        // ***                ARTIST Functionality            ***
+        // ******************************************************
+
         case 'showArtist': 
             $("#modalTitle").html("Artist Details");           
             elem.append($("<div />", { "class": "", "html": 
@@ -143,7 +192,10 @@ function showModal(action, itemId = 0, data = []) {
                     `<p>Artist not deleted!</p>`
                 }))
             break;
-        // 
+
+        // ******************************************************
+        // ***                ALBUM Functionality             ***
+        // ******************************************************
 
         case 'showAlbum': 
             $("#modalTitle").html("Album Details");           
@@ -168,8 +220,10 @@ function showModal(action, itemId = 0, data = []) {
                     `<form id="frmCreateArtist" method="POST">
                         <label for="createAlbumTitle" id="txtAlbumLabel">Album Title</label>
                         <input type="text" id="createAlbumTitle" name="text" required>
+                        </br>
                         <label for="createArtistId" id="txtAlbumLabel">Artist Id</label>
                         <input type="text" id="createArtistId" name="text" required>
+                        </br>
                         <button type="button" class="btn btn-success mb-2 createAlbum" id="btnCreateAlbum" data-dismiss="modal">Create Album</button>
                     </form>`
                 }))
@@ -178,7 +232,7 @@ function showModal(action, itemId = 0, data = []) {
             $("#modalTitle").html("Update Album");           
             elem.append($("<div />", { "class": "", "html": 
                     `<form id="frmUpdateAlbum" method="POST">
-                        <label for="updateAlbumTitle" id="txtAlbumLabel">New Name</label>
+                        <label for="updateAlbumTitle" id="txtAlbumLabel">New Album Title</label>
                         <input data-id= ` + itemId + ` type="text" id="updateAlbumTitle" name="text" required>
                         </br>
                         <label for="updateArtistId" id="txtAlbumLabel">Artist Id</label>
@@ -200,7 +254,8 @@ function showModal(action, itemId = 0, data = []) {
                     `<p>Album not deleted!</p>`
                 }))
             break;
-        // 
+        
+    
         default:
             elem.append($("<div />", { "class": "", "html": 
                     `<p>There was an error loading the content!</p>`
