@@ -30,6 +30,27 @@
             $this->disconnect();
             return $stmt->fetchAll(); 
         }
+        
+        /**
+         * Retrieves track by id 
+         * 
+         * @param   id of the track
+         * @return  a track and their information
+         */
+        
+        function get($id) {
+            $query = <<<'SQL'
+                SELECT TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice
+                FROM track
+                WHERE TrackId = ?;
+            SQL;
+
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$id]);                
+            $this->disconnect();
+            return $stmt->fetch();
+        }
+
 
     }
 ?>
