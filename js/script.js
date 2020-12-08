@@ -619,6 +619,27 @@ $(document).ready(function() {
         });
     }
 
+    // Search Tracks by name
+    $("#btnSearchTrack").on("click", function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "../src/api.php",
+            type: "POST",
+            data: {
+                entity: "track",
+                action: "search",
+                searchText: $("#searchTrackName").val()
+            },
+            success: function(data) {
+                data = JSON.parse(data);
+                console.log(data);
+                // if (userAuthenticated(data)) {
+                    displayTracks(data);
+                // }
+            }
+        });
+    });
+
 // ******************************************************
 // ***                                                ***
 // ***                Scrolling Functionality         ***
