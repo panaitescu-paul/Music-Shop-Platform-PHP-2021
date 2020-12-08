@@ -91,6 +91,33 @@
             return $newID;
         }
 
+        /**
+         * Updates an Track
+         * 
+         * @param   Track info
+         * @return  true if success, -1 otherwise
+         */
+        function update($info) {
+            try {
+                $query = <<<'SQL'
+                UPDATE track
+                    SET Name = ?, AlbumId = ?, MediaTypeId = ?, GenreId = ?, Composer = ?, Milliseconds = ?, Bytes = ?, UnitPrice = ?
+                    WHERE TrackId = ?
+                SQL;
+
+                $stmt = $this->pdo->prepare($query);
+                $stmt->execute([$info['name'], $info['albumId'], $info['mediaTypeId'], $info['genreId'], 
+                                $info['composer'], $info['milliseconds'], $info['bytes'], $info['unitPrice']]);
+                $return = true;
+
+            } catch (Exception $e) {
+                $return = -1;
+                debug($e);
+            }
+            $this->disconnect();
+            return $return;
+        }
+
 
     }
 ?>
