@@ -134,7 +134,7 @@ $(document).ready(function() {
 
 // ******************************************************
 // ***                                                ***
-// ***                ARTIST Functionality            ***
+// ***                Page Identification             ***
 // ***                                                ***
 // ******************************************************
 
@@ -152,10 +152,19 @@ $(document).ready(function() {
         } else if ( page === "albums.php") {
             console.log("PAGE albums");
             ShowAllAlbums();
+        } else if ( page === "tracks.php") {
+            console.log("PAGE tracks");
+            ShowAllTracks();
         } else {
             console.log("PAGE is NOT artists");
         }
     });
+
+// ******************************************************
+// ***                                                ***
+// ***                ARTIST Functionality            ***
+// ***                                                ***
+// ******************************************************
 
     // Show all Artists in a List
     function ShowAllArtists() {
@@ -549,6 +558,17 @@ $(document).ready(function() {
                 });
             }
         }
+    });
+
+// ******************************************************
+// ***                                                ***
+// ***                TRACKS Functionality             ***
+// ***                                                ***
+// ******************************************************
+
+    // Open Modal - Create Track 
+    $(document).on("click", ".createTrackModal", function() {
+        showModal('createTrack');
     });
 
 // ******************************************************
