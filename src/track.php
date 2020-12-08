@@ -30,7 +30,7 @@
             $this->disconnect();
             return $stmt->fetchAll(); 
         }
-        
+
         /**
          * Retrieves track by id 
          * 
@@ -49,6 +49,26 @@
             $stmt->execute([$id]);                
             $this->disconnect();
             return $stmt->fetch();
+        }
+
+        /**
+         * Retrieves the tracks whose title includes a certain text
+         * 
+         * @param   searchText upon which to execute the search
+         * @return  an array with track information
+         */
+        function search($searchText) {
+            $query = <<<'SQL'
+                SELECT TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice
+                FROM track
+                WHERE Name LIKE ?
+                ORDER BY Name;
+            SQL;
+
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute(['%' . $searchText . '%']);                
+            $this->disconnect();
+            return $stmt->fetchAll();                
         }
 
 

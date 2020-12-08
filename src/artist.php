@@ -11,6 +11,7 @@
     require_once('functions.php');
 
     // TODO: Add Try and Catch blocks for every query
+    // TODO: Add Status codes
     class Artist extends DB {
 
         /**
