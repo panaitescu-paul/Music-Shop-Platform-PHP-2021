@@ -677,6 +677,47 @@ $(document).ready(function() {
         }
     });
 
+    // Update Track
+    $(document).on("click", ".updateTrack", function(e) {
+        const action = 'update';
+        console.log("action", action);
+        let info = {
+            "title": $("#updateTrackTitle").val(),
+            "artistId": $("#updateArtistId").val(),
+            "trackId": $("#updateTrackTitle").attr("data-id")
+        }
+        console.log("info", info);
+
+        if (info["title"] !== null && info["id"] !== null) {
+            $.ajax({
+                url: "../src/api.php",
+                type: "POST",
+                data: {
+                    entity: "track",
+                    action: "update",
+                    info: info
+                },
+                success: function(data) {
+                    data = JSON.parse(data);
+                    console.log(data);
+                    console.log("Track updated");
+
+                    // Show the updated List of Tracks
+                    ShowAllTracks();
+
+                    // Scroll to the updated Track
+                    var position = e.pageY;
+                    console.log("position", position);
+                    document.body.scrollTop = position - 100; // For Safari
+                    document.documentElement.scrollTop = position; // For Chrome, Firefox, IE and Opera
+
+                    // if (userAuthenticated(data)) {
+                    // }
+                }
+            });
+        }
+    });
+
 // ******************************************************
 // ***                                                ***
 // ***                Scrolling Functionality         ***
