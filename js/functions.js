@@ -276,6 +276,20 @@ function showModal(action, itemId = 0, data = []) {
                 </p>`
                 }))
             break;
+        case 'createTrack': 
+            $("#modalTitle").html("Create Track");           
+            elem.append($("<div />", { "class": "", "html": 
+                    `<form id="frmCreateArtist" method="POST">
+                        <label for="createTrackTitle" id="txtTrackLabel">Track Title</label>
+                        <input type="text" id="createTrackTitle" name="text" required>
+                        </br>
+                        <label for="createArtistId" id="txtTrackLabel">Artist Id</label>
+                        <input type="text" id="createArtistId" name="text" required>
+                        </br>
+                        <button type="button" class="btn btn-success mb-2 createTrack" id="btnCreateTrack" data-dismiss="modal">Create Album</button>
+                    </form>`
+                }))
+            break;
         default:
             elem.append($("<div />", { "class": "", "html": 
                     `<p>There was an error loading the content!</p>`
