@@ -103,6 +103,50 @@
                             break;
                     }
                     break;
+                case 'track':
+                    require_once('track.php');
+                    $track = new Track;
+                    switch ($action) {
+                        case 'getAll':
+                            echo json_encode($track->getAll());
+                            break;
+                        case 'get':
+                            if (!isset($_POST['id'])) {
+                                leave();
+                            } else {
+                                echo json_encode($track->get($_POST['id']));
+                            }
+                            break;
+                        case 'search':
+                            if (!isset($_POST['searchText'])) {
+                                leave();
+                            } else {
+                                echo json_encode($track->search($_POST['searchText']));
+                            }
+                            break;
+                        case 'create':
+                            if (!isset($_POST['info'])) {
+                                leave();
+                            } else {
+                                echo json_encode($track->create($_POST['info']));
+                            }
+                            break;
+                        case 'update':
+                            if (!isset($_POST['info'])) {
+                                leave();
+                            } else {
+                                echo json_encode($track->update($_POST['info']));
+                            }
+                            break;
+                        case 'delete':
+                            if (!isset($_POST['id'])) {
+                                leave();
+                            } else {
+                                echo json_encode($track->delete($_POST['id']));
+                            }
+                            break;
+                    }
+                    break;
                 case 'user':
                     require_once('user.php');
                     $user = new User;
