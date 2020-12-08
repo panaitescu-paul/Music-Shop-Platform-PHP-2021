@@ -640,6 +640,43 @@ $(document).ready(function() {
         });
     });
 
+    // Create Track
+    $(document).on("click", ".createTrack", function() {
+        const action = 'create';
+        console.log("action", action);
+        let info = {
+            "title": $("#createTrackTitle").val(),
+            "artistId": $("#createArtistId").val(),
+        }
+        console.log("info", info);
+
+        if (info["title"] !== null) {
+            $.ajax({
+                url: "../src/api.php",
+                type: "POST",
+                data: {
+                    entity: "track",
+                    action: "create",
+                    info: info
+                },
+                success: function(data) {
+                    console.log(data);
+
+                    data = JSON.parse(data);
+                    console.log(data);
+                    console.log("Track created");
+                    ShowAllTracks();
+                    setTimeout(function (){
+                        window.scrollTo(0, document.body.scrollHeight);
+                    }, 700); // Delay in milliseconds
+                    
+                    // if (userAuthenticated(data)) {
+                    // }
+                }
+            });
+        }
+    });
+
 // ******************************************************
 // ***                                                ***
 // ***                Scrolling Functionality         ***
