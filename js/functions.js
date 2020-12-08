@@ -304,6 +304,12 @@ function showModal(action, itemId = 0, data = []) {
                     </form>`
                 }))
             break;
+        case 'trackDeleteSuccess':
+            $("#modalTitle").html("Delete Track");           
+            elem.append($("<div />", { "class": "", "html": 
+                    `<p>Track Successfuly deleted!</p>`
+                }))
+            break;
         default:
             elem.append($("<div />", { "class": "", "html": 
                     `<p>There was an error loading the content!</p>`
