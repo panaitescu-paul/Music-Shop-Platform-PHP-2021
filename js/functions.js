@@ -290,6 +290,20 @@ function showModal(action, itemId = 0, data = []) {
                     </form>`
                 }))
             break;
+        case 'updateTrack':
+            $("#modalTitle").html("Update Track");           
+            elem.append($("<div />", { "class": "", "html": 
+                    `<form id="frmUpdateTrack" method="POST">
+                        <label for="updateTrackTitle" id="txtTrackLabel">New Track Title</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateTrackTitle" name="text" required>
+                        </br>
+                        <label for="updateArtistId" id="txtTrackLabel">Artist Id</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateArtistId" name="text" required>
+                        </br>
+                        <button type="button" class="btn btn-success mb-2 updateTrack" id="btnUpdateTrack" data-dismiss="modal">Update Artist</button>
+                    </form>`
+                }))
+            break;
         default:
             elem.append($("<div />", { "class": "", "html": 
                     `<p>There was an error loading the content!</p>`
