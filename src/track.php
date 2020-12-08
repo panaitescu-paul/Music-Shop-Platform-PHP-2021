@@ -71,6 +71,26 @@
             return $stmt->fetchAll();                
         }
 
+        /**
+         * Inserts a new Track
+         * 
+         * @param   Track info
+         * @return  the ID of the new Track
+         */
+        function create($info) {            
+            $query = <<<'SQL'
+                INSERT INTO track (Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+                SQL;
+
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$info['name'], $info['albumId'], $info['mediaTypeId'], $info['genreId'], 
+                            $info['composer'], $info['milliseconds'], $info['bytes'], $info['unitPrice']]);
+            $newID = $this->pdo->lastInsertId();
+            
+            $this->disconnect();
+            return $newID;
+        }
+
 
     }
 ?>
