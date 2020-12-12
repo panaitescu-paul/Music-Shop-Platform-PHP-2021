@@ -154,20 +154,65 @@
             http_response_code(200);
             return $newID;
         }
-        // /**
-        //  * Inserts a new Artist
-        //  * 
-        //  * @param   artist info
-        //  * @return  the ID of the new artist
-        //  */
-        // function create($info) {            
-        //     $query = <<<'SQL'
-        //         INSERT INTO artist (Name) VALUES (?);
-        //         SQL;
 
-        //     $stmt = $this->pdo->prepare($query);
-        //     $stmt->execute([$info['name']]);
-        //     $newID = $this->pdo->lastInsertId();
+        /**
+         * Updates an Artist
+         * 
+         * @param   id - artist id
+         * @param   name - artist name
+         * @return  true if success, 
+         *          -1 if the artist id doesn't exist, 
+         *          -2 if an artist with this name already exists
+         *          -3 if the artist could not be updated
+         */
+        function update($id, $name) {
+            // Check if there is an Artist with this id
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM artist WHERE ArtistId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$id]);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Artist id doesn't exist
+                http_response_code(404);
+                return -1;
+            }
+
+            // Check the count of Artists with this name
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM artist WHERE Name = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$name]);   
+
+            if ($stmt->fetch()['total'] > 0) {
+                // Artist name already exists
+                http_response_code(404);
+                return -2;
+            }
+
+             // Update Artist
+            try {
+                $query = <<<'SQL'
+                UPDATE artist
+                    SET Name = ?
+                    WHERE ArtistId = ?
+                SQL;
+
+                $stmt = $this->pdo->prepare($query);
+                $stmt->execute([$name, $id]);
+                $return = true;
+
+            } catch (Exception $e) {
+                $return = -3;
+                debug($e);
+            }
+
+            $this->disconnect();
+            http_response_code(200);
+            return $return;
+        }
 
         //     $this->disconnect();
         //     return $newID;
