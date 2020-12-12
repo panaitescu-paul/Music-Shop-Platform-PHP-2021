@@ -22,12 +22,19 @@ http://_<server_name>_/WAD-MA2/_<end_point>_
 ####Examples:
 
 GET http://localhost/WAD-MA2/
+
 GET http://localhost/WAD-MA2/artists
+
 GET http://localhost/WAD-MA2/artists?name=John
+
 GET http://localhost/WAD-MA2/artists/5
+
 POST http://localhost/WAD-MA2/artists
+
 POST http://localhost/WAD-MA2/artists/5
+
 DELETE http://localhost/WAD-MA2/artists/5
+
 
 ####Sample Output:
 
