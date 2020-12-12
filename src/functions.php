@@ -52,4 +52,13 @@
 
         return json_encode($apiDescription);
     }
+
+    /**
+     * Returns a format error
+     */
+    function formatError() {
+        $output['error'] = 'Incorrect format';
+        return json_encode($output);
+    }
+
 ?>
