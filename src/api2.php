@@ -35,7 +35,7 @@
     $pieces = count($urlPieces);
 
     // echo $pieces;
-    echo "Entities: " . $pieces . "\n";
+    // echo "Entities: " . $pieces . "\n";
 
     if ($pieces == 2) {
         echo APIDescription();

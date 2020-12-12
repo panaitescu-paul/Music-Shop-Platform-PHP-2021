@@ -20,6 +20,20 @@
          */
         
         function getAll() {
+            // Check the count of Artists
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM artist;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute();   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Artists not found
+                http_response_code(404);
+                return -1;
+            }
+
+            // Select all Artists
             $query = <<<'SQL'
                 SELECT ArtistId, Name
                 FROM artist;
@@ -28,6 +42,8 @@
             $stmt = $this->pdo->prepare($query);
             $stmt->execute();
             $this->disconnect();
+
+            http_response_code(200);
             return $stmt->fetchAll(); 
         }
 
@@ -39,6 +55,20 @@
          */
         
         function get($id) {
+            // Check the count of Artists
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM artist WHERE ArtistId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$id]);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Artists not found
+                http_response_code(404);
+                return -1;
+            }
+
+            // Search Artists
             $query = <<<'SQL'
                 SELECT ArtistId, Name
                 FROM artist
@@ -48,6 +78,8 @@
             $stmt = $this->pdo->prepare($query);
             $stmt->execute([$id]);                
             $this->disconnect();
+
+            http_response_code(200);
             return $stmt->fetch();
         }
 
@@ -58,6 +90,20 @@
          * @return  an array with artists information
          */
         function search($searchText) {
+            // Check the count of Artists
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM artist WHERE Name LIKE ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute(['%' . $searchText . '%']);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Artists not found
+                http_response_code(404);
+                return -1;
+            }
+            
+            // Search Artists
             $query = <<<'SQL'
                 SELECT ArtistId, Name
                 FROM artist
@@ -67,9 +113,7 @@
 
             $stmt = $this->pdo->prepare($query);
             $stmt->execute(['%' . $searchText . '%']);                
-
             $this->disconnect();
-
             return $stmt->fetchAll();                
         }
         
