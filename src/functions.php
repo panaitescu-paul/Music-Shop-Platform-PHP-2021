@@ -34,4 +34,22 @@
         fclose($logFile);
     }
 
+    /**
+     * Returns the REST API description
+     */
+    function APIDescription() {
+        $apiBaseUrl = 'http://{server}/WAD-MA2';
+        $entityArtists = '/artists';
+        // $entityFilms = '/films';
+        // $entityPersons = '/persons';
+
+        $apiDescription['api-description'] = array('method' => 'GET', 'url' => $apiBaseUrl);
+        $apiDescription['search-artists'] = array('method' => 'GET', 'url' => $apiBaseUrl . $entityArtists . '?name={artist-search-text}');
+        $apiDescription['get-artist'] = array('method' => 'GET', 'url' => $apiBaseUrl . $entityArtists . '/{artist-id}');
+        $apiDescription['add-artist'] = array('method' => 'POST', 'url' => $apiBaseUrl . $entityArtists, 'request-body' => array('name' => ''));
+        $apiDescription['update-artist'] = array('method' => 'POST', 'url' => $apiBaseUrl . $entityArtists . '/{artist-id}', 'request-body' => array('name' => ''));
+        $apiDescription['delete-artist'] = array('method' => 'DELETE', 'url' => $apiBaseUrl . $entityArtists . '/{artist-id}');
+
+        return json_encode($apiDescription);
+    }
 ?>
