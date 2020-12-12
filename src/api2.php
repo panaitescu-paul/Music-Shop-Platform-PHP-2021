@@ -77,20 +77,14 @@
                                 echo json_encode($artist->update($urlPieces[ID], $_POST['name']));
                             }                    
                             break;
-                        // case 'POST':                            // Add new artist
-                        //     if (!isset($_POST['name'])) {
-                        //         echo formatError();
-                        //     } else {
-                        //         echo json_encode($artist->add($_POST['name']));
-                        //     }                        
-                        //     break;
-                        // case 'DELETE':                          // Delete artist
-                        //     if ($pieces < MAX_PIECES) {
-                        //         echo formatError();
-                        //     } else {
-                        //         echo json_encode($artist->delete($urlPieces[ID]));
-                        //     }
-                        //     break;                     
+                        case 'DELETE':
+                            if ($pieces < MAX_PIECES) {
+                                echo formatError();
+                            } else {
+                                // Delete artist
+                                echo json_encode($artist->delete($urlPieces[ID]));
+                            }
+                            break;                     
                     }
                     $artist = null;
                     break;  
