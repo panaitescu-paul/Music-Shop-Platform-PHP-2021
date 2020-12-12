@@ -214,58 +214,59 @@
             return $return;
         }
 
-        //     $this->disconnect();
-        //     return $newID;
-        // }
+        /**
+         * Deletes an Artist
+         * 
+         * @param   Id of the artist to delete
+         * @return  true if success, 
+         *          -1 if artist with this id doesn't exist
+         *          -2 if this artist has an Album - Referential Integrity problem
+         *          -3 if the artist could not be deleted
+         */
+        function delete($id) {  
+            // Check if there is an Artist with this id
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM artist WHERE ArtistId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$id]);   
 
-        // /**
-        //  * Updates an Artist
-        //  * 
-        //  * @param   artist info
-        //  * @return  true if success, -1 otherwise
-        //  */
-        // function update($info) {
-        //     try {
-        //         $query = <<<'SQL'
-        //         UPDATE artist
-        //             SET Name = ?
-        //             WHERE ArtistId = ?
-        //         SQL;
+            if ($stmt->fetch()['total'] == 0) {
+                // Artist id doesn't exist
+                http_response_code(404);
+                return -1;
+            }
 
-        //         $stmt = $this->pdo->prepare($query);
-        //         $stmt->execute([$info['name'], $info['id']]);
-        //         $return = true;
+            // Check if this Artist has an Album
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM album WHERE ArtistId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$id]);   
 
-        //     } catch (Exception $e) {
-        //         $return = -1;
-        //         debug($e);
-        //     }
-        //     $this->disconnect();
-        //     return $return;
-        // }
+            if ($stmt->fetch()['total'] > 0) {
+                // This Artist has Albums
+                http_response_code(409);
+                return -2;
+            }
                   
-        // /**
-        //  * Deletes an Artist
-        //  * 
-        //  * @param   ID of the artist to delete
-        //  * @return  true if success, -1 otherwise
-        //  */
-        // function delete($id) {            
-        //     try {
-        //         $query = <<<'SQL'
-        //             DELETE 
-        //             FROM artist 
-        //             WHERE ArtistId = ?;
-        //         SQL;
-        //         $stmt = $this->pdo->prepare($query);
-        //         $stmt->execute([$id]);
-        //         $return = true;
-        //     } catch (Exception $e) {
-        //         $return = -1;
-        //         debug($e);
-        //     }
-        //     $this->disconnect();
-        //     return $return;
-        // }
+            // Deletes Artist
+            try {
+                $query = <<<'SQL'
+                    DELETE 
+                    FROM artist 
+                    WHERE ArtistId = ?;
+                SQL;
+                $stmt = $this->pdo->prepare($query);
+                $stmt->execute([$id]);
+                $return = true;
+            } catch (Exception $e) {
+                $return = -3;
+                debug($e);
+            }
+            $this->disconnect();
+            http_response_code(200);
+            return $return;
+        }
     }
 ?>
