@@ -15,9 +15,6 @@
     define('ID', 3);
     define('MAX_PIECES', 4);
 
-    // define('ENTITY', 2);
-    // define('ID', 3);
-    // define('MAX_PIECES', 4);
     // Example of 2 pieces: http://localhost/WAD-MA2
     // Example of 3 pieces: http://localhost/WAD-MA2/artists
     // Example of 4 pieces: http://localhost/WAD-MA2/artists/1
@@ -48,6 +45,7 @@
             switch ($entity) {
                 case 'artists':
                     require_once('artist2.php');
+                    
                     $artist = new Artist();
                     $verb = $_SERVER['REQUEST_METHOD'];
 
@@ -67,6 +65,17 @@
                                 // Get Artist by ID
                                 echo json_encode($artist->get($urlPieces[ID]));
                             }
+                            break;
+                        case 'POST':                            
+                            if (!isset($_POST['name'])) {
+                                echo formatError();
+                            } else if ($pieces < MAX_PIECES){
+                                // Create artist
+                                echo json_encode($artist->create($_POST['name']));
+                            } else {
+                                // Update artist
+                                echo json_encode($artist->update($urlPieces[ID], $_POST['name']));
+                            }                    
                             break;
                         // case 'POST':                            // Add new artist
                         //     if (!isset($_POST['name'])) {
