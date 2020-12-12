@@ -22,13 +22,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="/php/WAD-MA2/admin/artists.php">Artists <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/WAD-MA2/admin/artists.php">Artists <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/php/WAD-MA2/admin/albums.php">Albums</a>
+                <a class="nav-link" href="/WAD-MA2/admin/albums.php">Albums</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/php/WAD-MA2/admin/tracks.php">Tracks</a>
+                <a class="nav-link" href="/WAD-MA2/admin/tracks.php">Tracks</a>
             </li>
         </div>
         <span class="navbar-text">
