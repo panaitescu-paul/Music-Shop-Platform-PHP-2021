@@ -9,14 +9,13 @@
     require_once('connection.php');
     require_once('functions.php');
 
-    // TODO: Add Try and Catch blocks for every query
-    // TODO: Add Status codes
     class Artist extends DB {
 
         /**
-         * Retrieves all artists 
+         * Retrieve all artists 
          * 
-         * @return  an array with all artists and their information
+         * @return  an array with all artists and their information, 
+         *          or -1 if there are no artists
          */
         
         function getAll() {
@@ -48,10 +47,11 @@
         }
 
         /**
-         * Retrieves artist by id 
+         * Retrieve artist by id 
          * 
          * @param   id of the artist
-         * @return  an artist and their information
+         * @return  an artist and their information, 
+         *          or -1 if the artist was not found
          */
         
         function get($id) {
@@ -84,10 +84,11 @@
         }
 
         /**
-         * Retrieves the artists whose name includes a certain text
+         * Retrieve the artists whose name includes a certain text
          * 
          * @param   searchText upon which to execute the search
-         * @return  an array with artists information
+         * @return  an array with artists information, 
+         *          or -1 if no artists were found
          */
         function search($searchText) {
             // Check the count of Artists
@@ -102,7 +103,7 @@
                 http_response_code(404);
                 return -1;
             }
-            
+
             // Search Artists
             $query = <<<'SQL'
                 SELECT ArtistId, Name
@@ -114,9 +115,45 @@
             $stmt = $this->pdo->prepare($query);
             $stmt->execute(['%' . $searchText . '%']);                
             $this->disconnect();
+
+            http_response_code(200);
             return $stmt->fetchAll();                
         }
         
+        /**
+         * Insert a new Artist
+         * 
+         * @param   artist name
+         * @return  the Id of the new artist, 
+         *          or -1 if the artist name already exists
+         */
+        function create($name) {
+            // Check the count of Artists with this name
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM artist WHERE Name = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$name]);   
+
+            if ($stmt->fetch()['total'] > 0) {
+                // Artist name already exists
+                http_response_code(404);
+                return -1;
+            }
+
+            // Create Artist
+            $query = <<<'SQL'
+                INSERT INTO artist (Name) VALUES (?);
+                SQL;
+
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$name]);
+            $newID = $this->pdo->lastInsertId();
+            
+            $this->disconnect();
+            http_response_code(200);
+            return $newID;
+        }
         // /**
         //  * Inserts a new Artist
         //  * 
@@ -131,7 +168,7 @@
         //     $stmt = $this->pdo->prepare($query);
         //     $stmt->execute([$info['name']]);
         //     $newID = $this->pdo->lastInsertId();
-            
+
         //     $this->disconnect();
         //     return $newID;
         // }
@@ -161,7 +198,7 @@
         //     $this->disconnect();
         //     return $return;
         // }
-
+                  
         // /**
         //  * Deletes an Artist
         //  * 
