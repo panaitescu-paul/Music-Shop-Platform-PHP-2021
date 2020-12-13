@@ -80,5 +80,42 @@
             http_response_code(200);
             return $stmt->fetch();
         }
+
+        /**
+         * Retrieve the Albums whose name includes a certain text
+         * 
+         * @param   searchText upon which to execute the search
+         * @return  an array with Albums information, 
+         *          or -1 if no Albums were found
+         */
+        function search($searchText) {
+            // Check the count of Albums
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM album WHERE Title LIKE ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute(['%' . $searchText . '%']);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Albums not found
+                http_response_code(404);
+                return -1;
+            }
+
+            // Search Albums
+            $query = <<<'SQL'
+                SELECT AlbumId, Title, ArtistId
+                FROM album
+                WHERE Title LIKE ?
+                ORDER BY Title;
+            SQL;
+
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute(['%' . $searchText . '%']);                
+            $this->disconnect();
+
+            http_response_code(200);
+            return $stmt->fetchAll();                
+        }
     }
 ?>
