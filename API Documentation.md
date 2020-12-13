@@ -57,8 +57,8 @@ DELETE http://localhost/WAD-MA2/albums/1  </br>
 | GET    |/tracks | Returns information of all tracks |
 | GET    |/tracks?name=_<search_text>_ | Returns information of those tracks whose name contains _<search_text>_ |
 | GET    |/tracks/_<track_id>_ | Returns detailed information of the track with ID _<track_id>_ |
-| POST   |/tracks <br><br>Request body | Adds a new track<br>name, albumId, mediaTypeId, genderId, composer, milliseconds, bytes, unitPrice |
-| POST   |/tracks/_<track_id>_<br><br>Request body<br> | Updates the track with ID _<track_id>_<br>name, albumId, mediaTypeId, genderId, composer, milliseconds, bytes, unitPrice |
+| POST   |/tracks <br><br>Request body | Adds a new track<br><br>name, albumId, mediaTypeId, genderId, composer, milliseconds, bytes, unitPrice |
+| POST   |/tracks/_<track_id>_<br><br>Request body<br> | Updates the track with ID _<track_id>_<br><br>name, albumId, mediaTypeId, genderId, composer, milliseconds, bytes, unitPrice |
 | DELETE |/tracks/_<track_id>_ | Deletes the track with ID _<track_id>_ |
 
 #### Examples for Tracks:
@@ -75,8 +75,8 @@ DELETE http://localhost/WAD-MA2/tracks/1  </br>
 | GET    |/customers | Returns information of all customers |
 | GET    |/customers?email=_<search_text>_ | Returns information of those customers whose email is _<search_text>_ |
 | GET    |/customers/_<customer_id>_ | Returns detailed information of the customer with ID _<customer_id>_ |
-| POST   |/customers <br><br>Request body | Adds a new customer<br>firstName, lastName, password, company, address, city, state, country, postalCode, phone, fax, email |
-| POST   |/customers/_<customer_id>_<br><br>Request body<br> | Updates the customer with ID _<customer_id>_<br>firstName, lastName, password, company, address, city, state, country, postalCode, phone, fax, email |
+| POST   |/customers <br><br><br>Request body | Adds a new customer<br><br>firstName, lastName, password, company, address, city, state, country, postalCode, phone, fax, email |
+| POST   |/customers/_<customer_id>_<br><br><br>Request body<br> | Updates the customer with ID _<customer_id>_<br><br>firstName, lastName, password, company, address, city, state, country, postalCode, phone, fax, email |
 | DELETE |/customers/_<customer_id>_ | Deletes the customer with ID _<customer_id>_ |
 
 #### Examples for Customers:
