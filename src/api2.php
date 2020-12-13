@@ -45,7 +45,6 @@
             switch ($entity) {
                 case 'artists':
                     require_once('artist2.php');
-                    
                     $artist = new Artist();
                     $verb = $_SERVER['REQUEST_METHOD'];
 
@@ -87,6 +86,31 @@
                             break;                     
                     }
                     $artist = null;
+                    break;  
+                case 'albums':
+                    require_once('album2.php');
+                    $album = new Album();
+                    $verb = $_SERVER['REQUEST_METHOD'];
+                    
+                    switch ($verb) {
+                        case 'GET':                             
+                            // If the number of pieces is smaller than the maximum (4), 
+                            // then get all Albums, or search by title, otherwise search by id
+                            if ($pieces < MAX_PIECES) {
+                                if (!isset($_GET['title'])) {
+                                    // Get All Albums
+                                    echo json_encode($album->getAll());
+                                } else {
+                                    // Search Album by title
+                                    echo json_encode($album->search($_GET['title']));
+                                }
+                            } else {
+                                // Get Album by ID
+                                echo json_encode($album->get($urlPieces[ID]));
+                            }
+                            break;
+                    }
+                    $album = null;
                     break;  
                 // case 'films':
                 //     require_once('src/movie.php');
