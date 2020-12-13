@@ -120,6 +120,14 @@
                                 echo json_encode($album->update($urlPieces[ID], $_POST['title'], $_POST['artistId']));
                             }                    
                             break;
+                        case 'DELETE':
+                            if ($pieces < MAX_PIECES) {
+                                echo formatError();
+                            } else {
+                                // Delete Album
+                                echo json_encode($album->delete($urlPieces[ID]));
+                            }
+                            break;                     
                     }
                     $album = null;
                     break;  
