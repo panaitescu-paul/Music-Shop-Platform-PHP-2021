@@ -29,55 +29,87 @@ GET http://localhost/WAD-MA2/
 | POST   |/artists/_<artist_id>_<br><br>Request body<br> | Updates the artist with ID _<artist_id>_<br><br>name<br>|
 | DELETE |/artists/_<artist_id>_ | Deletes the artist with ID _<artist_id>_ |
 
-#### Examples:
+#### Examples for Artists:
 
-GET http://localhost/WAD-MA2/artists
-
-GET http://localhost/WAD-MA2/artists?name=John
-
-GET http://localhost/WAD-MA2/artists/1
-
-POST http://localhost/WAD-MA2/artists
-
-POST http://localhost/WAD-MA2/artists/1
-
-DELETE http://localhost/WAD-MA2/artists/1
-
+GET http://localhost/WAD-MA2/artists  </br>
+GET http://localhost/WAD-MA2/artists?name=John  </br>
+GET http://localhost/WAD-MA2/artists/1  </br>
+POST http://localhost/WAD-MA2/artists  </br>
+POST http://localhost/WAD-MA2/artists/1  </br> 
+DELETE http://localhost/WAD-MA2/artists/1  </br>
 
 #### Endpoints for Albums:
 
 | Method | Usage        | Description                         |
 | ------ |:------------ |:----------------------------------- |
 | GET    |/albums | Returns information of all albums |
-| GET    |/albums?name=_<search_text>_ | Returns information of those albums whose name contains _<search_text>_ |
+| GET    |/albums?title=_<search_text>_ | Returns information of those albums whose title contains _<search_text>_ |
 | GET    |/albums/_<album_id>_ | Returns detailed information of the album with ID _<album_id>_ |
 | POST   |/albums <br><br>Request body | Adds a new album<br><br>title |
 | POST   |/albums/_<album_id>_<br><br>Request body<br> | Updates the album with ID _<album_id>_<br><br>title<br>|
 | DELETE |/albums/_<album_id>_ | Deletes the album with ID _<album_id>_ |
 
-#### Examples:
+#### Examples for Albums:
 
-GET http://localhost/WAD-MA2/albums
+GET http://localhost/WAD-MA2/albums  </br>
+GET http://localhost/WAD-MA2/albums?title=Album1  </br>
+GET http://localhost/WAD-MA2/albums/1  </br>
+POST http://localhost/WAD-MA2/albums  </br>
+POST http://localhost/WAD-MA2/albums/1  </br>
+DELETE http://localhost/WAD-MA2/albums/1  </br> 
 
-GET http://localhost/WAD-MA2/albums?title=Album 1
+#### Endpoints for Tracks:
 
-GET http://localhost/WAD-MA2/albums/1
+| Method | Usage        | Description                         |
+| ------ |:------------ |:----------------------------------- |
+| GET    |/tracks | Returns information of all tracks |
+| GET    |/tracks?name=_<search_text>_ | Returns information of those tracks whose name contains _<search_text>_ |
+| GET    |/tracks/_<track_id>_ | Returns detailed information of the track with ID _<track_id>_ |
+| POST   |/tracks <br><br>Request body | Adds a new track<br><br>name |
+| POST   |/tracks/_<track_id>_<br><br>Request body<br> | Updates the track with ID _<track_id>_<br><br>name<br>|
+| DELETE |/tracks/_<track_id>_ | Deletes the track with ID _<track_id>_ |
 
-POST http://localhost/WAD-MA2/albums
+#### Examples for Albums:
 
-POST http://localhost/WAD-MA2/albums/1
-
-DELETE http://localhost/WAD-MA2/albums/1
+GET http://localhost/WAD-MA2/tracks  </br>
+GET http://localhost/WAD-MA2/tracks?name=Track1  </br>
+GET http://localhost/WAD-MA2/tracks/1  </br>
+POST http://localhost/WAD-MA2/tracks  </br>
+POST http://localhost/WAD-MA2/tracks/1  </br>
+DELETE http://localhost/WAD-MA2/tracks/1  </br> 
 
 
 #### Sample Output:
 
-Get artist with id 1
+Get Artist with id 1
 
 ```json
 {
     "ArtistId": "1",
     "Name": "AC/DC"
+}
+```
+Get Album with id 1
+
+```json
+{
+...
+}
+```
+
+Get Track with id 1
+
+```json
+{
+...
+}
+```
+
+Get Customer with id 1
+
+```json
+{
+...
 }
 ```
 
