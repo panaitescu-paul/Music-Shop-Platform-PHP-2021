@@ -117,5 +117,55 @@
             http_response_code(200);
             return $stmt->fetchAll();                
         }
+        
+        /**
+         * Insert a new Album
+         * 
+         * @param   artistId - Artist Id
+         * @param   title - Album title
+         * @return  the Id of the new Album, 
+         *          -1 if the ArtistId doesn't exist, 
+         *          -2 if the Album title already exists
+         */
+        function create($artistId, $title) {
+            // Check if there is an Artist with this id
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM artist WHERE ArtistId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$artistId]);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Artist id doesn't exist
+                http_response_code(404);
+                return -1;
+            }
+
+            // Check the count of Albums with this title
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM album WHERE Title = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$title]);   
+
+            if ($stmt->fetch()['total'] > 0) {
+                // Album title already exists
+                http_response_code(409);
+                return -2;
+            }
+
+            // Create Album
+            $query = <<<'SQL'
+                INSERT INTO album (Title, ArtistId) VALUES (?, ?);
+                SQL;
+
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$title, $artistId]);
+            $newID = $this->pdo->lastInsertId();
+            
+            $this->disconnect();
+            http_response_code(200);
+            return $newID;
+        }
     }
 ?>
