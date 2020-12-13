@@ -109,6 +109,17 @@
                                 echo json_encode($album->get($urlPieces[ID]));
                             }
                             break;
+                        case 'POST':                            
+                            if (!isset($_POST['title'])) {
+                                echo formatError();
+                            } else if ($pieces < MAX_PIECES){
+                                // Create Album
+                                echo json_encode($album->create($_POST['artistId'], $_POST['title']));
+                            } else {
+                                // Update Album
+                                echo json_encode($album->update($urlPieces[ID], $_POST['title'], $_POST['artistId']));
+                            }                    
+                            break;
                     }
                     $album = null;
                     break;  
