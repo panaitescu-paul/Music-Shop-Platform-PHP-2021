@@ -241,5 +241,60 @@
             http_response_code(200);
             return $return;
         }
+
+        /**
+         * Deletes an Album
+         * 
+         * @param   Id of the Album to delete
+         * @return  true if success, 
+         *          -1 if Album with this id doesn't exist
+         *          -2 if this Album has a Track - Referential Integrity problem
+         *          -3 if the Album could not be deleted
+         */
+        function delete($id) {  
+            // Check if there is an Album with this id
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM album WHERE AlbumId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$id]);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Album id doesn't exist
+                http_response_code(404);
+                return -1;
+            }
+
+            // Check if this Album has a Track
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM track WHERE AlbumId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$id]);   
+
+            if ($stmt->fetch()['total'] > 0) {
+                // This Album has Tracks
+                http_response_code(409);
+                return -2;
+            }
+                  
+            // Deletes Album
+            try {
+                $query = <<<'SQL'
+                    DELETE 
+                    FROM album 
+                    WHERE AlbumId = ?;
+                SQL;
+                $stmt = $this->pdo->prepare($query);
+                $stmt->execute([$id]);
+                $return = true;
+            } catch (Exception $e) {
+                $return = -3;
+                debug($e);
+            }
+            $this->disconnect();
+            http_response_code(200);
+            return $return;
+        }
     }
 ?>
