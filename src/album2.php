@@ -167,5 +167,79 @@
             http_response_code(200);
             return $newID;
         }
+
+        /**
+         * Updates an Album
+         * 
+         * @param   albumId - Album id
+         * @param   title - Album title
+         * @param   artistId - Artist id
+         * @return  true if success, 
+         *          -1 if the Album id doesn't exist, 
+         *          -2 if the Artist id doesn't exist, 
+         *          -3 if an Album with this title already exists
+         *          -4 if the Album could not be updated
+         */
+        function update($albumId, $title, $artistId) {
+            // Check if there is an Album with this id
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM Album WHERE AlbumId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$albumId]);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Album id doesn't exist
+                http_response_code(404);
+                return -1;
+            }
+
+            // Check if there is an Artist with this id
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM artist WHERE ArtistId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$artistId]);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Artist id doesn't exist
+                http_response_code(404);
+                return -2;
+            }
+
+            // Check the count of Albums with this title
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM album WHERE Title = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$title]);   
+
+            if ($stmt->fetch()['total'] > 0) {
+                // Album title already exists
+                http_response_code(404);
+                return -3;
+            }
+
+            // Update Album
+            try {
+                $query = <<<'SQL'
+                UPDATE album
+                    SET Title = ?, ArtistId = ?
+                    WHERE AlbumId = ?
+                SQL;
+
+                $stmt = $this->pdo->prepare($query);
+                $stmt->execute([$title, $artistId, $albumId]);
+                $return = true;
+
+            } catch (Exception $e) {
+                $return = -4;
+                debug($e);
+            }
+
+            $this->disconnect();
+            http_response_code(200);
+            return $return;
+        }
     }
 ?>
