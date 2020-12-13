@@ -44,5 +44,41 @@
             http_response_code(200);
             return $stmt->fetchAll(); 
         }
+
+        /**
+         * Retrieve Album by id 
+         * 
+         * @param   id of the Album
+         * @return  an Album and their information, 
+         *          or -1 if the Album was not found
+         */
+        function get($id) {
+            // Check the count of Albums
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM album WHERE AlbumId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$id]);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Albums not found
+                http_response_code(404);
+                return -1;
+            }
+
+            // Search Albums
+            $query = <<<'SQL'
+                SELECT AlbumId, Title, ArtistId
+                FROM album
+                WHERE AlbumId = ?;
+            SQL;
+
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$id]);                
+            $this->disconnect();
+
+            http_response_code(200);
+            return $stmt->fetch();
+        }
     }
 ?>
