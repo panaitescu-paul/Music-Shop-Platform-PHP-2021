@@ -307,11 +307,29 @@ function showModal(action, itemId = 0, data = []) {
             $("#modalTitle").html("Create Track");           
             elem.append($("<div />", { "class": "", "html": 
                     `<form id="frmCreateArtist" method="POST">
-                        <label for="createTrackTitle" id="txtTrackLabel">Track Title</label>
-                        <input type="text" id="createTrackTitle" name="text" required>
+                        <label for="createTrackName" id="txtTrackLabel">Track Name</label>
+                        <input type="text" id="createTrackName" name="text" required>
                         </br>
-                        <label for="createArtistId" id="txtTrackLabel">Artist Id</label>
-                        <input type="text" id="createArtistId" name="text" required>
+                        <label for="createAlbumId" id="txtTrackLabel">Album Id</label>
+                        <input type="text" id="createAlbumId" name="text" required>
+                        </br>
+                        <label for="createMediaTypeId" id="txtTrackLabel">MediaTypeId</label>
+                        <input type="text" id="createMediaTypeId" name="text" required>
+                        </br>
+                        <label for="createGenreId" id="txtTrackLabel">GenreId</label>
+                        <input type="text" id="createGenreId" name="text" required>
+                        </br>
+                        <label for="createComposer" id="txtTrackLabel">Composer</label>
+                        <input type="text" id="createComposer" name="text" required>
+                        </br>
+                        <label for="createMilliseconds" id="txtTrackLabel">Milliseconds</label>
+                        <input type="text" id="createMilliseconds" name="text" required>
+                        </br>
+                        <label for="createBytes" id="txtTrackLabel">Bytes</label>
+                        <input type="text" id="createBytes" name="text" required>
+                        </br>
+                        <label for="createUnitPrice" id="txtTrackLabel">UnitPrice</label>
+                        <input type="text" id="createUnitPrice" name="text" required>
                         </br>
                         <button type="button" class="btn btn-success mb-2 createTrack" id="btnCreateTrack" data-dismiss="modal">Create Album</button>
                     </form>`
