@@ -205,7 +205,7 @@
          * Updates a Customer
          * 
          * @param   customerId, firstName, lastName, password, company, address, 
-         *          city, state, country, postalCode, phone, fax, email
+         *          city, state, country, postalCode, phone, fax, email, newPassword
          * @return  true if success, 
          *          -1 if the FirstName is null
          *          -2 if the LastName is null
@@ -215,7 +215,7 @@
          *          -6 if the Customer could not be updated
          */
         function update($customerId, $firstName, $lastName, $password, $company, $address, 
-                        $city, $state, $country, $postalCode, $phone, $fax, $email) {
+                        $city, $state, $country, $postalCode, $phone, $fax, $email, $newPassword) {
             
             //  Check if FirstName, LastName, Password, Email are null
             if ($firstName == null) {
@@ -224,10 +224,10 @@
             } else if ($lastName == null) {
                 http_response_code(409);
                 return -2;
-            } else if ($Password == null) {
+            } else if ($password == null) {
                 http_response_code(409);
                 return -3;
-            } else if ($Email == null) {
+            } else if ($email == null) {
                 http_response_code(409);
                 return -4;
             }
@@ -247,16 +247,45 @@
 
             // Update Customer
             try {
+
+                $passwordChange = (trim($newPassword) !== '');
+
                 $query = <<<'SQL'
                     UPDATE customer
-                    SET FirstName = ?, LastName = ?, Password = ?, Company = ?, Address = ?, 
+                    -- SET FirstName = ?, LastName = ?, Password = ?, Company = ?, Address = ?, 
+                    --     City = ?, State = ?, Country = ?, PostalCode = ?, Phone = ?, Fax = ?, Email = ?
+                    SET FirstName = ?, LastName = ?, Company = ?, Address = ?, 
                         City = ?, State = ?, Country = ?, PostalCode = ?, Phone = ?, Fax = ?, Email = ?
-                    WHERE CustomerId = ?
                 SQL;
 
+                if ($passwordChange) {
+                    if ($this->validate($email, $password)) {    
+                        // Hash the Password            
+                        $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+                        $query .= ', Password = ?';
+                    } else {
+                        return false;
+                    }
+                }
+                $query .= ' WHERE CustomerId = ?;';
+                debug($query);
+
                 $stmt = $this->pdo->prepare($query);
-                $stmt->execute([$firstName, $lastName, $password, $company, $address, 
-                                $city, $state, $country, $postalCode, $phone, $fax, $email, $customerId]);
+
+                if ($passwordChange) {
+                    $stmt->execute([$firstName, $lastName, $company, $address, $city, 
+                                    $state, $country, $postalCode, $phone, $fax, 
+                                    $email, $newPassword, $customerId]);
+                } else {
+                    $stmt->execute([$firstName, $lastName, $company, $address, $city, 
+                                    $state, $country, $postalCode, $phone, $fax, 
+                                    $email, $customerId]);
+                }
+
+                // 
+                // $stmt = $this->pdo->prepare($query);
+                // $stmt->execute([$firstName, $lastName, $password, $company, $address, 
+                //                 $city, $state, $country, $postalCode, $phone, $fax, $email, $customerId]);
                 $return = true;
 
             } catch (Exception $e) {
