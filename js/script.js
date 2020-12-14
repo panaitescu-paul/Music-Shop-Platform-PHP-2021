@@ -370,20 +370,15 @@ $(document).ready(function() {
     $("#btnSearchAlbum").on("click", function(e) {
         e.preventDefault();
         $.ajax({
-            url: "../src/api.php",
-            type: "POST",
+            url: URL + `/albums`,
+            type: "GET",
             data: {
-                entity: "album",
-                action: "search",
-                searchText: $("#searchAlbumName").val()
+                title: $("#searchAlbumName").val()
             },
             success: function(data) {
-                data = JSON.parse(data);
-                console.log(data);
-                // if (userAuthenticated(data)) {
                 displayAlbums(data);
-                // }
-            }
+            },
+            error: function() { alert("An Error Ocured!"); }
         });
     });
 
