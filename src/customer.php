@@ -13,6 +13,11 @@
 
     class Customer extends DB {
 
+        public int $userID;
+        public string $firstName;
+        public string $lastName;
+        public string $email;
+
         /**
          * Retrieve all Customers 
          * 
@@ -146,17 +151,17 @@
             } else if ($lastName == null) {
                 http_response_code(409);
                 return -2;
-            } else if ($Password == null) {
+            } else if ($password == null) {
                 http_response_code(409);
                 return -3;
-            } else if ($Email == null) {
+            } else if ($email == null) {
                 http_response_code(409);
                 return -4;
             }
 
             // Check the count of Customers with this Email
             $query = <<<'SQL'
-                SELECT COUNT(*) AS total FROM Customer WHERE Email = ?;
+                SELECT COUNT(*) AS total FROM customer WHERE Email = ?;
             SQL;
             $stmt = $this->pdo->prepare($query);
             $stmt->execute([$email]);   
@@ -169,8 +174,12 @@
             
             // Create Customer
             try {
+
+                // Hash the Password
+                $password = password_hash($password, PASSWORD_DEFAULT);
+
                 $query = <<<'SQL'
-                    INSERT INTO track (FirstName, LastName, Password, Company, Address, 
+                    INSERT INTO customer (FirstName, LastName, Password, Company, Address, 
                                     City, State, Country, PostalCode, Phone, Fax, Email) 
                                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
                     SQL;
@@ -239,9 +248,9 @@
             // Update Customer
             try {
                 $query = <<<'SQL'
-                UPDATE customer
+                    UPDATE customer
                     SET FirstName = ?, LastName = ?, Password = ?, Company = ?, Address = ?, 
-                    City = ?, State = ?, Country = ?, PostalCode = ?, Phone = ?, Fax = ?, Email = ?
+                        City = ?, State = ?, Country = ?, PostalCode = ?, Phone = ?, Fax = ?, Email = ?
                     WHERE CustomerId = ?
                 SQL;
 
