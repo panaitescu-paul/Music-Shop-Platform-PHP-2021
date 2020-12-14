@@ -183,20 +183,15 @@ $(document).ready(function() {
     $("#btnSearchArtist").on("click", function(e) {
         e.preventDefault();
         $.ajax({
-            url: "../src/api.php",
-            type: "POST",
+            url: URL + `/artists/`,
+            type: "GET",
             data: {
-                entity: "artist",
-                action: "search",
-                searchText: $("#searchArtistName").val()
+                name: $("#searchArtistName").val()
             },
             success: function(data) {
-                data = JSON.parse(data);
-                console.log(data);
-                // if (userAuthenticated(data)) {
                 displayArtists(data);
-                // }
-            }
+            },
+            error: function() { alert("An Error Ocured!"); }
         });
     });
 
