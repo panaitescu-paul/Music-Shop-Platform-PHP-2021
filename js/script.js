@@ -514,19 +514,12 @@ $(document).ready(function() {
     // Show All Tracks in a List
     function ShowAllTracks() {
         $.ajax({
-            url: "../src/api.php",
-            type: "POST",
-            data: {
-                entity: "track",
-                action: "getAll"
-            },
+            url: URL + `/tracks`,
+            type: "GET",
             success: function(data) {
-                data = JSON.parse(data);
-                console.log(data);
-                // if (userAuthenticated(data)) {
                 displayTracks(data);
-                // }
-            }
+            },
+            error: function() { alert("An Error Ocured!"); }
         });
     }
 
