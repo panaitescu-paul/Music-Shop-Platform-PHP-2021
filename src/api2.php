@@ -216,7 +216,7 @@
                                                                 $_POST['firstName'], $_POST['lastName'], $_POST['password'], 
                                                                 $_POST['company'], $_POST['address'], $_POST['city'], 
                                                                 $_POST['state'], $_POST['country'], $_POST['postalCode'], 
-                                                                $_POST['phone'], $_POST['fax'], $_POST['email']));
+                                                                $_POST['phone'], $_POST['fax'], $_POST['email'], $_POST['newPassword']));
                             }                    
                             break;
                         case 'DELETE':
