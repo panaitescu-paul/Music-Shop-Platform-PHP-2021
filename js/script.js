@@ -357,19 +357,12 @@ $(document).ready(function() {
     // Show All Albums in a List
     function ShowAllAlbums() {
         $.ajax({
-            url: "../src/api.php",
-            type: "POST",
-            data: {
-                entity: "album",
-                action: "getAll"
-            },
+            url: URL + `/albums`,
+            type: "GET",
             success: function(data) {
-                data = JSON.parse(data);
-                console.log(data);
-                // if (userAuthenticated(data)) {
                 displayAlbums(data);
-                // }
-            }
+            },
+            error: function() { alert("An Error Ocured!"); }
         });
     }
 
