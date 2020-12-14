@@ -1,5 +1,7 @@
+// TODO: add if(id == null)..... to check if the paramerters enters from front end are valid on each Ajax call
+
 /**
- * API communication
+ * Ajax calls that consume the RESTFUL API
  *
  * @author  Paul Panaitescu
  * @version 1.0 25 NOV 2020
@@ -167,34 +169,6 @@ $(document).ready(function() {
 // ***                                                ***
 // ******************************************************
 
-    // Show all Artists in a List
-    function ShowAllArtists() {
-        $.ajax({
-            url: URL + "/artists",
-            type: "GET",
-            success: function(data) {
-                displayArtists(data);
-            },
-            error: function() { alert("An Error Ocured!"); }
-        });
-    }
-
-    // Search Artists by name
-    $("#btnSearchArtist").on("click", function(e) {
-        e.preventDefault();
-        $.ajax({
-            url: URL + `/artists/`,
-            type: "GET",
-            data: {
-                name: $("#searchArtistName").val()
-            },
-            success: function(data) {
-                displayArtists(data);
-            },
-            error: function() { alert("An Error Ocured!"); }
-        });
-    });
-
     // Open Modal - Create Artist 
     $(document).on("click", ".createArtistModal", function() {
         showModal('createArtist');
@@ -207,12 +181,10 @@ $(document).ready(function() {
             url: URL + `/artists/${id}`,
             type: "GET",
             success: function(data) {
-                console.log(data);
                 showModal('updateArtist', id, data);
             },
             error: function() { alert("An Error Ocured!"); }
         });
-        // showModal('updateArtist', id);
     });
 
     // Open Modal - Show Artist 
@@ -222,13 +194,23 @@ $(document).ready(function() {
             url: URL + `/artists/${id}`,
             type: "GET",
             success: function(data) {
-                console.log(data);
                 showModal('showArtist', id, data);
             },
             error: function() { alert("An Error Ocured!"); }
         });
     });
- 
+
+    // Show all Artists in a List
+    function ShowAllArtists() {
+        $.ajax({
+            url: URL + "/artists",
+            type: "GET",
+            success: function(data) {
+                displayArtists(data);
+            },
+            error: function() { alert("An Error Ocured!"); }
+        });
+    }
     // Create Artist
     $(document).on("click", ".createArtist", function() {
         const name = $("#createArtistName").val();
@@ -332,7 +314,7 @@ $(document).ready(function() {
     $(document).on("click", ".updateAlbumModal", function() {
         const id = $(this).attr("data-id");
         showModal('updateAlbum', id);
-    });
+        });
 
     // Open Modal - Show Album 
     $(document).on("click", ".showAlbumModal", function() {
@@ -351,7 +333,7 @@ $(document).ready(function() {
                 data = JSON.parse(data);
                 console.log(data);
                 // if (userAuthenticated(data)) {
-                    showModal('showAlbum', id, data);
+                showModal('showAlbum', id, data);
                 // }
             }
         });
@@ -370,7 +352,7 @@ $(document).ready(function() {
                 data = JSON.parse(data);
                 console.log(data);
                 // if (userAuthenticated(data)) {
-                    displayAlbums(data);
+                displayAlbums(data);
                 // }
             }
         });
@@ -391,7 +373,7 @@ $(document).ready(function() {
                 data = JSON.parse(data);
                 console.log(data);
                 // if (userAuthenticated(data)) {
-                    displayAlbums(data);
+                displayAlbums(data);
                 // }
             }
         });
@@ -429,7 +411,7 @@ $(document).ready(function() {
                     
                     // if (userAuthenticated(data)) {
                     // }
-                }
+                    }
             });
         }
     });
@@ -459,7 +441,7 @@ $(document).ready(function() {
                     ShowAllAlbums();
                     // Scroll to the updated Album
                     ScrollPage(e.pageY);
-                }
+                    }
             });
         }
     });
@@ -501,7 +483,7 @@ $(document).ready(function() {
                             } else {
                                 console.log("Album not deleted");
                                 // showModal("artistDeleteFailure");
-                            }
+                        }
                         // }
                     }
                 });
@@ -543,7 +525,7 @@ $(document).ready(function() {
                 data = JSON.parse(data);
                 console.log(data);
                 // if (userAuthenticated(data)) {
-                    showModal('showTrack', id, data);
+                showModal('showTrack', id, data);
                 // }
             }
         });
@@ -562,7 +544,7 @@ $(document).ready(function() {
                 data = JSON.parse(data);
                 console.log(data);
                 // if (userAuthenticated(data)) {
-                    displayTracks(data);
+                displayTracks(data);
                 // }
             }
         });
@@ -583,7 +565,7 @@ $(document).ready(function() {
                 data = JSON.parse(data);
                 console.log(data);
                 // if (userAuthenticated(data)) {
-                    displayTracks(data);
+                displayTracks(data);
                 // }
             }
         });
@@ -598,7 +580,7 @@ $(document).ready(function() {
             "artistId": $("#createArtistId").val(),
         }
         console.log("info", info);
-
+           
         if (info["title"] !== null) {
             $.ajax({
                 url: "../src/api.php",
@@ -704,7 +686,7 @@ $(document).ready(function() {
                             } else {
                                 console.log("Track not deleted");
                                 // showModal("artistDeleteFailure");
-                            }
+                        }
                         // }
                     }
                 });
