@@ -131,6 +131,31 @@
                     }
                     $album = null;
                     break;  
+                case 'tracks':
+                    require_once('track2.php');
+                    $track = new Track();
+                    $verb = $_SERVER['REQUEST_METHOD'];
+                    
+                    switch ($verb) {
+                        case 'GET':                             
+                            // If the number of pieces is smaller than the maximum (4), 
+                            // then get all Tracks, or search by name, otherwise search by id
+                            if ($pieces < MAX_PIECES) {
+                                if (!isset($_GET['name'])) {
+                                    // Get All Tracks
+                                    echo json_encode($track->getAll());
+                                } else {
+                                    // Search Track by name
+                                    echo json_encode($track->search($_GET['name']));
+                                }
+                            } else {
+                                // Get Track by ID
+                                echo json_encode($track->get($urlPieces[ID]));
+                            }
+                            break;
+                    }
+                    $track = null;
+                    break;  
                 // case 'films':
                 //     require_once('src/movie.php');
                 //     $movie = new Movie();
