@@ -118,5 +118,101 @@
             http_response_code(200);
             return $stmt->fetchAll();                
         }
+        
+        /**
+         * Insert a new Track
+         * 
+         * @param   name,
+         *          albumId, 
+         *          mediaTypeId, 
+         *          genreId, 
+         *          composer, 
+         *          milliseconds, 
+         *          bytes, 
+         *          unitPrice
+         * @return  the Id of the new Track, 
+         *          -1 if the Track name already exists
+         *          -2 if the AlbumId doesn't exist, 
+         *          -3 if the MediaTypeId doesn't exist, 
+         *          -4 if the GenreId doesn't exist, 
+         *          -5 if the Track could not be created
+         */
+        function create($name, $albumId, $mediaTypeId, $genreId, $composer, $milliseconds, $bytes, $unitPrice) {
+            // Check the count of Tracks with this name
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM track WHERE Name = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$name]);   
+
+            if ($stmt->fetch()['total'] > 0) {
+                // Track name already exists
+                http_response_code(409);
+                return -1;
+            }
+
+            // Check if there is an Album with this id
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM album WHERE AlbumId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$albumId]);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Album id doesn't exist
+                http_response_code(404);
+                return -2;
+            }
+
+            // Check if there is an MediaType with this id
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM mediaType WHERE MediaTypeId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$mediaTypeId]);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // MediaType id doesn't exist
+                http_response_code(404);
+                return -3;
+            }
+
+            // Check if there is an Genre with this id
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM genre WHERE GenreId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$genreId]);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Genre id doesn't exist
+                http_response_code(404);
+                return -4;
+            }
+
+            // Create Track
+            try {
+                $query = <<<'SQL'
+                    INSERT INTO track (Name, AlbumId, MediaTypeId, GenreId, Composer, 
+                                    Milliseconds, Bytes, UnitPrice) 
+                                    VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+                    SQL;
+
+                $stmt = $this->pdo->prepare($query);
+                $stmt->execute([$name, $albumId, $mediaTypeId, $genreId, $composer, 
+                                $milliseconds, $bytes, $unitPrice]);
+                $newID = $this->pdo->lastInsertId();
+                $return = $newID;
+
+            } catch (Exception $e) {
+                http_response_code(500);
+                $return = -5;
+                debug($e);
+            }
+            
+            $this->disconnect();
+            http_response_code(200);
+            return $return;
+        }
     }
 ?>
