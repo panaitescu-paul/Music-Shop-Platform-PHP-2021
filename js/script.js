@@ -231,31 +231,24 @@ $(document).ready(function() {
  
     // Create Artist
     $(document).on("click", ".createArtist", function() {
-        const action = 'create';
-        console.log("action", action);
-        let info = {
-            "name": $("#createArtistName").val()
-        }
-        if (info["name"] !== null) {
+        const name = $("#createArtistName").val();
+        if (name !== null) {
             $.ajax({
-                url: "../src/api.php",
+                url: URL + `/artists`,
                 type: "POST",
                 data: {
-                    entity: "artist",
-                    action: "create",
-                    info: info
+                    name: name
                 },
                 success: function(data) {
-                    data = JSON.parse(data);
-                    console.log(data);
-                    console.log("Album created");
-                    ShowAllAlbums();
-                    setTimeout(function (){
-                        window.scrollTo(0, document.body.scrollHeight);
-                    }, 700); // Delay in milliseconds
-                    // if (userAuthenticated(data)) {
-                    // }
+                    ShowAllArtists();
+                    ScrollPage("bottomPage");
+                },
+                error: function() { alert("An Error Ocured!"); },
+                statusCode: {
+                    409: function() {
+                        alert("Artist with this name already exists!");
                     }
+                }
             });
         }
     });
