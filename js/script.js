@@ -217,24 +217,15 @@ $(document).ready(function() {
 
     // Open Modal - Show Artist 
     $(document).on("click", ".showArtistModal", function() {
-        const action = 'show';
         const id = $(this).attr("data-id");
-        console.log("action", action, " id", id);
         $.ajax({
-            url: "../src/api.php",
-            type: "POST",
-            data: {
-                entity: "artist",
-                action: "get",
-                id: id
-            },
+            url: URL + `/artists/${id}`,
+            type: "GET",
             success: function(data) {
-                data = JSON.parse(data);
                 console.log(data);
-                // if (userAuthenticated(data)) {
                 showModal('showArtist', id, data);
-                // }
-            }
+            },
+            error: function() { alert("An Error Ocured!"); }
         });
     });
  
@@ -493,21 +484,10 @@ $(document).ready(function() {
                     info: info
                 },
                 success: function(data) {
-                    data = JSON.parse(data);
-                    console.log(data);
-                    console.log("Album updated");
-
                     // Show the updated List of Albums
                     ShowAllAlbums();
-
                     // Scroll to the updated Album
-                    var position = e.pageY;
-                    console.log("position", position);
-                    document.body.scrollTop = position - 100; // For Safari
-                    document.documentElement.scrollTop = position; // For Chrome, Firefox, IE and Opera
-
-                    // if (userAuthenticated(data)) {
-                    // }
+                    ScrollPage(e.pageY);
                 }
             });
         }
