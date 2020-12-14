@@ -47,5 +47,42 @@
             http_response_code(200);
             return $stmt->fetchAll(); 
         }
+
+        /**
+         * Retrieve Customer by id 
+         * 
+         * @param   id of the Customer
+         * @return  an Customer and their information, 
+         *          or -1 if the Customer was not found
+         */
+        function get($id) {
+            // Check the count of Customers
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM customer WHERE CustomerId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$id]);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Customers not found
+                http_response_code(404);
+                return -1;
+            }
+
+            // Search Customers
+            $query = <<<'SQL'
+                SELECT CustomerId, FirstName, LastName, Password, Company, 
+                        Address, City, State, Country, PostalCode, Phone, Fax, Email
+                FROM customer
+                WHERE CustomerId = ?;
+            SQL;
+
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$id]);                
+            $this->disconnect();
+
+            http_response_code(200);
+            return $stmt->fetch();
+        }
     }
 ?>
