@@ -203,8 +203,17 @@ $(document).ready(function() {
     // Open Modal - Update Artist
     $(document).on("click", ".updateArtistModal", function() {
         const id = $(this).attr("data-id");
-        showModal('updateArtist', id);
+        $.ajax({
+            url: URL + `/artists/${id}`,
+            type: "GET",
+            success: function(data) {
+                console.log(data);
+                showModal('updateArtist', id, data);
+            },
+            error: function() { alert("An Error Ocured!"); }
         });
+        // showModal('updateArtist', id);
+    });
 
     // Open Modal - Show Artist 
     $(document).on("click", ".showArtistModal", function() {
