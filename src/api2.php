@@ -168,6 +168,14 @@
                                                                 $_POST['bytes'], $_POST['unitPrice']));
                             }                    
                             break;
+                        case 'DELETE':
+                            if ($pieces < MAX_PIECES) {
+                                echo formatError();
+                            } else {
+                                // Delete Track
+                                echo json_encode($track->delete($urlPieces[ID]));
+                            }
+                            break;                     
                     }
                     $track = null;
                     break;  
