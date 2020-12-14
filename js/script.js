@@ -413,30 +413,33 @@ $(document).ready(function() {
 
     // Update Album
     $(document).on("click", ".updateAlbum", function(e) {
-        const action = 'update';
-        console.log("action", action);
-        let info = {
-            "title": $("#updateAlbumTitle").val(),
-            "artistId": $("#updateArtistId").val(),
-            "albumId": $("#updateAlbumTitle").attr("data-id")
-        }
-        console.log("info", info);
+        const albumId = $("#updateAlbumId").attr("data-id");
+        const title = $("#updateAlbumTitle").val();
+        const artistId = $("#updateArtisId").val();
 
-        if (info["title"] !== null && info["id"] !== null) {
+        if (albumId !== null && title !== null && artistId !== null) {
             $.ajax({
-                url: "../src/api.php",
+                url: URL + `/albums/${albumId}`,
                 type: "POST",
                 data: {
-                    entity: "album",
-                    action: "update",
-                    info: info
+                    title: title,
+                    artistId: artistId,
                 },
                 success: function(data) {
                     // Show the updated List of Albums
                     ShowAllAlbums();
                     // Scroll to the updated Album
                     ScrollPage(e.pageY);
+                },
+                error: function() { alert("An Error Ocured!"); },
+                statusCode: {
+                    404: function() {
+                        alert("Album or Artist with this id doesn't exist!");
+                    },
+                    409: function() {
+                        alert("Album with this title already exists!");
                     }
+                }
             });
         }
     });
