@@ -343,24 +343,14 @@ $(document).ready(function() {
 
     // Open Modal - Show Album 
     $(document).on("click", ".showAlbumModal", function() {
-        const action = 'show';
         const id = $(this).attr("data-id");
-        console.log("action", action, " id", id);
         $.ajax({
-            url: "../src/api.php",
-            type: "POST",
-            data: {
-                entity: "album",
-                action: "get",
-                id: id
-            },
+            url: URL + `/albums/${id}`,
+            type: "GET",
             success: function(data) {
-                data = JSON.parse(data);
-                console.log(data);
-                // if (userAuthenticated(data)) {
                 showModal('showAlbum', id, data);
-                // }
-            }
+            },
+            error: function() { alert("An Error Ocured!"); }
         });
     });
 
