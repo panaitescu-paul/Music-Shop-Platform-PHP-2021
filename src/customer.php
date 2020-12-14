@@ -1,0 +1,51 @@
+<?php
+// TODO: add try and catch block to remaining nodes, and code status 500 for server error
+// TODO: Customer Password hashing for create, update
+
+/**
+ * Customer class
+ *
+ * @author Paul Panaitescu
+ * @version 1.0 10 DEC 2020:
+ */
+    require_once('connection.php');
+    require_once('functions.php');
+
+    class Customer extends DB {
+
+        /**
+         * Retrieve all Customers 
+         * 
+         * @return  an array with all Customers and their information, 
+         *          or -1 if there are no Customers
+         */
+        function getAll() {
+            // Check the count of Customers
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM customer;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute();   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Customers not found
+                http_response_code(404);
+                return -1;
+            }
+
+            // Select all Customers
+            $query = <<<'SQL'
+                SELECT CustomerId, FirstName, LastName, Password, Company, 
+                        Address, City, State, Country, PostalCode, Phone, Fax, Email
+                FROM customer;
+            SQL;
+
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute();
+            $this->disconnect();
+
+            http_response_code(200);
+            return $stmt->fetchAll(); 
+        }
+    }
+?>
