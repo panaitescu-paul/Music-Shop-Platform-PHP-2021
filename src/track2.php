@@ -325,6 +325,58 @@
             http_response_code(200);
             return $return;
         }
+
+        /**
+         * Deletes a Track
+         * 
+         * @param   Id of the Track to delete
+         * @return  true if success, 
+         *          -1 if Track with this id doesn't exist
+         *          -2 if this Track has been Purchased (has an Invoiceline) - Referential Integrity problem
+         *          -3 if the Track could not be deleted
+         */
+        function delete($id) {  
+            // Check if there is an Track with this id
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM track WHERE TrackId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$id]);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Track id doesn't exist
+                http_response_code(404);
+                return -1;
+            }
+
+            // Check if this Track has an Invoiceline - Referential Integrity problem
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM invoiceline WHERE TrackId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$id]);   
+
+            if ($stmt->fetch()['total'] > 0) {
+                // This Track has Invoicelines
+                http_response_code(409);
+                return -2;
+            }
+                  
+            // Deletes Track
+            try {
+                $query = <<<'SQL'
+                    DELETE 
+                    FROM track 
+                    WHERE TrackId = ?;
+                SQL;
+                $stmt = $this->pdo->prepare($query);
+                $stmt->execute([$id]);
+                $return = true;
+            } catch (Exception $e) {
+                http_response_code(500);
+                $return = -3;
+                debug($e);
+            }
             $this->disconnect();
             http_response_code(200);
             return $return;
