@@ -84,5 +84,43 @@
             http_response_code(200);
             return $stmt->fetch();
         }
+
+        /**
+         * Retrieve the Customers whose email includes a certain text
+         * 
+         * @param   searchText upon which to execute the search
+         * @return  an array with Customers information, 
+         *          or -1 if no Customers were found
+         */
+        function search($searchText) {
+            // Check the count of Customers with this email
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM customer WHERE Email LIKE ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute(['%' . $searchText . '%']);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Customers not found
+                http_response_code(404);
+                return -1;
+            }
+
+            // Search Customers
+            $query = <<<'SQL'
+                SELECT CustomerId, FirstName, LastName, Password, Company, 
+                        Address, City, State, Country, PostalCode, Phone, Fax, Email
+                FROM customer
+                WHERE Email LIKE ?
+                ORDER BY Email;
+            SQL;
+
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute(['%' . $searchText . '%']);                
+            $this->disconnect();
+
+            http_response_code(200);
+            return $stmt->fetchAll();                
+        }
     }
 ?>
