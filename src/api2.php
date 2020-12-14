@@ -219,6 +219,14 @@
                                                                 $_POST['phone'], $_POST['fax'], $_POST['email']));
                             }                    
                             break;
+                        case 'DELETE':
+                            if ($pieces < MAX_PIECES) {
+                                echo formatError();
+                            } else {
+                                // Delete Customer
+                                echo json_encode($customer->delete($urlPieces[ID]));
+                            }
+                            break;                     
                     }
                     $customer = null;
                     break;
