@@ -255,38 +255,31 @@ $(document).ready(function() {
 
     // Update Artist
     $(document).on("click", ".updateArtist", function(e) {
-        const action = 'update';
-        console.log("action", action);
-        let info = {
-            "name": $("#updateArtistName").val(),
-            "id": $("#updateArtistName").attr("data-id")
-        }
-        console.log("info", info);
+        const name = $("#updateArtistName").val();
+        const id = $("#updateArtistName").attr("data-id");
 
-        if (info["name"] !== null && info["id"] !== null) {
+        if (name !== null && id !== null) {
             $.ajax({
-                url: "../src/api.php",
+                url: URL + `/artists/${id}`,
                 type: "POST",
                 data: {
-                    entity: "artist",
-                    action: "update",
-                    info: info
+                    name: name
                 },
                 success: function(data) {
-                    data = JSON.parse(data);
-                    console.log(data);
-                    console.log("Artist updated");
-                    
                     // Show the updated List of Artists
                     ShowAllArtists();
+
                     // Scroll to the updated Artist
-                    var position = e.pageY;
-                    console.log("position", position);
-                    document.body.scrollTop = position - 100; // For Safari
-                    document.documentElement.scrollTop = position; // For Chrome, Firefox, IE and Opera
-                    
-                    // if (userAuthenticated(data)) {
-                    // }
+                    ScrollPage(e.pageY);
+                },
+                error: function() { alert("An Error Ocured!"); },
+                statusCode: {
+                    404: function() {
+                        alert("Artist with this id doesn't exist!");
+                    },
+                    409: function() {
+                        alert("Artist with this name already exists!");
+                    }
                 }
             });
         }
