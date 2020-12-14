@@ -214,5 +214,120 @@
             http_response_code(200);
             return $return;
         }
+
+        /**
+         * Updates a Track
+         * 
+          * @param  trackId,
+         *          name,
+         *          albumId, 
+         *          mediaTypeId, 
+         *          genreId, 
+         *          composer, 
+         *          milliseconds, 
+         *          bytes, 
+         *          unitPrice
+         * @return  true if success, 
+         *          -1 if the Track id doesn't exists
+         *          -2 if the Track name already exists
+         *          -3 if the AlbumId doesn't exist, 
+         *          -4 if the MediaTypeId doesn't exist, 
+         *          -5 if the GenreId doesn't exist, 
+         *          -6 if the Track could not be updated
+         */
+        function update($trackId, $name, $albumId, $mediaTypeId, $genreId, $composer, $milliseconds, $bytes, $unitPrice) {
+            // Check if there is a Track with this id
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM track WHERE TrackId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$trackId]);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Track id doesn't exist
+                http_response_code(404);
+                return -1;
+            }
+
+            // Check the count of Tracks with this name
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM track WHERE Name = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$name]);   
+
+            if ($stmt->fetch()['total'] > 0) {
+                // Track name already exists
+                http_response_code(409);
+                return -2;
+            }
+            
+            // Check if there is an Album with this id
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM Album WHERE AlbumId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$albumId]);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Album id doesn't exist
+                http_response_code(404);
+                return -3;
+            }
+
+            // Check if there is an MediaType with this id
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM mediaType WHERE MediaTypeId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$mediaTypeId]);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // MediaType id doesn't exist
+                http_response_code(404);
+                return -4;
+            }
+
+            // Check if there is an Genre with this id
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM genre WHERE GenreId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$genreId]);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Genre id doesn't exist
+                http_response_code(404);
+                return -5;
+            }
+           
+            // Update Track
+            try {
+                $query = <<<'SQL'
+                UPDATE track
+                    SET Name = ?, AlbumId = ?, MediaTypeId = ?, GenreId = ?, Composer = ?, 
+                        Milliseconds = ?, Bytes = ?, UnitPrice = ?
+                    WHERE TrackId = ?
+                SQL;
+
+                $stmt = $this->pdo->prepare($query);
+                $stmt->execute([$name, $albumId, $mediaTypeId, $genreId, $composer, 
+                                $milliseconds, $bytes, $unitPrice, $trackId]);
+                $return = true;
+
+            } catch (Exception $e) {
+                http_response_code(500);
+                $return = -6;
+                debug($e);
+            }
+
+            $this->disconnect();
+            http_response_code(200);
+            return $return;
+        }
+            $this->disconnect();
+            http_response_code(200);
+            return $return;
+        }
     }
 ?>
