@@ -276,6 +276,30 @@ function showModal(action, itemId = 0, data = []) {
                 <p>
                     <span class="tag">Album Id</span>
                     <span class="tag-info"> ` + data["AlbumId"]+ ` </span>
+                </p>
+                <p>
+                    <span class="tag">MediaType Id</span>
+                    <span class="tag-info"> ` + data["MediaTypeId"]+ ` </span>
+                </p>
+                <p>
+                    <span class="tag">Genre Id</span>
+                    <span class="tag-info"> ` + data["GenreId"]+ ` </span>
+                </p>
+                <p>
+                    <span class="tag">Composer</span>
+                    <span class="tag-info"> ` + data["Composer"]+ ` </span>
+                </p>
+                <p>
+                    <span class="tag">Milliseconds</span>
+                    <span class="tag-info"> ` + data["Milliseconds"]+ ` </span>
+                </p>
+                <p>
+                    <span class="tag">Bytes</span>
+                    <span class="tag-info"> ` + data["Bytes"]+ ` </span>
+                </p>
+                <p>
+                    <span class="tag">Unit Price</span>
+                    <span class="tag-info"> ` + data["UnitPrice"]+ ` </span>
                 </p>`
                 }))
             break;
