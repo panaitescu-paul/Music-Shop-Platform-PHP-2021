@@ -628,43 +628,28 @@ $(document).ready(function() {
 
     // Delete Track
     $(document).on("click", ".deleteTrack", function(e) {
-        const action = 'delete';
         const id = $(this).attr("data-id");
-        console.log("action", action, " id", id);
 
         if (confirm("Are you sure that you want to delete this Track?")) {
             if (id !== null) {
                 //  TODO: Check for Referential Integrity, chek if this Track ....???
                 $.ajax({
-                    url: "../src/api.php",
-                    type: "POST",
-                    data: {
-                        entity: "track",
-                        action: "delete",
-                        id: id
-                    },
+                    url: URL + `/tracks/${id}`,
+                    type: "DELETE",
                     success: function(data) {
-                        data = JSON.parse(data);
-                        console.log(data);
-
                         // Show the updated List of Tracks
                         ShowAllTracks();
-
                         // Scroll to the deleted Track
-                        var position = e.pageY;
-                        console.log("position", position);
-                        document.body.scrollTop = position - 100; // For Safari
-                        document.documentElement.scrollTop = position; // For Chrome, Firefox, IE and Opera
-                        
-                        // if (userAuthenticated(data)) {
-                            if (data === true) {
-                                console.log("Track deleted");
-                                // showModal("artistDeleteSuccess");
-                            } else {
-                                console.log("Track not deleted");
-                                // showModal("artistDeleteFailure");
+                        ScrollPage(e.pageY);
+                    },
+                    error: function() { alert("An Error Ocured!"); },
+                    statusCode: {
+                        404: function() {
+                            alert("Track with this id doesn't exist!");
+                        },
+                        409: function() {
+                            alert("Can't delete a Track that has been Purchased (has an Invoiceline)!");
                         }
-                        // }
                     }
                 });
             }
@@ -691,10 +676,7 @@ $(document).ready(function() {
 
     // Scroll to page position
     function ScrollPage(position) {
-        console.log(position);
-
         if (position == "bottomPage") {
-            console.log(1);
             setTimeout(function (){
                 window.scrollTo(0, document.body.scrollHeight);
             }, 700); // Delay in milliseconds
@@ -702,10 +684,5 @@ $(document).ready(function() {
             document.body.scrollTop = position - 100; // For Safari
             document.documentElement.scrollTop = position; // For Chrome, Firefox, IE and Opera
         }
-
-        
     }
-
-    
-
 });
