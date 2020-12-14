@@ -92,7 +92,7 @@
         function search($searchText) {
             // Check the count of Tracks
             $query = <<<'SQL'
-                SELECT COUNT(*) AS total FROM track WHERE Title LIKE ?;
+                SELECT COUNT(*) AS total FROM track WHERE Name LIKE ?;
             SQL;
             $stmt = $this->pdo->prepare($query);
             $stmt->execute(['%' . $searchText . '%']);   
