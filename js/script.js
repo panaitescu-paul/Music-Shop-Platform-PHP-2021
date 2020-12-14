@@ -211,6 +211,23 @@ $(document).ready(function() {
             error: function() { alert("An Error Ocured!"); }
         });
     }
+
+    // Search Artists by name
+    $("#btnSearchArtist").on("click", function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: URL + `/artists`,
+            type: "GET",
+            data: {
+                name: $("#searchArtistName").val()
+            },
+            success: function(data) {
+                displayArtists(data);
+            },
+            error: function() { alert("An Error Ocured!"); }
+        });
+    });
+ 
     // Create Artist
     $(document).on("click", ".createArtist", function() {
         const name = $("#createArtistName").val();
@@ -506,7 +523,7 @@ $(document).ready(function() {
     $(document).on("click", ".updateTrackModal", function() {
         const id = $(this).attr("data-id");
         showModal('updateTrack', id);
-    });
+        });
 
     // Open Modal - Show Track 
     $(document).on("click", ".showTrackModal", function() {
