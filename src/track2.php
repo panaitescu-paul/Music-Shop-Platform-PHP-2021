@@ -45,5 +45,41 @@
             http_response_code(200);
             return $stmt->fetchAll(); 
         }
+
+        /**
+         * Retrieve Track by id 
+         * 
+         * @param   id of the Track
+         * @return  an Track and their information, 
+         *          or -1 if the Track was not found
+         */
+        function get($id) {
+            // Check the count of Tracks
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM Track WHERE TrackId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$id]);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Tracks not found
+                http_response_code(404);
+                return -1;
+            }
+
+            // Search Tracks
+            $query = <<<'SQL'
+                SELECT TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice
+                FROM track
+                WHERE TrackId = ?;
+            SQL;
+
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$id]);                
+            $this->disconnect();
+
+            http_response_code(200);
+            return $stmt->fetch();
+        }
     }
 ?>
