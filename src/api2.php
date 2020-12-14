@@ -201,6 +201,24 @@
                                 echo json_encode($customer->get($urlPieces[ID]));
                             }
                             break;
+                        case 'POST':                            
+                            if (!isset($_POST['email'])) {
+                                echo formatError();
+                            } else if ($pieces < MAX_PIECES){
+                                // Create Customer
+                                echo json_encode($customer->create($_POST['firstName'], $_POST['lastName'], $_POST['password'], 
+                                                                $_POST['company'], $_POST['address'], $_POST['city'], 
+                                                                $_POST['state'], $_POST['country'], $_POST['postalCode'], 
+                                                                $_POST['phone'], $_POST['fax'], $_POST['email']));
+                            } else {
+                                // Update Customer
+                                echo json_encode($customer->update($urlPieces[ID], 
+                                                                $_POST['firstName'], $_POST['lastName'], $_POST['password'], 
+                                                                $_POST['company'], $_POST['address'], $_POST['city'], 
+                                                                $_POST['state'], $_POST['country'], $_POST['postalCode'], 
+                                                                $_POST['phone'], $_POST['fax'], $_POST['email']));
+                            }                    
+                            break;
                     }
                     $customer = null;
                     break;
