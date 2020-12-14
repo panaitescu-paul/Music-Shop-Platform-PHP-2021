@@ -294,38 +294,23 @@ $(document).ready(function() {
 
         if (confirm("Are you sure that you want to delete this Artist?")) {
             if (id !== null) {
-                //  TODO: Check for Referential Integrity, chek if this artist has tracks???
                 $.ajax({
-                    url: "../src/api.php",
-                    type: "POST",
-                    data: {
-                        entity: "artist",
-                        action: "delete",
-                        id: id
-                    },
+                    url: URL + `/artists/${id}`,
+                    type: "DELETE",
                     success: function(data) {
-                        console.log(data);
-                        data = JSON.parse(data);
-                        console.log(data);
-
                         // Show the updated List of Artists
                         ShowAllArtists();
-
                         // Scroll to the updated Artist
-                        var position = e.pageY;
-                        console.log("position", position);
-                        document.body.scrollTop = position - 100; // For Safari
-                        document.documentElement.scrollTop = position; // For Chrome, Firefox, IE and Opera
-                        
-                        // if (userAuthenticated(data)) {
-                            if (data === true) {
-                                console.log("Artist deleted");
-                                // showModal("artistDeleteSuccess");
-                            } else {
-                                console.log("Artist not deleted");
-                                // showModal("artistDeleteFailure");
+                        ScrollPage(e.pageY);
+                    },
+                    error: function() { alert("An Error Ocured!"); },
+                    statusCode: {
+                        404: function() {
+                            alert("Artist with this id doesn't exist!");
+                        },
+                        409: function() {
+                            alert("Can't delete an Artist with Albums!");
                         }
-                        // }
                     }
                 });
             }
