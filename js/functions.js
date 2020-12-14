@@ -174,7 +174,7 @@ function showModal(action, itemId = 0, data = []) {
             elem.append($("<div />", { "class": "", "html": 
                     `<form id="frmUpdateArtist" method="POST">
                         <label for="updateArtistName" id="txtArtistLabel">New Name</label>
-                        <input data-id= ` + itemId + ` type="text" id="updateArtistName" name="text" required>
+                        <input data-id= ` + itemId + ` type="text" id="updateArtistName" name="text" value= ` + data["Name"] + ` required>
                         </br>
                         <button type="button" class="btn btn-success mb-2 updateArtist" id="btnUpdateArtist" data-dismiss="modal">Update Artist</button>
                     </form>`
