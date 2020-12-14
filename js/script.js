@@ -541,37 +541,42 @@ $(document).ready(function() {
 
     // Create Track
     $(document).on("click", ".createTrack", function() {
-        const action = 'create';
-        console.log("action", action);
-        let info = {
-            "title": $("#createTrackTitle").val(),
-            "artistId": $("#createArtistId").val(),
-        }
-        console.log("info", info);
+        const name = $("#createTrackName").val(); 
+        const albumId = $("#createAlbumId").val(); 
+        const mediaTypeId = $("#createMediaTypeId").val(); 
+        const genreId = $("#createGenreId").val(); 
+        const composer = $("#createComposer").val(); 
+        const milliseconds = $("#createMilliseconds").val(); 
+        const bytes = $("#createBytes").val(); 
+        const unitPrice = $("#createUnitPrice").val();
            
-        if (info["title"] !== null) {
+        if (name !== null ) {
             $.ajax({
-                url: "../src/api.php",
+                url: URL + `/tracks`,
                 type: "POST",
                 data: {
-                    entity: "track",
-                    action: "create",
-                    info: info
+                    name: name,
+                    albumId: albumId,
+                    mediaTypeId: mediaTypeId,
+                    genreId: genreId,
+                    composer: composer,
+                    milliseconds: milliseconds,
+                    bytes: bytes,
+                    unitPrice: unitPrice,
                 },
                 success: function(data) {
-                    console.log(data);
-
-                    data = JSON.parse(data);
-                    console.log(data);
-                    console.log("Track created");
                     ShowAllTracks();
-                    setTimeout(function (){
-                        window.scrollTo(0, document.body.scrollHeight);
-                    }, 700); // Delay in milliseconds
-                    
-                    // if (userAuthenticated(data)) {
-                    // }
+                    ScrollPage("bottomPage");
+                },
+                error: function() { alert("An Error Ocured!"); },
+                statusCode: {
+                    404: function() {
+                        alert("AlbumId, MediaTypeId, or GenreId doesn't exist");
+                    },
+                    409: function() {
+                        alert("Track with this name already exists!");
                     }
+                }
             });
         }
     });
