@@ -527,20 +527,15 @@ $(document).ready(function() {
     $("#btnSearchTrack").on("click", function(e) {
         e.preventDefault();
         $.ajax({
-            url: "../src/api.php",
-            type: "POST",
+            url: URL + `/tracks`,
+            type: "GET",
             data: {
-                entity: "track",
-                action: "search",
-                searchText: $("#searchTrackName").val()
+                name: $("#searchTrackName").val()
             },
             success: function(data) {
-                data = JSON.parse(data);
-                console.log(data);
-                // if (userAuthenticated(data)) {
                 displayTracks(data);
-                // }
-            }
+            },
+            error: function() { alert("An Error Ocured!"); }
         });
     });
 
