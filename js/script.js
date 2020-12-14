@@ -330,8 +330,16 @@ $(document).ready(function() {
     // Open Modal - Update Album
     $(document).on("click", ".updateAlbumModal", function() {
         const id = $(this).attr("data-id");
-        showModal('updateAlbum', id);
+        $.ajax({
+            url: URL + `/albums/${id}`,
+            type: "GET",
+            success: function(data) {
+                console.log(data);
+                showModal('updateAlbum', id, data);
+            },
+            error: function() { alert("An Error Ocured!"); }
         });
+    });
 
     // Open Modal - Show Album 
     $(document).on("click", ".showAlbumModal", function() {
