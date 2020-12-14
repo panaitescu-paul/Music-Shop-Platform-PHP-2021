@@ -260,6 +260,58 @@
             http_response_code(200);
             return $return;
         }
+
+        /**
+         * Deletes a Customer
+         * 
+         * @param   Id of the Customer to delete
+         * @return  true if success, 
+         *          -1 if Customer with this id doesn't exist
+         *          -2 if this Customer has a Purchase (has an Invoice) - Referential Integrity problem
+         *          -3 if the Customer could not be deleted
+         */
+        function delete($id) {  
+            // Check if there is an Customer with this id
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM customer WHERE CustomerId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$id]);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Customer id doesn't exist
+                http_response_code(404);
+                return -1;
+            }
+
+            // Check if this Customer has an Invoice - Referential Integrity problem
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM invoice WHERE CustomerId = ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$id]);   
+
+            if ($stmt->fetch()['total'] > 0) {
+                // This Customer has Invoice
+                http_response_code(409);
+                return -2;
+            }
+                  
+            // Deletes Customer
+            try {
+                $query = <<<'SQL'
+                    DELETE 
+                    FROM customer 
+                    WHERE CustomerId = ?;
+                SQL;
+                $stmt = $this->pdo->prepare($query);
+                $stmt->execute([$id]);
+                $return = true;
+            } catch (Exception $e) {
+                http_response_code(500);
+                $return = -3;
+                debug($e);
+            }
             $this->disconnect();
             http_response_code(200);
             return $return;
