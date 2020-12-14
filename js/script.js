@@ -384,37 +384,29 @@ $(document).ready(function() {
 
     // Create Album
     $(document).on("click", ".createAlbum", function() {
-        const action = 'create';
-        console.log("action", action);
-        let info = {
-            "title": $("#createAlbumTitle").val(),
-            "artistId": $("#createArtistId").val(),
-        }
-        console.log("info", info);
-
-        if (info["title"] !== null) {
+        const title = $("#createAlbumTitle").val();
+        const artistId = $("#createArtistId").val();
+        if (title !== null) {
             $.ajax({
-                url: "../src/api.php",
+                url: URL + `/albums`,
                 type: "POST",
                 data: {
-                    entity: "album",
-                    action: "create",
-                    info: info
+                    artistId: artistId,
+                    title: title
                 },
                 success: function(data) {
-                    console.log(data);
-
-                    data = JSON.parse(data);
-                    console.log(data);
-                    console.log("Album created");
                     ShowAllAlbums();
-                    setTimeout(function (){
-                        window.scrollTo(0, document.body.scrollHeight);
-                    }, 700); // Delay in milliseconds
-                    
-                    // if (userAuthenticated(data)) {
-                    // }
+                    ScrollPage("bottomPage");
+                },
+                error: function() { alert("An Error Ocured!"); },
+                statusCode: {
+                    404: function() {
+                        alert("Artist with this id doesn't exist!!");
+                    },
+                    409: function() {
+                        alert("Album with this title already exists!");
                     }
+                }
             });
         }
     });
