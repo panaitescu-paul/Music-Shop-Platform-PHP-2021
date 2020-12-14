@@ -446,43 +446,27 @@ $(document).ready(function() {
 
     // Delete Album
     $(document).on("click", ".deleteAlbum", function(e) {
-        const action = 'delete';
         const id = $(this).attr("data-id");
-        console.log("action", action, " id", id);
 
         if (confirm("Are you sure that you want to delete this Album?")) {
             if (id !== null) {
-                //  TODO: Check for Referential Integrity, chek if this Album ....???
                 $.ajax({
-                    url: "../src/api.php",
-                    type: "POST",
-                    data: {
-                        entity: "album",
-                        action: "delete",
-                        id: id
-                    },
+                    url: URL + `/albums/${id}`,
+                    type: "DELETE",
                     success: function(data) {
-                        data = JSON.parse(data);
-                        console.log(data);
-
                         // Show the updated List of Albums
                         ShowAllAlbums();
-
                         // Scroll to the deleted Album
-                        var position = e.pageY;
-                        console.log("position", position);
-                        document.body.scrollTop = position - 100; // For Safari
-                        document.documentElement.scrollTop = position; // For Chrome, Firefox, IE and Opera
-                        
-                        // if (userAuthenticated(data)) {
-                            if (data === true) {
-                                console.log("Album deleted");
-                                // showModal("artistDeleteSuccess");
-                            } else {
-                                console.log("Album not deleted");
-                                // showModal("artistDeleteFailure");
+                        ScrollPage(e.pageY);
+                    },
+                    error: function() { alert("An Error Ocured!"); },
+                    statusCode: {
+                        404: function() {
+                            alert("Album with this id doesn't exist!");
+                        },
+                        409: function() {
+                            alert("Can't delete an Album with Tracks!");
                         }
-                        // }
                     }
                 });
             }
