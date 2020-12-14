@@ -354,5 +354,37 @@
             http_response_code(200);
             return $return;
         }
+
+        /**
+         * Validates a user login
+         * 
+         * @param   user's email
+         * @param   user's password
+         * @return  true if the password is correct, false if it is not or if the user does not exist
+         */
+        function validate($email, $password) {
+
+            debug('Password validation');
+
+            // Get user data
+            $query = <<<'SQL'
+                SELECT CustomerId, FirstName, LastName, Password FROM customer WHERE Email = ?;
+            SQL;            
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$email]);
+            if ($stmt->rowCount() === 0) {
+                return false;
+            }
+
+            $row = $stmt->fetch();
+
+            $this->userID = $row['CustomerId'];
+            $this->firstName = $row['FirstName'];
+            $this->lastName = $row['LastName'];
+            $this->email = $email;
+
+            // Check the password
+            return (password_verify($password, $row['Password']));
+        }
     }
 ?>
