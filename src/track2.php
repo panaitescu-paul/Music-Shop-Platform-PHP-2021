@@ -81,5 +81,42 @@
             http_response_code(200);
             return $stmt->fetch();
         }
+
+        /**
+         * Retrieve the Tracks whose name includes a certain text
+         * 
+         * @param   searchText upon which to execute the search
+         * @return  an array with Tracks information, 
+         *          or -1 if no Tracks were found
+         */
+        function search($searchText) {
+            // Check the count of Tracks
+            $query = <<<'SQL'
+                SELECT COUNT(*) AS total FROM track WHERE Title LIKE ?;
+            SQL;
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute(['%' . $searchText . '%']);   
+
+            if ($stmt->fetch()['total'] == 0) {
+                // Tracks not found
+                http_response_code(404);
+                return -1;
+            }
+
+            // Search Tracks
+            $query = <<<'SQL'
+                SELECT TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice
+                FROM track
+                WHERE Name LIKE ?
+                ORDER BY Name;
+            SQL;
+
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute(['%' . $searchText . '%']);                
+            $this->disconnect();
+
+            http_response_code(200);
+            return $stmt->fetchAll();                
+        }
     }
 ?>
