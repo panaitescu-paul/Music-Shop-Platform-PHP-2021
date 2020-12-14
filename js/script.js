@@ -487,8 +487,16 @@ $(document).ready(function() {
     // Open Modal - Update Track
     $(document).on("click", ".updateTrackModal", function() {
         const id = $(this).attr("data-id");
-        showModal('updateTrack', id);
+        $.ajax({
+            url: URL + `/tracks/${id}`,
+            type: "GET",
+            success: function(data) {
+                showModal('updateTrack', id, data);
+            },
+            error: function() { alert("An Error Ocured!"); }
         });
+        // showModal('updateTrack', id);
+    });
 
     // Open Modal - Show Track 
     $(document).on("click", ".showTrackModal", function() {
