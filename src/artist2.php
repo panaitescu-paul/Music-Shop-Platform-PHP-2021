@@ -137,7 +137,7 @@
 
             if ($stmt->fetch()['total'] > 0) {
                 // Artist name already exists
-                http_response_code(404);
+                http_response_code(409);
                 return -1;
             }
 
@@ -188,7 +188,7 @@
 
             if ($stmt->fetch()['total'] > 0) {
                 // Artist name already exists
-                http_response_code(404);
+                http_response_code(409);
                 return -2;
             }
 

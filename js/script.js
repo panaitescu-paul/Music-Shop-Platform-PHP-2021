@@ -13,6 +13,7 @@
 // ******************************************************
 
 $(document).ready(function() {
+    URL = "http://localhost/WAD-MA2";
 
     // // Add a user - Sign Up
     // $("#frmAddUser").on("submit", function(e) {
@@ -169,19 +170,12 @@ $(document).ready(function() {
     // Show all Artists in a List
     function ShowAllArtists() {
         $.ajax({
-            url: "../src/api.php",
-            type: "POST",
-            data: {
-                entity: "artist",
-                action: "getAll"
-            },
+            url: URL + "/artists",
+            type: "GET",
             success: function(data) {
-                data = JSON.parse(data);
-                console.log(data);
-                // if (userAuthenticated(data)) {
-                    displayArtists(data);
-                // }
-            }
+                displayArtists(data);
+            },
+            error: function() { alert("An Error Ocured!"); }
         });
     }
 
@@ -200,7 +194,7 @@ $(document).ready(function() {
                 data = JSON.parse(data);
                 console.log(data);
                 // if (userAuthenticated(data)) {
-                    displayArtists(data);
+                displayArtists(data);
                 // }
             }
         });
@@ -215,7 +209,7 @@ $(document).ready(function() {
     $(document).on("click", ".updateArtistModal", function() {
         const id = $(this).attr("data-id");
         showModal('updateArtist', id);
-    });
+        });
 
     // Open Modal - Show Artist 
     $(document).on("click", ".showArtistModal", function() {
@@ -234,7 +228,7 @@ $(document).ready(function() {
                 data = JSON.parse(data);
                 console.log(data);
                 // if (userAuthenticated(data)) {
-                    showModal('showArtist', id, data);
+                showModal('showArtist', id, data);
                 // }
             }
         });
@@ -266,7 +260,7 @@ $(document).ready(function() {
                     }, 700); // Delay in milliseconds
                     // if (userAuthenticated(data)) {
                     // }
-                }
+                    }
             });
         }
     });
@@ -349,7 +343,7 @@ $(document).ready(function() {
                             } else {
                                 console.log("Artist not deleted");
                                 // showModal("artistDeleteFailure");
-                            }
+                        }
                         // }
                     }
                 });
@@ -780,5 +774,7 @@ $(document).ready(function() {
         e.preventDefault();
         window.scrollTo(0, document.body.scrollHeight);
     });
+
+    
 
 });
