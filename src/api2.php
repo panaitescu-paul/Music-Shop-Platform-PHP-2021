@@ -153,6 +153,21 @@
                                 echo json_encode($track->get($urlPieces[ID]));
                             }
                             break;
+                        case 'POST':                            
+                            if (!isset($_POST['name'])) {
+                                echo formatError();
+                            } else if ($pieces < MAX_PIECES){
+                                // Create Track
+                                echo json_encode($track->create($_POST['name'], $_POST['albumId'], $_POST['mediaTypeId'], 
+                                                                $_POST['genreId'], $_POST['composer'], $_POST['milliseconds'], 
+                                                                $_POST['bytes'], $_POST['unitPrice']));
+                            } else {
+                                // Update Track
+                                echo json_encode($track->update($urlPieces[ID], $_POST['name'], $_POST['albumId'], $_POST['mediaTypeId'], 
+                                                                $_POST['genreId'], $_POST['composer'], $_POST['milliseconds'], 
+                                                                $_POST['bytes'], $_POST['unitPrice']));
+                            }                    
+                            break;
                     }
                     $track = null;
                     break;  
