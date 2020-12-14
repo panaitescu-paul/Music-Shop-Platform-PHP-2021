@@ -339,11 +339,34 @@ function showModal(action, itemId = 0, data = []) {
             $("#modalTitle").html("Update Track");           
             elem.append($("<div />", { "class": "", "html": 
                     `<form id="frmUpdateTrack" method="POST">
-                        <label for="updateTrackTitle" id="txtTrackLabel">New Track Title</label>
-                        <input data-id= ` + itemId + ` type="text" id="updateTrackTitle" name="text" required>
+                        <label for="updateTrackId" id="txtTrackLabel">Track Id</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateTrackId" name="text" value="` + data['AlbumId'] + `" disabled>
                         </br>
-                        <label for="updateArtistId" id="txtTrackLabel">Artist Id</label>
-                        <input data-id= ` + itemId + ` type="text" id="updateArtistId" name="text" required>
+                        <label for="updateTrackName" id="txtTrackLabel">Track Name</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateTrackName" name="text" value="` + data['Name'] + `" required>
+                        </br>
+                        <label for="updateAlbumId" id="txtTrackLabel">Album Id</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateAlbumId" name="text" value="` + data['AlbumId'] + `" required>
+                        </br>
+
+                        <label for="updateMediaTypeId" id="txtTrackLabel">Media Type</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateMediaTypeId" name="text" value="` + data['MediaTypeId'] + `" required>
+                        </br>
+                        <label for="updateGenreId" id="txtTrackLabel">Genre Id</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateGenreId" name="text" value="` + data['GenreId'] + `" required>
+                        </br>
+                        <label for="updateComposer" id="txtTrackLabel">Composer</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateComposer" name="text" value="` + data['Composer'] + `" required>
+                        </br>
+
+                        <label for="updateMilliseconds" id="txtTrackLabel">Milliseconds</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateMilliseconds" name="text" value="` + data['Milliseconds'] + `" required>
+                        </br>
+                        <label for="updateBytes" id="txtTrackLabel">Bytes</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateBytes" name="text" value="` + data['Bytes'] + `" required>
+                        </br>
+                        <label for="updateUnitPrice" id="txtTrackLabel">UnitPrice</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateUnitPrice" name="text" value="` + data['UnitPrice'] + `" required>
                         </br>
                         <button type="button" class="btn btn-success mb-2 updateTrack" id="btnUpdateTrack" data-dismiss="modal">Update Artist</button>
                     </form>`
