@@ -179,6 +179,31 @@
                     }
                     $track = null;
                     break;  
+                case 'customers':
+                    require_once('customer.php');
+                    $customer = new Customer();
+                    $verb = $_SERVER['REQUEST_METHOD'];
+                    
+                    switch ($verb) {
+                        case 'GET':                             
+                            // If the number of pieces is smaller than the maximum (4), 
+                            // then get all Customers, or search by email, otherwise search by id
+                            if ($pieces < MAX_PIECES) {
+                                if (!isset($_GET['email'])) {
+                                    // Get All Customers
+                                    echo json_encode($customer->getAll());
+                                } else {
+                                    // Search Customer by email
+                                    echo json_encode($customer->search($_GET['email']));
+                                }
+                            } else {
+                                // Get Customer by ID
+                                echo json_encode($customer->get($urlPieces[ID]));
+                            }
+                            break;
+                    }
+                    $customer = null;
+                    break;
                 // case 'films':
                 //     require_once('src/movie.php');
                 //     $movie = new Movie();
