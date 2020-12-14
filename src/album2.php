@@ -216,7 +216,7 @@
 
             if ($stmt->fetch()['total'] > 0) {
                 // Album title already exists
-                http_response_code(404);
+                http_response_code(409);
                 return -3;
             }
 

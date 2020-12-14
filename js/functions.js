@@ -1,6 +1,8 @@
-/* eslint-disable no-undef */
+// TODO: add function inside a select to get show the Id selections, genre selection, mediatype selection
+
+
 /**
- * JavaScript display functionality
+ * JavaScript DOM Manipulation
  *
  * @author  Paul Panaitescu
  * @version 1.0 25 NOV 2020
@@ -102,8 +104,6 @@ function displayTracks(trackData) {
             append($("<th />", { "text": "TrackId"})).
             append($("<th />", { "text": "Name", "class": "number"})).
             append($("<th />", { "text": "AlbumId", "class": "number"})).
-            // append($("<th />", { "text": "GenreId", "class": "number"})).
-            // append($("<th />", { "text": "PriceId", "class": "number"})).
             append($("<th />", { "text": "Actions", "class": "number"}))
         header.append(headerRow);
         table.append(header);
@@ -174,7 +174,7 @@ function showModal(action, itemId = 0, data = []) {
             elem.append($("<div />", { "class": "", "html": 
                     `<form id="frmUpdateArtist" method="POST">
                         <label for="updateArtistName" id="txtArtistLabel">New Name</label>
-                        <input data-id= ` + itemId + ` type="text" id="updateArtistName" name="text" value= ` + data["Name"] + ` required>
+                        <input data-id= ` + itemId + ` type="text" id="updateArtistName" name="text" value="` + data['Name'] + `" required>
                         </br>
                         <button type="button" class="btn btn-success mb-2 updateArtist" id="btnUpdateArtist" data-dismiss="modal">Update Artist</button>
                     </form>`
