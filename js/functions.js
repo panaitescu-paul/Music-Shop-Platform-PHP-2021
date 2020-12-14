@@ -232,13 +232,16 @@ function showModal(action, itemId = 0, data = []) {
             $("#modalTitle").html("Update Album");           
             elem.append($("<div />", { "class": "", "html": 
                     `<form id="frmUpdateAlbum" method="POST">
-                        <label for="updateAlbumTitle" id="txtAlbumLabel">New Album Title</label>
-                        <input data-id= ` + itemId + ` type="text" id="updateAlbumTitle" name="text" required>
+                        <label for="updateAlbumId" id="txtAlbumLabel">Album Id</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateAlbumId" name="text" value="` + data['AlbumId'] + `" disabled>
                         </br>
-                        <label for="updateArtistId" id="txtAlbumLabel">Artist Id</label>
-                        <input data-id= ` + itemId + ` type="text" id="updateArtistId" name="text" required>
+                        <label for="updateAlbumTitle" id="txtAlbumLabel">Album Title</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateAlbumTitle" name="text" value="` + data['Title'] + `" required>
                         </br>
-                        <button type="button" class="btn btn-success mb-2 updateAlbum" id="btnUpdateAlbum" data-dismiss="modal">Update Artist</button>
+                        <label for="updateArtisId" id="txtAlbumLabel">Artist Id</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateArtisId" name="text" value="` + data['ArtistId'] + `" required>
+                        </br>
+                        <button type="button" class="btn btn-success mb-2 updateAlbum" id="btnUpdateAlbum" data-dismiss="modal">Update Album</button>
                     </form>`
                 }))
             break;
