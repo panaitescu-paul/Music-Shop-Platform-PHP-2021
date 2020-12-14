@@ -583,40 +583,44 @@ $(document).ready(function() {
 
     // Update Track
     $(document).on("click", ".updateTrack", function(e) {
-        const action = 'update';
-        console.log("action", action);
-        let info = {
-            "title": $("#updateTrackTitle").val(),
-            "artistId": $("#updateArtistId").val(),
-            "trackId": $("#updateTrackTitle").attr("data-id")
-        }
-        console.log("info", info);
+        const trackId = $("#updateTrackId").attr("data-id"); 
+        const name = $("#updateTrackName").val(); 
+        const albumId = $("#updateAlbumId").val(); 
+        const mediaTypeId = $("#updateMediaTypeId").val(); 
+        const genreId = $("#updateGenreId").val(); 
+        const composer = $("#updateComposer").val(); 
+        const milliseconds = $("#updateMilliseconds").val(); 
+        const bytes = $("#updateBytes").val(); 
+        const unitPrice = $("#updateUnitPrice").val();
 
-        if (info["title"] !== null && info["id"] !== null) {
+        if (trackId !== null && name !== null) {
             $.ajax({
-                url: "../src/api.php",
+                url: URL + `/tracks/${trackId}`,
                 type: "POST",
                 data: {
-                    entity: "track",
-                    action: "update",
-                    info: info
+                    name: name,
+                    albumId: albumId,
+                    mediaTypeId: mediaTypeId,
+                    genreId: genreId,
+                    composer: composer,
+                    milliseconds: milliseconds,
+                    bytes: bytes,
+                    unitPrice: unitPrice,
                 },
                 success: function(data) {
-                    data = JSON.parse(data);
-                    console.log(data);
-                    console.log("Track updated");
-
                     // Show the updated List of Tracks
                     ShowAllTracks();
-
                     // Scroll to the updated Track
-                    var position = e.pageY;
-                    console.log("position", position);
-                    document.body.scrollTop = position - 100; // For Safari
-                    document.documentElement.scrollTop = position; // For Chrome, Firefox, IE and Opera
-
-                    // if (userAuthenticated(data)) {
-                    // }
+                    ScrollPage(e.pageY);
+                },
+                error: function() { alert("An Error Ocured!"); },
+                statusCode: {
+                    404: function() {
+                        alert("TrackId, AlbumId, MediaTypeId, or GenreId doesn't exist!");
+                    },
+                    409: function() {
+                        alert("Track with this name already exists!");
+                    }
                 }
             });
         }
