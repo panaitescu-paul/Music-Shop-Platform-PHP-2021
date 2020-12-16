@@ -19,7 +19,30 @@
     $firstName = $_SESSION['firstName'];
     $lastName = $_SESSION['lastName'];
     $email = $_SESSION['email'];
+
+    if (!isset($_SESSION['ShoppingCart'])) {
+        $_SESSION['ShoppingCart'] = array();
+    }
+    // alert("Track alreay in the Shopping Cart! Cannot add duplicates!");
+
+    if (isset($_POST['addToCart'])) {
+        // Check if the Track id is already saved in the Shopping Cart. Cannot add a track multiple times
+        $newTrackId = $_POST['addToCart2'];
+        $tracksList = $_SESSION['ShoppingCart'];
+        if (!in_array($newTrackId, $tracksList)) {
+            $shoppingCart = $_SESSION['ShoppingCart'];
+            array_push($shoppingCart, $_POST['addToCart2']);
+            $_SESSION['ShoppingCart'] = $shoppingCart;
+        } 
+    }
 ?>
+
+<!-- Start of Page content -->
+<div class="container" id="page-tracks">
+
+    <?php
+        print_r($_SESSION['ShoppingCart']);
+    ?>
 
 <!-- Start of Page content -->
 <div class="container">
@@ -90,7 +113,7 @@
             </tbody>
         </table>
     </div>
-</div>
+</div> -->
 
 <!-- End of Page content -->
 
