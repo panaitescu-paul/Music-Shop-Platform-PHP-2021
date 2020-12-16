@@ -152,9 +152,15 @@ $(document).ready(function() {
         if (page === "artists.php") {
             console.log("PAGE artists");
             ShowAllArtists();
+        } else if (page === "library-artists.php") {
+            console.log("PAGE library-artists");
+            ShowAllArtists('customer');
         } else if (page === "albums.php") {
             console.log("PAGE albums");
             ShowAllAlbums();
+        } else if (page === "library-albums.php") {
+            console.log("PAGE library-albums");
+            ShowAllAlbums('customer');
         } else if (page === "tracks.php") {
             console.log("PAGE tracks");
             ShowAllTracks('admin');
@@ -212,7 +218,7 @@ $(document).ready(function() {
             url: URL + "/artists",
             type: "GET",
             success: function(data) {
-                displayArtists(data);
+                    displayArtists(data);
             },
             error: function() { alert("An Error Ocured!"); }
         });
@@ -366,7 +372,7 @@ $(document).ready(function() {
             url: URL + `/albums`,
             type: "GET",
             success: function(data) {
-                displayAlbums(data);
+                    displayAlbums(data);
             },
             error: function() { alert("An Error Ocured!"); }
         });
