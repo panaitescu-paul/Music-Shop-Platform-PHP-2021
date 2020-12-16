@@ -130,7 +130,7 @@ thead tr{
     width: 110px;
 }
 
-.btnShow, .btnUpdate, .btnDelete {
+.btnShow, .btnUpdate, .btnDelete, .btnAddToCart {
     display: block;
     margin-left: 5px;
     margin-right: 0px;
