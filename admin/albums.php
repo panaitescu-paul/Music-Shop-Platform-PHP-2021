@@ -11,10 +11,15 @@
     if (!isset($_SESSION['userID'])) {
         header('Location: ../auth/login.php');
     }
+    // if you are loged in as Customer, then you are redirected to a Customer page
+    if (isset($_SESSION['userID']) && $_SESSION['userID'] !== 0) {
+        header('Location: ../user/library-tracks.php');
+    }
+    
     $userID = $_SESSION['userID'];
-    // $firstName = $_SESSION['firstName'];
-    // $lastName = $_SESSION['lastName'];
-    // $email = $_SESSION['email'];
+    $firstName = $_SESSION['firstName'];
+    $lastName = $_SESSION['lastName'];
+    $email = $_SESSION['email'];
 ?>
 
 

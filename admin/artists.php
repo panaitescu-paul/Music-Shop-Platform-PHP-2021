@@ -11,15 +11,30 @@
     if (!isset($_SESSION['userID'])) {
         header('Location: ../auth/login.php');
     }
+    // if you are loged in as Customer, then you are redirected to a Customer page
+    if (isset($_SESSION['userID']) && $_SESSION['userID'] !== 0) {
+        header('Location: ../user/library-tracks.php');
+    }
+    
     $userID = $_SESSION['userID'];
-    // $firstName = $_SESSION['firstName'];
-    // $lastName = $_SESSION['lastName'];
-    // $email = $_SESSION['email'];
+    $firstName = $_SESSION['firstName'];
+    $lastName = $_SESSION['lastName'];
+    $email = $_SESSION['email'];
 ?>
-
 
 <!-- Start of Page content -->
 <div class="container" id="page-artists">
+
+<?php echo $userID . ' -  \n';
+    echo $firstName . ' -  \n';
+    echo $lastName . ' -  \n';
+    echo $email . ' -  \n';
+    ?>
+    <form id="frmLogout" action="../auth/login.php" method="POST">
+        <input type="hidden" name="logout" value="logout">
+        <input type="submit" id="btnLogOut" value="Log Out">&nbsp;
+        <input type="button" id="btnUserCancel" value="Cancel">
+    </form>
 
     <!-- Sidebar navigation -->
     <div class="sidebar">
