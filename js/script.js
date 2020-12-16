@@ -149,15 +149,21 @@ $(document).ready(function() {
         let str = window.location.href;
         str = str.split("/"); 
         let page = str[str.length - 1]; 
-        if ( page === "artists.php") {
+        if (page === "artists.php") {
             console.log("PAGE artists");
             ShowAllArtists();
-        } else if ( page === "albums.php") {
+        } else if (page === "albums.php") {
             console.log("PAGE albums");
             ShowAllAlbums();
-        } else if ( page === "tracks.php") {
+        } else if (page === "tracks.php") {
             console.log("PAGE tracks");
-            ShowAllTracks();
+            ShowAllTracks('admin');
+        } else if (page === "library-tracks.php") {
+            console.log("PAGE library-tracks");
+            ShowAllTracks('customer');
+        } else if (page === "shopping-cart.php") {
+            console.log("PAGE shopping-cart");
+            ShowAllTracks('customer', shoppingCart);
         } else {
             console.log("PAGE is NOT artists");
         }
@@ -517,7 +523,7 @@ $(document).ready(function() {
             url: URL + `/tracks`,
             type: "GET",
             success: function(data) {
-                displayTracks(data);
+                        displayTracks(data);
             },
             error: function() { alert("An Error Ocured!"); }
         });
