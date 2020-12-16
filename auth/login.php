@@ -18,24 +18,24 @@
     // If the user is already logged in, s/he is redirected to the Admin page, or User page
     } else if (isset($_SESSION['userID'])) {
         if ($_SESSION['userID'] === '0') {
-            console.log("redirected to the Admin page");
-            header('Location: ../admin/admin.php');
+            console.log("redirected to the Admin - Tracks page");
+            header('Location: ../admin/artists.php');
         } else {
-            console.log("redirected to the User page");
+            console.log("redirected to the User - Tracks page");
             header('Location: ../user/library-tracks.php');
         }
 
-    // If the user has filled the login fields, the authentication process is launched
-    } else if (isset($_POST['email'])) { // TODO: also check if the button was selected for User login
-
+    // If the Customer has filled the login fields, the authentication process is launched
+    } else if (isset($_POST['email']) && isset($_POST['password'])) { // TODO: also check if the button was selected for User login
+        echo 'login.php - Customer login';
         $userValidation = true;
-        require_once('../src/user.php');
+        require_once('../src/customer.php');
 
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $user = new User();
-        $validUser = $user->validate($email, $password);
+        $user = new Customer();
+        $validUser = $user->login($email, $password);
         if ($validUser) {
             session_start();
 
@@ -48,32 +48,31 @@
             header('Location: ../user/library-tracks.php');
         }
     
-    // If the admin has filled the password field, the authentication process is launched
+    // If the Admin has filled the password field, the authentication process is launched
     } else if (isset($_POST['password'])) { // TODO: also check if the button was selected for admin login
 
+        echo 'login.php - Admin login';
         $userValidation = true;
-        require_once('../src/admin.php');
+        require_once('../src/customer.php');
 
         // $email = $_POST['email'];
         $password = $_POST['password'];
 
-        echo("------- ");
+        $user = new Customer();
+        $validUser = $user->login('', $password, 1);
 
-        $user = new Admin();
-        echo("------- ");
-        $validUser = $user->validateAdmin($password);
-        echo("------- ");
         if ($validUser) {
             echo("validUser ------- ");
-
             session_start();
 
             $_SESSION['userID'] = $user->userID;
+            $_SESSION['firstName'] = $user->firstName;
+            $_SESSION['lastName'] = $user->lastName;
+            $_SESSION['email'] = $email;
 
             console.log("you are a valid Admin");
             header('Location: ../admin/artists.php');
         }
-        echo("------- ");
     }
 ?>
 
