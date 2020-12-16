@@ -11,14 +11,30 @@
     if (!isset($_SESSION['userID'])) {
         header('Location: ../auth/login.php');
     }
+    // if you are loged in as Admin, then you are redirected to an Admin page
+    if (isset($_SESSION['userID']) && $_SESSION['userID'] == 0) {
+        header('Location: ../admin/artists.php');
+    }
     $userID = $_SESSION['userID'];
     $firstName = $_SESSION['firstName'];
     $lastName = $_SESSION['lastName'];
     $email = $_SESSION['email'];
+
 ?>
 
 <!-- Start of Page content -->
 <div class="container">
+<?php
+echo $userID . ' -  ';
+echo $firstName . ' -  ';
+echo $lastName . ' -  ';
+echo $email . ' -  ';
+?>
+<form id="frmLogout" action="../auth/login.php" method="POST">
+        <input type="hidden" name="logout" value="logout">
+        <input type="submit" id="btnLogOut" value="Log Out">&nbsp;
+        <input type="button" id="btnUserCancel" value="Cancel">
+    </form>
     <h1 class="main-title">Shopping Cart</h1>
     <div class="resultArea">
         <table class="table tableList">
