@@ -45,6 +45,21 @@ function displayArtists(artistData, user = 'admin') {
                     }))
                 tableBody.append(row);
             }
+        } else { // Display Artist information for Customer
+            for (const artist of artistData) {
+                const row = $("<tr />");
+                const artistID = artist["ArtistId"];
+                row.
+                    append($("<td />", { "text": artist["ArtistId"]})).
+                    append($("<td />", { "text": artist["Name"]})).
+                    append($("<td />", { "class": "table-actions", "html": 
+                        "<button data-id='" + artistID + "' type='button' class='btn btn-success btnShow showArtistModal' data-toggle='modal' data-target='#modal'>" +
+                            "<img src='../img/card-text.svg' class='icon-show'>" +
+                        "</button>"
+                    }))
+                tableBody.append(row);
+            }
+        }
         table.append(tableBody);
         table.appendTo($("section#artistResults"));
     }
