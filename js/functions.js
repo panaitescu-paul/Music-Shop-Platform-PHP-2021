@@ -66,7 +66,7 @@ function displayArtists(artistData, user = 'admin') {
 }
 
 // Loads Albums information in artistResults
-function displayAlbums(albumData) {
+function displayAlbums(albumData, user = 'admin') {
     if (albumData.length === 0) {
         $("section#results").html("There are no albums matching the entered text.");
     } else {
@@ -82,6 +82,7 @@ function displayAlbums(albumData) {
         header.append(headerRow);
         table.append(header);
         const tableBody = $("<tbody />");
+        if (user == 'admin') {
             for (const album of albumData) {
                 const row = $("<tr />");
                 const albumID = album["AlbumId"];
@@ -102,6 +103,22 @@ function displayAlbums(albumData) {
                     }))
                 tableBody.append(row);
             }
+        } else {
+            for (const album of albumData) {
+                const row = $("<tr />");
+                const albumID = album["AlbumId"];
+                row.
+                    append($("<td />", { "text": album["AlbumId"]})).
+                    append($("<td />", { "text": album["Title"]})).
+                    append($("<td />", { "text": album["ArtistId"]})).
+                    append($("<td />", { "class": "table-actions", "html": 
+                        "<button data-id='" + albumID + "' type='button' class='btn btn-success btnShow showAlbumModal' data-toggle='modal' data-target='#modal'>" +
+                            "<img src='../img/card-text.svg' class='icon-show'>" +
+                        "</button>"
+                    }))
+                tableBody.append(row);
+            }
+        }
         table.append(tableBody);
         table.appendTo($("section#results"));
     }
