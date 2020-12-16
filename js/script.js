@@ -371,12 +371,16 @@ $(document).ready(function() {
     });
 
     // Show All Albums in a List
-    function ShowAllAlbums() {
+    function ShowAllAlbums(user = 'admin') {
         $.ajax({
             url: URL + `/albums`,
             type: "GET",
             success: function(data) {
+                if (user == 'customer') {
+                    displayAlbums(data, 'customer');
+                } else {
                     displayAlbums(data);
+                }
             },
             error: function() { alert("An Error Ocured!"); }
         });
