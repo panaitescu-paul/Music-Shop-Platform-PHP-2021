@@ -421,13 +421,13 @@
          * 
          * @param   id - Customer's Id
          *          tracks - the id of the purchased tracks
-         *          billingAddress - Customer's Billing Address (false by default)
+         *          customBillingAddress - Customer's Billing Address (false by default)
          * @return  true if the Purchase was successful, 
          *          -1 if Customer with this id doesn't exist
          *          -2 if Tracks with this id do not exist
          *          -3 if the Purchase could not be made
          */
-        function purchase($id, $tracks, $customBillingAddress = false) {
+        function purchase($id, $customBillingAddress = false, $tracks) {
             // Check if there is a Customer with this id
             $query = <<<'SQL'
                 SELECT COUNT(*) AS total FROM customer WHERE CustomerId = ?;
@@ -441,9 +441,8 @@
                 return -1;
             }
 
-            foreach($tracks as trackId) {
-                echo 'trackId ';
-                // Check if there is an Track with this id
+            // Check if there are Tracks with thise ids
+            foreach($tracks as $trackId) {
                 $query = <<<'SQL'
                     SELECT COUNT(*) AS total FROM track WHERE TrackId = ?;
                 SQL;
@@ -456,25 +455,28 @@
                     return -2;
                 }
             }
-
-            $totalPrice = 0;
+            
             // Get Total Price from Purchased Tracks
+            $totalPrice = 0;
             foreach($tracks as $trackId) {
+                // Search Tracks
                 $query = <<<'SQL'
                     SELECT UnitPrice
                     FROM track
                     WHERE TrackId = ?;
                 SQL;
-    
+
                 $stmt = $this->pdo->prepare($query);
-                $track = $stmt->execute([$trackId]);   
+                $stmt->execute([$trackId]);                
+                $stmt->execute([$trackId]);  
+                $track = $stmt->fetch();  
                 $totalPrice = $track['UnitPrice'];
             }
 
             // Create Invoice and InvoiceLines
             try {
                 $this->pdo->beginTransaction();
-                
+
                 // Search Customer Info
                 $query = <<<'SQL'
                     SELECT CustomerId, Address, City, State, Country, PostalCode
@@ -483,7 +485,8 @@
                 SQL;
 
                 $stmt = $this->pdo->prepare($query);
-                $customer = $stmt->execute([$id]);                
+                $stmt->execute([$id]); 
+                $customer = $stmt->fetch();               
 
                 // Set Address
                 if ($customBillingAddress) {
@@ -493,8 +496,7 @@
                 }
 
                 // Set Date
-                $date = date("Y/m/d") . date("h:i:sa");
-                echo ' ' . $date . ' ';
+                $date = date('Y-m-d H:i:s');
 
                 // Create the Invoice
                 $query = <<<'SQL'
@@ -504,13 +506,14 @@
                 SQL;
 
                 $stmt = $this->pdo->prepare($query);
-                $stmt->execute([$row['CustomerId'], $date, $billingAddress, $row['BillingCity'], 
-                                $row['BillingState'], $row['BillingCountry'], $row['BillingPostalCode'], $total]);
-                $newID = $this->pdo->lastInsertId();
+
+                $stmt->execute([$customer['CustomerId'], $date, $billingAddress, $customer['City'], 
+                                $customer['State'], $customer['Country'], $customer['PostalCode'], $totalPrice]);
+                $invoiceID = $this->pdo->lastInsertId();
+
 
                 // Create an Invoiceline for every Purchased Track
                 foreach($tracks as $trackId) {
-                    echo ' newID ' . $newID;
                     $query = <<<'SQL'
                         SELECT UnitPrice
                         FROM track
@@ -518,7 +521,8 @@
                     SQL;
         
                     $stmt = $this->pdo->prepare($query);
-                    $track = $stmt->execute([$trackId]);  
+                    $stmt->execute([$trackId]);  
+                    $track = $stmt -> fetch();
                     
                     // For every Track, create an Invoiceline
                     $query = <<<'SQL'
@@ -526,18 +530,23 @@
                         VALUES (?, ?, ?, ?);
                     SQL;
     
-                    $stmt = $this->pdo->prepare($query);
-                    $stmt->execute([$newID, $trackId, $track['UnitPrice'], 1]);
+                    // if (isset($invoiceID)) {
+                        $stmt = $this->pdo->prepare($query);
+                        $stmt->execute([$invoiceID, $trackId, $track['UnitPrice'], 1]);
+                        $newID2 = $this->pdo->lastInsertId();
                 }
+                $this->pdo->commit();
+                
              } catch (Exception $e) {
-                $newID = -3;
                 $this->pdo->rollBack();
                 debug($e);
+                http_response_code(500);
+                return -3;
             }
 
             $this->disconnect();
             http_response_code(200);
-            return $return;
+            return 200;
         }
     }
 ?>
