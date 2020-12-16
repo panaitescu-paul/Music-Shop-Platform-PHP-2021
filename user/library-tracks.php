@@ -23,8 +23,8 @@
     if (!isset($_SESSION['ShoppingCart'])) {
         $_SESSION['ShoppingCart'] = array();
     }
-    // alert("Track alreay in the Shopping Cart! Cannot add duplicates!");
 
+    // If the you added a Track to the Shopping Cart
     if (isset($_POST['addToCart'])) {
         // Check if the Track id is already saved in the Shopping Cart. Cannot add a track multiple times
         $newTrackId = $_POST['addToCart2'];
@@ -65,9 +65,6 @@
             </button>
         </div>
 
-        <!-- <button type="button" class="btn btn-success mb-2 createTrackModal"  -->
-                <!-- id="btnAdd" data-toggle='modal' data-target='#modal'>Create Tracks</button> -->
-        <!-- <button type="button" class="btn btn-success mb-2" id="btnShowArtists">Show All Artists</button> -->
         <label for="txtName" id="txtNameLabel">Track Name</label>
         <input type="text" id="searchTrackName" name="Name" required>
         </br>
@@ -104,77 +101,6 @@
         </div>
     </div>
 </div>
-
-<!-- Start of Page content -->
-<!-- <div class="container">
-    <h1 class="main-title">Library Tracks</h1>
-    <div class="resultArea">
-        <div class="buttons">
-            <button type="button" class="btn btn-primary mb-2 btnLibrary" 
-                onclick="window.location.href='/WAD-MA2/user/library-artists.php'">Artists
-            </button>
-            <button type="button" class="btn btn-primary mb-2 btnLibrary" 
-                onclick="window.location.href='/WAD-MA2/user/library-albums.php'">Albums
-            </button>
-            <button type="button" class="btn btn-primary mb-2 btnLibrary active" 
-                onclick="window.location.href='/WAD-MA2/user/library-tracks.php'">Tracks
-            </button>
-        </div>
-        <table class="table tableList">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Artist Name</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>1</th>
-                    <td>Paul Panaitescu</td>
-                    <td>
-                        <button type="button" class="btn btn-success btnAddCart">Add to Cart</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>John Smith</td>
-                    <td>
-                        <button type="button" class="btn btn-success btnAddCart">Add to Cart</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>Paul Panaitescu</td>
-                    <td>
-                        <button type="button" class="btn btn-success btnAddCart">Add to Cart</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>John Smith</td>
-                    <td>
-                        <button type="button" class="btn btn-success btnAddCart">Add to Cart</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>Paul Panaitescu</td>
-                    <td>
-                        <button type="button" class="btn btn-success btnAddCart">Add to Cart</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>John Smith</td>
-                    <td>
-                        <button type="button" class="btn btn-success btnAddCart">Add to Cart</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div> -->
 
 <!-- End of Page content -->
 
