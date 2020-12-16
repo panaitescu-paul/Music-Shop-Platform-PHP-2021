@@ -1,3 +1,23 @@
+<?php
+    require_once('../src/functions.php');
+
+    session_start();
+    debug($_SESSION);
+
+    // if (!isset($_SESSION['userID'])) {
+    //     header('Location: ../auth/login.php');
+    // }
+    // // if you are loged in as Customer, then you are redirected to a Customer page
+    // if (isset($_SESSION['userID']) && $_SESSION['userID'] !== 0) {
+    //     header('Location: ../user/library-tracks.php');
+    // }
+    
+    $userID = $_SESSION['userID'];
+    $firstName = $_SESSION['firstName'];
+    $lastName = $_SESSION['lastName'];
+    $email = $_SESSION['email'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,23 +42,28 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="/php/WAD-MA2/user/library-tracks.php">Library <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/WAD-MA2/user/library-tracks.php">Library <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/php/WAD-MA2/user/shopping-cart.php">Cart</a>
+                <a class="nav-link" href="/WAD-MA2/user/shopping-cart.php">Cart</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/php/WAD-MA2/user/sign-up.php">Sign Up</a>
+                <a class="nav-link" href="/WAD-MA2/user/sign-up.php">Sign Up</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/php/WAD-MA2/user/profile.php">Profile</a>
+                <a class="nav-link" href="/WAD-MA2/user/profile.php">Profile</a>
             </li>
         </div>
         <span class="navbar-text">
-            User 
+            <?php
+                echo $firstName . ' ' . $lastName . ' ';
+            ?>
         </span>
         <span class="navbar-text">
-            . Log out
+            <form id="frmLogout" action="../auth/login.php" method="POST">
+                <input type="hidden" name="logout" value="logout">
+                <input type="submit" id="btnLogOut" value="Log Out">&nbsp;
+             </form>
         </span>
     </nav>
     <!-- End of Header
