@@ -92,7 +92,7 @@ function displayAlbums(albumData) {
 }
 
 // Loads Tracks information in trackResults
-function displayTracks(trackData) {
+function displayTracks(trackData, isAdmin = 0, shoppingCart = null) {
     if (trackData.length === 0) {
         $("section#results").html("There are no tracks matching the entered text.");
     } else {
@@ -108,26 +108,65 @@ function displayTracks(trackData) {
         header.append(headerRow);
         table.append(header);
         const tableBody = $("<tbody />");
-        for (const track of trackData) {
-            const row = $("<tr />");
-            const trackID = track["TrackId"];
-            row.
-                append($("<td />", { "text": track["TrackId"]})).
-                append($("<td />", { "text": track["Name"]})).
-                append($("<td />", { "text": track["AlbumId"]})).
-                append($("<td />", { "class": "table-actions", "html": 
-                    "<button data-id='" + trackID + "' type='button' class='btn btn-danger btnDelete deleteTrack'>" +
-                        "<img src='../img/trash.svg' class='icon-delete'>" +
-                    "</button>" +
-                    "<button data-id='" + trackID + "' type='button' class='btn btn-warning btnUpdate updateTrackModal' data-toggle='modal' data-target='#modal'>" +
-                        "<img src='../img/pencil-square.svg' class='icon-update'>" +
-                    "</button>" +
-                    "<button data-id='" + trackID + "' type='button' class='btn btn-success btnShow showTrackModal' data-toggle='modal' data-target='#modal'>" +
-                        "<img src='../img/card-text.svg' class='icon-show'>" +
-                    "</button>"
-                }))
-            tableBody.append(row);
+        if (isAdmin == 1) { // Display tracks for Admin
+            for (const track of trackData) {
+                const row = $("<tr />");
+                const trackID = track["TrackId"];
+                row.
+                    append($("<td />", { "text": track["TrackId"]})).
+                    append($("<td />", { "text": track["Name"]})).
+                    append($("<td />", { "text": track["AlbumId"]})).
+                    append($("<td />", { "class": "table-actions", "html": 
+                        "<button data-id='" + trackID + "' type='button' class='btn btn-danger btnDelete deleteTrack'>" +
+                            "<img src='../img/trash.svg' class='icon-delete'>" +
+                        "</button>" +
+                        "<button data-id='" + trackID + "' type='button' class='btn btn-warning btnUpdate updateTrackModal' data-toggle='modal' data-target='#modal'>" +
+                            "<img src='../img/pencil-square.svg' class='icon-update'>" +
+                        "</button>" +
+                        "<button data-id='" + trackID + "' type='button' class='btn btn-success btnShow showTrackModal' data-toggle='modal' data-target='#modal'>" +
+                            "<img src='../img/card-text.svg' class='icon-show'>" +
+                        "</button>"
+                    }))
+                tableBody.append(row);
+            }
+        } else { // Display tracks for Customers
+            if (shoppingCart) { // Display tracks for Customers in Shoppping Cart Page
+                // Get only the unique Track ids, eliminate the duplicates
+                var uniqueTracks = [];
+                $.each(shoppingCart, function(i, el){
+                    if($.inArray(el, uniqueTracks) === -1) uniqueTracks.push(el);
+                });
+                for (var i = 0; i <= uniqueTracks.length; i ++) {
+                    for (const track of trackData) {
+                        if (uniqueTracks[i] == track["TrackId"]) {
+                            const row = $("<tr />");
+                            const trackID = track["TrackId"];
+                            row.
+                                append($("<td />", { "text": track["TrackId"]})).
+                                append($("<td />", { "text": track["Name"]})).
+                                append($("<td />", { "text": track["AlbumId"]})).
+                                append($("<td />", { "class": "table-actions", "html": 
+                                    `<form class='frmRemoveFromCart' action='../user/shopping-cart.php' method='POST'>
+                                            <input type='hidden' name='removeFromCart' value='removeFromCart'>
+                                            <input type='hidden' name='trackId' value='` + trackID + `'>` +
+                                            // <input type='submit' class='btnDelete' value='Remove From Cart'>
+                                            `<button data-id="` + trackID + `" type='submit' class='btn btn-danger btnDelete'>Remove From Cart</button>
+                                        </form>` +
+                                    // `<button type="button" class="btn btn-danger btnDelete">Remove</button>` +
+                                    // "<button data-id='" + trackID + "' type='button' class='btn btn-warning addToCart'>Add to Cart</button>" +
+                                    "<button data-id='" + trackID + "' type='button' class='btn btn-success btnShow showTrackModal' data-toggle='modal' data-target='#modal'>" +
+                                        "<img src='../img/card-text.svg' class='icon-show'>" +
+                                    "</button>"
+                                }))
+                            tableBody.append(row);
+                        }
+                    }
+                    
+                }
+            }
+            
         }
+        
         table.append(tableBody);
         table.appendTo($("section#results"));
     }
