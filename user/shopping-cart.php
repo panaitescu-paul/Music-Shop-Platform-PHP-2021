@@ -20,19 +20,12 @@
     $lastName = $_SESSION['lastName'];
     $email = $_SESSION['email'];
 
-    // if (!isset($_SESSION['ShoppingCart'])) {
-    //     $_SESSION['ShoppingCart'] = array();
-    // }
+    // If the you removed a Track from the Shopping Cart
     if (isset($_POST['removeFromCart']) && isset($_POST['trackId'])) {
         $shoppingCart = $_SESSION['ShoppingCart'];
-        // array_diff($shoppingCart, array($_POST['trackId']));
-        // array_push($shoppingCart,$_POST['trackId']);
         $shoppingCart = array_diff($shoppingCart, array($_POST['trackId']));
-
         $_SESSION['ShoppingCart'] = $shoppingCart;
-        // $_SESSION['ShoppingCart'] = ['1'];
     }
-
 ?>
 
 
@@ -55,26 +48,6 @@
 
     <h1 class="main-title">Shopping Cart</h1>
     <div class="resultArea">
-
-        <!-- <div class="buttons">
-            <button type="button" class="btn btn-primary mb-2 btnLibrary" 
-                onclick="window.location.href='/WAD-MA2/user/library-artists.php'">Artists
-            </button>
-            <button type="button" class="btn btn-primary mb-2 btnLibrary" 
-                onclick="window.location.href='/WAD-MA2/user/library-albums.php'">Albums
-            </button>
-            <button type="button" class="btn btn-primary mb-2 btnLibrary active" 
-                onclick="window.location.href='/WAD-MA2/user/library-tracks.php'">Tracks
-            </button>
-        </div> -->
-
-        <!-- <button type="button" class="btn btn-success mb-2 createTrackModal"  -->
-                <!-- id="btnAdd" data-toggle='modal' data-target='#modal'>Create Tracks</button> -->
-        <!-- <button type="button" class="btn btn-success mb-2" id="btnShowArtists">Show All Artists</button> -->
-        <!-- <label for="txtName" id="txtNameLabel">Track Name</label>
-        <input type="text" id="searchTrackName" name="Name" required>
-        </br>
-        <button type="button" class="btn btn-success mb-2" id="btnSearchTrack">Search Track</button> -->
         <section id="results">
         </section>
 
@@ -107,67 +80,6 @@
         </div>
     </div>
 </div>
-
-
-<!-- Start of Page content -->
-<!-- <div class="container">
-    <h1 class="main-title">Shopping Cart</h1>
-    <div class="resultArea">
-        <table class="table tableList">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Artist Name</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>1</th>
-                    <td>Track 1: Eminem - Rap God [Official]</td>
-                    <td>
-                        <button type="button" class="btn btn-danger btnDelete">Remove</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th>2</th>
-                    <td>Track 2: 50 Cent - In Da Club [Official]</td>
-                    <td>
-                        <button type="button" class="btn btn-danger btnDelete">Remove</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>Track 1: Eminem - Rap God [Official]</td>
-                    <td>
-                        <button type="button" class="btn btn-danger btnDelete">Remove</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th>2</th>
-                    <td>Track 2: 50 Cent - In Da Club [Official]</td>
-                    <td>
-                        <button type="button" class="btn btn-danger btnDelete">Remove</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>Track 1: Eminem - Rap God [Official]</td>
-                    <td>
-                        <button type="button" class="btn btn-danger btnDelete">Remove</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th>2</th>
-                    <td>Track 2: 50 Cent - In Da Club [Official]</td>
-                    <td>
-                        <button type="button" class="btn btn-danger btnDelete">Remove</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div> -->
 
 <!-- End of Page content -->
 
