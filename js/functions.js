@@ -10,10 +10,10 @@
 "use strict";
 
 // Loads Artist information in artistResults
-function displayArtists(artistData) {
+function displayArtists(artistData, user = 'admin') {
     if (artistData.length === 0) {
         $("section#artistResults").html("There are no artists matching the entered text.");
-    } else {
+    } else { // Display Artist information for Admin
         $("section#artistResults").empty();
         const table = $("<table />", {"class": "table tableList"});
         const header = $("<thead />");
@@ -25,25 +25,26 @@ function displayArtists(artistData) {
         header.append(headerRow);
         table.append(header);
         const tableBody = $("<tbody />");
-        for (const artist of artistData) {
-            const row = $("<tr />");
-            const artistID = artist["ArtistId"];
-            row.
-                append($("<td />", { "text": artist["ArtistId"]})).
-                append($("<td />", { "text": artist["Name"]})).
-                append($("<td />", { "class": "table-actions", "html": 
-                    "<button data-id='" + artistID + "' type='button' class='btn btn-danger btnDelete deleteArtist'>" +
-                        "<img src='../img/trash.svg' class='icon-delete'>" +
-                    "</button>" +
-                    "<button data-id='" + artistID + "' type='button' class='btn btn-warning btnUpdate updateArtistModal' data-toggle='modal' data-target='#modal'>" +
-                        "<img src='../img/pencil-square.svg' class='icon-update'>" +
-                    "</button>" +
-                    "<button data-id='" + artistID + "' type='button' class='btn btn-success btnShow showArtistModal' data-toggle='modal' data-target='#modal'>" +
-                        "<img src='../img/card-text.svg' class='icon-show'>" +
-                    "</button>"
-                }))
-            tableBody.append(row);
-        }
+        if (user == 'admin') {
+            for (const artist of artistData) {
+                const row = $("<tr />");
+                const artistID = artist["ArtistId"];
+                row.
+                    append($("<td />", { "text": artist["ArtistId"]})).
+                    append($("<td />", { "text": artist["Name"]})).
+                    append($("<td />", { "class": "table-actions", "html": 
+                        "<button data-id='" + artistID + "' type='button' class='btn btn-danger btnDelete deleteArtist'>" +
+                            "<img src='../img/trash.svg' class='icon-delete'>" +
+                        "</button>" +
+                        "<button data-id='" + artistID + "' type='button' class='btn btn-warning btnUpdate updateArtistModal' data-toggle='modal' data-target='#modal'>" +
+                            "<img src='../img/pencil-square.svg' class='icon-update'>" +
+                        "</button>" +
+                        "<button data-id='" + artistID + "' type='button' class='btn btn-success btnShow showArtistModal' data-toggle='modal' data-target='#modal'>" +
+                            "<img src='../img/card-text.svg' class='icon-show'>" +
+                        "</button>"
+                    }))
+                tableBody.append(row);
+            }
         table.append(tableBody);
         table.appendTo($("section#artistResults"));
     }
@@ -66,26 +67,26 @@ function displayAlbums(albumData) {
         header.append(headerRow);
         table.append(header);
         const tableBody = $("<tbody />");
-        for (const album of albumData) {
-            const row = $("<tr />");
-            const albumID = album["AlbumId"];
-            row.
-                append($("<td />", { "text": album["AlbumId"]})).
-                append($("<td />", { "text": album["Title"]})).
-                append($("<td />", { "text": album["ArtistId"]})).
-                append($("<td />", { "class": "table-actions", "html": 
-                    "<button data-id='" + albumID + "' type='button' class='btn btn-danger btnDelete deleteAlbum'>" +
-                        "<img src='../img/trash.svg' class='icon-delete'>" +
-                    "</button>" +
-                    "<button data-id='" + albumID + "' type='button' class='btn btn-warning btnUpdate updateAlbumModal' data-toggle='modal' data-target='#modal'>" +
-                        "<img src='../img/pencil-square.svg' class='icon-update'>" +
-                    "</button>" +
-                    "<button data-id='" + albumID + "' type='button' class='btn btn-success btnShow showAlbumModal' data-toggle='modal' data-target='#modal'>" +
-                        "<img src='../img/card-text.svg' class='icon-show'>" +
-                    "</button>"
-                }))
-            tableBody.append(row);
-        }
+            for (const album of albumData) {
+                const row = $("<tr />");
+                const albumID = album["AlbumId"];
+                row.
+                    append($("<td />", { "text": album["AlbumId"]})).
+                    append($("<td />", { "text": album["Title"]})).
+                    append($("<td />", { "text": album["ArtistId"]})).
+                    append($("<td />", { "class": "table-actions", "html": 
+                        "<button data-id='" + albumID + "' type='button' class='btn btn-danger btnDelete deleteAlbum'>" +
+                            "<img src='../img/trash.svg' class='icon-delete'>" +
+                        "</button>" +
+                        "<button data-id='" + albumID + "' type='button' class='btn btn-warning btnUpdate updateAlbumModal' data-toggle='modal' data-target='#modal'>" +
+                            "<img src='../img/pencil-square.svg' class='icon-update'>" +
+                        "</button>" +
+                        "<button data-id='" + albumID + "' type='button' class='btn btn-success btnShow showAlbumModal' data-toggle='modal' data-target='#modal'>" +
+                            "<img src='../img/card-text.svg' class='icon-show'>" +
+                        "</button>"
+                    }))
+                tableBody.append(row);
+            }
         table.append(tableBody);
         table.appendTo($("section#results"));
     }
