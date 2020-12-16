@@ -518,12 +518,20 @@ $(document).ready(function() {
     });
 
     // Show All Tracks in a List
-    function ShowAllTracks() {
+    function ShowAllTracks(user, shoppingCart) {
         $.ajax({
             url: URL + `/tracks`,
             type: "GET",
             success: function(data) {
+                if (user == 'admin') {
+                    displayTracks(data, 1);
+                } else {
+                    if (shoppingCart) {
+                        displayTracks(data, 0, shoppingCart);
+                    } else {
                         displayTracks(data);
+                    }
+                }
             },
             error: function() { alert("An Error Ocured!"); }
         });
@@ -571,7 +579,7 @@ $(document).ready(function() {
                     unitPrice: unitPrice,
                 },
                 success: function(data) {
-                    ShowAllTracks();
+                    ShowAllTracks('admin');
                     ScrollPage("bottomPage");
                 },
                 error: function() { alert("An Error Ocured!"); },
@@ -615,7 +623,7 @@ $(document).ready(function() {
                 },
                 success: function(data) {
                     // Show the updated List of Tracks
-                    ShowAllTracks();
+                    ShowAllTracks('admin');
                     // Scroll to the updated Track
                     ScrollPage(e.pageY);
                 },
@@ -644,7 +652,7 @@ $(document).ready(function() {
                     type: "DELETE",
                     success: function(data) {
                         // Show the updated List of Tracks
-                        ShowAllTracks();
+                        ShowAllTracks('admin');
                         // Scroll to the deleted Track
                         ScrollPage(e.pageY);
                     },
@@ -691,4 +699,10 @@ $(document).ready(function() {
             document.documentElement.scrollTop = position; // For Chrome, Firefox, IE and Opera
         }
     }
+
+    // // Refresh page after Adding Track  to Cart
+    // $(document).on("click", ".btnAddToChart", function(e) {
+    //     // e.preventDefault();
+    //     location.reload();
+    // });
 });
