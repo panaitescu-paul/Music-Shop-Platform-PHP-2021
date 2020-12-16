@@ -259,7 +259,7 @@
                 SQL;
 
                 if ($passwordChange) {
-                    if ($this->validate($email, $password)) {    
+                    if ($this->login($email, $password)) {    
                         // Hash the Password            
                         $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
                         $query .= ', Password = ?';
@@ -356,35 +356,65 @@
         }
 
         /**
-         * Validates a user login
+         * Validates a user (Customer/Admin) Login
          * 
          * @param   user's email
          * @param   user's password
-         * @return  true if the password is correct, false if it is not or if the user does not exist
+         * @return  true if the password is correct, 
+         *          false if the password is not correct, or if the user (Customer/Admin) does not exist
          */
-        function validate($email, $password) {
+        function login($email, $password, $isAdmin = 0) {
+            echo 'inside Login ';
+            if ($isAdmin) { // Validation for Admin
+                debug('Password validation for Admin');
+                echo 'inside Login Admin ';
 
-            debug('Password validation');
+    
+                // Get user data
+                $query = <<<'SQL'
+                    SELECT Password FROM admin;
+                SQL;            
+                $stmt = $this->pdo->prepare($query);
+                $stmt->execute();
+                if ($stmt->rowCount() === 0) {
+                    return false;
+                }
+    
+                $row = $stmt->fetch();
+    
+                $this->userID = '0';
+                $this->firstName = 'Admin';
+                $this->lastName = '';
+                $this->email = '';
+    
+                // Check the password
+                return (password_verify($password, $row['Password']));
+            
+            } else { // Validation for Customer
+                debug('Password validation for Customer');
+                echo 'inside Login Customer ';
 
-            // Get user data
-            $query = <<<'SQL'
-                SELECT CustomerId, FirstName, LastName, Password FROM customer WHERE Email = ?;
-            SQL;            
-            $stmt = $this->pdo->prepare($query);
-            $stmt->execute([$email]);
-            if ($stmt->rowCount() === 0) {
-                return false;
+    
+                // Get user data
+                $query = <<<'SQL'
+                    SELECT CustomerId, FirstName, LastName, Password FROM customer WHERE Email = ?;
+                SQL;            
+                $stmt = $this->pdo->prepare($query);
+                $stmt->execute([$email]);
+                if ($stmt->rowCount() === 0) {
+                    return false;
+                }
+    
+                $row = $stmt->fetch();
+    
+                $this->userID = $row['CustomerId'];
+                $this->firstName = $row['FirstName'];
+                $this->lastName = $row['LastName'];
+                $this->email = $email;
+    
+                // Check the password
+                return (password_verify($password, $row['Password']));
             }
-
-            $row = $stmt->fetch();
-
-            $this->userID = $row['CustomerId'];
-            $this->firstName = $row['FirstName'];
-            $this->lastName = $row['LastName'];
-            $this->email = $email;
-
-            // Check the password
-            return (password_verify($password, $row['Password']));
         }
     }
 ?>
