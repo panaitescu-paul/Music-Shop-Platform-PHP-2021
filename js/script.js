@@ -213,12 +213,16 @@ $(document).ready(function() {
     });
 
     // Show all Artists in a List
-    function ShowAllArtists() {
+    function ShowAllArtists(user = 'admin') {
         $.ajax({
             url: URL + "/artists",
             type: "GET",
             success: function(data) {
+                if (user == 'customer') {
+                    displayArtists(data, 'customer');
+                } else {
                     displayArtists(data);
+                }
             },
             error: function() { alert("An Error Ocured!"); }
         });
