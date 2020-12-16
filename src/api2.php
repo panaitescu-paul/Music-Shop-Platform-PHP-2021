@@ -253,6 +253,24 @@
                     }
                     $customer = null;
                     break;
+                // TODO: Delete after testing it with Postman
+                case 'purchase':
+                    require_once('customer.php');
+                    $customer = new Customer();
+                    $verb = $_SERVER['REQUEST_METHOD'];
+                    
+                    switch ($verb) {
+                        case 'POST':                             
+                            // If the number of pieces is smaller than the maximum (4), 
+                            // then get all Customers, or search by email, otherwise search by id
+                            if ($pieces < MAX_PIECES) {
+                                // Purchase
+                                echo json_encode($customer->purchase($_POST['id'], $_POST['customBillingAddress'], $_POST['tracks']));
+                            } 
+                            break;
+                    }
+                    $customer = null;
+                    break;
                 // case 'films':
                 //     require_once('src/movie.php');
                 //     $movie = new Movie();
