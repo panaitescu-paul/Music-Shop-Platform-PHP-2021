@@ -1,3 +1,23 @@
+<?php
+    require_once('../src/functions.php');
+
+    session_start();
+    debug($_SESSION);
+
+    // if (!isset($_SESSION['userID'])) {
+    //     header('Location: ../auth/login.php');
+    // }
+    // // if you are loged in as Customer, then you are redirected to a Customer page
+    // if (isset($_SESSION['userID']) && $_SESSION['userID'] !== 0) {
+    //     header('Location: ../user/library-tracks.php');
+    // }
+    
+    $userID = $_SESSION['userID'];
+    $firstName = $_SESSION['firstName'];
+    $lastName = $_SESSION['lastName'];
+    $email = $_SESSION['email'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,10 +52,15 @@
             </li>
         </div>
         <span class="navbar-text">
-            Admin 
+            <?php
+                echo $firstName . ' ' . $lastName . ' ';
+            ?>
         </span>
         <span class="navbar-text">
-            . Log out
+            <form id="frmLogout" action="../auth/login.php" method="POST">
+                <input type="hidden" name="logout" value="logout">
+                <input type="submit" id="btnLogOut" value="Log Out">&nbsp;
+             </form>
         </span>
     </nav>
     <!-- End of Header
