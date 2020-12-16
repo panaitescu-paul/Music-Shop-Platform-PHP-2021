@@ -20,6 +20,19 @@
     $lastName = $_SESSION['lastName'];
     $email = $_SESSION['email'];
 
+    // if (!isset($_SESSION['ShoppingCart'])) {
+    //     $_SESSION['ShoppingCart'] = array();
+    // }
+    if (isset($_POST['removeFromCart']) && isset($_POST['trackId'])) {
+        $shoppingCart = $_SESSION['ShoppingCart'];
+        // array_diff($shoppingCart, array($_POST['trackId']));
+        // array_push($shoppingCart,$_POST['trackId']);
+        $shoppingCart = array_diff($shoppingCart, array($_POST['trackId']));
+
+        $_SESSION['ShoppingCart'] = $shoppingCart;
+        // $_SESSION['ShoppingCart'] = ['1'];
+    }
+
 ?>
 
 
