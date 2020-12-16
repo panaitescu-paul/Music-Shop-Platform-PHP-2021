@@ -24,17 +24,6 @@
 
 <!-- Start of Page content -->
 <div class="container">
-<?php
-echo $userID . ' -  ';
-echo $firstName . ' -  ';
-echo $lastName . ' -  ';
-echo $email . ' -  ';
-?>
-<form id="frmLogout" action="../auth/login.php" method="POST">
-        <input type="hidden" name="logout" value="logout">
-        <input type="submit" id="btnLogOut" value="Log Out">&nbsp;
-        <input type="button" id="btnUserCancel" value="Cancel">
-    </form>
     <h1 class="main-title">Shopping Cart</h1>
     <div class="resultArea">
         <table class="table tableList">

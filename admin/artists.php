@@ -25,17 +25,6 @@
 <!-- Start of Page content -->
 <div class="container" id="page-artists">
 
-<?php echo $userID . ' -  \n';
-    echo $firstName . ' -  \n';
-    echo $lastName . ' -  \n';
-    echo $email . ' -  \n';
-    ?>
-    <form id="frmLogout" action="../auth/login.php" method="POST">
-        <input type="hidden" name="logout" value="logout">
-        <input type="submit" id="btnLogOut" value="Log Out">&nbsp;
-        <input type="button" id="btnUserCancel" value="Cancel">
-    </form>
-
     <!-- Sidebar navigation -->
     <div class="sidebar">
         <button type="button" class="btn btn-primary scrollUp">Up</button>

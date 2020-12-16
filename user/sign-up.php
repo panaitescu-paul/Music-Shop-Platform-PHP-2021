@@ -23,8 +23,6 @@
 
 <!-- Start of Page content -->
 <div class="container">
-
-
     <h1 class="main-title">Sign Up</h1>
     <div class="resultArea">
         
