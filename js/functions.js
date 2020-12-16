@@ -171,16 +171,16 @@ function displayTracks(trackData, isAdmin = 0, shoppingCart = null) {
                         append($("<td />", { "text": track["Name"]})).
                         append($("<td />", { "text": track["AlbumId"]})).
                         append($("<td />", { "class": "table-actions", "html": 
-                            `<form class='frmAddToCart' action='../user/library-tracks.php' method='POST'>
+                            `<span>
+                                <form class='frmAddToCart' action='../user/library-tracks.php' method='POST'>
                                     <input type='hidden' name='addToCart' value='addToCart'>
-                                <input type='hidden' name='addToCart2' value='` + trackID + `'>` + 
-                                // <input type='submit' class='btnAddToCart btn-warning addToCart' value='Add To Cart'>
-                                `<button data-id="` + trackID + `" type='submit' class='btnAddToCart btn btn-warning addToCart'>Add to Cart</button>
-                            </form>` +
-                            // "<button data-id='" + trackID + "' type='button' class='btn btn-warning addToCart'>Add to Cart</button>" +
-                            "<button data-id='" + trackID + "' type='button' class='btn btn-success btnShow showTrackModal' data-toggle='modal' data-target='#modal'>" +
-                                "<img src='../img/card-text.svg' class='icon-show'>" +
-                            "</button>"
+                                    <input type='hidden' name='addToCart2' value='` + trackID + `'> 
+                                    <button data-id="` + trackID + `" type='submit' class='btn btn-warning btnAddToCart'>Add</button>
+                                </form>
+                                <button data-id='` + trackID + `' type='button' class='btn btn-success btnShow showTrackModal' data-toggle='modal' data-target='#modal'>
+                                    <img src='../img/card-text.svg' class='icon-show'>
+                                </button>
+                            </span>`
                         }))
                     tableBody.append(row);
                 }
