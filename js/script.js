@@ -707,6 +707,44 @@ $(document).ready(function() {
             error: function() { alert("An Error Ocured!"); }
         });
     });
+
+    // Confirm Purchase
+    $(document).on("click", ".confirmPurchase", function() {
+        const customerId = $("#customerId").val(); 
+        const billingAddress = $("#billingAddress").val(); 
+        let tracks = shoppingCartInfo['tracks'];
+       
+        // 
+        // 
+        // TODO: make a call to purchase() without the Ajax, so the API is Restful...
+        // 
+        // 
+        if (customerId !== null ) {
+            $.ajax({
+                url: URL + `/purchase`,
+                type: "POST",
+                data: {
+                    id: customerId,
+                    customBillingAddress: billingAddress,
+                    tracks: tracks
+                },
+                success: function(data) {
+                    alert("Purchase Made!");
+                    ResetShoppingCart();
+                    ShowAllTracks('customer', shoppingCartInfo['tracks']);
+                },
+                error: function() { alert("An Error Ocured!"); },
+                statusCode: {
+                    404: function() {
+                        alert("CustomerId or TracksId don't exist!");
+                    },
+                    409: function() {
+                        alert("The Purchase could not be made!");
+                    }
+                }
+            });
+        }
+    });
     // ******************************************************
     // ***                                                ***
     // ***                Scrolling Functionality         ***
