@@ -66,13 +66,13 @@
         <div class="controls">
             <div class="buttons">
                 <button type="button" class="btn btn-primary mb-2 btnLibrary" 
-                    onclick="window.location.href='/WAD-MA2/user/library-artists.php'">Artists
+                    onclick="window.location.href='../user/library-artists.php'">Artists
                 </button>
                 <button type="button" class="btn btn-primary mb-2 btnLibrary" 
-                    onclick="window.location.href='/WAD-MA2/user/library-albums.php'">Albums
+                    onclick="window.location.href='../user/library-albums.php'">Albums
                 </button>
                 <button type="button" class="btn btn-primary mb-2 btnLibrary active" 
-                    onclick="window.location.href='/WAD-MA2/user/library-tracks.php'">Tracks
+                    onclick="window.location.href='../user/library-tracks.php'">Tracks
                 </button>
             </div>
             <p>
