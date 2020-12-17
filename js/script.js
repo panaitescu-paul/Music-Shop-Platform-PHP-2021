@@ -714,6 +714,57 @@ $(document).ready(function() {
         //     error: function() { alert("An Error Ocured!"); }
         // });
     });
+
+    // Create Customer
+    $(document).on("click", ".createCustomer", function() {
+        const firstName = $("#firstName").val(); 
+        const lastName = $("#lastName").val(); 
+        const password = $("#password").val(); 
+        const company = $("#company").val(); 
+        const address = $("#address").val(); 
+        const city = $("#city").val(); 
+        const state = $("#state").val(); 
+        const country = $("#country").val();
+        const postalCode = $("#postalCode").val();
+        const phone = $("#phone").val();
+        const fax = $("#fax").val();
+        const email = $("#email").val();
+           
+        if (firstName !== null ) {
+            $.ajax({
+                url: URL + `/customers`,
+                type: "POST",
+                data: {
+                    firstName: firstName,
+                    lastName: lastName,
+                    password: password,
+                    company: company,
+                    address: address,
+                    city: city,
+                    state: state,
+                    country: country,
+                    postalCode: postalCode,
+                    phone: phone,
+                    fax: fax,
+                    email: email
+                },
+                success: function(data) {
+                    alert("Customer successfully created!");
+
+                },
+                error: function() { alert("An Error Ocured!"); },
+                statusCode: {
+                    404: function() {
+                        alert("FirstName, LastName, Password, or Email should not be empty");
+                    },
+                    409: function() {
+                        alert("Customer email already exists!");
+                    }
+                }
+            });
+        }
+    });
+
     // ******************************************************
     // ***                                                ***
     // ***              Purchase Functionality            ***
