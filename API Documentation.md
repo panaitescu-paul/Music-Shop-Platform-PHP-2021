@@ -102,7 +102,9 @@ Get Album with id 1
 
 ```json
 {
-..
+    "AlbumId": "1",
+    "Title": "For Those About To Rock We Salute You",
+    "ArtistId": "1"
 }
 ```
 
@@ -110,7 +112,15 @@ Get Track with id 1
 
 ```json
 {
-..
+    "TrackId": "1",
+    "Name": "For Those About To Rock (We Salute You)",
+    "AlbumId": "1",
+    "MediaTypeId": "1",
+    "GenreId": "1",
+    "Composer": "Angus Young, Malcolm Young, Brian Johnson",
+    "Milliseconds": "343719",
+    "Bytes": "11170334",
+    "UnitPrice": "0.99"
 }
 ```
 
