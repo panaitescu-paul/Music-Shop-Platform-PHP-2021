@@ -8,7 +8,7 @@
     session_start();
     debug($_SESSION);
 
-    // // // If the purchase was successful, then refresh the Shopping Cart (delete Tracks from it)
+    // If the purchase was successful, then refresh the Shopping Cart (delete Tracks from it)
     if (isset($_POST['reset'])) {
         $_SESSION['ShoppingCart'] = [];
     }
@@ -33,7 +33,6 @@
     }
 
 ?>
-
 
 <!-- Start of Page content -->
 <div class="container" id="page-tracks">
