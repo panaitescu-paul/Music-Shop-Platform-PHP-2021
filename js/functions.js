@@ -584,3 +584,10 @@ function selectUserLogin() {
     document.getElementById("txtEmail").disabled = false;
     document.getElementById("txtEmail").style.display = "inline-block";
     document.getElementById("txtEmailLabel").style.display = "inline-block";
+}
+// Select Login for Admin
+function selectAdminLogin() {
+    document.getElementById("txtEmail").disabled = true;
+    document.getElementById("txtEmail").style.display = "none";
+    document.getElementById("txtEmailLabel").style.display = "none";
+}
