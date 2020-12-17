@@ -45,20 +45,17 @@
                 <a class="nav-link" href="/WAD-MA2/user/shopping-cart.php">Cart</a>
             </li>
             <li class="nav-item">
-                <button class="btn btn-success mb-2 createCustomerModal" data-toggle='modal' data-target='#modal'>Sign Up</button>
+                <button class="btn btn-success mb-2 createCustomerModal btnNav" data-toggle='modal' data-target='#modal'>Sign Up</button>
             </li>
             <li class="nav-item">
-                <button class="btn btn-success mb-2 updateCustomerModal" data-toggle='modal' data-target='#modal'>Profile</button>
+                <button class="btn btn-success mb-2 updateCustomerModal btnNav" data-toggle='modal' data-target='#modal'>Profile</button>
             </li>
         </div>
         <span class="navbar-text">
-            <?php echo $firstName . ' ' . $lastName . ' '; ?>
-        </span>
-        
-        <span class="navbar-text">
             <form id="frmLogout" action="../auth/login.php" method="POST">
+                <span><?php echo $firstName . ' ' . $lastName . ' '; ?></span>
                 <input type="hidden" name="logout" value="logout">
-                <input type="submit" id="btnLogOut" value="Log Out">&nbsp;
+                <button type="submit" id="btnLogOut" class="btn btn-success mb-2 btnNav" data-toggle='modal' data-target='#modal'>Log Out</button>
              </form>
         </span>
     </nav>
