@@ -180,9 +180,11 @@ function displayTracks(trackData, isAdmin = 0, shoppingCart = null) {
                                 append($("<td />", { "class": "table-actions", "html": 
                                     `<span>
                                         <form class='frmRemoveFromCart' action='../user/shopping-cart.php' method='POST'>
-                                            <input type='hidden' name='removeFromCart' value='removeFromCart'>
-                                            <input type='hidden' name='trackId' value='` + trackID + `'>
-                                            <button data-id="` + trackID + `" type='submit' class='btn btn-danger btnDelete'>Remove</button>
+                                            <div class="form-group">
+                                                <input type='hidden' name='removeFromCart' value='removeFromCart'>
+                                                <input type='hidden' name='trackId' value='` + trackID + `' class="form-control" >
+                                                <button data-id="` + trackID + `" type='submit' class='btn btn-danger btnDelete'>Remove</button>
+                                            </div>
                                         </form>
                                         <button data-id='` + trackID + `' type='button' class='btn btn-success btnShow showTrackModal' data-toggle='modal' data-target='#modal'>
                                             <img src='../img/card-text.svg' class='icon-show'>
@@ -204,9 +206,11 @@ function displayTracks(trackData, isAdmin = 0, shoppingCart = null) {
                         append($("<td />", { "class": "table-actions", "html": 
                             `<span>
                                 <form class='frmAddToCart' action='../user/library-tracks.php' method='POST'>
-                                    <input type='hidden' name='addToCart' value='addToCart'>
-                                    <input type='hidden' name='addToCart2' value='` + trackID + `'> 
-                                    <button data-id="` + trackID + `" type='submit' class='btn btn-warning btnAddToCart'>Add</button>
+                                    <div class="form-group">
+                                        <input type='hidden' name='addToCart' value='addToCart'>
+                                        <input type='hidden' name='addToCart2' value='` + trackID + `' class="form-control" > 
+                                        <button data-id="` + trackID + `" type='submit' class='btn btn-warning btnAddToCart'>Add</button>
+                                    </div>
                                 </form>
                                 <button data-id='` + trackID + `' type='button' class='btn btn-success btnShow showTrackModal' data-toggle='modal' data-target='#modal'>
                                     <img src='../img/card-text.svg' class='icon-show'>
@@ -252,9 +256,11 @@ function showModal(action, itemId = 0, data = []) {
             $("#modalTitle").html("Create Artist");           
             elem.append($("<div />", { "class": "", "html": 
                 `<form id="frmCreateArtist" method="POST">
-                    <label for="createArtistName" id="txtArtistLabel">Artist Name</label>
-                    <input type="text" id="createArtistName" name="text" required>
-                    <button type="button" class="btn btn-success mb-2 createArtist" id="btnCreateArtist" data-dismiss="modal">Create Artist</button>
+                    <div class="form-group">
+                        <label for="createArtistName" id="txtArtistLabel">Artist Name</label>
+                        <input type="text" id="createArtistName" name="text" class="form-control" required>
+                        <button type="button" class="btn btn-success mb-2 createArtist" id="btnCreateArtist" data-dismiss="modal">Create Artist</button>
+                    </div>
                 </form>`
             }))
             break;
@@ -262,10 +268,12 @@ function showModal(action, itemId = 0, data = []) {
             $("#modalTitle").html("Update Artist");           
             elem.append($("<div />", { "class": "", "html": 
                 `<form id="frmUpdateArtist" method="POST">
-                    <label for="updateArtistName" id="txtArtistLabel">New Name</label>
-                    <input data-id= ` + itemId + ` type="text" id="updateArtistName" name="text" value="` + data['Name'] + `" required>
-                    </br>
-                    <button type="button" class="btn btn-success mb-2 updateArtist" id="btnUpdateArtist" data-dismiss="modal">Update Artist</button>
+                    <div class="form-group">
+                        <label for="updateArtistName" id="txtArtistLabel">New Name</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateArtistName" name="text" value="` + data['Name'] + `" class="form-control" required>
+                        </br>
+                        <button type="button" class="btn btn-success mb-2 updateArtist" id="btnUpdateArtist" data-dismiss="modal">Update Artist</button>
+                    </div>
                 </form>`
             }))
             break;
@@ -295,13 +303,15 @@ function showModal(action, itemId = 0, data = []) {
             $("#modalTitle").html("Create Album");           
             elem.append($("<div />", { "class": "", "html": 
                 `<form id="frmCreateArtist" method="POST">
-                    <label for="createAlbumTitle">Album Title</label>
-                    <input type="text" id="createAlbumTitle" name="text" required>
-                    </br>
-                    <label for="createArtistId">Artist Id</label>
-                    <input type="text" id="createArtistId" name="text" required>
-                    </br>
-                    <button type="button" class="btn btn-success mb-2 createAlbum" id="btnCreateAlbum" data-dismiss="modal">Create Album</button>
+                    <div class="form-group">
+                        <label for="createAlbumTitle">Album Title</label>
+                        <input type="text" id="createAlbumTitle" name="text" class="form-control" required>
+                        </br>
+                        <label for="createArtistId">Artist Id</label>
+                        <input type="text" id="createArtistId" name="text" class="form-control" required>
+                        </br>
+                        <button type="button" class="btn btn-success mb-2 createAlbum" id="btnCreateAlbum" data-dismiss="modal">Create Album</button>
+                    </div>
                 </form>`
             }))
             break;
@@ -309,16 +319,18 @@ function showModal(action, itemId = 0, data = []) {
             $("#modalTitle").html("Update Album");           
             elem.append($("<div />", { "class": "", "html": 
                 `<form id="frmUpdateAlbum" method="POST">
-                    <label for="updateAlbumId">Album Id</label>
-                    <input data-id= ` + itemId + ` type="text" id="updateAlbumId" name="text" value="` + data['AlbumId'] + `" disabled>
-                    </br>
-                    <label for="updateAlbumTitle">Album Title</label>
-                    <input data-id= ` + itemId + ` type="text" id="updateAlbumTitle" name="text" value="` + data['Title'] + `" required>
-                    </br>
-                    <label for="updateArtisId">Artist Id</label>
-                    <input data-id= ` + itemId + ` type="text" id="updateArtisId" name="text" value="` + data['ArtistId'] + `" required>
-                    </br>
-                    <button type="button" class="btn btn-success mb-2 updateAlbum" id="btnUpdateAlbum" data-dismiss="modal">Update Album</button>
+                    <div class="form-group">
+                        <label for="updateAlbumId">Album Id</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateAlbumId" name="text" value="` + data['AlbumId'] + `" class="form-control" disabled>
+                        </br>
+                        <label for="updateAlbumTitle">Album Title</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateAlbumTitle" name="text" value="` + data['Title'] + `" class="form-control" required>
+                        </br>
+                        <label for="updateArtisId">Artist Id</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateArtisId" name="text" value="` + data['ArtistId'] + `" class="form-control" required>
+                        </br>
+                        <button type="button" class="btn btn-success mb-2 updateAlbum" id="btnUpdateAlbum" data-dismiss="modal">Update Album</button>
+                    </div>
                 </form>`
             }))
             break;
@@ -372,31 +384,33 @@ function showModal(action, itemId = 0, data = []) {
             $("#modalTitle").html("Create Track");           
             elem.append($("<div />", { "class": "", "html": 
                 `<form id="frmCreateArtist" method="POST">
-                    <label for="createTrackName">Track Name</label>
-                    <input type="text" id="createTrackName" name="text" required>
-                    </br>
-                    <label for="createAlbumId">Album Id</label>
-                    <input type="text" id="createAlbumId" name="text" required>
-                    </br>
-                    <label for="createMediaTypeId">MediaTypeId</label>
-                    <input type="text" id="createMediaTypeId" name="text" required>
-                    </br>
-                    <label for="createGenreId">GenreId</label>
-                    <input type="text" id="createGenreId" name="text" required>
-                    </br>
-                    <label for="createComposer">Composer</label>
-                    <input type="text" id="createComposer" name="text" required>
-                    </br>
-                    <label for="createMilliseconds">Milliseconds</label>
-                    <input type="text" id="createMilliseconds" name="text" required>
-                    </br>
-                    <label for="createBytes">Bytes</label>
-                    <input type="text" id="createBytes" name="text" required>
-                    </br>
-                    <label for="createUnitPrice">UnitPrice</label>
-                    <input type="text" id="createUnitPrice" name="text" required>
-                    </br>
-                    <button type="button" class="btn btn-success mb-2 createTrack" id="btnCreateTrack" data-dismiss="modal">Create Album</button>
+                    <div class="form-group">
+                        <label for="createTrackName">Track Name</label>
+                        <input type="text" id="createTrackName" name="text" class="form-control" required>
+                        </br>
+                        <label for="createAlbumId">Album Id</label>
+                        <input type="text" id="createAlbumId" name="text" class="form-control" required>
+                        </br>
+                        <label for="createMediaTypeId">MediaTypeId</label>
+                        <input type="text" id="createMediaTypeId" name="text" class="form-control" required>
+                        </br>
+                        <label for="createGenreId">GenreId</label>
+                        <input type="text" id="createGenreId" name="text" class="form-control" required>
+                        </br>
+                        <label for="createComposer">Composer</label>
+                        <input type="text" id="createComposer" name="text" class="form-control" required>
+                        </br>
+                        <label for="createMilliseconds">Milliseconds</label>
+                        <input type="text" id="createMilliseconds" name="text" class="form-control" required>
+                        </br>
+                        <label for="createBytes">Bytes</label>
+                        <input type="text" id="createBytes" name="text" class="form-control" required>
+                        </br>
+                        <label for="createUnitPrice">UnitPrice</label>
+                        <input type="text" id="createUnitPrice" name="text" class="form-control" required>
+                        </br>
+                        <button type="button" class="btn btn-success mb-2 createTrack" id="btnCreateTrack" data-dismiss="modal">Create Album</button>
+                    </div>
                 </form>`
             }))
             break;
@@ -404,36 +418,38 @@ function showModal(action, itemId = 0, data = []) {
             $("#modalTitle").html("Update Track");           
             elem.append($("<div />", { "class": "", "html": 
                 `<form id="frmUpdateTrack" method="POST">
-                    <label for="updateTrackId">Track Id</label>
-                    <input data-id= ` + itemId + ` type="text" id="updateTrackId" name="text" value="` + data['AlbumId'] + `" disabled>
-                    </br>
-                    <label for="updateTrackName">Track Name</label>
-                    <input data-id= ` + itemId + ` type="text" id="updateTrackName" name="text" value="` + data['Name'] + `" required>
-                    </br>
-                    <label for="updateAlbumId">Album Id</label>
-                    <input data-id= ` + itemId + ` type="text" id="updateAlbumId" name="text" value="` + data['AlbumId'] + `" required>
-                    </br>
+                    <div class="form-group">
+                        <label for="updateTrackId">Track Id</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateTrackId" name="text" value="` + data['AlbumId'] + `" class="form-control" disabled>
+                        </br>
+                        <label for="updateTrackName">Track Name</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateTrackName" name="text" value="` + data['Name'] + `" class="form-control" required>
+                        </br>
+                        <label for="updateAlbumId">Album Id</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateAlbumId" name="text" value="` + data['AlbumId'] + `" class="form-control" required>
+                        </br>
 
-                    <label for="updateMediaTypeId">Media Type</label>
-                    <input data-id= ` + itemId + ` type="text" id="updateMediaTypeId" name="text" value="` + data['MediaTypeId'] + `" required>
-                    </br>
-                    <label for="updateGenreId">Genre Id</label>
-                    <input data-id= ` + itemId + ` type="text" id="updateGenreId" name="text" value="` + data['GenreId'] + `" required>
-                    </br>
-                    <label for="updateComposer">Composer</label>
-                    <input data-id= ` + itemId + ` type="text" id="updateComposer" name="text" value="` + data['Composer'] + `" required>
-                    </br>
+                        <label for="updateMediaTypeId">Media Type</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateMediaTypeId" name="text" value="` + data['MediaTypeId'] + `" class="form-control" required>
+                        </br>
+                        <label for="updateGenreId">Genre Id</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateGenreId" name="text" value="` + data['GenreId'] + `" class="form-control" required>
+                        </br>
+                        <label for="updateComposer">Composer</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateComposer" name="text" value="` + data['Composer'] + `" class="form-control" required>
+                        </br>
 
-                    <label for="updateMilliseconds">Milliseconds</label>
-                    <input data-id= ` + itemId + ` type="text" id="updateMilliseconds" name="text" value="` + data['Milliseconds'] + `" required>
-                    </br>
-                    <label for="updateBytes">Bytes</label>
-                    <input data-id= ` + itemId + ` type="text" id="updateBytes" name="text" value="` + data['Bytes'] + `" required>
-                    </br>
-                    <label for="updateUnitPrice">UnitPrice</label>
-                    <input data-id= ` + itemId + ` type="text" id="updateUnitPrice" name="text" value="` + data['UnitPrice'] + `" required>
-                    </br>
-                    <button type="button" class="btn btn-success mb-2 updateTrack" id="btnUpdateTrack" data-dismiss="modal">Update Artist</button>
+                        <label for="updateMilliseconds">Milliseconds</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateMilliseconds" name="text" value="` + data['Milliseconds'] + `" class="form-control" required>
+                        </br>
+                        <label for="updateBytes">Bytes</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateBytes" name="text" value="` + data['Bytes'] + `" class="form-control" required>
+                        </br>
+                        <label for="updateUnitPrice">UnitPrice</label>
+                        <input data-id= ` + itemId + ` type="text" id="updateUnitPrice" name="text" value="` + data['UnitPrice'] + `" class="form-control" required>
+                        </br>
+                        <button type="button" class="btn btn-success mb-2 updateTrack" id="btnUpdateTrack" data-dismiss="modal">Update Artist</button>
+                    </div>
                 </form>`
             }))
             break;
@@ -446,45 +462,47 @@ function showModal(action, itemId = 0, data = []) {
             $("#modalTitle").html("Sign Up");           
             elem.append($("<div />", { "class": "", "html": 
                 `<form id="frmCreateCustomer" method="POST">
-                    <label for="firstName">First Name</label>
-                    <input type="text" id="firstName" name="text" required>
-                    </br>
-                    <label for="lastName">Last Name</label>
-                    <input type="text" id="lastName" name="text" required>
-                    </br>
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="text" required>
-                    </br>
-                    <label for="company">Company</label>
-                    <input type="text" id="company" name="text" required>
-                    </br>
+                    <div class="form-group">
+                        <label for="firstName" class="col-form-label">First Name</label>
+                        <input type="text" id="firstName" name="text" class="form-control" required>
+                        </br>
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="text" class="form-control" required>
+                        </br>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="text" class="form-control" required>
+                        </br>
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="text" class="form-control" required>
+                        </br>
 
-                    <label for="address">Address</label>
-                    <input type="text" id="address" name="text" required>
-                    </br>
-                    <label for="city">City</label>
-                    <input type="text" id="city" name="text" required>
-                    </br>
-                    <label for="state">State</label>
-                    <input type="text" id="state" name="text" required>
-                    </br>
-                    <label for="country">Country</label>
-                    <input type="text" id="country" name="text" required>
-                    </br>
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="text" class="form-control" required>
+                        </br>
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="text" class="form-control" required>
+                        </br>
+                        <label for="state">State</label>
+                        <input type="text" id="state" name="text" class="form-control" required>
+                        </br>
+                        <label for="country">Country</label>
+                        <input type="text" id="country" name="text" class="form-control" required>
+                        </br>
 
-                    <label for="postalCode">Postal Code</label>
-                    <input type="text" id="postalCode" name="text" required>
-                    </br>
-                    <label for="fax">Fax</label>
-                    <input type="text" id="fax" name="text" required>
-                    </br>
-                    <label for="phone">Phone</label>
-                    <input type="text" id="phone" name="text" required>
-                    </br>
-                    <label for="email">Email</label>
-                    <input type="text" id="email" name="text" required>
-                    </br>
-                    <button type="button" class="btn btn-success mb-2 createCustomer" id="btnCreateCustomer" data-dismiss="modal">Create Customer</button>
+                        <label for="postalCode">Postal Code</label>
+                        <input type="text" id="postalCode" name="text" class="form-control" required>
+                        </br>
+                        <label for="fax">Fax</label>
+                        <input type="text" id="fax" name="text" class="form-control" required>
+                        </br>
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone" name="text" class="form-control" required>
+                        </br>
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="text" class="form-control" required>
+                        </br>
+                        <button type="button" class="btn btn-success mb-2 createCustomer" id="btnCreateCustomer" data-dismiss="modal">Create Customer</button>
+                    </div>
                 </form>`
             }))
             break;
@@ -492,52 +510,54 @@ function showModal(action, itemId = 0, data = []) {
             $("#modalTitle").html("Update Customer");           
             elem.append($("<div />", { "class": "", "html": 
                 `<form id="frmCreateCustomer" method="POST">
-                    <label for="customerId">Customer Id</label>
-                    <input type="text" id="customerId" name="text" value="` + data['CustomerId'] + `" disabled>
-                    </br>
-                    <label for="firstName">First Name</label>
-                    <input type="text" id="firstName" name="text" value="` + data['FirstName'] + `" required>
-                    </br>
-                    <label for="lastName">Last Name</label>
-                    <input type="text" id="lastName" name="text" value="` + data['LastName'] + `" required>
-                    </br>
+                    <div class="form-group">
+                        <label for="customerId">Customer Id</label>
+                        <input type="text" id="customerId" name="text" value="` + data['CustomerId'] + `" class="form-control" disabled>
+                        </br>
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="text" value="` + data['FirstName'] + `" class="form-control" required>
+                        </br>
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="text" value="` + data['LastName'] + `" class="form-control" required>
+                        </br>
 
-                    <label for="company">Company</label>
-                    <input type="text" id="company" name="text" value="` + data['Company'] + `" required>
-                    </br>
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="text" value="` + data['Company'] + `" class="form-control" required>
+                        </br>
 
-                    <label for="address">Address</label>
-                    <input type="text" id="address" name="text" value="` + data['Address'] + `" required>
-                    </br>
-                    <label for="city">City</label>
-                    <input type="text" id="city" name="text" value="` + data['City'] + `" required>
-                    </br>
-                    <label for="state">State</label>
-                    <input type="text" id="state" name="text" value="` + data['State'] + `" required>
-                    </br>
-                    <label for="country">Country</label>
-                    <input type="text" id="country" name="text" value="` + data['Country'] + `" required>
-                    </br>
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="text" value="` + data['Address'] + `" class="form-control" required>
+                        </br>
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="text" value="` + data['City'] + `" class="form-control" required>
+                        </br>
+                        <label for="state">State</label>
+                        <input type="text" id="state" name="text" value="` + data['State'] + `" class="form-control" required>
+                        </br>
+                        <label for="country">Country</label>
+                        <input type="text" id="country" name="text" value="` + data['Country'] + `" class="form-control" required>
+                        </br>
 
-                    <label for="postalCode">Postal Code</label>
-                    <input type="text" id="postalCode" name="text" value="` + data['PostalCode'] + `" required>
-                    </br>
-                    <label for="fax">Fax</label>
-                    <input type="text" id="fax" name="text" value="` + data['Fax'] + `" required>
-                    </br>
-                    <label for="phone">Phone</label>
-                    <input type="text" id="phone" name="text" value="` + data['Phone'] + `" required>
-                    </br>
-                    <label for="email">Email</label>
-                    <input type="text" id="email" name="text" value="` + data['Email'] + `" required>
-                    </br>
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="text" value="">
-                    </br>
-                    <label for="newPassword">New Password</label>
-                    <input type="password" id="newPassword" name="text" value="">
-                    </br>
-                    <button type="button" class="btn btn-success mb-2 updateCustomer" id="btnUpdateCustomer" data-dismiss="modal">Update Customer</button>
+                        <label for="postalCode">Postal Code</label>
+                        <input type="text" id="postalCode" name="text" value="` + data['PostalCode'] + `" class="form-control" required>
+                        </br>
+                        <label for="fax">Fax</label>
+                        <input type="text" id="fax" name="text" value="` + data['Fax'] + `" class="form-control" required>
+                        </br>
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone" name="text" value="` + data['Phone'] + `" class="form-control" required>
+                        </br>
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="text" value="` + data['Email'] + `" class="form-control" required>
+                        </br>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="text" value="" class="form-control" >
+                        </br>
+                        <label for="newPassword">New Password</label>
+                        <input type="password" id="newPassword" name="text" value="" class="form-control" >
+                        </br>
+                        <button type="button" class="btn btn-success mb-2 updateCustomer" id="btnUpdateCustomer" data-dismiss="modal">Update Customer</button>
+                    </div>
                 </form>`
             }))
             break;
@@ -550,23 +570,25 @@ function showModal(action, itemId = 0, data = []) {
             $("#modalTitle").html("Purchase Details");    
             elem.append($("<div />", { "class": "", "html": 
                 `<form id="frmCreateArtist" method="POST">
-                    <input type='hidden' name='reset' value='reset'>
-                    <label for="customerId">Customer Id</label>
-                    <input type="text" id="customerId" name="text" value="` + data['CustomerId'] + `"  disabled>
-                    </br>
-                    <label for="firstName">First Name</label>
-                    <input type="text" id="firstName" name="text" value="` + data['FirstName'] + `"  disabled>
-                    </br>
-                    <label for="lastName">Last Name</label>
-                    <input type="text" id="lastName" name="text" value="` + data['LastName'] + `"  disabled>
-                    </br>
-                    <label for="email">Email</label>
-                    <input type="text" id="email" name="text" value="` + data['Email'] + `"  disabled>
-                    </br>
-                    <label for="billingAddress">Billing Address</label>
-                    <input type="text" id="billingAddress" name="text" value="` + data['Address'] + `"  required>
-                    </br>
-                    <button type="submit" class="btn btn-success mb-2 confirmPurchase" id="btnConfirmPurchase" data-dismiss="modal">Confirm Purchase</button>
+                    <div class="form-group">
+                        <input type='hidden' name='reset' value='reset'>
+                        <label for="customerId">Customer Id</label>
+                        <input type="text" id="customerId" name="text" value="` + data['CustomerId'] + `"  class="form-control" disabled>
+                        </br>
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="text" value="` + data['FirstName'] + `"  class="form-control" disabled>
+                        </br>
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="text" value="` + data['LastName'] + `"  class="form-control" disabled>
+                        </br>
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="text" value="` + data['Email'] + `"  class="form-control" disabled>
+                        </br>
+                        <label for="billingAddress">Billing Address</label>
+                        <input type="text" id="billingAddress" name="text" value="` + data['Address'] + `"  class="form-control" required>
+                        </br>
+                        <button type="submit" class="btn btn-success mb-2 confirmPurchase" id="btnConfirmPurchase" data-dismiss="modal">Confirm Purchase</button>
+                    </div>
                 </form>`
             }))
             break;
