@@ -762,14 +762,85 @@ $(document).ready(function() {
         }
     });
 
+    // Update Customer
+    $(document).on("click", ".updateCustomer", function(e) {
+        const customerId = $("#customerId").val(); 
+        const firstName = $("#firstName").val(); 
+        const lastName = $("#lastName").val(); 
+        const company = $("#company").val(); 
+        const address = $("#address").val(); 
+        const city = $("#city").val(); 
+        const state = $("#state").val(); 
+        const country = $("#country").val();
+        const postalCode = $("#postalCode").val();
+        const phone = $("#phone").val();
+        const fax = $("#fax").val();
+        const email = $("#email").val();
+        const password = $("#password").val(); 
+        const newPassword = $("#newPassword").val(); 
+
+        if (newPassword) { // Without Password Reset
+            $.ajax({
+                url: URL + `/customers/${customerId}`,
+                type: "POST",
+                data: {
+                    firstName: firstName,
+                    lastName: lastName,
+                    password: password,
+                    company: company,
+                    address: address,
+                    city: city,
+                    state: state,
+                    country: country,
+                    postalCode: postalCode,
+                    phone: phone,
+                    fax: fax,
+                    email: email,
+                    newPassword: newPassword
+                },
+                success: function(data) {
+                    alert("Customer successfully updated!");
                 },
                 error: function() { alert("An Error Ocured!"); },
                 statusCode: {
                     404: function() {
-                        alert("FirstName, LastName, Password, or Email should not be empty");
+                        alert("Customer email already exists!");
                     },
                     409: function() {
+                        alert("FirstName, LastName, Password, or Email are not filled! Or Customer email already exists!");
+                    }
+                }
+            });
+        } else { // With Password Reset
+            $.ajax({
+                url: URL + `/customers/${customerId}`,
+                type: "POST",
+                data: {
+                    firstName: firstName,
+                    lastName: lastName,
+                    password: password,
+                    company: company,
+                    address: address,
+                    city: city,
+                    state: state,
+                    country: country,
+                    postalCode: postalCode,
+                    phone: phone,
+                    fax: fax,
+                    email: email,
+                    newPassword: newPassword
+                },
+                success: function(data) {
+                    alert("Customer successfully updated!");
+                    alert("Password successfully changed!");
+                },
+                error: function() { alert("An Error Ocured!"); },
+                statusCode: {
+                    404: function() {
                         alert("Customer email already exists!");
+                    },
+                    409: function() {
+                        alert("FirstName, LastName, Password, or Email are not filled! Or Customer email already exists!");
                     }
                 }
             });
