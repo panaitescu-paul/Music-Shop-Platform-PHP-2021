@@ -745,6 +745,28 @@ $(document).ready(function() {
             });
         }
     });
+
+    // Get Purchase Price - sum of all Track Unit Prices
+    function GetPurchasePrice(trackIds) {
+        $.ajax({
+            url: URL + `/tracks`,
+            type: "GET",
+            success: function(data) {
+                let sum = 0;
+                for (let i = 0; i < trackIds.length; i++) {
+                    const id = trackIds[i];
+                    data.forEach(track => {
+                        if (track['TrackId'] == id) {
+                            sum += parseFloat(track['UnitPrice']);
+                        }
+                    });
+                }
+                document.getElementById("purchaseTotalPrice").innerHTML = sum;
+            },
+            error: function() { alert("An Error Ocured!"); }
+        });
+    }
+
     // ******************************************************
     // ***                                                ***
     // ***                Scrolling Functionality         ***
@@ -773,6 +795,11 @@ $(document).ready(function() {
             document.body.scrollTop = position - 100; // For Safari
             document.documentElement.scrollTop = position; // For Chrome, Firefox, IE and Opera
         }
+    }
+
+    // Reset Shopping Cart - delete Tracks from it
+    function ResetShoppingCart(position) {
+        $("#resetPurchaseCart").click();
     }
 
     // // Refresh page after Adding Track  to Cart
