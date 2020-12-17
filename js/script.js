@@ -525,6 +525,7 @@ $(document).ready(function() {
     // Open Modal - Show Track 
     $(document).on("click", ".showTrackModal", function() {
         const id = $(this).attr("data-id");
+        console.log(id);
         $.ajax({
             url: URL + `/tracks/${id}`,
             type: "GET",
@@ -688,6 +689,18 @@ $(document).ready(function() {
         }
     });
 
+    // ******************************************************
+    // ***                                                ***
+    // ***              Customer Functionality            ***
+    // ***                                                ***
+    // ******************************************************
+
+    // Open Modal - Create Customer 
+    $(document).on("click", ".createCustomerModal", function() {
+        console.log(1);
+        showModal('createCustomer');
+        // showModal('createTrack');
+    });
     // ******************************************************
     // ***                                                ***
     // ***              Purchase Functionality            ***
