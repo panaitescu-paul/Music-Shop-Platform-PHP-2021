@@ -189,7 +189,7 @@ Get Albums with the title Song
 ]
 ```
 
-Get Albums with the name Radio Song
+Get Tracks with the name Radio Song
 
 ```json
 [
@@ -218,6 +218,27 @@ Get Albums with the name Radio Song
 ]
 ```
 
+Get Customers with the email n@gmail.com
+
+```json
+[
+    {
+        "CustomerId": "24",
+        "FirstName": "Frank",
+        "LastName": "Ralston",
+        "Password": "$2y$10$WtD6WywiBP7qNi8yZj7gYuIhjTy1xsAwAKSEgXj/ftRZWTLjz1cpu",
+        "Company": null,
+        "Address": "162 E Superior Street",
+        "City": "Chicago",
+        "State": "IL",
+        "Country": "USA",
+        "PostalCode": "60611",
+        "Phone": "+1 (312) 332-3232",
+        "Fax": null,
+        "Email": "fralston@gmail.com"
+    }
+]
+```
 
 #### Author:
 Paul Panaitescu
