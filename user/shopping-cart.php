@@ -60,6 +60,11 @@
 
     <h1 class="main-title">Shopping Cart</h1>
     <div class="resultArea">
+
+        <p>
+            <span>Total Price: </span>
+            <span id="purchaseTotalPrice"></span>
+        </p>
         <section id="results">
         </section>
 
