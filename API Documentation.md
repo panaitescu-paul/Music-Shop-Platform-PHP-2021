@@ -128,7 +128,19 @@ Get Customer with id 1
 
 ```json
 {
-..
+    "CustomerId": "1",
+    "FirstName": "Luís",
+    "LastName": "Gonçalves",
+    "Password": "$2y$10$WtD6WywiBP7qNi8yZj7gYuIhjTy1xsAwAKSEgXj/ftRZWTLjz1cpu",
+    "Company": "Embraer - Empresa Brasileira de Aeronáutica S.A.",
+    "Address": "Av. Brigadeiro Faria Lima, 2170",
+    "City": "São José dos Campos",
+    "State": "SP",
+    "Country": "Brazil",
+    "PostalCode": "12227-000",
+    "Phone": "+55 (12) 3923-5555",
+    "Fax": "+55 (12) 3923-5566",
+    "Email": "luisg@embraer.com.br"
 }
 ```
 
