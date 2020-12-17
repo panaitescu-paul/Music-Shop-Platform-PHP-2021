@@ -288,17 +288,20 @@
                 // $stmt = $this->pdo->prepare($query);
                 // $stmt->execute([$firstName, $lastName, $password, $company, $address, 
                 //                 $city, $state, $country, $postalCode, $phone, $fax, $email, $customerId]);
-                $return = true;
+                // $return = true;
+                $this->disconnect();
+                http_response_code(200);
+                return true;
 
             } catch (Exception $e) {
                 http_response_code(500);
-                $return = -6;
                 debug($e);
+                return -6;
             }
 
-            $this->disconnect();
-            http_response_code(200);
-            return $return;
+            // $this->disconnect();
+            // http_response_code(200);
+            // return $return;
         }
 
         /**
@@ -366,10 +369,10 @@
          *          false if the password is not correct, or if the user (Customer/Admin) does not exist
          */
         function login($email, $password, $isAdmin = 0) {
-            echo 'inside Login ';
+            // echo 'inside Login ';
             if ($isAdmin) { // Validation for Admin
                 debug('Password validation for Admin');
-                echo 'inside Login Admin ';
+                // echo 'inside Login Admin ';
 
     
                 // Get user data
@@ -394,7 +397,7 @@
             
             } else { // Validation for Customer
                 debug('Password validation for Customer');
-                echo 'inside Login Customer ';
+                // echo 'inside Login Customer ';
 
     
                 // Get user data
