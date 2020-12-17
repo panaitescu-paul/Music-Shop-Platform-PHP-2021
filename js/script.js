@@ -751,6 +751,16 @@ $(document).ready(function() {
                 },
                 success: function(data) {
                     alert("Customer successfully created!");
+                },
+                error: function() { alert("An Error Ocured!"); },
+                statusCode: {
+                    409: function() {
+                        alert("FirstName, LastName, Password, or Email are not filled! Or Customer email already exists!");
+                    }
+                }
+            });
+        }
+    });
 
                 },
                 error: function() { alert("An Error Ocured!"); },
