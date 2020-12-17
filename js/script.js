@@ -704,15 +704,16 @@ $(document).ready(function() {
 
     // Open Modal - Update Customer
     $(document).on("click", ".updateCustomerModal", function() {
-        // const id = $(this).attr("data-id");
-        // $.ajax({
-        //     url: URL + `/customers/${id}`,
-        //     type: "GET",
-        //     success: function(data) {
-        //         showModal('updateCustomer', id, data);
-        //     },
-        //     error: function() { alert("An Error Ocured!"); }
-        // });
+        const id = userId;
+        console.log(id);
+        $.ajax({
+            url: URL + `/customers/${id}`,
+            type: "GET",
+            success: function(data) {
+                showModal('updateCustomer', id, data);
+            },
+            error: function() { alert("An Error Ocured!"); }
+        });
     });
 
     // Create Customer
