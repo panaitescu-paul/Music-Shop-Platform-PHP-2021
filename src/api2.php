@@ -17,9 +17,9 @@
     define('MAX_PIECES', 4);
 
     // // AWS version
-    // define('ENTITY', 1);
-    // define('ID', 2);
-    // define('MAX_PIECES', 3);
+    // define('ENTITY', 3);
+    // define('ID', 4);
+    // define('MAX_PIECES', 5);
 
     // Example of 2 pieces: http://localhost/WAD-MA2
     // Example of 3 pieces: http://localhost/WAD-MA2/artists
@@ -41,14 +41,14 @@
     if ($pieces == 2) {
 
     // // AWS version
-    // if ($pieces == 1) {
+    // if ($pieces == 3) {
         echo APIDescription();
     } else {
         // Local version
         if ($pieces > 4) {
             
         // // AWS version
-        // if ($pieces > 3) {
+        // if ($pieces > 5) {
             echo formatError();
         } else {
             $entity = $urlPieces[ENTITY];

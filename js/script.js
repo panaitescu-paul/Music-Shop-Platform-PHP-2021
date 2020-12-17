@@ -12,7 +12,7 @@ $(document).ready(function() {
     // Local version
     URL = "http://localhost/WAD-MA2";
     // // AWS version
-    // URL = "http://chinook-env.eba-a22nb3p8.us-east-1.elasticbeanstalk.com/src/api.php";
+    // URL = "http://musicshop-env.eba-j5assrnn.us-east-1.elasticbeanstalk.com/src/api2.php";
 
     pageContent();
 
