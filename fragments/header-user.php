@@ -4,14 +4,6 @@
     session_start();
     debug($_SESSION);
 
-    // if (!isset($_SESSION['userID'])) {
-    //     header('Location: ../auth/login.php');
-    // }
-    // // if you are loged in as Customer, then you are redirected to a Customer page
-    // if (isset($_SESSION['userID']) && $_SESSION['userID'] !== 0) {
-    //     header('Location: ../user/library-tracks.php');
-    // }
-    
     $userID = $_SESSION['userID'];
     $firstName = $_SESSION['firstName'];
     $lastName = $_SESSION['lastName'];
@@ -53,13 +45,10 @@
                 <a class="nav-link" href="/WAD-MA2/user/shopping-cart.php">Cart</a>
             </li>
             <li class="nav-item">
-                <!-- <a class="nav-link" href="/WAD-MA2/user/sign-up.php">Sign Up</a> -->
                 <button class="btn btn-success mb-2 createCustomerModal" data-toggle='modal' data-target='#modal'>Sign Up</button>
             </li>
             <li class="nav-item">
-                <!-- <a class="nav-link" class="btn btn-success mb-2 updateCustomerModal" data-toggle='modal' data-target='#modal'>Profile</a> -->
                 <button class="btn btn-success mb-2 updateCustomerModal" data-toggle='modal' data-target='#modal'>Profile</button>
-
             </li>
         </div>
         <span class="navbar-text">
