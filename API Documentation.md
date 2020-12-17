@@ -144,7 +144,7 @@ Get Customer with id 1
 }
 ```
 
-et Artists with the name John
+Get Artists with the name John
 
 ```json
 [
@@ -163,6 +163,28 @@ et Artists with the name John
     {
         "ArtistId": "218",
         "Name": "Orchestre Révolutionnaire et Romantique & John Eliot Gardiner"
+    }
+]
+```
+
+Get Albums with the title Song
+
+```json
+[
+    {
+        "AlbumId": "262",
+        "Title": "Quiet Songs",
+        "ArtistId": "197"
+    },
+    {
+        "AlbumId": "137",
+        "Title": "The Song Remains The Same (Disc 1)",
+        "ArtistId": "22"
+    },
+    {
+        "AlbumId": "138",
+        "Title": "The Song Remains The Same (Disc 2)",
+        "ArtistId": "22"
     }
 ]
 ```
