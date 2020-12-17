@@ -11,9 +11,15 @@
     require_once('functions.php');
     debug($_POST);
 
+    // Local version
     define('ENTITY', 2);
     define('ID', 3);
     define('MAX_PIECES', 4);
+
+    // // AWS version
+    // define('ENTITY', 1);
+    // define('ID', 2);
+    // define('MAX_PIECES', 3);
 
     // Example of 2 pieces: http://localhost/WAD-MA2
     // Example of 3 pieces: http://localhost/WAD-MA2/artists
@@ -34,10 +40,18 @@
     // echo $pieces;
     // echo "Entities: " . $pieces . "\n";
 
+    // Local version
     if ($pieces == 2) {
+
+    // // AWS version
+    // if ($pieces == 1) {
         echo APIDescription();
     } else {
+        // Local version
         if ($pieces > 4) {
+            
+        // // AWS version
+        // if ($pieces > 3) {
             echo formatError();
         } else {
 
