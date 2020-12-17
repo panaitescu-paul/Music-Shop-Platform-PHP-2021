@@ -144,5 +144,30 @@ Get Customer with id 1
 }
 ```
 
+et Artists with the name John
+
+```json
+[
+    {
+        "ArtistId": "222",
+        "Name": "Academy of St. Martin in the Fields, John Birch, Sir Neville Marriner & Sylvia McNair"
+    },
+    {
+        "ArtistId": "263",
+        "Name": "Equale Brass Ensemble, John Eliot Gardiner & Munich Monteverdi Orchestra and Choir"
+    },
+    {
+        "ArtistId": "170",
+        "Name": "Jack Johnson"
+    },
+    {
+        "ArtistId": "218",
+        "Name": "Orchestre Révolutionnaire et Romantique & John Eliot Gardiner"
+    }
+]
+```
+
+
+
 #### Author:
 Paul Panaitescu
