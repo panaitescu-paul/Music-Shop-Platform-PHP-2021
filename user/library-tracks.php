@@ -41,7 +41,7 @@
 <div class="container" id="page-tracks">
 
     <?php
-        print_r($_SESSION['ShoppingCart']);
+        // print_r($_SESSION['ShoppingCart']);
     ?>
     <script type="text/javascript">
         // Send Session data to JS 

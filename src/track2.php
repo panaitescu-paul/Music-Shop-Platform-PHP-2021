@@ -56,7 +56,7 @@
         function get($id) {
             // Check the count of Tracks
             $query = <<<'SQL'
-                SELECT COUNT(*) AS total FROM Track WHERE TrackId = ?;
+                SELECT COUNT(*) AS total FROM track WHERE TrackId = ?;
             SQL;
             $stmt = $this->pdo->prepare($query);
             $stmt->execute([$id]);   
