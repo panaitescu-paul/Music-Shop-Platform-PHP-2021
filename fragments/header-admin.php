@@ -33,22 +33,24 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="/WAD-MA2/admin/artists.php">Artists <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="btn btn-primary mb-2 btnNav" href="/WAD-MA2/admin/artists.php">Artists <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/WAD-MA2/admin/albums.php">Albums</a>
+                <a class="btn btn-primary mb-2 btnNav" href="/WAD-MA2/admin/albums.php">Albums</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/WAD-MA2/admin/tracks.php">Tracks</a>
+                <a class="btn btn-primary mb-2 btnNav" href="/WAD-MA2/admin/tracks.php">Tracks</a>
             </li>
         </div>
         <span class="navbar-text">
+            <span class="navName"><?php echo $firstName . ' ' . $lastName . ' '; ?></span>
+        </span>
+        <span class="navbar-text">
             <form id="frmLogout" action="../auth/login.php" method="POST">
-                <span><?php echo $firstName . ' ' . $lastName . ' '; ?></span>
                 <input type="hidden" name="logout" value="logout">
-                <button type="submit" id="btnLogOut" class="btn btn-success mb-2 btnNav" data-toggle='modal' data-target='#modal'>Log Out</button>
-            </form>
+                <button type="submit" id="btnLogOut" class="btn btn-primary mb-2 btnNav" data-toggle='modal' data-target='#modal'>Log Out</button>
+             </form>
         </span>
     </nav>
     <!-- End of Header

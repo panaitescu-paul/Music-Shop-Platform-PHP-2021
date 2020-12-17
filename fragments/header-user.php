@@ -44,10 +44,7 @@
             <li class="nav-item">
                 <a class="btn btn-primary btnNav" href="/WAD-MA2/user/shopping-cart.php">Cart</a>
             </li>
-            <!-- <li class="nav-item"> -->
                 <button class="btn btn-primary mb-2 createCustomerModal btnNav" data-toggle='modal' data-target='#modal'>Sign Up</button>
-            <!-- </li> -->
-            <li class="nav-item">
                 <button class="btn btn-primary mb-2 updateCustomerModal btnNav" data-toggle='modal' data-target='#modal'>Profile</button>
             </li>
         </div>
