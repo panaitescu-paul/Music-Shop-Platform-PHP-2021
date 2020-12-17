@@ -82,7 +82,7 @@ function displayAlbums(albumData, user = 'admin') {
         header.append(headerRow);
         table.append(header);
         const tableBody = $("<tbody />");
-        if (user == 'admin') {
+        if (user == 'admin') { // Displays Albums information for Admin
             for (const album of albumData) {
                 const row = $("<tr />");
                 const albumID = album["AlbumId"];
@@ -103,7 +103,7 @@ function displayAlbums(albumData, user = 'admin') {
                     }))
                 tableBody.append(row);
             }
-        } else {
+        } else { // Displays Albums information for Customer
             for (const album of albumData) {
                 const row = $("<tr />");
                 const albumID = album["AlbumId"];
@@ -464,6 +464,35 @@ function showModal(action, itemId = 0, data = []) {
                         <button type="button" class="btn btn-success mb-2 updateTrack" id="btnUpdateTrack" data-dismiss="modal">Update Artist</button>
                     </form>`
                 }))
+            break;
+    
+        // ******************************************************
+        // ***              PURCHASE Functionality            ***
+        // ******************************************************
+
+        case 'showPurchase':
+            $("#modalTitle").html("Purchase Details");    
+            elem.append($("<div />", { "class": "", "html": 
+                `<form id="frmCreateArtist" method="POST">
+                    <input type='hidden' name='reset' value='reset'>
+                    <label for="customerId" id="txtTrackLabel">Customer Id</label>
+                    <input type="text" id="customerId" name="text" value="` + data['CustomerId'] + `"  disabled>
+                    </br>
+                    <label for="firstName" id="txtTrackLabel">First Name</label>
+                    <input type="text" id="firstName" name="text" value="` + data['FirstName'] + `"  disabled>
+                    </br>
+                    <label for="lastName" id="txtTrackLabel">Last Name</label>
+                    <input type="text" id="lastName" name="text" value="` + data['LastName'] + `"  disabled>
+                    </br>
+                    <label for="email" id="txtTrackLabel">Email</label>
+                    <input type="text" id="email" name="text" value="` + data['Email'] + `"  disabled>
+                    </br>
+                    <label for="billingAddress" id="txtTrackLabel">Billing Address</label>
+                    <input type="text" id="billingAddress" name="text" value="` + data['Address'] + `"  required>
+                    </br>
+                    <button type="submit" class="btn btn-success mb-2 confirmPurchase" id="btnConfirmPurchase" data-dismiss="modal">Confirm Purchase</button>
+                </form>`
+            }))
             break;
         case 'trackDeleteSuccess':
             $("#modalTitle").html("Delete Track");           
