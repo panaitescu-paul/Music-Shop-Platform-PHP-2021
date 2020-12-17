@@ -19,16 +19,16 @@ GET http://localhost/WAD-MA2/
 | Method | Usage        | Description                         |
 | ------ |:------------ |:----------------------------------- |
 | GET    |/artists | Returns information of all artists |
-| GET    |/artists?name=_<search_text>_ | Returns information of those artists whose name contains _<search_text>_ |
 | GET    |/artists/_<artist_id>_ | Returns detailed information of the artist with ID _<artist_id>_ |
+| GET    |/artists/?name=_<search_text>_ | Returns information of those artists whose name contains _<search_text>_ |
 | POST   |/artists <br><br>Request body | Adds a new artist<br><br>name |
 | POST   |/artists/_<artist_id>_<br><br>Request body<br> | Updates the artist with ID _<artist_id>_<br><br>name<br>|
 | DELETE |/artists/_<artist_id>_ | Deletes the artist with ID _<artist_id>_ |
 
 #### Examples for Artists:
 GET http://localhost/WAD-MA2/artists  </br>
-GET http://localhost/WAD-MA2/artists?name=John  </br>
 GET http://localhost/WAD-MA2/artists/1  </br>
+GET http://localhost/WAD-MA2/artists/?name=John  </br>
 POST http://localhost/WAD-MA2/artists  </br>
 POST http://localhost/WAD-MA2/artists/1  </br> 
 DELETE http://localhost/WAD-MA2/artists/1  </br>
@@ -37,16 +37,16 @@ DELETE http://localhost/WAD-MA2/artists/1  </br>
 | Method | Usage        | Description                         |
 | ------ |:------------ |:----------------------------------- |
 | GET    |/albums | Returns information of all albums |
-| GET    |/albums?title=_<search_text>_ | Returns information of those albums whose title contains _<search_text>_ |
 | GET    |/albums/_<album_id>_ | Returns detailed information of the album with ID _<album_id>_ |
+| GET    |/albums/?title=_<search_text>_ | Returns information of those albums whose title contains _<search_text>_ |
 | POST   |/albums <br><br>Request body | Adds a new album<br><br>title |
 | POST   |/albums/_<album_id>_<br><br>Request body<br> | Updates the album with ID _<album_id>_<br><br>title<br>|
 | DELETE |/albums/_<album_id>_ | Deletes the album with ID _<album_id>_ |
 
 #### Examples for Albums:
 GET http://localhost/WAD-MA2/albums  </br>
-GET http://localhost/WAD-MA2/albums?title=Album1  </br>
 GET http://localhost/WAD-MA2/albums/1  </br>
+GET http://localhost/WAD-MA2/albums/?title=Album1  </br>
 POST http://localhost/WAD-MA2/albums  </br>
 POST http://localhost/WAD-MA2/albums/1  </br>
 DELETE http://localhost/WAD-MA2/albums/1  </br> 
@@ -55,16 +55,16 @@ DELETE http://localhost/WAD-MA2/albums/1  </br>
 | Method | Usage        | Description                         |
 | ------ |:------------ |:----------------------------------- |
 | GET    |/tracks | Returns information of all tracks |
-| GET    |/tracks?name=_<search_text>_ | Returns information of those tracks whose name contains _<search_text>_ |
 | GET    |/tracks/_<track_id>_ | Returns detailed information of the track with ID _<track_id>_ |
+| GET    |/tracks/?name=_<search_text>_ | Returns information of those tracks whose name contains _<search_text>_ |
 | POST   |/tracks <br><br>Request body | Adds a new track<br><br>name, albumId, mediaTypeId, genderId, composer, milliseconds, bytes, unitPrice |
 | POST   |/tracks/_<track_id>_<br><br>Request body<br> | Updates the track with ID _<track_id>_<br><br>name, albumId, mediaTypeId, genderId, composer, milliseconds, bytes, unitPrice |
 | DELETE |/tracks/_<track_id>_ | Deletes the track with ID _<track_id>_ |
 
 #### Examples for Tracks:
 GET http://localhost/WAD-MA2/tracks  </br>
-GET http://localhost/WAD-MA2/tracks?name=Track1  </br>
 GET http://localhost/WAD-MA2/tracks/1  </br>
+GET http://localhost/WAD-MA2/tracks/?name=Track1  </br>
 POST http://localhost/WAD-MA2/tracks  </br>
 POST http://localhost/WAD-MA2/tracks/1  </br>
 DELETE http://localhost/WAD-MA2/tracks/1  </br> 
@@ -73,16 +73,16 @@ DELETE http://localhost/WAD-MA2/tracks/1  </br>
 | Method | Usage        | Description                         |
 | ------ |:------------ |:----------------------------------- |
 | GET    |/customers | Returns information of all customers |
-| GET    |/customers?email=_<search_text>_ | Returns information of those customers whose email is _<search_text>_ |
 | GET    |/customers/_<customer_id>_ | Returns detailed information of the customer with ID _<customer_id>_ |
+| GET    |/customers/?email=_<search_text>_ | Returns information of those customers whose email is _<search_text>_ |
 | POST   |/customers <br><br><br>Request body | Adds a new customer<br><br>firstName, lastName, password, company, address, city, state, country, postalCode, phone, fax, email |
 | POST   |/customers/_<customer_id>_<br><br><br>Request body<br> | Updates the customer with ID _<customer_id>_<br><br>firstName, lastName, password, company, address, city, state, country, postalCode, phone, fax, email |
 | DELETE |/customers/_<customer_id>_ | Deletes the customer with ID _<customer_id>_ |
 
 #### Examples for Customers:
 GET http://localhost/WAD-MA2/customers  </br>
-GET http://localhost/WAD-MA2/customers?email=email@gmail.com  </br>
 GET http://localhost/WAD-MA2/customers/1  </br>
+GET http://localhost/WAD-MA2/customers/?email=name@gmail.com  </br>
 POST http://localhost/WAD-MA2/customers  </br>
 POST http://localhost/WAD-MA2/customers/1  </br>
 DELETE http://localhost/WAD-MA2/customers/1  </br> 
