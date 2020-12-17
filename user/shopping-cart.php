@@ -65,6 +65,15 @@
             <span>Total Price: </span>
             <span id="purchaseTotalPrice"></span>
         </p>
+
+        <button type="button" class="btn btn-success mb-2 purchaseModal" id="btnPurchase" data-toggle='modal' data-target='#modal'>Purchase Tracks</button>
+        
+        <!-- Hidden form to reset the Session varaible (delete Tracks from Shopping Cart) -->
+        <form hidden id="frmCreateArtist" action="../user/shopping-cart.php" method="POST">
+            <input type='hidden' name='reset' value='reset'>
+            <button type="submit" id="resetPurchaseCart">Confirm Purchase</button>
+        </form>
+
         <section id="results">
         </section>
 
