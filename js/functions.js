@@ -465,6 +465,59 @@ function showModal(action, itemId = 0, data = []) {
                     </form>`
                 }))
             break;
+
+        // ******************************************************
+        // ***              CUSTOMER Functionality            ***
+        // ******************************************************
+
+        case 'createCustomer': 
+            $("#modalTitle").html("Create Customer");           
+            elem.append($("<div />", { "class": "", "html": 
+                    `
+                    <form id="frmCreateCustomer" method="POST">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="text" required>
+                        </br>
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="text" required>
+                        </br>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="text" required>
+                        </br>
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="text" required>
+                        </br>
+
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="text" required>
+                        </br>
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="text" required>
+                        </br>
+                        <label for="state">State</label>
+                        <input type="text" id="state" name="text" required>
+                        </br>
+                        <label for="country">Country</label>
+                        <input type="text" id="country" name="text" required>
+                        </br>
+
+                        <label for="postalCode">Postal Code</label>
+                        <input type="text" id="postalCode" name="text" required>
+                        </br>
+                        <label for="fax">Fax</label>
+                        <input type="text" id="fax" name="text" required>
+                        </br>
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone" name="text" required>
+                        </br>
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="text" required>
+                        </br>
+                        <button type="button" class="btn btn-success mb-2 createCustomer" id="btnCreateCustomer" data-dismiss="modal">Create Customer</button>
+                    </form>
+                    `
+                }))
+            break;
     
         // ******************************************************
         // ***              PURCHASE Functionality            ***
