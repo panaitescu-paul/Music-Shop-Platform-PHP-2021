@@ -1,4 +1,4 @@
-// TODO: add if(id == null)..... to check if the paramerters enters from front end are valid on each Ajax call
+// TODO: add if(id == null)..... to check if the parameters enterd from Front End are valid on each Ajax call
 
 /**
  * Ajax calls that consume the RESTFUL API
@@ -8,119 +8,14 @@
  */
 "use strict";
 
-// ******************************************************
-// ***                                                ***
-// ***                Login Functionality             ***
-// ***                                                ***
-// ******************************************************
-
 $(document).ready(function() {
+    // Local version
     URL = "http://localhost/WAD-MA2";
+    // // AWS version
     // URL = "http://chinook-env.eba-a22nb3p8.us-east-1.elasticbeanstalk.com/src/api.php";
 
-    // // Add a user - Sign Up
-    // $("#frmAddUser").on("submit", function(e) {
-    //     e.preventDefault();
-    //     loadingStart();
+    pageContent();
 
-    //     let info = {
-    //         "first_name": $("#txtFirstName").val(),
-    //         "last_name": $("#txtLastName").val(),
-    //         "email": $("#txtEmail").val(),
-    //         "password": $("#txtPassword").val()
-    //     }
-
-    //     if (info["first_name"] !== null && info["last_name"] !== null &&
-    //         info["email"] !== null && info["password"] !== null) {
-    //         $.ajax({
-    //             url: "src/api.php",
-    //             type: "POST",
-    //             data: {
-    //                 entity: "user",
-    //                 action: "add",
-    //                 info: info
-    //             },
-    //             success: function(data) {
-    //                 parseInt(JSON.parse(data));
-    //                 if (parseInt(JSON.parse(data)) === -1) {
-    //                     alert("The user with email " + info["email"] + " cannot be added, because the email already exists the Database!");
-    //                 } else {
-    //                     alert("The user with email " + info["email"] + " was successfully created");
-    //                     window.location.href = "http://localhost/php/php_mysql_films_auth/login.php";
-    //                     // or die();
-    //                     exit();
-    //                 }
-    //                 loadingEnd();
-    //             }
-    //         });
-    //     }
-    // });
-
-    // Login as User
-    $("#frmSearchUser").on("submit", function(e) {
-        e.preventDefault();
-        loadingStart();
-
-        // Check if the User or Admin option was selected from the Radio buttons
-        isUserLogin = document.getElementById('loginUser').parentElement.nodeName.classList.contains('active');
-        isAdminLogin = document.getElementById('loginAdmin').parentElement.nodeName.classList.contains('active');
-        console.log("isUserLogin ", isUserLogin);
-        console.log("isAdminLogin ", isAdminLogin);
-
-        if (isUserLogin) {
-            let info = {
-                "Email": $("#txtEmail").val(),
-                "Password": $("#txtPassword").val()
-            }
-            console.log("info", info);
-    
-            if (info["Email"] !== null && info["Password"] !== null) {
-                $.ajax({
-                    url: "../src/api.php",
-                    type: "POST",
-                    data: {
-                        entity: "user",
-                        action: "search",
-                        info: info
-                    },
-                    success: function(data) {
-                        // console.log(data);
-    
-                        let pData = JSON.parse(data);
-                        console.log(pData);
-    
-                        if (pData !== false) {
-                            alert("Welcome " + pData.FirstName + ' ' + pData.LastName + ' !');
-                            window.location.href = "http://localhost/php/WAD-MA2/user/user.php";
-                            exit();
-                        } else {
-                            alert("Cound not find the User! Try again!");
-                        }
-                        loadingEnd();
-                    }
-                });
-            }
-        } else if (isAdminLogin) {
-            let info = {
-                "Password": $("#txtPassword").val()
-            }
-            console.log("info", info);
-    
-            if (info["Password"] !== null) {
-                $.ajax({
-                    url: "../src/api.php",
-                    type: "POST",
-                    data: {
-                        entity: "admin",
-                        action: "search",
-                        info: info
-                    },
-                    success: function(data) {
-                        // console.log(data);
-    
-                        let pData = JSON.parse(data);
-                        console.log(pData);
-    
                         if (pData !== false) {
                             alert("Welcome Admin !");
                             window.location.href = "http://localhost/php/WAD-MA2/admin/admin.php";
@@ -136,11 +31,11 @@ $(document).ready(function() {
         
     });
 
-// ******************************************************
-// ***                                                ***
+    // ******************************************************
+    // ***                                                ***
 // ***                Page Identification             ***
-// ***                                                ***
-// ******************************************************
+    // ***                                                ***
+    // ******************************************************
 
     // Page identification
     // TODO: Remove docuemnt.ready. Use it as a simple funciton, the parent has docuemnt.ready
@@ -176,13 +71,13 @@ $(document).ready(function() {
         } else {
             console.log("PAGE is NOT artists");
         }
-    });
+    }
 
-// ******************************************************
-// ***                                                ***
-// ***                ARTIST Functionality            ***
-// ***                                                ***
-// ******************************************************
+    // ******************************************************
+    // ***                                                ***
+    // ***                ARTIST Functionality            ***
+    // ***                                                ***
+    // ******************************************************
 
     // Open Modal - Create Artist 
     $(document).on("click", ".createArtistModal", function() {
@@ -336,11 +231,11 @@ $(document).ready(function() {
         }
     });
 
-// ******************************************************
-// ***                                                ***
-// ***                ALBUM Functionality             ***
-// ***                                                ***
-// ******************************************************
+    // ******************************************************
+    // ***                                                ***
+    // ***                ALBUM Functionality             ***
+    // ***                                                ***
+    // ******************************************************
 
     // Open Modal - Create Album 
     $(document).on("click", ".createAlbumModal", function() {
@@ -497,11 +392,11 @@ $(document).ready(function() {
         }
     });
 
-// ******************************************************
-// ***                                                ***
-// ***                TRACKS Functionality             ***
-// ***                                                ***
-// ******************************************************
+    // ******************************************************
+    // ***                                                ***
+    // ***                TRACKS Functionality            ***
+    // ***                                                ***
+    // ******************************************************
 
     // Open Modal - Create Track 
     $(document).on("click", ".createTrackModal", function() {
@@ -519,7 +414,6 @@ $(document).ready(function() {
             },
             error: function() { alert("An Error Ocured!"); }
         });
-        // showModal('updateTrack', id);
     });
 
     // Open Modal - Show Track 
@@ -699,7 +593,6 @@ $(document).ready(function() {
     $(document).on("click", ".createCustomerModal", function() {
         console.log(1);
         showModal('createCustomer');
-        // showModal('createTrack');
     });
 
     // Open Modal - Update Customer
@@ -873,10 +766,7 @@ $(document).ready(function() {
         const billingAddress = $("#billingAddress").val(); 
         let tracks = shoppingCartInfo['tracks'];
        
-        // 
-        // 
-        // TODO: make a call to purchase() without the Ajax, so the API is Restful...
-        // 
+        // TODO: make a call to purchase() without the Ajax, so the API is Restful
         // 
         if (customerId !== null ) {
             $.ajax({
@@ -960,10 +850,4 @@ $(document).ready(function() {
     function ResetShoppingCart(position) {
         $("#resetPurchaseCart").click();
     }
-
-    // // Refresh page after Adding Track  to Cart
-    // $(document).on("click", ".btnAddToChart", function(e) {
-    //     // e.preventDefault();
-    //     location.reload();
-    // });
 });
