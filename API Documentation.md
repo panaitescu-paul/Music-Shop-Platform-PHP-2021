@@ -189,6 +189,34 @@ Get Albums with the title Song
 ]
 ```
 
+Get Albums with the name Radio Song
+
+```json
+[
+    {
+        "TrackId": "1472",
+        "Name": "Radio Song",
+        "AlbumId": "119",
+        "MediaTypeId": "1",
+        "GenreId": "4",
+        "Composer": "C. Cester/C. Muncey/N. Cester",
+        "Milliseconds": "272117",
+        "Bytes": "8871509",
+        "UnitPrice": "0.99"
+    },
+    {
+        "TrackId": "2284",
+        "Name": "Radio Song",
+        "AlbumId": "187",
+        "MediaTypeId": "1",
+        "GenreId": "4",
+        "Composer": "Bill Berry/Michael Stipe/Mike Mills/Peter Buck",
+        "Milliseconds": "255477",
+        "Bytes": "8421172",
+        "UnitPrice": "0.99"
+    }
+]
+```
 
 
 #### Author:
