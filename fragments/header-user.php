@@ -39,23 +39,25 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="/WAD-MA2/user/library-tracks.php">Library <span class="sr-only">(current)</span></a>
+                <a class="btn btn-primary btnNav" href="/WAD-MA2/user/library-tracks.php">Library <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/WAD-MA2/user/shopping-cart.php">Cart</a>
+                <a class="btn btn-primary btnNav" href="/WAD-MA2/user/shopping-cart.php">Cart</a>
             </li>
+            <!-- <li class="nav-item"> -->
+                <button class="btn btn-primary mb-2 createCustomerModal btnNav" data-toggle='modal' data-target='#modal'>Sign Up</button>
+            <!-- </li> -->
             <li class="nav-item">
-                <button class="btn btn-success mb-2 createCustomerModal btnNav" data-toggle='modal' data-target='#modal'>Sign Up</button>
-            </li>
-            <li class="nav-item">
-                <button class="btn btn-success mb-2 updateCustomerModal btnNav" data-toggle='modal' data-target='#modal'>Profile</button>
+                <button class="btn btn-primary mb-2 updateCustomerModal btnNav" data-toggle='modal' data-target='#modal'>Profile</button>
             </li>
         </div>
         <span class="navbar-text">
+            <span class="navName"><?php echo $firstName . ' ' . $lastName . ' '; ?></span>
+        </span>
+        <span class="navbar-text">
             <form id="frmLogout" action="../auth/login.php" method="POST">
-                <span><?php echo $firstName . ' ' . $lastName . ' '; ?></span>
                 <input type="hidden" name="logout" value="logout">
-                <button type="submit" id="btnLogOut" class="btn btn-success mb-2 btnNav" data-toggle='modal' data-target='#modal'>Log Out</button>
+                <button type="submit" id="btnLogOut" class="btn btn-primary mb-2 btnNav" data-toggle='modal' data-target='#modal'>Log Out</button>
              </form>
         </span>
     </nav>
