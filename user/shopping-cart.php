@@ -42,8 +42,14 @@
         print_r($_SESSION['ShoppingCart']);
     ?>
     <script type="text/javascript">
-        var shoppingCart = <?php echo json_encode($_SESSION['ShoppingCart']); ?>;
-        console.log(shoppingCart);
+        // Send Session data to JS 
+        var shoppingCartInfo = {
+            tracks: <?php echo json_encode($_SESSION['ShoppingCart']); ?>,
+            userID: <?php echo json_encode($_SESSION['userID']); ?>,
+            firstName: <?php echo json_encode($_SESSION['firstName']); ?>,
+            lastName: <?php echo json_encode($_SESSION['lastName']); ?>,
+            email: <?php echo json_encode($_SESSION['email']); ?>
+        }
     </script>
 
     <!-- Sidebar navigation -->
