@@ -16,6 +16,7 @@
 
 $(document).ready(function() {
     URL = "http://localhost/WAD-MA2";
+    // URL = "http://chinook-env.eba-a22nb3p8.us-east-1.elasticbeanstalk.com/src/api.php";
 
     // // Add a user - Sign Up
     // $("#frmAddUser").on("submit", function(e) {
@@ -167,9 +168,11 @@ $(document).ready(function() {
         } else if (page === "library-tracks.php") {
             console.log("PAGE library-tracks");
             ShowAllTracks('customer');
+            GetPurchasePrice(shoppingCartInfo['tracks']);
         } else if (page === "shopping-cart.php") {
             console.log("PAGE shopping-cart");
-            ShowAllTracks('customer', shoppingCart);
+            ShowAllTracks('customer', shoppingCartInfo['tracks']);
+            GetPurchasePrice(shoppingCartInfo['tracks']);
         } else {
             console.log("PAGE is NOT artists");
         }
@@ -218,6 +221,7 @@ $(document).ready(function() {
             url: URL + "/artists",
             type: "GET",
             success: function(data) {
+                console.log();
                 if (user == 'customer') {
                     displayArtists(data, 'customer');
                 } else {
@@ -684,11 +688,30 @@ $(document).ready(function() {
         }
     });
 
-// ******************************************************
-// ***                                                ***
-// ***                Scrolling Functionality         ***
-// ***                                                ***
-// ******************************************************
+    // ******************************************************
+    // ***                                                ***
+    // ***              Purchase Functionality            ***
+    // ***                                                ***
+    // ******************************************************
+
+    // Show Purchase Modal
+    $(document).on("click", ".purchaseModal", function(e) {
+        e.preventDefault();
+        const id = shoppingCartInfo['userID'];
+        $.ajax({
+            url: URL + `/customers/${id}`,
+            type: "GET",
+            success: function(data) {
+                showModal('showPurchase', 0, data);
+            },
+            error: function() { alert("An Error Ocured!"); }
+        });
+    });
+    // ******************************************************
+    // ***                                                ***
+    // ***                Scrolling Functionality         ***
+    // ***                                                ***
+    // ******************************************************
 
     // Scroll Up
     $(document).on("click", ".scrollUp", function(e) {
