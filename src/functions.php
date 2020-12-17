@@ -38,6 +38,8 @@
      * Returns the REST API description
      */
     function APIDescription() {
+        // TODO: make the description for all nodes
+
         $apiBaseUrl = 'http://{server}/WAD-MA2';
         $entityArtists = '/artists';
         // $entityFilms = '/films';
@@ -60,5 +62,4 @@
         $output['error'] = 'Incorrect format';
         return json_encode($output);
     }
-
 ?>

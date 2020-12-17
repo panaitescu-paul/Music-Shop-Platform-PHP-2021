@@ -22,7 +22,6 @@
 
 ?>
 
-
 <!-- Start of Page content -->
 <div class="container" id="page-artists">
 
@@ -84,59 +83,6 @@
         </div>
     </div>
 </div>
-
-<!-- Start of Page content -->
-<!-- <div class="container">
-
-    <h1 class="main-title">Library Albums</h1>
-    <div class="resultArea">
-        <div class="buttons">
-            <button type="button" class="btn btn-primary mb-2 btnLibrary" 
-                onclick="window.location.href='/WAD-MA2/user/library-artists.php'">Artists
-            </button>
-            <button type="button" class="btn btn-primary mb-2 btnLibrary active" 
-                onclick="window.location.href='/WAD-MA2/user/library-albums.php'">Albums
-            </button>
-            <button type="button" class="btn btn-primary mb-2 btnLibrary" 
-                onclick="window.location.href='/WAD-MA2/user/library-tracks.php'">Tracks
-            </button>
-        </div>
-        <table class="table tableList">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Artist Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>1</th>
-                    <td>Paul Panaitescu</td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>John Smith</td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>Paul Panaitescu</td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>John Smith</td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>Paul Panaitescu</td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>John Smith</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div> -->
 
 <!-- End of Page content -->
 

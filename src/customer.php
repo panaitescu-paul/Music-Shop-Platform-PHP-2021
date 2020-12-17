@@ -1,5 +1,6 @@
 <?php
 // TODO: add try and catch block to remaining nodes, and code status 500 for server error
+// TODO: return JSON objects even when successful
 
 /**
  * Customer class
@@ -369,11 +370,8 @@
          *          false if the password is not correct, or if the user (Customer/Admin) does not exist
          */
         function login($email, $password, $isAdmin = 0) {
-            // echo 'inside Login ';
             if ($isAdmin) { // Validation for Admin
                 debug('Password validation for Admin');
-                // echo 'inside Login Admin ';
-
     
                 // Get user data
                 $query = <<<'SQL'
@@ -397,8 +395,6 @@
             
             } else { // Validation for Customer
                 debug('Password validation for Customer');
-                // echo 'inside Login Customer ';
-
     
                 // Get user data
                 $query = <<<'SQL'
@@ -511,7 +507,6 @@
                 SQL;
 
                 $stmt = $this->pdo->prepare($query);
-
                 $stmt->execute([$customer['CustomerId'], $date, $billingAddress, $customer['City'], 
                                 $customer['State'], $customer['Country'], $customer['PostalCode'], $totalPrice]);
                 $invoiceID = $this->pdo->lastInsertId();

@@ -34,9 +34,6 @@
 
     <h1 class="main-title">Library Artists</h1>
     <div class="resultArea">
-        <!-- <button type="button" class="btn btn-success mb-2 createArtistModal" 
-                id="btnAdd" data-toggle='modal' data-target='#modal'>Create Artist</button> -->
-        <!-- <button type="button" class="btn btn-success mb-2" id="btnShowArtists">Show All Artists</button> -->
         <label for="txtName" id="txtNameLabel">Artist Name</label>
         <input type="text" id="searchArtistName" name="Name" required>
         <button type="button" class="btn btn-success mb-2" id="btnSearchArtist">Search Artist</button>
@@ -85,58 +82,6 @@
         </div>
     </div>
 </div>
-
-<!-- Start of Page content -->
-<!-- <div class="container">
-    <h1 class="main-title">Library Artists</h1>
-    <div class="resultArea">
-        <div class="buttons">
-            <button type="button" class="btn btn-primary mb-2 btnLibrary  active" 
-                onclick="window.location.href='/WAD-MA2/user/library-artists.php'">Artists
-            </button>
-            <button type="button" class="btn btn-primary mb-2 btnLibrary" 
-                onclick="window.location.href='/WAD-MA2/user/library-albums.php'">Albums
-            </button>
-            <button type="button" class="btn btn-primary mb-2 btnLibrary" 
-                onclick="window.location.href='/WAD-MA2/user/library-tracks.php'">Tracks
-            </button>
-        </div>
-        <table class="table tableList">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Artist Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>1</th>
-                    <td>Paul Panaitescu</td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>John Smith</td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>Paul Panaitescu</td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>John Smith</td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>Paul Panaitescu</td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>John Smith</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div> -->
 
 <!-- End of Page content -->
 

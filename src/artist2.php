@@ -17,7 +17,6 @@
          * @return  an array with all artists and their information, 
          *          or -1 if there are no artists
          */
-        
         function getAll() {
             // Check the count of Artists
             $query = <<<'SQL'

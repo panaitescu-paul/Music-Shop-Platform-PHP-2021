@@ -1,5 +1,5 @@
 <?php
-    // Local db
+    // // Local db
     // $server = 'localhost';
     // $dbName = 'chinook_abridged';
     // $user = 'root';
