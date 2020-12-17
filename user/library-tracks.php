@@ -65,6 +65,11 @@
             </button>
         </div>
 
+        <p>
+            <span>Total Price: </span>
+            <span id="purchaseTotalPrice"></span>
+        </p>
+
         <label for="txtName" id="txtNameLabel">Track Name</label>
         <input type="text" id="searchTrackName" name="Name" required>
         </br>
