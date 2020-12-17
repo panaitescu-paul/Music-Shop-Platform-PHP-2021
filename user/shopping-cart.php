@@ -8,6 +8,11 @@
     session_start();
     debug($_SESSION);
 
+    // // // If the purchase was successful, then refresh the Shopping Cart (delete Tracks from it)
+    if (isset($_POST['reset'])) {
+        $_SESSION['ShoppingCart'] = [];
+    }
+
     if (!isset($_SESSION['userID'])) {
         header('Location: ../auth/login.php');
     }
@@ -20,12 +25,13 @@
     $lastName = $_SESSION['lastName'];
     $email = $_SESSION['email'];
 
-    // If the you removed a Track from the Shopping Cart
+    // If you removed a Track from the Shopping Cart
     if (isset($_POST['removeFromCart']) && isset($_POST['trackId'])) {
         $shoppingCart = $_SESSION['ShoppingCart'];
         $shoppingCart = array_diff($shoppingCart, array($_POST['trackId']));
         $_SESSION['ShoppingCart'] = $shoppingCart;
     }
+
 ?>
 
 
