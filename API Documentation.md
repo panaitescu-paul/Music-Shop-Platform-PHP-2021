@@ -1,5 +1,5 @@
 # WAD-Mandatory-Assignment-2
-WAD Mandatory Assignment 2
+WAD Mandatory Assignment 2 - Music Shop
 
 ## API Documentation
 
@@ -88,9 +88,9 @@ POST http://localhost/WAD-MA2/customers/1  </br>
 DELETE http://localhost/WAD-MA2/customers/1  </br> 
 
 
-#### Sample Output:
+## Sample Output:
 
-Get Artist with id 1
+### Get Artist with id 1
 
 ```json
 {
@@ -98,7 +98,7 @@ Get Artist with id 1
     "Name": "AC/DC"
 }
 ```
-Get Album with id 1
+### Get Album with id 1
 
 ```json
 {
@@ -108,7 +108,7 @@ Get Album with id 1
 }
 ```
 
-Get Track with id 1
+### Get Track with id 1
 
 ```json
 {
@@ -124,7 +124,7 @@ Get Track with id 1
 }
 ```
 
-Get Customer with id 1
+### Get Customer with id 1
 
 ```json
 {
@@ -144,7 +144,7 @@ Get Customer with id 1
 }
 ```
 
-Get Artists with the name John
+### Get Artists with the name John
 
 ```json
 [
@@ -167,7 +167,7 @@ Get Artists with the name John
 ]
 ```
 
-Get Albums with the title Song
+### Get Albums with the title Song
 
 ```json
 [
@@ -189,7 +189,7 @@ Get Albums with the title Song
 ]
 ```
 
-Get Tracks with the name Radio Song
+### Get Tracks with the name Radio Song
 
 ```json
 [
@@ -218,7 +218,7 @@ Get Tracks with the name Radio Song
 ]
 ```
 
-Get Customers with the email n@gmail.com
+### Get Customers with the email n@gmail.com
 
 ```json
 [
@@ -240,5 +240,5 @@ Get Customers with the email n@gmail.com
 ]
 ```
 
-#### Author:
+### Author:
 Paul Panaitescu
