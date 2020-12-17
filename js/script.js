@@ -16,30 +16,14 @@ $(document).ready(function() {
 
     pageContent();
 
-                        if (pData !== false) {
-                            alert("Welcome Admin !");
-                            window.location.href = "http://localhost/php/WAD-MA2/admin/admin.php";
-                            exit();
-                        } else {
-                            alert("Cound not find the Admin! Try again!");
-                        }
-                        loadingEnd();
-                    }
-                });
-            }
-        }
-        
-    });
-
     // ******************************************************
     // ***                                                ***
-// ***                Page Identification             ***
+    // ***   Page identification + Content assignment     ***
     // ***                                                ***
     // ******************************************************
 
     // Page identification
-    // TODO: Remove docuemnt.ready. Use it as a simple funciton, the parent has docuemnt.ready
-    $(document).ready(function () {
+    function pageContent() {
         // Get the current page 
         // Get the last part of the URL after the shash (/)
         let str = window.location.href;
