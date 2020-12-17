@@ -78,33 +78,43 @@
     }
 ?>
 
-<!-- Login Page start -->
-<div class="btn-group btn-group-toggle" data-toggle="buttons">
-  <label class="btn btn-primary active" id="loginUser" onclick="selectUserLogin()">
-    <input type="radio" name="options" autocomplete="off" checked> User
-  </label>
-  <label class="btn btn-primary" id="loginAdmin" onclick="selectAdminLogin()">
-    <input type="radio" name="options" autocomplete="off"> Admin
-  </label>
+
+<!-- Start of Page content -->
+<div class="container" id="page-login">
+
+    <h1 class="main-title">Login</h1>
+    <div class="resultArea" id="loginArea">
+        <div class="btn-group btn-group-toggle buttons buttonsLogin" data-toggle="buttons">
+            <button class="btn btn-primary active btnLibrary" id="loginUser" onclick="selectUserLogin()">
+                <input type="radio" name="options" autocomplete="off" checked> User
+            </button>
+            <button class="btn btn-primary" id="loginAdmin" onclick="selectAdminLogin()">
+                <input type="radio" name="options" autocomplete="off"> Admin
+            </button>
+        </div>
+
+        <form id="frmLogin" action="../auth/login.php" method="POST">
+            <div class="form-group row">
+                <label for="txtEmail" class="col-sm-2 col-form-label" id="txtEmailLabel">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" id="txtEmail" name="email" class="form-control" placeholder="Email" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="txtPassword" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" id="txtPassword" name="password"  class="form-control"placeholder="Password">
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-success" id="btnLogin">Login</button>
+        </form>
+        <div id="signup">
+            If you do not have a user, you can <a href="signup.php">sign up</a> here!
+        </div>
+    </div>
 </div>
 
-<form id="frmLogin" action="../auth/login.php" method="POST">
-    <fieldset>
-    <legend>Login</legend>
-        <label for="txtEmail" id="txtEmailLabel">Email</label>
-        <input type="email" id="txtEmail" name="email" required>
-        <br>
-        <label for="txtPassword">Password</label>
-        <input type="password" id="txtPassword" name="password" required>
-        <br>
-        <input type="submit" id="btnLogin" value="Login">
-    </fieldset>
-</form>
-<div id="signup">
-    If you do not have a user, you can <a href="signup.php">sign up</a> here!
-</div>
-
-<!-- Login Page end -->
 <!-- Footer -->
 <?php
     include_once('../fragments/footer.php')
