@@ -48,10 +48,13 @@
                 <a class="nav-link" href="/WAD-MA2/user/shopping-cart.php">Cart</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/WAD-MA2/user/sign-up.php">Sign Up</a>
+                <!-- <a class="nav-link" href="/WAD-MA2/user/sign-up.php">Sign Up</a> -->
+                <button class="btn btn-success mb-2 createCustomerModal" data-toggle='modal' data-target='#modal'>Sign Up</button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/WAD-MA2/user/profile.php">Profile</a>
+                <!-- <a class="nav-link" class="btn btn-success mb-2 updateCustomerModal" data-toggle='modal' data-target='#modal'>Profile</a> -->
+                <button class="btn btn-success mb-2 updateCustomerModal" data-toggle='modal' data-target='#modal'>Profile</button>
+
             </li>
         </div>
         <span class="navbar-text">
@@ -66,4 +69,5 @@
              </form>
         </span>
     </nav>
+
     <!-- End of Header
