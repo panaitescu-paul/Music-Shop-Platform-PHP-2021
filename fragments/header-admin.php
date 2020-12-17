@@ -44,15 +44,11 @@
             </li>
         </div>
         <span class="navbar-text">
-            <?php
-                echo $firstName . ' ' . $lastName . ' ';
-            ?>
-        </span>
-        <span class="navbar-text">
             <form id="frmLogout" action="../auth/login.php" method="POST">
+                <span><?php echo $firstName . ' ' . $lastName . ' '; ?></span>
                 <input type="hidden" name="logout" value="logout">
-                <input type="submit" id="btnLogOut" value="Log Out">&nbsp;
-             </form>
+                <button type="submit" id="btnLogOut" class="btn btn-success mb-2 btnNav" data-toggle='modal' data-target='#modal'>Log Out</button>
+            </form>
         </span>
     </nav>
     <!-- End of Header

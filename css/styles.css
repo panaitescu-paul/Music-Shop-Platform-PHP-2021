@@ -1,4 +1,3 @@
-
  .container {
     max-width: 550px !important;
     margin-top: 30px;
@@ -58,27 +57,39 @@ article.item:hover {
     width: 150px;
 }
 
+.btnNav {
+    display: block;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100px;
+}
+
+.frmLogout {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.navbar-text {
+    height: 50px;
+}
+
 .footer {
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: rgba(2, 123, 255, 1);
-    /* background-color: rgb(55, 175, 255); */
     color: white;
-    /* color: rgb(31, 28, 28); */
     text-align: center;
     height: 50px;
     line-height: 20px;
  }
 
-
  /* Table */
 
-.tableList {
+#tableList {
     margin: 30px 20px;
-    /* width: auto; */
-    /* text-align: center; */
     max-width: 470px;
 }
 
@@ -134,8 +145,6 @@ thead tr{
     display: block;
     margin-left: 5px;
     margin-right: 0px;
-    /* width: 45px;
-    height: 40px; */
     float: right;
 }
 
@@ -145,7 +154,6 @@ thead tr{
     width: 22px;
     height: 22px;
 }
-
 
 div.smallButtons {
     float: right;
@@ -164,7 +172,6 @@ img.smallButton {
     cursor: pointer;
 }
 
-
 /* Modal */
 #modalTitle {
     font-size: 2rem;
@@ -179,7 +186,6 @@ img.smallButton {
 
 .tag {
     font-weight: 700;
-    /* border: 1px solid #107df5; */
     border: 1px solid rgba(2, 123, 255, 0.7);
     border-radius: 5px;
     background-color: rgba(2, 123, 255, 0.1);
@@ -194,8 +200,6 @@ img.smallButton {
 }
 /* End Modal */
 
-
-
 /* Sidebar */
 .sidebar {
     height: 105px; 
@@ -206,7 +210,6 @@ img.smallButton {
     left: 0;
     background-color: rgb(2, 123, 255, 0.1); 
     overflow-x: hidden; /* Disable horizontal scroll */
-    /* padding-top: 20px; */
     text-align: center;
 }
 .sidebar button {
