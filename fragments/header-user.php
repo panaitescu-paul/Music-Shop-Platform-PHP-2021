@@ -39,10 +39,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="btn btn-primary btnNav" href="/WAD-MA2/user/library-tracks.php">Library <span class="sr-only">(current)</span></a>
+                <a class="btn btn-primary btnNav" href="../user/library-tracks.php">Library <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary btnNav" href="/WAD-MA2/user/shopping-cart.php">Cart</a>
+                <a class="btn btn-primary btnNav" href="../user/shopping-cart.php">Cart</a>
             </li>
                 <button class="btn btn-primary mb-2 createCustomerModal btnNav" data-toggle='modal' data-target='#modal'>Sign Up</button>
                 <button class="btn btn-primary mb-2 updateCustomerModal btnNav" data-toggle='modal' data-target='#modal'>Profile</button>

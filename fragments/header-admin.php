@@ -34,13 +34,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="btn btn-primary mb-2 btnNav" href="/WAD-MA2/admin/artists.php">Artists <span class="sr-only">(current)</span></a>
+                <a class="btn btn-primary mb-2 btnNav" href="../admin/artists.php">Artists <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary mb-2 btnNav" href="/WAD-MA2/admin/albums.php">Albums</a>
+                <a class="btn btn-primary mb-2 btnNav" href="../admin/albums.php">Albums</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary mb-2 btnNav" href="/WAD-MA2/admin/tracks.php">Tracks</a>
+                <a class="btn btn-primary mb-2 btnNav" href="../admin/tracks.php">Tracks</a>
             </li>
         </div>
         <span class="navbar-text">
