@@ -31,7 +31,6 @@
         <button type="button" class="btn btn-primary scrollDown">Down</button>
     </div>
 
-    
     <h1 class="main-title">Artists</h1>
     <div class="resultArea">
         <div class="controls">

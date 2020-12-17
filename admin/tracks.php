@@ -20,9 +20,7 @@
     $firstName = $_SESSION['firstName'];
     $lastName = $_SESSION['lastName'];
     $email = $_SESSION['email'];
-
 ?>
-
 
 <!-- Start of Page content -->
 <div class="container" id="page-artists">
