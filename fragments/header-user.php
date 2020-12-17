@@ -18,6 +18,11 @@
     $email = $_SESSION['email'];
 ?>
 
+<script type="text/javascript">
+    // Send Session data to JS 
+    var userId = <?php echo json_encode($_SESSION['userID']); ?>
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,10 +63,9 @@
             </li>
         </div>
         <span class="navbar-text">
-            <?php
-                echo $firstName . ' ' . $lastName . ' ';
-            ?>
+            <?php echo $firstName . ' ' . $lastName . ' '; ?>
         </span>
+        
         <span class="navbar-text">
             <form id="frmLogout" action="../auth/login.php" method="POST">
                 <input type="hidden" name="logout" value="logout">
