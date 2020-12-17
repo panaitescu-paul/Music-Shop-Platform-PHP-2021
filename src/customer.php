@@ -187,17 +187,20 @@
                 $stmt->execute([$firstName, $lastName, $password, $company, $address, 
                                 $city, $state, $country, $postalCode, $phone, $fax, $email]);
                 $newID = $this->pdo->lastInsertId();
-                $return = $newID;
+
+                $this->disconnect();
+                http_response_code(200);
+                return $newID;
 
             } catch (Exception $e) {
                 http_response_code(500);
-                $return = -6;
+                return -6;
                 debug($e);
             }
             
-            $this->disconnect();
-            http_response_code(200);
-            return $return;
+            // $this->disconnect();
+            // http_response_code(200);
+            // return true;
         }
 
         /**
