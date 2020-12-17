@@ -35,13 +35,14 @@
 
     <h1 class="main-title">Tracks</h1>
     <div class="resultArea">
-        <button type="button" class="btn btn-success mb-2 createTrackModal" 
-                id="btnAdd" data-toggle='modal' data-target='#modal'>Create Tracks</button>
-        <!-- <button type="button" class="btn btn-success mb-2" id="btnShowArtists">Show All Artists</button> -->
-        <label for="txtName" id="txtNameLabel">Track Name</label>
-        <input type="text" id="searchTrackName" name="Name" required>
-        </br>
-        <button type="button" class="btn btn-success mb-2" id="btnSearchTrack">Search Track</button>
+        <div class="controls">
+            <button type="button" class="btn btn-success mb-2 createTrackModal" 
+                    id="btnAdd" data-toggle='modal' data-target='#modal'>Create Tracks</button>
+            <label for="txtName" id="txtNameLabel">Track Name</label>
+            <input type="text" id="searchTrackName" name="Name" required>
+            </br>
+            <button type="button" class="btn btn-success mb-2" id="btnSearchTrack">Search Track</button>
+        </div>
         <section id="results">
         </section>
 

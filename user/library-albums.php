@@ -31,26 +31,27 @@
         <button type="button" class="btn btn-primary scrollDown">Down</button>
     </div>
 
-    <h1 class="main-title">Albums</h1>
+    <h1 class="main-title">Library Albums</h1>
     <div class="resultArea">
-        <!-- <button type="button" class="btn btn-success mb-2" id="btnShowArtists">Show All Artists</button> -->
-        <label for="txtName" id="txtNameLabel">Album Name</label>
-        <input type="text" id="searchAlbumName" name="Name" required>
-        </br>
-        <button type="button" class="btn btn-success mb-2" id="btnSearchAlbum">Search Album</button>
-
-        <div class="buttons">
-            <button type="button" class="btn btn-primary mb-2 btnLibrary" 
-                onclick="window.location.href='/WAD-MA2/user/library-artists.php'">Artists
-            </button>
-            <button type="button" class="btn btn-primary mb-2 btnLibrary active" 
-                onclick="window.location.href='/WAD-MA2/user/library-albums.php'">Albums
-            </button>
-            <button type="button" class="btn btn-primary mb-2 btnLibrary" 
-                onclick="window.location.href='/WAD-MA2/user/library-tracks.php'">Tracks
-            </button>
+        
+        <div class="controls">
+            <div class="buttons">
+                <button type="button" class="btn btn-primary mb-2 btnLibrary" 
+                    onclick="window.location.href='/WAD-MA2/user/library-artists.php'">Artists
+                </button>
+                <button type="button" class="btn btn-primary mb-2 btnLibrary active" 
+                    onclick="window.location.href='/WAD-MA2/user/library-albums.php'">Albums
+                </button>
+                <button type="button" class="btn btn-primary mb-2 btnLibrary" 
+                    onclick="window.location.href='/WAD-MA2/user/library-tracks.php'">Tracks
+                </button>
+            </div>
+            <label for="txtName" id="txtNameLabel">Album Name</label>
+            <input type="text" id="searchAlbumName" name="Name" required>
+            </br>
+            <button type="button" class="btn btn-success mb-2" id="btnSearchAlbum">Search Album</button>
         </div>
-
+        
         <section id="results">
         </section>
 

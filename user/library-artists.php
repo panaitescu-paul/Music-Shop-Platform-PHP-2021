@@ -31,23 +31,24 @@
         <button type="button" class="btn btn-primary scrollDown">Down</button>
     </div>
 
-
     <h1 class="main-title">Library Artists</h1>
     <div class="resultArea">
-        <label for="txtName" id="txtNameLabel">Artist Name</label>
-        <input type="text" id="searchArtistName" name="Name" required>
-        <button type="button" class="btn btn-success mb-2" id="btnSearchArtist">Search Artist</button>
-
-        <div class="buttons">
-            <button type="button" class="btn btn-primary mb-2 btnLibrary  active" 
-                onclick="window.location.href='/WAD-MA2/user/library-artists.php'">Artists
-            </button>
-            <button type="button" class="btn btn-primary mb-2 btnLibrary" 
-                onclick="window.location.href='/WAD-MA2/user/library-albums.php'">Albums
-            </button>
-            <button type="button" class="btn btn-primary mb-2 btnLibrary" 
-                onclick="window.location.href='/WAD-MA2/user/library-tracks.php'">Tracks
-            </button>
+       
+        <div class="controls">
+            <div class="buttons">
+                <button type="button" class="btn btn-primary mb-2 btnLibrary  active" 
+                    onclick="window.location.href='/WAD-MA2/user/library-artists.php'">Artists
+                </button>
+                <button type="button" class="btn btn-primary mb-2 btnLibrary" 
+                    onclick="window.location.href='/WAD-MA2/user/library-albums.php'">Albums
+                </button>
+                <button type="button" class="btn btn-primary mb-2 btnLibrary" 
+                    onclick="window.location.href='/WAD-MA2/user/library-tracks.php'">Tracks
+                </button>
+            </div>
+            <label for="txtName" id="txtNameLabel">Artist Name</label>
+            <input type="text" id="searchArtistName" name="Name" required>
+            <button type="button" class="btn btn-success mb-2" id="btnSearchArtist">Search Artist</button>
         </div>
         
         <section id="artistResults">

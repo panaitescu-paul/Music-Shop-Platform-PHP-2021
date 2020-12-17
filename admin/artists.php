@@ -31,14 +31,17 @@
         <button type="button" class="btn btn-primary scrollDown">Down</button>
     </div>
 
+    
     <h1 class="main-title">Artists</h1>
     <div class="resultArea">
-        <button type="button" class="btn btn-success mb-2 createArtistModal" 
-                id="btnAdd" data-toggle='modal' data-target='#modal'>Create Artist</button>
-        <!-- <button type="button" class="btn btn-success mb-2" id="btnShowArtists">Show All Artists</button> -->
-        <label for="txtName" id="txtNameLabel">Artist Name</label>
-        <input type="text" id="searchArtistName" name="Name" required>
-        <button type="button" class="btn btn-success mb-2" id="btnSearchArtist">Search Artist</button>
+        <div class="controls">
+            <button type="button" class="btn btn-success mb-2 createArtistModal" 
+                    id="btnAdd" data-toggle='modal' data-target='#modal'>Create Artist</button>
+            <label for="txtName" id="txtNameLabel">Artist Name</label>
+            <input type="text" id="searchArtistName" name="Name" required>
+            <button type="button" class="btn btn-success mb-2" id="btnSearchArtist">Search Artist</button>
+        </div>
+        
         <section id="artistResults">
         </section>
 
