@@ -471,7 +471,7 @@ function showModal(action, itemId = 0, data = []) {
         // ******************************************************
 
         case 'createCustomer': 
-            $("#modalTitle").html("Create Customer");           
+            $("#modalTitle").html("Sign Up");           
             elem.append($("<div />", { "class": "", "html": 
                     `
                     <form id="frmCreateCustomer" method="POST">
@@ -514,6 +514,61 @@ function showModal(action, itemId = 0, data = []) {
                         <input type="text" id="email" name="text" required>
                         </br>
                         <button type="button" class="btn btn-success mb-2 createCustomer" id="btnCreateCustomer" data-dismiss="modal">Create Customer</button>
+                    </form>
+                    `
+                }))
+            break;
+        case 'updateCustomer':
+            $("#modalTitle").html("Update Customer");           
+            elem.append($("<div />", { "class": "", "html": 
+                    `
+                    <form id="frmCreateCustomer" method="POST">
+                        <label for="customerId">Customer Id</label>
+                        <input type="text" id="customerId" name="text" value="` + data['CustomerId'] + `" disabled>
+                        </br>
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="text" value="` + data['FirstName'] + `" required>
+                        </br>
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="text" value="` + data['LastName'] + `" required>
+                        </br>
+
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="text" value="` + data['Company'] + `" required>
+                        </br>
+
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="text" value="` + data['Address'] + `" required>
+                        </br>
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="text" value="` + data['City'] + `" required>
+                        </br>
+                        <label for="state">State</label>
+                        <input type="text" id="state" name="text" value="` + data['State'] + `" required>
+                        </br>
+                        <label for="country">Country</label>
+                        <input type="text" id="country" name="text" value="` + data['Country'] + `" required>
+                        </br>
+
+                        <label for="postalCode">Postal Code</label>
+                        <input type="text" id="postalCode" name="text" value="` + data['PostalCode'] + `" required>
+                        </br>
+                        <label for="fax">Fax</label>
+                        <input type="text" id="fax" name="text" value="` + data['Fax'] + `" required>
+                        </br>
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone" name="text" value="` + data['Phone'] + `" required>
+                        </br>
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="text" value="` + data['Email'] + `" required>
+                        </br>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="text" value="">
+                        </br>
+                        <label for="newPassword">New Password</label>
+                        <input type="password" id="newPassword" name="text" value="">
+                        </br>
+                        <button type="button" class="btn btn-success mb-2 updateCustomer" id="btnUpdateCustomer" data-dismiss="modal">Update Customer</button>
                     </form>
                     `
                 }))
