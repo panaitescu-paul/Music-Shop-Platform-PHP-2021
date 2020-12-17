@@ -468,9 +468,8 @@
 
                 $stmt = $this->pdo->prepare($query);
                 $stmt->execute([$trackId]);                
-                $stmt->execute([$trackId]);  
                 $track = $stmt->fetch();  
-                $totalPrice = $track['UnitPrice'];
+                $totalPrice += $track['UnitPrice'];
             }
 
             // Create Invoice and InvoiceLines
@@ -530,10 +529,9 @@
                         VALUES (?, ?, ?, ?);
                     SQL;
     
-                    // if (isset($invoiceID)) {
-                        $stmt = $this->pdo->prepare($query);
-                        $stmt->execute([$invoiceID, $trackId, $track['UnitPrice'], 1]);
-                        $newID2 = $this->pdo->lastInsertId();
+                    $stmt = $this->pdo->prepare($query);
+                    $stmt->execute([$invoiceID, $trackId, $track['UnitPrice'], 1]);
+                    $newID2 = $this->pdo->lastInsertId();
                 }
                 $this->pdo->commit();
                 
