@@ -38,7 +38,8 @@
             <button type="button" class="btn btn-success mb-2 createArtistModal" 
                     id="btnAdd" data-toggle='modal' data-target='#modal'>Create Artist</button>
             <label for="txtName" id="txtNameLabel">Artist Name</label>
-            <input type="text" id="searchArtistName" name="Name" required>
+            <input type="text" id="searchArtistName" name="Name" class="form-control" required>
+            </br>
             <button type="button" class="btn btn-success mb-2" id="btnSearchArtist">Search Artist</button>
         </div>
         

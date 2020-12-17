@@ -39,7 +39,7 @@
             <button type="button" class="btn btn-success mb-2 createTrackModal" 
                     id="btnAdd" data-toggle='modal' data-target='#modal'>Create Tracks</button>
             <label for="txtName" id="txtNameLabel">Track Name</label>
-            <input type="text" id="searchTrackName" name="Name" required>
+            <input type="text" id="searchTrackName" name="Name" class="form-control" required>
             </br>
             <button type="button" class="btn btn-success mb-2" id="btnSearchTrack">Search Track</button>
         </div>

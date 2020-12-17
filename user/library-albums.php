@@ -47,7 +47,7 @@
                 </button>
             </div>
             <label for="txtName" id="txtNameLabel">Album Name</label>
-            <input type="text" id="searchAlbumName" name="Name" required>
+            <input type="text" id="searchAlbumName" name="Name" class="form-control" required>
             </br>
             <button type="button" class="btn btn-success mb-2" id="btnSearchAlbum">Search Album</button>
         </div>
