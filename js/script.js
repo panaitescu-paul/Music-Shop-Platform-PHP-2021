@@ -1,3 +1,4 @@
+// TODO: make a call to purchase() without the API, so the API is Restful
 // TODO: add if(id == null)..... to check if the parameters enterd from Front End are valid on each Ajax call
 
 /**
@@ -186,7 +187,6 @@ $(document).ready(function() {
                 success: function(data) {
                     // Show the updated List of Artists
                     ShowAllArtists();
-
                     // Scroll to the updated Artist
                     ScrollPage(e.pageY);
                 },
@@ -196,6 +196,10 @@ $(document).ready(function() {
                         alert(errorMsg);
                     },
                     409: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
+                    },
+                    500: function(data) {
                         const errorMsg = JSON.parse(data.responseText).Error;
                         alert(errorMsg);
                     }
@@ -221,6 +225,9 @@ $(document).ready(function() {
                         ShowAllArtists();
                         // Scroll to the updated Artist
                         ScrollPage(e.pageY);
+
+                        const msg = JSON.parse(data.responseText).Success;
+                        alert(msg);
                     },
                     statusCode: {
                         404: function(data) {
@@ -228,6 +235,10 @@ $(document).ready(function() {
                             alert(errorMsg);
                         },
                         409: function(data) {
+                            const errorMsg = JSON.parse(data.responseText).Error;
+                            alert(errorMsg);
+                        },
+                        500: function(data) {
                             const errorMsg = JSON.parse(data.responseText).Error;
                             alert(errorMsg);
                         }
@@ -258,7 +269,12 @@ $(document).ready(function() {
                 console.log(data);
                 showModal('updateAlbum', id, data);
             },
-            error: function() { alert("An Error Ocured!"); }
+            statusCode: {
+                404: function(data) {
+                    const errorMsg = JSON.parse(data.responseText).Error;
+                    alert(errorMsg);
+                }
+            }
         });
     });
 
@@ -271,7 +287,12 @@ $(document).ready(function() {
             success: function(data) {
                 showModal('showAlbum', id, data);
             },
-            error: function() { alert("An Error Ocured!"); }
+            statusCode: {
+                404: function(data) {
+                    const errorMsg = JSON.parse(data.responseText).Error;
+                    alert(errorMsg);
+                }
+            }
         });
     });
 
@@ -287,7 +308,12 @@ $(document).ready(function() {
                     displayAlbums(data);
                 }
             },
-            error: function() { alert("An Error Ocured!"); }
+            statusCode: {
+                404: function(data) {
+                    const errorMsg = JSON.parse(data.responseText).Error;
+                    alert(errorMsg);
+                }
+            }
         });
     }
 
@@ -303,7 +329,12 @@ $(document).ready(function() {
             success: function(data) {
                 displayAlbums(data);
             },
-            error: function() { alert("An Error Ocured!"); }
+            statusCode: {
+                404: function(data) {
+                    const errorMsg = JSON.parse(data.responseText).Error;
+                    alert(errorMsg);
+                }
+            }
         });
     });
 
@@ -323,13 +354,14 @@ $(document).ready(function() {
                     ShowAllAlbums();
                     ScrollPage("bottomPage");
                 },
-                error: function() { alert("An Error Ocured!"); },
                 statusCode: {
-                    404: function() {
-                        alert("Artist with this id doesn't exist!!");
+                    404: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
                     },
-                    409: function() {
-                        alert("Album with this title already exists!");
+                    409: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
                     }
                 }
             });
@@ -356,13 +388,18 @@ $(document).ready(function() {
                     // Scroll to the updated Album
                     ScrollPage(e.pageY);
                 },
-                error: function() { alert("An Error Ocured!"); },
                 statusCode: {
-                    404: function() {
-                        alert("Album or Artist with this id doesn't exist!");
+                    404: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
                     },
-                    409: function() {
-                        alert("Album with this title already exists!");
+                    409: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
+                    },
+                    500: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
                     }
                 }
             });
@@ -384,13 +421,18 @@ $(document).ready(function() {
                         // Scroll to the deleted Album
                         ScrollPage(e.pageY);
                     },
-                    error: function() { alert("An Error Ocured!"); },
                     statusCode: {
-                        404: function() {
-                            alert("Album with this id doesn't exist!");
+                        404: function(data) {
+                            const errorMsg = JSON.parse(data.responseText).Error;
+                            alert(errorMsg);
                         },
-                        409: function() {
-                            alert("Can't delete an Album with Tracks!");
+                        409: function(data) {
+                            const errorMsg = JSON.parse(data.responseText).Error;
+                            alert(errorMsg);
+                        },
+                        500: function(data) {
+                            const errorMsg = JSON.parse(data.responseText).Error;
+                            alert(errorMsg);
                         }
                     }
                 });
@@ -418,7 +460,12 @@ $(document).ready(function() {
             success: function(data) {
                 showModal('updateTrack', id, data);
             },
-            error: function() { alert("An Error Ocured!"); }
+            statusCode: {
+                404: function(data) {
+                    const errorMsg = JSON.parse(data.responseText).Error;
+                    alert(errorMsg);
+                }
+            }
         });
     });
 
@@ -432,7 +479,12 @@ $(document).ready(function() {
             success: function(data) {
                 showModal('showTrack', id, data);
             },
-            error: function() { alert("An Error Ocured!"); }
+            statusCode: {
+                404: function(data) {
+                    const errorMsg = JSON.parse(data.responseText).Error;
+                    alert(errorMsg);
+                }
+            }
         });
     });
 
@@ -452,7 +504,12 @@ $(document).ready(function() {
                     }
                 }
             },
-            error: function() { alert("An Error Ocured!"); }
+            statusCode: {
+                404: function(data) {
+                    const errorMsg = JSON.parse(data.responseText).Error;
+                    alert(errorMsg);
+                }
+            }
         });
     }
 
@@ -468,7 +525,12 @@ $(document).ready(function() {
             success: function(data) {
                 displayTracks(data);
             },
-            error: function() { alert("An Error Ocured!"); }
+            statusCode: {
+                404: function(data) {
+                    const errorMsg = JSON.parse(data.responseText).Error;
+                    alert(errorMsg);
+                }
+            }
         });
     });
 
@@ -501,13 +563,18 @@ $(document).ready(function() {
                     ShowAllTracks('admin');
                     ScrollPage("bottomPage");
                 },
-                error: function() { alert("An Error Ocured!"); },
                 statusCode: {
-                    404: function() {
-                        alert("AlbumId, MediaTypeId, or GenreId doesn't exist");
+                    404: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
                     },
-                    409: function() {
-                        alert("Track with this name already exists!");
+                    409: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
+                    },
+                    500: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
                     }
                 }
             });
@@ -546,13 +613,18 @@ $(document).ready(function() {
                     // Scroll to the updated Track
                     ScrollPage(e.pageY);
                 },
-                error: function() { alert("An Error Ocured!"); },
                 statusCode: {
-                    404: function() {
-                        alert("TrackId, AlbumId, MediaTypeId, or GenreId doesn't exist!");
+                    404: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
                     },
-                    409: function() {
-                        alert("Track with this name already exists!");
+                    409: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
+                    },
+                    500: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
                     }
                 }
             });
@@ -575,13 +647,18 @@ $(document).ready(function() {
                         // Scroll to the deleted Track
                         ScrollPage(e.pageY);
                     },
-                    error: function() { alert("An Error Ocured!"); },
                     statusCode: {
-                        404: function() {
-                            alert("Track with this id doesn't exist!");
+                        404: function(data) {
+                            const errorMsg = JSON.parse(data.responseText).Error;
+                            alert(errorMsg);
                         },
-                        409: function() {
-                            alert("Can't delete a Track that has been Purchased (has an Invoiceline)!");
+                        409: function(data) {
+                            const errorMsg = JSON.parse(data.responseText).Error;
+                            alert(errorMsg);
+                        },
+                        500: function(data) {
+                            const errorMsg = JSON.parse(data.responseText).Error;
+                            alert(errorMsg);
                         }
                     }
                 });
@@ -611,7 +688,12 @@ $(document).ready(function() {
             success: function(data) {
                 showModal('updateCustomer', id, data);
             },
-            error: function() { alert("An Error Ocured!"); }
+            statusCode: {
+                404: function(data) {
+                    const errorMsg = JSON.parse(data.responseText).Error;
+                    alert(errorMsg);
+                }
+            }
         });
     });
 
@@ -651,10 +733,14 @@ $(document).ready(function() {
                 success: function(data) {
                     alert("Customer successfully created!");
                 },
-                error: function() { alert("An Error Ocured!"); },
                 statusCode: {
-                    409: function() {
-                        alert("FirstName, LastName, Password, or Email are not filled! Or Customer email already exists!");
+                    409: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
+                    },
+                    500: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
                     }
                 }
             });
@@ -700,13 +786,18 @@ $(document).ready(function() {
                 success: function(data) {
                     alert("Customer successfully updated!");
                 },
-                error: function() { alert("An Error Ocured!"); },
                 statusCode: {
-                    404: function() {
-                        alert("Customer email already exists!");
+                    404: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
                     },
-                    409: function() {
-                        alert("FirstName, LastName, Password, or Email are not filled! Or Customer email already exists!");
+                    409: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
+                    },
+                    500: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
                     }
                 }
             });
@@ -733,13 +824,18 @@ $(document).ready(function() {
                     alert("Customer successfully updated!");
                     alert("Password successfully changed!");
                 },
-                error: function() { alert("An Error Ocured!"); },
                 statusCode: {
-                    404: function() {
-                        alert("Customer email already exists!");
+                    404: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
                     },
-                    409: function() {
-                        alert("FirstName, LastName, Password, or Email are not filled! Or Customer email already exists!");
+                    409: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
+                    },
+                    500: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
                     }
                 }
             });
@@ -762,7 +858,12 @@ $(document).ready(function() {
             success: function(data) {
                 showModal('showPurchase', 0, data);
             },
-            error: function() { alert("An Error Ocured!"); }
+            statusCode: {
+                404: function(data) {
+                    const errorMsg = JSON.parse(data.responseText).Error;
+                    alert(errorMsg);
+                }
+            }
         });
     });
 
@@ -772,7 +873,7 @@ $(document).ready(function() {
         const billingAddress = $("#billingAddress").val(); 
         let tracks = shoppingCartInfo['tracks'];
        
-        // TODO: make a call to purchase() without the Ajax, so the API is Restful
+        // TODO: make a call to purchase() without the API, so the API is Restful
         // 
         if (customerId !== null ) {
             $.ajax({
@@ -788,13 +889,18 @@ $(document).ready(function() {
                     ResetShoppingCart();
                     ShowAllTracks('customer', shoppingCartInfo['tracks']);
                 },
-                error: function() { alert("An Error Ocured!"); },
                 statusCode: {
-                    404: function() {
-                        alert("CustomerId or TracksId don't exist!");
+                    404: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
                     },
-                    409: function() {
-                        alert("The Purchase could not be made!");
+                    // 409: function(data) {
+                    //     const errorMsg = JSON.parse(data.responseText).Error;
+                    //     alert(errorMsg);
+                    // },
+                    500: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
                     }
                 }
             });
@@ -818,7 +924,12 @@ $(document).ready(function() {
                 }
                 document.getElementById("purchaseTotalPrice").innerHTML = sum;
             },
-            error: function() { alert("An Error Ocured!"); }
+            statusCode: {
+                404: function(data) {
+                    const errorMsg = JSON.parse(data.responseText).Error;
+                    alert(errorMsg);
+                }
+            }
         });
     }
 
