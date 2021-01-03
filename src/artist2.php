@@ -14,8 +14,8 @@
         /**
          * Retrieve all artists 
          * 
-         * @return  an array with all artists and their information, 
-         *          or -1 if There are no artists in the DB!
+         * @return  an array with all Artists and their information, 
+         *          or -1 if There are no Artists in the DB!
          */
         function getAll() {
             // Check the count of Artists
@@ -29,7 +29,7 @@
                 // Artists not found
                 http_response_code(404);
                 $returnMsg = array();
-                $returnMsg['Error: -1'] = 'There are no artists in the DB!';
+                $returnMsg['Error: -1'] = 'There are no Artists in the DB!';
                 return $returnMsg;
             }
 
@@ -54,10 +54,10 @@
         }
 
         /**
-         * Retrieve artist by id 
+         * Retrieve Artist by id 
          * 
-         * @param   id of the artist
-         * @return  an artist and their information, 
+         * @param   id of the Artist
+         * @return  an Artist and their information, 
          *          or -1 if Artist with this ID was not found!
          */
         
@@ -98,10 +98,10 @@
         }
 
         /**
-         * Retrieve the artists whose name includes a certain text
+         * Retrieve the Artists whose name includes a certain text
          * 
          * @param   searchText upon which to execute the search
-         * @return  an array with artists information, 
+         * @return  an array with Artists information, 
          *          or -1 if Artists with this Name were not found!
          */
         function search($searchText) {
@@ -186,8 +186,8 @@
         /**
          * Updates an Artist
          * 
-         * @param   id - artist id
-         * @param   name - artist name
+         * @param   id - Artist id
+         * @param   name - Artist name
          * @return  Success if Artist was successfully updated! 
          *          -1 if Artist with this ID does not exist! 
          *          -2 if Artist with this Name already exists!
@@ -236,7 +236,6 @@
 
                 $stmt = $this->pdo->prepare($query);
                 $stmt->execute([$name, $id]);
-                // $return = true;
                 $returnMsg = array();
                 $returnMsg['Success'] = 'Artist was successfully updated!';
                 $return = $returnMsg;
@@ -258,10 +257,10 @@
         /**
          * Deletes an Artist
          * 
-         * @param   Id of the artist to delete
+         * @param   Id of the Artist to delete
          * @return  Success if Artist was successfully deleted! 
          *          -1 if Artist with this ID does not exist!
-         *          -2 if Artist has an Album! Can not delete! - Referential Integrity problem
+         *          -2 if Artist has one or more Albums! Can not delete! - Referential Integrity problem
          *          -3 if Artist could not be deleted!
          */
         function delete($id) {  
@@ -292,7 +291,7 @@
                 // This Artist has Albums
                 http_response_code(409);
                 $returnMsg = array();
-                $returnMsg['Error'] = 'Artist has an Album! Can not delete!';
+                $returnMsg['Error'] = 'Artist has one or more Albums! Can not delete!';
                 $returnMsg['Code'] = '-2';
                 return $returnMsg;
             }
@@ -306,7 +305,8 @@
                 SQL;
                 $stmt = $this->pdo->prepare($query);
                 $stmt->execute([$id]);
-                // $return = true;
+                
+                http_response_code(200);
                 $returnMsg = array();
                 $returnMsg['Success'] = 'Artist was successfully deleted!';
                 $return = $returnMsg;
@@ -320,7 +320,7 @@
                 debug($e);
             }
             $this->disconnect();
-            http_response_code(200);
+            // http_response_code(200);
             return $return;
         }
     }

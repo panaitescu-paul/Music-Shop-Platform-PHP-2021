@@ -15,7 +15,7 @@
          * Retrieve all Albums 
          * 
          * @return  an array with all Albums and their information, 
-         *          or -1 if there are no Albums
+         *          or -1 if There are no Albums in the DB!
          */
         function getAll() {
             // Check the count of Albums
@@ -28,7 +28,9 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Albums not found
                 http_response_code(404);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error: -1'] = 'There are no Albums in the DB!';
+                return $returnMsg;
             }
 
             // Select all Albums
@@ -39,10 +41,16 @@
 
             $stmt = $this->pdo->prepare($query);
             $stmt->execute();
-            $this->disconnect();
+            $results = $stmt->fetchAll();  
+            
+            // Sanitize the strings that come from the DB
+            foreach($results as &$result) {
+                $result['Title'] = sanitize($result['Title']);
+            }
 
+            $this->disconnect();
             http_response_code(200);
-            return $stmt->fetchAll(); 
+            return $results; 
         }
 
         /**
@@ -50,7 +58,7 @@
          * 
          * @param   id of the Album
          * @return  an Album and their information, 
-         *          or -1 if the Album was not found
+         *          or -1 if Album with this ID was not found!
          */
         function get($id) {
             // Check the count of Albums
@@ -63,7 +71,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Albums not found
                 http_response_code(404);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Album with this ID was not found!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Search Albums
@@ -74,11 +85,15 @@
             SQL;
 
             $stmt = $this->pdo->prepare($query);
-            $stmt->execute([$id]);                
-            $this->disconnect();
+            $stmt->execute([$id]);    
+            $result = $stmt->fetch();  
+            
+            // Sanitize the strings that come from the DB
+            $result['Title'] = sanitize($result['Title']);
 
+            $this->disconnect();
             http_response_code(200);
-            return $stmt->fetch();
+            return $result;
         }
 
         /**
@@ -86,7 +101,7 @@
          * 
          * @param   searchText upon which to execute the search
          * @return  an array with Albums information, 
-         *          or -1 if no Albums were found
+         *          or -1 if Albums with this Title were not found!
          */
         function search($searchText) {
             // Check the count of Albums
@@ -99,7 +114,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Albums not found
                 http_response_code(404);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Albums with this Title were not found!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Search Albums
@@ -111,11 +129,17 @@
             SQL;
 
             $stmt = $this->pdo->prepare($query);
-            $stmt->execute(['%' . $searchText . '%']);                
-            $this->disconnect();
+            $stmt->execute(['%' . $searchText . '%']); 
+            $results = $stmt->fetchAll();  
+            
+            // Sanitize the strings that come from the DB
+            foreach($results as &$result) {
+                $result['Title'] = sanitize($result['Title']);
+            }
 
+            $this->disconnect();
             http_response_code(200);
-            return $stmt->fetchAll();                
+            return $results;                
         }
         
         /**
@@ -124,8 +148,8 @@
          * @param   artistId - Artist Id
          * @param   title - Album title
          * @return  the Id of the new Album, 
-         *          -1 if the ArtistId doesn't exist, 
-         *          -2 if the Album title already exists
+         *          -1 if Artist with this ID does not exist!
+         *          -2 if Album with this Title already exists!
          */
         function create($artistId, $title) {
             // Check if there is an Artist with this id
@@ -138,7 +162,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Artist id doesn't exist
                 http_response_code(404);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Artist with this ID does not exist!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Check the count of Albums with this title
@@ -151,7 +178,10 @@
             if ($stmt->fetch()['total'] > 0) {
                 // Album title already exists
                 http_response_code(409);
-                return -2;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Album with this Title already exists!';
+                $returnMsg['Code'] = '-2';
+                return $returnMsg;
             }
 
             // Create Album
@@ -165,7 +195,9 @@
             
             $this->disconnect();
             http_response_code(200);
-            return $newID;
+            $returnMsg = array();
+            $returnMsg['newID'] = $newID;
+            return $returnMsg;
         }
 
         /**
@@ -174,16 +206,16 @@
          * @param   albumId - Album id
          * @param   title - Album title
          * @param   artistId - Artist id
-         * @return  true if success, 
-         *          -1 if the Album id doesn't exist, 
-         *          -2 if the Artist id doesn't exist, 
-         *          -3 if an Album with this title already exists
-         *          -4 if the Album could not be updated
+         * @return  Success if Album was successfully updated! 
+         *          -1 if Album with this ID does not exist! 
+         *          -2 if Artist with this ID does not exist! 
+         *          -3 if Album with this Title already exists!
+         *          -4 if Album could not be updated!
          */
         function update($albumId, $title, $artistId) {
             // Check if there is an Album with this id
             $query = <<<'SQL'
-                SELECT COUNT(*) AS total FROM Album WHERE AlbumId = ?;
+                SELECT COUNT(*) AS total FROM album WHERE AlbumId = ?;
             SQL;
             $stmt = $this->pdo->prepare($query);
             $stmt->execute([$albumId]);   
@@ -191,7 +223,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Album id doesn't exist
                 http_response_code(404);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Album with this ID does not exist!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Check if there is an Artist with this id
@@ -204,7 +239,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Artist id doesn't exist
                 http_response_code(404);
-                return -2;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Artist with this ID does not exist!';
+                $returnMsg['Code'] = '-2';
+                return $returnMsg;
             }
 
             // Check the count of Albums with this title
@@ -217,7 +255,10 @@
             if ($stmt->fetch()['total'] > 0) {
                 // Album title already exists
                 http_response_code(409);
-                return -3;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Album with this Title already exists!';
+                $returnMsg['Code'] = '-3';
+                return $returnMsg;
             }
 
             // Update Album
@@ -230,10 +271,16 @@
 
                 $stmt = $this->pdo->prepare($query);
                 $stmt->execute([$title, $artistId, $albumId]);
-                $return = true;
+                $returnMsg = array();
+                $returnMsg['Success'] = 'Album was successfully updated!';
+                $return = $returnMsg;
 
             } catch (Exception $e) {
-                $return = -4;
+                http_response_code(409);
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Album could not be updated!';
+                $returnMsg['Code'] = '-4';
+                $return = $returnMsg;
                 debug($e);
             }
 
@@ -246,10 +293,10 @@
          * Deletes an Album
          * 
          * @param   Id of the Album to delete
-         * @return  true if success, 
-         *          -1 if Album with this id doesn't exist
-         *          -2 if this Album has a Track - Referential Integrity problem
-         *          -3 if the Album could not be deleted
+         * @return  Success if Album was successfully deleted! 
+         *          -1 if Album with this ID does not exist!
+         *          -2 if Album has one or more Tracks! Can not delete! - Referential Integrity problem
+         *          -3 if Album could not be deleted!
          */
         function delete($id) {  
             // Check if there is an Album with this id
@@ -262,7 +309,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Album id doesn't exist
                 http_response_code(404);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Album with this ID does not exist!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Check if this Album has a Track
@@ -275,7 +325,10 @@
             if ($stmt->fetch()['total'] > 0) {
                 // This Album has Tracks
                 http_response_code(409);
-                return -2;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Album has one or more Tracks! Can not delete!';
+                $returnMsg['Code'] = '-2';
+                return $returnMsg;
             }
                   
             // Deletes Album
@@ -287,13 +340,22 @@
                 SQL;
                 $stmt = $this->pdo->prepare($query);
                 $stmt->execute([$id]);
-                $return = true;
+
+                http_response_code(200);
+                $returnMsg = array();
+                $returnMsg['Success'] = 'Album was successfully deleted!';
+                $return = $returnMsg;
+
             } catch (Exception $e) {
-                $return = -3;
+                http_response_code(409);
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Album could not be deleted!';
+                $returnMsg['Code'] = '-3';
+                $return = $returnMsg;
                 debug($e);
             }
             $this->disconnect();
-            http_response_code(200);
+            // http_response_code(200);
             return $return;
         }
     }
