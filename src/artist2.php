@@ -28,9 +28,9 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Artists not found
                 http_response_code(404);
-                $errorMsg = array();
-                $errorMsg['Error: -1'] = 'There are no artists in the DB';
-                return $errorMsg;
+                $returnMsg = array();
+                $returnMsg['Error: -1'] = 'There are no artists in the DB';
+                return $returnMsg;
                 // return -1;
             }
 
@@ -45,6 +45,7 @@
             $this->disconnect();
 
             http_response_code(200);
+            // return $stmt->fetchAll(); 
             return $stmt->fetchAll(); 
         }
 
@@ -68,10 +69,10 @@
                 // Artists not found
                 http_response_code(404);
                 // return -1;
-                $errorMsg = array();
-                $errorMsg['Error'] = 'Artist with this ID was not found!';
-                $errorMsg['Code'] = '-1';
-                return $errorMsg;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Artist with this ID was not found!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Search Artists
@@ -108,10 +109,10 @@
                 // Artists not found
                 http_response_code(404);
                 // return -1;
-                $errorMsg = array();
-                $errorMsg['Error'] = 'Artists with this Name were not found!';
-                $errorMsg['Code'] = '-1';
-                return $errorMsg;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Artists with this Name were not found!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Search Artists
@@ -149,10 +150,10 @@
                 // Artist name already exists
                 http_response_code(409);
                 // return -1;
-                $errorMsg = array();
-                $errorMsg['Error'] = 'Artist with this Name already exists!';
-                $errorMsg['Code'] = '-1';
-                return $errorMsg;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Artist with this Name already exists!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Create Artist
@@ -166,7 +167,10 @@
             
             $this->disconnect();
             http_response_code(200);
-            return $newID;
+            // return $newID;
+            $returnMsg = array();
+            $returnMsg['newID'] = $newID;
+            return $returnMsg;
         }
 
         /**
@@ -191,10 +195,10 @@
                 // Artist id doesn't exist
                 http_response_code(404);
                 // return -1;
-                $errorMsg = array();
-                $errorMsg['Error'] = 'Artist with this ID does not exist!';
-                $errorMsg['Code'] = '-1';
-                return $errorMsg;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Artist with this ID does not exist!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Check the count of Artists with this name
@@ -208,10 +212,10 @@
                 // Artist name already exists
                 http_response_code(409);
                 // return -2;
-                $errorMsg = array();
-                $errorMsg['Error'] = 'Artist with this Name already exists!';
-                $errorMsg['Code'] = '-2';
-                return $errorMsg;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Artist with this Name already exists!';
+                $returnMsg['Code'] = '-2';
+                return $returnMsg;
             }
 
              // Update Artist
@@ -224,15 +228,18 @@
 
                 $stmt = $this->pdo->prepare($query);
                 $stmt->execute([$name, $id]);
-                $return = true;
-
+                // $return = true;
+                $returnMsg = array();
+                $returnMsg['Success'] = 'true';
+                $return = $returnMsg;
+                
             } catch (Exception $e) {
                 http_response_code(409);
                 // $return = -3;
-                $errorMsg = array();
-                $errorMsg['Error'] = 'Artist could not be updated!';
-                $errorMsg['Code'] = '-3';
-                $return = $errorMsg;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Artist could not be updated!';
+                $returnMsg['Code'] = '-3';
+                $return = $returnMsg;
                 debug($e);
             }
 
@@ -262,10 +269,10 @@
                 // Artist id doesn't exist
                 http_response_code(404);
                 // return -1;
-                $errorMsg = array();
-                $errorMsg['Error'] = 'Artist with this ID does not exist!';
-                $errorMsg['Code'] = '-1';
-                return $errorMsg;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Artist with this ID does not exist!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Check if this Artist has an Album
@@ -279,10 +286,10 @@
                 // This Artist has Albums
                 http_response_code(409);
                 // return -2;
-                $errorMsg = array();
-                $errorMsg['Error'] = 'Artist has an Album! Can not delete!';
-                $errorMsg['Code'] = '-2';
-                return $errorMsg;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Artist has an Album! Can not delete!';
+                $returnMsg['Code'] = '-2';
+                return $returnMsg;
             }
                   
             // Deletes Artist
@@ -294,14 +301,18 @@
                 SQL;
                 $stmt = $this->pdo->prepare($query);
                 $stmt->execute([$id]);
-                $return = true;
+                // $return = true;
+                $returnMsg = array();
+                $returnMsg['Success'] = 'true';
+                $return = $returnMsg;
+
             } catch (Exception $e) {
                 http_response_code(409);
                 // $return = -3;
-                $errorMsg = array();
-                $errorMsg['Error'] = 'Artist could not be deleted!';
-                $errorMsg['Code'] = '-3';
-                $return = $errorMsg;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Artist could not be deleted!';
+                $returnMsg['Code'] = '-3';
+                $return = $returnMsg;
                 debug($e);
             }
             $this->disconnect();
