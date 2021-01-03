@@ -28,7 +28,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Artists not found
                 http_response_code(404);
-                return -1;
+                $errorMsg = array();
+                $errorMsg['Error: -1'] = 'There are no artists in the DB';
+                return $errorMsg;
+                // return -1;
             }
 
             // Select all Artists
