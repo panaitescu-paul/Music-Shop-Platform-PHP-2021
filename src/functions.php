@@ -51,7 +51,7 @@
         $apiDescription['add-artist'] = array('method' => 'POST', 'url' => $apiBaseUrl . $entityArtists, 'request-body' => array('name' => ''));
         $apiDescription['update-artist'] = array('method' => 'POST', 'url' => $apiBaseUrl . $entityArtists . '/{artist-id}', 'request-body' => array('name' => ''));
         $apiDescription['delete-artist'] = array('method' => 'DELETE', 'url' => $apiBaseUrl . $entityArtists . '/{artist-id}');
-
+        http_response_code(200);
         return json_encode($apiDescription);
     }
 
@@ -59,7 +59,21 @@
      * Returns a format error
      */
     function formatError() {
-        $output['error'] = 'Incorrect format';
+        $output['Error'] = 'Incorrect URL format';
+        http_response_code(400);
         return json_encode($output);
     }
+
+    /**
+     * Sanitizes a string
+     */
+    function sanitize($text) {
+        return htmlspecialchars($text, ENT_COMPAT|ENT_HTML5, 'UTF-8', false); 
+        // ENT_COMPAT converts double quotes to entities
+        // ENT_HTML5 treats the output as HTML5
+        // 'UTF-8' sets the encoding to UTF-8
+        // false turns off the double encoding of HTML character entities
+        //       e.g., &amp; will not become &amp;amp;
+    }
+    
 ?>
