@@ -117,7 +117,12 @@ $(document).ready(function() {
                     displayArtists(data);
                 }
             },
-            error: function() { alert("An Error Ocured!"); }
+            statusCode: {
+                404: function(data) {
+                    const errorMsg = JSON.parse(data.responseText).Error;
+                    alert(errorMsg);
+                }
+            }
         });
     }
 
