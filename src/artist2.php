@@ -207,7 +207,11 @@
             if ($stmt->fetch()['total'] > 0) {
                 // Artist name already exists
                 http_response_code(409);
-                return -2;
+                // return -2;
+                $errorMsg = array();
+                $errorMsg['Error'] = 'Artist with this Name already exists!';
+                $errorMsg['Code'] = '-2';
+                return $errorMsg;
             }
 
              // Update Artist
@@ -223,7 +227,12 @@
                 $return = true;
 
             } catch (Exception $e) {
-                $return = -3;
+                http_response_code(409);
+                // $return = -3;
+                $errorMsg = array();
+                $errorMsg['Error'] = 'Artist could not be updated!';
+                $errorMsg['Code'] = '-3';
+                $return = $errorMsg;
                 debug($e);
             }
 
@@ -238,7 +247,7 @@
          * @param   Id of the artist to delete
          * @return  true if success, 
          *          -1 if artist with this id doesn't exist
-         *          -2 if this artist has an Album - Referential Integrity problem
+         *          -2 if this artist has an Album! Can not delete! - Referential Integrity problem
          *          -3 if the artist could not be deleted
          */
         function delete($id) {  
@@ -252,7 +261,11 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Artist id doesn't exist
                 http_response_code(404);
-                return -1;
+                // return -1;
+                $errorMsg = array();
+                $errorMsg['Error'] = 'Artist with this ID does not exist!';
+                $errorMsg['Code'] = '-1';
+                return $errorMsg;
             }
 
             // Check if this Artist has an Album
@@ -265,7 +278,11 @@
             if ($stmt->fetch()['total'] > 0) {
                 // This Artist has Albums
                 http_response_code(409);
-                return -2;
+                // return -2;
+                $errorMsg = array();
+                $errorMsg['Error'] = 'Artist has an Album! Can not delete!';
+                $errorMsg['Code'] = '-2';
+                return $errorMsg;
             }
                   
             // Deletes Artist
@@ -279,7 +296,12 @@
                 $stmt->execute([$id]);
                 $return = true;
             } catch (Exception $e) {
-                $return = -3;
+                http_response_code(409);
+                // $return = -3;
+                $errorMsg = array();
+                $errorMsg['Error'] = 'Artist could not be deleted!';
+                $errorMsg['Code'] = '-3';
+                $return = $errorMsg;
                 debug($e);
             }
             $this->disconnect();
