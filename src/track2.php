@@ -1,5 +1,4 @@
 <?php
-// TODO: add try and catch block to remaining nodes, and code status 500 for server error
 
 /**
  * Track class
@@ -30,7 +29,8 @@
                 // Tracks not found
                 http_response_code(404);
                 $returnMsg = array();
-                $returnMsg['Error: -1'] = 'There are no Tracks in the DB!';
+                $returnMsg['Error'] = 'There are no Tracks in the DB!';
+                $returnMsg['Code'] = '-1';
                 return $returnMsg;
             }
 

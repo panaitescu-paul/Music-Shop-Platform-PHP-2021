@@ -29,7 +29,8 @@
                 // Albums not found
                 http_response_code(404);
                 $returnMsg = array();
-                $returnMsg['Error: -1'] = 'There are no Albums in the DB!';
+                $returnMsg['Error'] = 'There are no Albums in the DB!';
+                $returnMsg['Code'] = '-1';
                 return $returnMsg;
             }
 

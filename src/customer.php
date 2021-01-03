@@ -1,6 +1,4 @@
 <?php
-// TODO: add try and catch block to remaining nodes, and code status 500 for server error
-// TODO: return JSON objects even when successful
 
 /**
  * Customer class
@@ -22,7 +20,7 @@
          * Retrieve all Customers 
          * 
          * @return  an array with all Customers and their information, 
-         *          or -1 if there are no Customers
+         *          or -1 if There are no Customers in the DB!
          */
         function getAll() {
             // Check the count of Customers
@@ -35,7 +33,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Customers not found
                 http_response_code(404);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'There are no Customers in the DB!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Select all Customers
@@ -47,10 +48,24 @@
 
             $stmt = $this->pdo->prepare($query);
             $stmt->execute();
-            $this->disconnect();
+            $results = $stmt->fetchAll();  
+            
+            // Sanitize the strings that come from the DB
+            foreach($results as &$result) {
+                $result['FirstName'] = sanitize($result['FirstName']);
+                $result['LastName'] = sanitize($result['LastName']);
+                $result['Password'] = sanitize($result['Password']); // !!! Check for possible bugs !!!
+                $result['Company'] = sanitize($result['Company']);
+                $result['Address'] = sanitize($result['Address']);
+                $result['City'] = sanitize($result['City']);
+                $result['State'] = sanitize($result['State']);
+                $result['Country'] = sanitize($result['Country']);
+                $result['Email'] = sanitize($result['Email']);
+            }
 
+            $this->disconnect();
             http_response_code(200);
-            return $stmt->fetchAll(); 
+            return $results; 
         }
 
         /**
@@ -58,7 +73,7 @@
          * 
          * @param   id of the Customer
          * @return  an Customer and their information, 
-         *          or -1 if the Customer was not found
+         *          or -1 if Customer with this ID was not found!
          */
         function get($id) {
             // Check the count of Customers
@@ -71,7 +86,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Customers not found
                 http_response_code(404);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Customer with this ID was not found!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Search Customers
@@ -83,11 +101,23 @@
             SQL;
 
             $stmt = $this->pdo->prepare($query);
-            $stmt->execute([$id]);                
+            $stmt->execute([$id]); 
+            $result = $stmt->fetch();  
+            
+            // Sanitize the strings that come from the DB
+            $result['FirstName'] = sanitize($result['FirstName']);
+            $result['LastName'] = sanitize($result['LastName']);
+            $result['Password'] = sanitize($result['Password']); // !!! Check for possible bugs !!!
+            $result['Company'] = sanitize($result['Company']);
+            $result['Address'] = sanitize($result['Address']);
+            $result['City'] = sanitize($result['City']);
+            $result['State'] = sanitize($result['State']);
+            $result['Country'] = sanitize($result['Country']);
+            $result['Email'] = sanitize($result['Email']);
+            
             $this->disconnect();
-
             http_response_code(200);
-            return $stmt->fetch();
+            return $result;
         }
 
         /**
@@ -95,7 +125,7 @@
          * 
          * @param   searchText upon which to execute the search
          * @return  an array with Customers information, 
-         *          or -1 if no Customers were found
+         *          or -1 if Customers with this Email were not found!
          */
         function search($searchText) {
             // Check the count of Customers with this email
@@ -108,7 +138,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Customers not found
                 http_response_code(404);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Customers with this Email were not found!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Search Customers
@@ -117,15 +150,29 @@
                         Address, City, State, Country, PostalCode, Phone, Fax, Email
                 FROM customer
                 WHERE Email LIKE ?
-                ORDER BY Email;
+                ORDER BY CustomerId;
             SQL;
 
             $stmt = $this->pdo->prepare($query);
-            $stmt->execute(['%' . $searchText . '%']);                
-            $this->disconnect();
+            $stmt->execute(['%' . $searchText . '%']); 
+            $results = $stmt->fetchAll();  
+            
+            // Sanitize the strings that come from the DB
+            foreach($results as &$result) {
+                $result['FirstName'] = sanitize($result['FirstName']);
+                $result['LastName'] = sanitize($result['LastName']);
+                $result['Password'] = sanitize($result['Password']); // !!! Check for possible bugs !!!
+                $result['Company'] = sanitize($result['Company']);
+                $result['Address'] = sanitize($result['Address']);
+                $result['City'] = sanitize($result['City']);
+                $result['State'] = sanitize($result['State']);
+                $result['Country'] = sanitize($result['Country']);
+                $result['Email'] = sanitize($result['Email']);
+            }  
 
+            $this->disconnect();
             http_response_code(200);
-            return $stmt->fetchAll();                
+            return $results;                
         }
         
         /**
@@ -134,12 +181,12 @@
          * @param   firstName, lastName, password, company, address, 
          *          city, state, country, postalCode, phone, fax, email
          * @return  the Id of the new Customer, 
-         *          -1 if the FirstName is null
-         *          -2 if the LastName is null
-         *          -3 if the Password is null
-         *          -4 if the Email is null
-         *          -5 if the Customer email already exists
-         *          -6 if the Customer could not be created
+         *          -1 if First Name can not be null!
+         *          -2 if Last Name can not be null!
+         *          -3 if Password can not be null!
+         *          -4 if Email can not be null!
+         *          -5 if Customer with this Email already exists!
+         *          -6 if Customer could not be created!
          */
         function create($firstName, $lastName, $password, $company, 
                         $address, $city, $state, $country, $postalCode, $phone, $fax, $email) {
@@ -147,16 +194,28 @@
             //  Check if FirstName, LastName, Password, Email are null
             if ($firstName == null) {
                 http_response_code(409);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'First Name can not be null!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             } else if ($lastName == null) {
                 http_response_code(409);
-                return -2;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Last Name can not be null!';
+                $returnMsg['Code'] = '-2';
+                return $returnMsg;
             } else if ($password == null) {
                 http_response_code(409);
-                return -3;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Password can not be null!';
+                $returnMsg['Code'] = '-3';
+                return $returnMsg;
             } else if ($email == null) {
                 http_response_code(409);
-                return -4;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Email can not be null!';
+                $returnMsg['Code'] = '-4';
+                return $returnMsg;
             }
 
             // Check the count of Customers with this Email
@@ -169,7 +228,10 @@
             if ($stmt->fetch()['total'] > 0) {
                 // Customer Email already exists
                 http_response_code(409);
-                return -5;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Customer with this Email already exists!';
+                $returnMsg['Code'] = '-5';
+                return $returnMsg;
             }
             
             // Create Customer
@@ -191,15 +253,21 @@
 
                 $this->disconnect();
                 http_response_code(200);
-                return $newID;
+                $returnMsg = array();
+                $returnMsg['newID'] = $newID;
+                $return = $returnMsg;
 
             } catch (Exception $e) {
                 http_response_code(500);
-                return -6;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Customer could not be created!';
+                $returnMsg['Code'] = '-6';
+                $return = $returnMsg;
                 debug($e);
             }
             
-            // $this->disconnect();
+            $this->disconnect();
+            return $return;
             // http_response_code(200);
             // return true;
         }
@@ -209,13 +277,13 @@
          * 
          * @param   customerId, firstName, lastName, password, company, address, 
          *          city, state, country, postalCode, phone, fax, email, newPassword
-         * @return  true if success, 
-         *          -1 if the FirstName is null
-         *          -2 if the LastName is null
-         *          -3 if the Password is null
-         *          -4 if the Email is null
-         *          -5 if the Customer id doesn't exists
-         *          -6 if the Customer could not be updated
+         * @return  Success if Track was successfully updated! 
+         *          -1 if First Name can not be null!
+         *          -2 if Last Name can not be null!
+         *          -3 if Password can not be null!
+         *          -4 if Email can not be null!
+         *          -5 if Customer with this ID does not exist!
+         *          -6 if Customer could not be updated!
          */
         function update($customerId, $firstName, $lastName, $password, $company, $address, 
                         $city, $state, $country, $postalCode, $phone, $fax, $email, $newPassword) {
@@ -223,16 +291,28 @@
             //  Check if FirstName, LastName, Password, Email are null
             if ($firstName == null) {
                 http_response_code(409);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'First Name can not be null!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             } else if ($lastName == null) {
                 http_response_code(409);
-                return -2;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Last Name can not be null!';
+                $returnMsg['Code'] = '-2';
+                return $returnMsg;
             } else if ($password == null) {
                 http_response_code(409);
-                return -3;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Password can not be null!';
+                $returnMsg['Code'] = '-3';
+                return $returnMsg;
             } else if ($email == null) {
                 http_response_code(409);
-                return -4;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Email can not be null!';
+                $returnMsg['Code'] = '-4';
+                return $returnMsg;
             }
 
             // Check if there is a Customer with this id
@@ -245,12 +325,14 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Customer id doesn't exist
                 http_response_code(404);
-                return -5;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Customer with this ID does not exist!';
+                $returnMsg['Code'] = '-5';
+                return $returnMsg;
             }
 
             // Update Customer
             try {
-
                 $passwordChange = (trim($newPassword) !== '');
 
                 $query = <<<'SQL'
@@ -285,34 +367,32 @@
                                     $email, $customerId]);
                 }
 
-                // 
-                // $stmt = $this->pdo->prepare($query);
-                // $stmt->execute([$firstName, $lastName, $password, $company, $address, 
-                //                 $city, $state, $country, $postalCode, $phone, $fax, $email, $customerId]);
-                // $return = true;
-                $this->disconnect();
                 http_response_code(200);
-                return true;
+                $returnMsg = array();
+                $returnMsg['Success'] = 'Customer was successfully updated!';
+                $return = $returnMsg;
 
             } catch (Exception $e) {
                 http_response_code(500);
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Customer could not be updated!';
+                $returnMsg['Code'] = '-6';
+                $return = $returnMsg;
                 debug($e);
-                return -6;
             }
 
-            // $this->disconnect();
-            // http_response_code(200);
-            // return $return;
+            $this->disconnect();
+            return $return;
         }
 
         /**
          * Deletes a Customer
          * 
          * @param   Id of the Customer to delete
-         * @return  true if success, 
-         *          -1 if Customer with this id doesn't exist
-         *          -2 if this Customer has a Purchase (has an Invoice) - Referential Integrity problem
-         *          -3 if the Customer could not be deleted
+         * @return  Success if Customer was successfully deleted! 
+         *          -1 if Customer with this ID does not exist!
+         *          -2 if Customer has a Purchase (has one or more Invoices)! Can not delete! - Referential Integrity problem
+         *          -3 if Customer could not be deleted!
          */
         function delete($id) {  
             // Check if there is an Customer with this id
@@ -325,7 +405,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Customer id doesn't exist
                 http_response_code(404);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Customer with this ID does not exist!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Check if this Customer has an Invoice - Referential Integrity problem
@@ -338,7 +421,10 @@
             if ($stmt->fetch()['total'] > 0) {
                 // This Customer has Invoice
                 http_response_code(409);
-                return -2;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Customer has a Purchase (has one or more Invoices)! Can not delete!';
+                $returnMsg['Code'] = '-2';
+                return $returnMsg;
             }
                   
             // Deletes Customer
@@ -350,14 +436,21 @@
                 SQL;
                 $stmt = $this->pdo->prepare($query);
                 $stmt->execute([$id]);
-                $return = true;
+                
+                http_response_code(200);
+                $returnMsg = array();
+                $returnMsg['Success'] = 'Customer was successfully deleted!';
+                $return = $returnMsg;
+
             } catch (Exception $e) {
                 http_response_code(500);
-                $return = -3;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Customer could not be deleted!';
+                $returnMsg['Code'] = '-3';
+                $return = $returnMsg;
                 debug($e);
             }
             $this->disconnect();
-            http_response_code(200);
             return $return;
         }
 
