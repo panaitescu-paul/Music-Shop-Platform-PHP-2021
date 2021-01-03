@@ -476,8 +476,12 @@
                     return false;
                 }
     
-                $row = $stmt->fetch();
-    
+                $row = $stmt->fetch();  
+                // 
+                // Sanitize the strings that come from the DB
+                $row['Password'] = sanitize($row['Password']); // !!! Check for possible bugs !!!
+                // 
+
                 $this->userID = '0';
                 $this->firstName = 'Admin';
                 $this->lastName = '';
@@ -499,7 +503,13 @@
                     return false;
                 }
     
-                $row = $stmt->fetch();
+                $row = $stmt->fetch();  
+                // 
+                // Sanitize the strings that come from the DB
+                $row['FirstName'] = sanitize($row['FirstName']);
+                $row['LastName'] = sanitize($row['LastName']);
+                $row['Password'] = sanitize($row['Password']); // !!! Check for possible bugs !!!
+                // 
     
                 $this->userID = $row['CustomerId'];
                 $this->firstName = $row['FirstName'];
@@ -580,7 +590,15 @@
 
                 $stmt = $this->pdo->prepare($query);
                 $stmt->execute([$id]); 
-                $customer = $stmt->fetch();               
+                $customer = $stmt->fetch(); 
+                
+                // 
+                // Sanitize the strings that come from the DB
+                $customer['Address'] = sanitize($customer['Address']);
+                $customer['City'] = sanitize($customer['City']);
+                $customer['State'] = sanitize($customer['State']);
+                $customer['Country'] = sanitize($customer['Country']);
+                // 
 
                 // Set Address
                 if ($customBillingAddress) {
