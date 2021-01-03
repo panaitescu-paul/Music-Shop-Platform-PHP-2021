@@ -125,7 +125,7 @@
                 SELECT AlbumId, Title, ArtistId
                 FROM album
                 WHERE Title LIKE ?
-                ORDER BY Title;
+                ORDER BY AlbumId;
             SQL;
 
             $stmt = $this->pdo->prepare($query);
@@ -271,12 +271,14 @@
 
                 $stmt = $this->pdo->prepare($query);
                 $stmt->execute([$title, $artistId, $albumId]);
+
+                http_response_code(200);
                 $returnMsg = array();
                 $returnMsg['Success'] = 'Album was successfully updated!';
                 $return = $returnMsg;
 
             } catch (Exception $e) {
-                http_response_code(409);
+                http_response_code(500);
                 $returnMsg = array();
                 $returnMsg['Error'] = 'Album could not be updated!';
                 $returnMsg['Code'] = '-4';
@@ -285,7 +287,6 @@
             }
 
             $this->disconnect();
-            http_response_code(200);
             return $return;
         }
 
@@ -347,7 +348,7 @@
                 $return = $returnMsg;
 
             } catch (Exception $e) {
-                http_response_code(409);
+                http_response_code(500);
                 $returnMsg = array();
                 $returnMsg['Error'] = 'Album could not be deleted!';
                 $returnMsg['Code'] = '-3';
@@ -355,7 +356,6 @@
                 debug($e);
             }
             $this->disconnect();
-            // http_response_code(200);
             return $return;
         }
     }

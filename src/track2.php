@@ -16,7 +16,7 @@
          * Retrieve all Tracks 
          * 
          * @return  an array with all Tracks and their information, 
-         *          or -1 if there are no Tracks
+         *          or -1 if There are no Tracks in the DB!
          */
         function getAll() {
             // Check the count of Tracks
@@ -29,7 +29,9 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Tracks not found
                 http_response_code(404);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error: -1'] = 'There are no Tracks in the DB!';
+                return $returnMsg;
             }
 
             // Select all Tracks
@@ -40,10 +42,17 @@
 
             $stmt = $this->pdo->prepare($query);
             $stmt->execute();
-            $this->disconnect();
+            $results = $stmt->fetchAll();  
+            
+            // Sanitize the strings that come from the DB
+            foreach($results as &$result) {
+                $result['Name'] = sanitize($result['Name']);
+                $result['Composer'] = sanitize($result['Composer']);
+            }
 
+            $this->disconnect();
             http_response_code(200);
-            return $stmt->fetchAll(); 
+            return $results; 
         }
 
         /**
@@ -51,7 +60,7 @@
          * 
          * @param   id of the Track
          * @return  an Track and their information, 
-         *          or -1 if the Track was not found
+         *          or -1 if Track with this ID was not found!
          */
         function get($id) {
             // Check the count of Tracks
@@ -64,7 +73,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Tracks not found
                 http_response_code(404);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Track with this ID was not found!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Search Tracks
@@ -75,11 +87,16 @@
             SQL;
 
             $stmt = $this->pdo->prepare($query);
-            $stmt->execute([$id]);                
+            $stmt->execute([$id]);   
+            $result = $stmt->fetch();  
+            
+            // Sanitize the strings that come from the DB
+            $result['Name'] = sanitize($result['Name']);
+            $result['Composer'] = sanitize($result['Composer']);
+             
             $this->disconnect();
-
             http_response_code(200);
-            return $stmt->fetch();
+            return $result;
         }
 
         /**
@@ -87,7 +104,7 @@
          * 
          * @param   searchText upon which to execute the search
          * @return  an array with Tracks information, 
-         *          or -1 if no Tracks were found
+         *          or -1 if Tracks with this Name were not found!
          */
         function search($searchText) {
             // Check the count of Tracks
@@ -100,7 +117,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Tracks not found
                 http_response_code(404);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Tracks with this Name were not found!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Search Tracks
@@ -108,15 +128,22 @@
                 SELECT TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice
                 FROM track
                 WHERE Name LIKE ?
-                ORDER BY Name;
+                ORDER BY TrackId;
             SQL;
 
             $stmt = $this->pdo->prepare($query);
-            $stmt->execute(['%' . $searchText . '%']);                
-            $this->disconnect();
+            $stmt->execute(['%' . $searchText . '%']);        
+            $results = $stmt->fetchAll();  
+            
+            // Sanitize the strings that come from the DB
+            foreach($results as &$result) {
+                $result['Name'] = sanitize($result['Name']);
+                $result['Composer'] = sanitize($result['Composer']);
+            }        
 
+            $this->disconnect();
             http_response_code(200);
-            return $stmt->fetchAll();                
+            return $results;                
         }
         
         /**
@@ -131,11 +158,11 @@
          *          bytes, 
          *          unitPrice
          * @return  the Id of the new Track, 
-         *          -1 if the Track name already exists
-         *          -2 if the AlbumId doesn't exist, 
-         *          -3 if the MediaTypeId doesn't exist, 
-         *          -4 if the GenreId doesn't exist, 
-         *          -5 if the Track could not be created
+         *          -1 if Track with this Name already exists!
+         *          -2 if Album with this ID does not exist!
+         *          -3 if MediaType with this ID does not exist!
+         *          -4 if Genre with this ID does not exist! 
+         *          -5 if Track could not be created!
          */
         function create($name, $albumId, $mediaTypeId, $genreId, $composer, $milliseconds, $bytes, $unitPrice) {
             // Check the count of Tracks with this name
@@ -148,7 +175,10 @@
             if ($stmt->fetch()['total'] > 0) {
                 // Track name already exists
                 http_response_code(409);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Track with this Name already exists!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Check if there is an Album with this id
@@ -161,7 +191,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Album id doesn't exist
                 http_response_code(404);
-                return -2;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Album with this ID does not exist!';
+                $returnMsg['Code'] = '-2';
+                return $returnMsg;
             }
 
             // Check if there is an MediaType with this id
@@ -174,7 +207,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // MediaType id doesn't exist
                 http_response_code(404);
-                return -3;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'MediaType with this ID does not exist!';
+                $returnMsg['Code'] = '-3';
+                return $returnMsg;
             }
 
             // Check if there is an Genre with this id
@@ -187,7 +223,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Genre id doesn't exist
                 http_response_code(404);
-                return -4;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Genre with this ID does not exist!';
+                $returnMsg['Code'] = '-4';
+                return $returnMsg;
             }
 
             // Create Track
@@ -202,16 +241,22 @@
                 $stmt->execute([$name, $albumId, $mediaTypeId, $genreId, $composer, 
                                 $milliseconds, $bytes, $unitPrice]);
                 $newID = $this->pdo->lastInsertId();
-                $return = $newID;
+                
+                http_response_code(200);
+                $returnMsg = array();
+                $returnMsg['newID'] = $newID;
+                $return = $returnMsg;
 
             } catch (Exception $e) {
                 http_response_code(500);
-                $return = -5;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Track could not be created!';
+                $returnMsg['Code'] = '-5';
+                $return = $returnMsg;
                 debug($e);
             }
             
             $this->disconnect();
-            http_response_code(200);
             return $return;
         }
 
@@ -227,13 +272,13 @@
          *          milliseconds, 
          *          bytes, 
          *          unitPrice
-         * @return  true if success, 
-         *          -1 if the Track id doesn't exists
-         *          -2 if the Track name already exists
-         *          -3 if the AlbumId doesn't exist, 
-         *          -4 if the MediaTypeId doesn't exist, 
-         *          -5 if the GenreId doesn't exist, 
-         *          -6 if the Track could not be updated
+         * @return  Success if Track was successfully updated! 
+         *          -1 if Track with this ID does not exist!
+         *          -2 if Track with this Name already exists!
+         *          -3 if Album with this ID does not exist! 
+         *          -4 if MediaType with this ID does not exist!
+         *          -5 if Genre with this ID does not exist!
+         *          -6 if Track could not be updated!
          */
         function update($trackId, $name, $albumId, $mediaTypeId, $genreId, $composer, $milliseconds, $bytes, $unitPrice) {
             // Check if there is a Track with this id
@@ -246,7 +291,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Track id doesn't exist
                 http_response_code(404);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Track with this ID does not exist!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Check the count of Tracks with this name
@@ -259,7 +307,10 @@
             if ($stmt->fetch()['total'] > 0) {
                 // Track name already exists
                 http_response_code(409);
-                return -2;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Track with this Name already exists!';
+                $returnMsg['Code'] = '-2';
+                return $returnMsg;
             }
             
             // Check if there is an Album with this id
@@ -272,7 +323,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Album id doesn't exist
                 http_response_code(404);
-                return -3;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Album with this ID does not exist!';
+                $returnMsg['Code'] = '-3';
+                return $returnMsg;
             }
 
             // Check if there is an MediaType with this id
@@ -285,7 +339,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // MediaType id doesn't exist
                 http_response_code(404);
-                return -4;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'MediaType with this ID does not exist!';
+                $returnMsg['Code'] = '-4';
+                return $returnMsg;
             }
 
             // Check if there is an Genre with this id
@@ -298,7 +355,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Genre id doesn't exist
                 http_response_code(404);
-                return -5;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Genre with this ID does not exist!';
+                $returnMsg['Code'] = '-5';
+                return $returnMsg;
             }
            
             // Update Track
@@ -313,16 +373,22 @@
                 $stmt = $this->pdo->prepare($query);
                 $stmt->execute([$name, $albumId, $mediaTypeId, $genreId, $composer, 
                                 $milliseconds, $bytes, $unitPrice, $trackId]);
-                $return = true;
+                
+                http_response_code(200);
+                $returnMsg = array();
+                $returnMsg['Success'] = 'Track was successfully updated!';
+                $return = $returnMsg;
 
             } catch (Exception $e) {
                 http_response_code(500);
-                $return = -6;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Track could not be updated!';
+                $returnMsg['Code'] = '-6';
+                $return = $returnMsg;
                 debug($e);
             }
 
             $this->disconnect();
-            http_response_code(200);
             return $return;
         }
 
@@ -330,10 +396,10 @@
          * Deletes a Track
          * 
          * @param   Id of the Track to delete
-         * @return  true if success, 
-         *          -1 if Track with this id doesn't exist
-         *          -2 if this Track has been Purchased (has an Invoiceline) - Referential Integrity problem
-         *          -3 if the Track could not be deleted
+         * @return  Success if Track was successfully deleted! 
+         *          -1 if Track with this ID does not exist!
+         *          -2 if Track has been Purchased (has one or more Invoicelines)! Can not delete! - Referential Integrity problem
+         *          -3 if Track could not be deleted!
          */
         function delete($id) {  
             // Check if there is an Track with this id
@@ -346,7 +412,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Track id doesn't exist
                 http_response_code(404);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Track with this ID does not exist!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Check if this Track has an Invoiceline - Referential Integrity problem
@@ -359,7 +428,10 @@
             if ($stmt->fetch()['total'] > 0) {
                 // This Track has Invoicelines
                 http_response_code(409);
-                return -2;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Track has been Purchased (has one or more Invoicelines)! Can not delete!';
+                $returnMsg['Code'] = '-2';
+                return $returnMsg;
             }
                   
             // Deletes Track
@@ -371,14 +443,21 @@
                 SQL;
                 $stmt = $this->pdo->prepare($query);
                 $stmt->execute([$id]);
-                $return = true;
+
+                http_response_code(200);
+                $returnMsg = array();
+                $returnMsg['Success'] = 'Track was successfully deleted!';
+                $return = $returnMsg;
+
             } catch (Exception $e) {
                 http_response_code(500);
-                $return = -3;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Track could not be deleted!';
+                $returnMsg['Code'] = '-3';
+                $return = $returnMsg;
                 debug($e);
             }
             $this->disconnect();
-            http_response_code(200);
             return $return;
         }
     }

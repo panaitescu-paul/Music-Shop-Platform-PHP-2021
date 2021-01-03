@@ -236,12 +236,14 @@
 
                 $stmt = $this->pdo->prepare($query);
                 $stmt->execute([$name, $id]);
+
+                http_response_code(200);
                 $returnMsg = array();
                 $returnMsg['Success'] = 'Artist was successfully updated!';
                 $return = $returnMsg;
                 
             } catch (Exception $e) {
-                http_response_code(409);
+                http_response_code(500);
                 $returnMsg = array();
                 $returnMsg['Error'] = 'Artist could not be updated!';
                 $returnMsg['Code'] = '-3';
@@ -250,7 +252,6 @@
             }
 
             $this->disconnect();
-            http_response_code(200);
             return $return;
         }
 
@@ -312,7 +313,7 @@
                 $return = $returnMsg;
 
             } catch (Exception $e) {
-                http_response_code(409);
+                http_response_code(500);
                 $returnMsg = array();
                 $returnMsg['Error'] = 'Artist could not be deleted!';
                 $returnMsg['Code'] = '-3';
@@ -320,7 +321,6 @@
                 debug($e);
             }
             $this->disconnect();
-            // http_response_code(200);
             return $return;
         }
     }
