@@ -148,7 +148,11 @@
             if ($stmt->fetch()['total'] > 0) {
                 // Artist name already exists
                 http_response_code(409);
-                return -1;
+                // return -1;
+                $errorMsg = array();
+                $errorMsg['Error'] = 'Artist with this Name already exists!';
+                $errorMsg['Code'] = '-1';
+                return $errorMsg;
             }
 
             // Create Artist
