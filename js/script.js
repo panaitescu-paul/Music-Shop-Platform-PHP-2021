@@ -161,10 +161,10 @@ $(document).ready(function() {
                     ShowAllArtists();
                     ScrollPage("bottomPage");
                 },
-                error: function() { alert("An Error Ocured!"); },
                 statusCode: {
-                    409: function() {
-                        alert("Artist with this name already exists!");
+                    409: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
                     }
                 }
             });
