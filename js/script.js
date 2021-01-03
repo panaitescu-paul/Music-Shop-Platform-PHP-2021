@@ -190,13 +190,14 @@ $(document).ready(function() {
                     // Scroll to the updated Artist
                     ScrollPage(e.pageY);
                 },
-                error: function() { alert("An Error Ocured!"); },
                 statusCode: {
-                    404: function() {
-                        alert("Artist with this id doesn't exist!");
+                    404: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
                     },
-                    409: function() {
-                        alert("Artist with this name already exists!");
+                    409: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
                     }
                 }
             });
