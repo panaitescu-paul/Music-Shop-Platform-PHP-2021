@@ -107,7 +107,11 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Artists not found
                 http_response_code(404);
-                return -1;
+                // return -1;
+                $errorMsg = array();
+                $errorMsg['Error'] = 'Artists with this Name were not found!';
+                $errorMsg['Code'] = '-1';
+                return $errorMsg;
             }
 
             // Search Artists
