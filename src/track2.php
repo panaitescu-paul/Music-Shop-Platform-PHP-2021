@@ -199,7 +199,7 @@
 
             // Check if there is an MediaType with this id
             $query = <<<'SQL'
-                SELECT COUNT(*) AS total FROM mediaType WHERE MediaTypeId = ?;
+                SELECT COUNT(*) AS total FROM mediatype WHERE MediaTypeId = ?;
             SQL;
             $stmt = $this->pdo->prepare($query);
             $stmt->execute([$mediaTypeId]);   
@@ -315,7 +315,7 @@
             
             // Check if there is an Album with this id
             $query = <<<'SQL'
-                SELECT COUNT(*) AS total FROM Album WHERE AlbumId = ?;
+                SELECT COUNT(*) AS total FROM album WHERE AlbumId = ?;
             SQL;
             $stmt = $this->pdo->prepare($query);
             $stmt->execute([$albumId]);   
@@ -331,7 +331,7 @@
 
             // Check if there is an MediaType with this id
             $query = <<<'SQL'
-                SELECT COUNT(*) AS total FROM mediaType WHERE MediaTypeId = ?;
+                SELECT COUNT(*) AS total FROM mediatype WHERE MediaTypeId = ?;
             SQL;
             $stmt = $this->pdo->prepare($query);
             $stmt->execute([$mediaTypeId]);   
