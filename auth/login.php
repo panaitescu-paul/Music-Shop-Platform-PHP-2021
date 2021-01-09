@@ -103,7 +103,8 @@
             <div class="form-group row">
                 <label for="txtPassword" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-10">
-                    <input type="password" id="txtPassword" name="password"  class="form-control"placeholder="Password">
+                    <!-- Password can only have letters and numbers -->
+                    <input type="password" id="txtPassword" name="password"  class="form-control" placeholder="Password" pattern="^[a-zA-Z0-9]*$" title="Password can only have letters and numbers!">
                 </div>
             </div>
             
