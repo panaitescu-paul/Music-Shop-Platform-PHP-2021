@@ -369,15 +369,24 @@ $(document).ready(function() {
 
     // Create Album
     $(document).on("click", ".createAlbum", function() {
-        const title = $("#createAlbumTitle").val();
+        const albumTitle = $("#createAlbumTitle").val();
         const artistId = $("#createArtistId").val();
-        if (title !== null) {
+
+        if (albumTitle === null || albumTitle.length === 0) {
+            alert("The field Album Title can not be empty!");
+        } else if (artistId === null || artistId.length === 0) {
+            alert("The field Artist Id can not be empty!");
+        } else if (INVALID_TEXT.test(albumTitle)) {
+            alert("The field Album Title can not contain invalid characters!");
+        } else if (!VALID_NUMBER.test(artistId)) {
+            alert("The field Artist Id should be a number!");
+        } else {
             $.ajax({
                 url: URL + `/albums`,
                 type: "POST",
                 data: {
                     artistId: artistId,
-                    title: title
+                    title: albumTitle
                 },
                 success: function(data) {
                     ShowAllAlbums();
