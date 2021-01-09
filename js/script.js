@@ -341,11 +341,18 @@ $(document).ready(function() {
     // Search Albums by name
     $("#btnSearchAlbum").on("click", function(e) {
         e.preventDefault();
+        const albumTitle = $("#searchAlbumName").val();
+
+        if (albumTitle === null || albumTitle.length === 0) {
+            alert("The field Album Title can not be empty!");
+        } else if (INVALID_TEXT.test(albumTitle)) {
+            alert("The field Album Title can not contain invalid characters!");
+        } else {
             $.ajax({
                 url: URL + `/albums`,
                 type: "GET",
                 data: {
-                title: $("#searchAlbumName").val()
+                    title: albumTitle
                 },
                 success: function(data) {
                     displayAlbums(data);
@@ -357,6 +364,7 @@ $(document).ready(function() {
                     }
                 }
             });
+        }
     });
 
     // Create Album
