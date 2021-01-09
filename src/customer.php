@@ -543,7 +543,10 @@
             if ($stmt->fetch()['total'] == 0) {
                 // Customer id doesn't exist
                 http_response_code(404);
-                return -1;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Customer with this ID does not exist!';
+                $returnMsg['Code'] = '-1';
+                return $returnMsg;
             }
 
             // Check if there are Tracks with thise ids
@@ -557,7 +560,10 @@
                 if ($stmt->fetch()['total'] == 0) {
                     // Track id doesn't exist
                     http_response_code(404);
-                    return -2;
+                    $returnMsg = array();
+                    $returnMsg['Error'] = 'Track with this ID does not exist!';
+                    $returnMsg['Code'] = '-2';
+                    return $returnMsg;
                 }
             }
             
@@ -646,17 +652,23 @@
                     $newID2 = $this->pdo->lastInsertId();
                 }
                 $this->pdo->commit();
+
+                http_response_code(200);
+                $returnMsg = array();
+                $returnMsg['Success'] = 'Purchase was successfully completed!';
+                $return = $returnMsg;
                 
              } catch (Exception $e) {
                 $this->pdo->rollBack();
-                debug($e);
                 http_response_code(500);
-                return -3;
+                $returnMsg = array();
+                $returnMsg['Error'] = 'Purchase could not be completed!';
+                $returnMsg['Code'] = '-3';
+                $return = $returnMsg;
+                debug($e);
             }
-
             $this->disconnect();
-            http_response_code(200);
-            return 200;
+            return $return;
         }
     }
 ?>
