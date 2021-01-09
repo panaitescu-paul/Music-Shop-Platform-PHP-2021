@@ -916,6 +916,46 @@ $(document).ready(function() {
         const password = $("#password").val(); 
         const newPassword = $("#newPassword").val(); 
 
+        if (customerId === null || customerId.length === 0) {
+            alert("The field Customer Id can not be empty!");
+        } else if (firstName === null || firstName.length === 0) {
+            alert("The field First Name can not be empty!");
+        } else if (lastName === null || lastName.length === 0) {
+            alert("The field Last Name can not be empty!");
+        } else if (password === null || password.length === 0) {
+            alert("The field Password can not be empty!");
+        } else if (email === null || email.length === 0) {
+            alert("The field Email can not be empty!");
+
+        } else if (INVALID_TEXT.test(customerId)) {
+            alert("The field Customer Id can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(firstName)) {
+            alert("The field First Name can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(lastName)) {
+            alert("The field Last Name can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(password)) {
+            alert("The field Password can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(newPassword)) {
+            alert("The field New Password can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(company)) {
+            alert("The field Company can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(address)) {
+            alert("The field Address can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(city)) {
+            alert("The field City can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(state)) {
+            alert("The field State can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(country)) {
+            alert("The field Country can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(postalCode)) {
+            alert("The field Postal Code can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(phone)) {
+            alert("The field Phone can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(fax)) {
+            alert("The field Fax can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(email)) {
+            alert("The field Email can not contain invalid characters!");
+        } else {
             if (newPassword) { // Without Password Reset
                 $.ajax({
                     url: URL + `/customers/${customerId}`,
