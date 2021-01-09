@@ -680,7 +680,40 @@ $(document).ready(function() {
         const bytes = $("#updateBytes").val(); 
         const unitPrice = $("#updateUnitPrice").val();
 
-        if (trackId !== null && name !== null) {
+        if (name === null || name.length === 0) {
+            alert("The field Track Name can not be empty!");
+        } else if (albumId === null || albumId.length === 0) {
+            alert("The field Album Id can not be empty!");
+        } else if (mediaTypeId === null || mediaTypeId.length === 0) {
+            alert("The field Media Type Id can not be empty!");
+        } else if (genreId === null || genreId.length === 0) {
+            alert("The field Genre Id can not be empty!");
+        } else if (composer === null || composer.length === 0) {
+            alert("The field Composer can not be empty!");
+        } else if (milliseconds === null || milliseconds.length === 0) {
+            alert("The field Milliseconds can not be empty!");
+        } else if (bytes === null || bytes.length === 0) {
+            alert("The field Bytes can not be empty!");
+        } else if (unitPrice === null || unitPrice.length === 0) {
+            alert("The field Unit Price can not be empty!");
+        
+        } else if (INVALID_TEXT.test(name)) {
+            alert("The field Track Name can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(albumId)) {
+            alert("The field Album Id can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(mediaTypeId)) {
+            alert("The field Media Type Id can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(genreId)) {
+            alert("The field Genre Id can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(composer)) {
+            alert("The field Composer can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(milliseconds)) {
+            alert("The field Milliseconds can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(bytes)) {
+            alert("The field Bytes can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(unitPrice)) {
+            alert("The field Unit Price can not contain invalid characters!");
+        } else {
             $.ajax({
                 url: URL + `/tracks/${trackId}`,
                 type: "POST",
