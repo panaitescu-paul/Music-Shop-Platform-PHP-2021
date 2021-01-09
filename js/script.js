@@ -562,11 +562,18 @@ $(document).ready(function() {
     // Search Tracks by name
     $("#btnSearchTrack").on("click", function(e) {
         e.preventDefault();
+        const trackName = $("#searchTrackName").val();
+
+        if (trackName === null || trackName.length === 0) {
+            alert("The field Track Name can not be empty!");
+        } else if (INVALID_TEXT.test(trackName)) {
+            alert("The field Track Name can not contain invalid characters!");
+        } else {
             $.ajax({
                 url: URL + `/tracks`,
                 type: "GET",
                 data: {
-                name: $("#searchTrackName").val()
+                    name: trackName
                 },
                 success: function(data) {
                     displayTracks(data);
@@ -578,6 +585,7 @@ $(document).ready(function() {
                     }
                 }
             });
+        }
     });
 
     // Create Track
