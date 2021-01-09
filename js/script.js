@@ -136,11 +136,18 @@ $(document).ready(function() {
     // Search Artists by name
     $("#btnSearchArtist").on("click", function(e) {
         e.preventDefault();
+        const artistName = $("#searchArtistName").val();
+
+        if (artistName === null || artistName.length === 0) {
+            alert("The field Artist Name can not be empty!");
+        } else if (INVALID_TEXT.test(artistName)) {
+            alert("The field Artist Name can not contain invalid characters!");
+        } else {
             $.ajax({
                 url: URL + `/artists`,
                 type: "GET",
                 data: {
-                name: $("#searchArtistName").val()
+                    name: artistName
                 },
                 success: function(data) {
                     displayArtists(data);
@@ -152,6 +159,7 @@ $(document).ready(function() {
                     }
                 }
             });
+        }
     });
  
     // Create Artist
