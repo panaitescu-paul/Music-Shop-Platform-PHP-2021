@@ -193,15 +193,19 @@ $(document).ready(function() {
 
     // Update Artist
     $(document).on("click", ".updateArtist", function(e) {
-        const name = $("#updateArtistName").val();
+        const artistName = $("#updateArtistName").val();
         const id = $("#updateArtistName").attr("data-id");
 
-        if (name !== null && id !== null) {
+        if (artistName === null || artistName.length === 0) {
+            alert("The field Artist Name can not be empty!");
+        } else if (INVALID_TEXT.test(artistName)) {
+            alert("The field Artist Name can not contain invalid characters!");
+        } else {
             $.ajax({
                 url: URL + `/artists/${id}`,
                 type: "POST",
                 data: {
-                    name: name
+                    name: artistName
                 },
                 success: function(data) {
                     // Show the updated List of Artists
@@ -229,9 +233,7 @@ $(document).ready(function() {
 
     // Delete Artist
     $(document).on("click", ".deleteArtist", function(e) {
-        const action = 'delete';
         const id = $(this).attr("data-id");
-        console.log("action", action);
         console.log("id", id);
 
         if (confirm("Are you sure that you want to delete this Artist?")) {
