@@ -1032,6 +1032,7 @@ $(document).ready(function() {
                     }
                 });
             }
+        }
     });
 
     // ******************************************************
@@ -1065,9 +1066,19 @@ $(document).ready(function() {
         const billingAddress = $("#billingAddress").val(); 
         let tracks = shoppingCartInfo['tracks'];
        
+
         // TODO: make a call to purchase() without the API, so the API is Restful
         // 
-        if (customerId !== null ) {
+        if (customerId === null || customerId.length === 0) {
+            alert("The field Customer Id can not be empty!");
+        } else if (billingAddress === null || billingAddress.length === 0) {
+            alert("The field Billing Address can not be empty!");
+
+        } else if (INVALID_TEXT.test(customerId)) {
+            alert("The field Customer Id can not contain invalid characters!");
+        } else if (INVALID_TEXT.test(billingAddress)) {
+            alert("The field Billing Address can not contain invalid characters!");
+        } else {
             $.ajax({
                 url: URL + `/purchase`,
                 type: "POST",
