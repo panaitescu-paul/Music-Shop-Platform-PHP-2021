@@ -350,7 +350,13 @@
                         $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
                         $query .= ', Password = ?';
                     } else {
-                        return false;
+                        // return false;
+                        // Customer id doesn't exist
+                        http_response_code(409);
+                        $returnMsg = array();
+                        $returnMsg['Error'] = 'Customer email and password do not match!';
+                        $returnMsg['Code'] = '-6';
+                        return $returnMsg;
                     }
                 }
                 $query .= ' WHERE CustomerId = ?;';
@@ -377,7 +383,7 @@
                 http_response_code(500);
                 $returnMsg = array();
                 $returnMsg['Error'] = 'Customer could not be updated!';
-                $returnMsg['Code'] = '-6';
+                $returnMsg['Code'] = '-7';
                 $return = $returnMsg;
                 debug($e);
             }
