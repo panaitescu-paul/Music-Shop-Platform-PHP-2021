@@ -409,15 +409,23 @@ $(document).ready(function() {
     // Update Album
     $(document).on("click", ".updateAlbum", function(e) {
         const albumId = $("#updateAlbumId").attr("data-id");
-        const title = $("#updateAlbumTitle").val();
+        const albumTitle = $("#updateAlbumTitle").val();
         const artistId = $("#updateArtisId").val();
 
-        if (albumId !== null && title !== null && artistId !== null) {
+        if (albumTitle === null || albumTitle.length === 0) {
+            alert("The field Album Title can not be empty!");
+        } else if (artistId === null || artistId.length === 0) {
+            alert("The field Artist Id can not be empty!");
+        } else if (INVALID_TEXT.test(albumTitle)) {
+            alert("The field Album Title can not contain invalid characters!");
+        } else if (!VALID_NUMBER.test(artistId)) {
+            alert("The field Artist Id should be a number!");
+        } else {
             $.ajax({
                 url: URL + `/albums/${albumId}`,
                 type: "POST",
                 data: {
-                    title: title,
+                    title: albumTitle,
                     artistId: artistId,
                 },
                 success: function(data) {
