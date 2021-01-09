@@ -968,3 +968,6 @@ $(document).ready(function() {
         $("#resetPurchaseCart").click();
     }
 });
+
+
+// 
