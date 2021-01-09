@@ -15,6 +15,12 @@ $(document).ready(function() {
     // // AWS version
     // URL = "http://musicshop-env.eba-j5assrnn.us-east-1.elasticbeanstalk.com/src/api2.php";
 
+    // 
+    
+    // const INVALID_TEXT = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    const INVALID_TEXT = /[`!@#$%^&*_+\=\[\]{};"\\|<>\/?~]/;
+    const VALID_NUMBER = /^\d+$/;
+        
     pageContent();
 
     // ******************************************************
@@ -130,22 +136,22 @@ $(document).ready(function() {
     // Search Artists by name
     $("#btnSearchArtist").on("click", function(e) {
         e.preventDefault();
-        $.ajax({
-            url: URL + `/artists`,
-            type: "GET",
-            data: {
+            $.ajax({
+                url: URL + `/artists`,
+                type: "GET",
+                data: {
                 name: $("#searchArtistName").val()
-            },
-            success: function(data) {
-                displayArtists(data);
-            },
-            statusCode: {
-                404: function(data) {
-                    const errorMsg = JSON.parse(data.responseText).Error;
-                    alert(errorMsg);
+                },
+                success: function(data) {
+                    displayArtists(data);
+                },
+                statusCode: {
+                    404: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
+                    }
                 }
-            }
-        });
+            });
     });
  
     // Create Artist
@@ -320,22 +326,22 @@ $(document).ready(function() {
     // Search Albums by name
     $("#btnSearchAlbum").on("click", function(e) {
         e.preventDefault();
-        $.ajax({
-            url: URL + `/albums`,
-            type: "GET",
-            data: {
+            $.ajax({
+                url: URL + `/albums`,
+                type: "GET",
+                data: {
                 title: $("#searchAlbumName").val()
-            },
-            success: function(data) {
-                displayAlbums(data);
-            },
-            statusCode: {
-                404: function(data) {
-                    const errorMsg = JSON.parse(data.responseText).Error;
-                    alert(errorMsg);
+                },
+                success: function(data) {
+                    displayAlbums(data);
+                },
+                statusCode: {
+                    404: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
+                    }
                 }
-            }
-        });
+            });
     });
 
     // Create Album
@@ -516,22 +522,22 @@ $(document).ready(function() {
     // Search Tracks by name
     $("#btnSearchTrack").on("click", function(e) {
         e.preventDefault();
-        $.ajax({
-            url: URL + `/tracks`,
-            type: "GET",
-            data: {
+            $.ajax({
+                url: URL + `/tracks`,
+                type: "GET",
+                data: {
                 name: $("#searchTrackName").val()
-            },
-            success: function(data) {
-                displayTracks(data);
-            },
-            statusCode: {
-                404: function(data) {
-                    const errorMsg = JSON.parse(data.responseText).Error;
-                    alert(errorMsg);
+                },
+                success: function(data) {
+                    displayTracks(data);
+                },
+                statusCode: {
+                    404: function(data) {
+                        const errorMsg = JSON.parse(data.responseText).Error;
+                        alert(errorMsg);
+                    }
                 }
-            }
-        });
+            });
     });
 
     // Create Track
@@ -764,82 +770,82 @@ $(document).ready(function() {
         const password = $("#password").val(); 
         const newPassword = $("#newPassword").val(); 
 
-        if (newPassword) { // Without Password Reset
-            $.ajax({
-                url: URL + `/customers/${customerId}`,
-                type: "POST",
-                data: {
-                    firstName: firstName,
-                    lastName: lastName,
-                    password: password,
-                    company: company,
-                    address: address,
-                    city: city,
-                    state: state,
-                    country: country,
-                    postalCode: postalCode,
-                    phone: phone,
-                    fax: fax,
-                    email: email,
-                    newPassword: newPassword
-                },
-                success: function(data) {
-                    alert("Customer successfully updated!");
-                },
-                statusCode: {
-                    404: function(data) {
-                        const errorMsg = JSON.parse(data.responseText).Error;
-                        alert(errorMsg);
+            if (newPassword) { // Without Password Reset
+                $.ajax({
+                    url: URL + `/customers/${customerId}`,
+                    type: "POST",
+                    data: {
+                        firstName: firstName,
+                        lastName: lastName,
+                        password: password,
+                        company: company,
+                        address: address,
+                        city: city,
+                        state: state,
+                        country: country,
+                        postalCode: postalCode,
+                        phone: phone,
+                        fax: fax,
+                        email: email,
+                        newPassword: newPassword
                     },
-                    409: function(data) {
-                        const errorMsg = JSON.parse(data.responseText).Error;
-                        alert(errorMsg);
+                    success: function(data) {
+                        alert("Customer successfully updated!");
                     },
-                    500: function(data) {
-                        const errorMsg = JSON.parse(data.responseText).Error;
-                        alert(errorMsg);
+                    statusCode: {
+                        404: function(data) {
+                            const errorMsg = JSON.parse(data.responseText).Error;
+                            alert(errorMsg);
+                        },
+                        409: function(data) {
+                            const errorMsg = JSON.parse(data.responseText).Error;
+                            alert(errorMsg);
+                        },
+                        500: function(data) {
+                            const errorMsg = JSON.parse(data.responseText).Error;
+                            alert(errorMsg);
+                        }
                     }
-                }
-            });
-        } else { // With Password Reset
-            $.ajax({
-                url: URL + `/customers/${customerId}`,
-                type: "POST",
-                data: {
-                    firstName: firstName,
-                    lastName: lastName,
-                    password: password,
-                    company: company,
-                    address: address,
-                    city: city,
-                    state: state,
-                    country: country,
-                    postalCode: postalCode,
-                    phone: phone,
-                    fax: fax,
-                    email: email,
-                    newPassword: newPassword
-                },
-                success: function(data) {
-                    alert("Customer successfully updated!");
-                    alert("Password successfully changed!");
-                },
-                statusCode: {
-                    404: function(data) {
-                        const errorMsg = JSON.parse(data.responseText).Error;
-                        alert(errorMsg);
+                });
+            } else { // With Password Reset
+                $.ajax({
+                    url: URL + `/customers/${customerId}`,
+                    type: "POST",
+                    data: {
+                        firstName: firstName,
+                        lastName: lastName,
+                        password: password,
+                        company: company,
+                        address: address,
+                        city: city,
+                        state: state,
+                        country: country,
+                        postalCode: postalCode,
+                        phone: phone,
+                        fax: fax,
+                        email: email,
+                        newPassword: newPassword
                     },
-                    409: function(data) {
-                        const errorMsg = JSON.parse(data.responseText).Error;
-                        alert(errorMsg);
+                    success: function(data) {
+                        alert("Customer successfully updated!");
+                        alert("Password successfully changed!");
                     },
-                    500: function(data) {
-                        const errorMsg = JSON.parse(data.responseText).Error;
-                        alert(errorMsg);
+                    statusCode: {
+                        404: function(data) {
+                            const errorMsg = JSON.parse(data.responseText).Error;
+                            alert(errorMsg);
+                        },
+                        409: function(data) {
+                            const errorMsg = JSON.parse(data.responseText).Error;
+                            alert(errorMsg);
+                        },
+                        500: function(data) {
+                            const errorMsg = JSON.parse(data.responseText).Error;
+                            alert(errorMsg);
+                        }
                     }
-                }
-            });
-        }
+                });
+            }
     });
 
     // ******************************************************
