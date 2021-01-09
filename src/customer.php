@@ -283,7 +283,8 @@
          *          -3 if Password can not be null!
          *          -4 if Email can not be null!
          *          -5 if Customer with this ID does not exist!
-         *          -6 if Customer could not be updated!
+         *          -6 if Customer email and password do not match!
+         *          -7 if Customer could not be updated!
          */
         function update($customerId, $firstName, $lastName, $password, $company, $address, 
                         $city, $state, $country, $postalCode, $phone, $fax, $email, $newPassword) {
@@ -527,10 +528,10 @@
          * @param   id - Customer's Id
          *          tracks - the id of the purchased tracks
          *          customBillingAddress - Customer's Billing Address (false by default)
-         * @return  true if the Purchase was successful, 
-         *          -1 if Customer with this id doesn't exist
-         *          -2 if Tracks with this id do not exist
-         *          -3 if the Purchase could not be made
+         * @return  Success if Purchase was successfully completed!  
+         *          -1 if Customer with this ID does not exist!
+         *          -2 if Track with this ID does not exist!
+         *          -3 if Purchase could not be completed!
          */
         function purchase($id, $customBillingAddress = false, $tracks) {
             // Check if there is a Customer with this id
