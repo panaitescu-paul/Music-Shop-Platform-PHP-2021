@@ -96,7 +96,8 @@
             <div class="form-group row">
                 <label for="txtEmail" class="col-sm-2 col-form-label" id="txtEmailLabel">Email</label>
                 <div class="col-sm-10">
-                    <input type="email" id="txtEmail" name="email" class="form-control" placeholder="Email" required>
+                    <!-- Email example to match pattern: email@gmail.com -->
+                    <input type="email" id="txtEmail" name="email" class="form-control" placeholder="Email" title="Email should match the pattern: email@gmail.com !" required>
                 </div>
             </div>
             <div class="form-group row">
