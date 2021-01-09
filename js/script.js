@@ -164,13 +164,18 @@ $(document).ready(function() {
  
     // Create Artist
     $(document).on("click", ".createArtist", function() {
-        const name = $("#createArtistName").val();
-        if (name !== null) {
+        const artistName = $("#createArtistName").val();
+        
+        if (artistName === null || artistName.length === 0) {
+            alert("The field Artist Name can not be empty!");
+        } else if (INVALID_TEXT.test(artistName)) {
+            alert("The field Artist Name can not contain invalid characters!");
+        } else {
             $.ajax({
                 url: URL + `/artists`,
                 type: "POST",
                 data: {
-                    name: name
+                    name: artistName
                 },
                 success: function(data) {
                     ShowAllArtists();
