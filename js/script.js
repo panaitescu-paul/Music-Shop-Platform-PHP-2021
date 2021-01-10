@@ -278,6 +278,7 @@ $(document).ready(function() {
     // Open Modal - Create Album 
     $(document).on("click", ".createAlbumModal", function() {
         showModal('createAlbum');
+        PopulateArtistsDropdown();
     });
 
     // Open Modal - Update Album
@@ -289,6 +290,7 @@ $(document).ready(function() {
             success: function(data) {
                 console.log(data);
                 showModal('updateAlbum', id, data);
+                PopulateArtistsDropdown();
             },
             statusCode: {
                 404: function(data) {
@@ -1136,6 +1138,32 @@ $(document).ready(function() {
         });
     }
 
+    // ******************************************************
+    // ***                                                ***
+    // ***                Populating Dropdowns            ***
+    // ***                                                ***
+    // ******************************************************
+
+    // Show all Artists in a List
+    function PopulateArtistsDropdown() {
+        $.ajax({
+            url: URL + "/artists",
+            type: "GET",
+            success: function(data) {
+                data.forEach(artist => {
+                    $("#artistList").append(
+                        `<option value="${artist.ArtistId}" text="${artist.Name}" class="form-control">${artist.Name}</option>`
+                    );
+                });
+            },
+            statusCode: {
+                404: function(data) {
+                    const errorMsg = JSON.parse(data.responseText).Error;
+                    alert(errorMsg);
+                }
+            }
+        });
+    }
     // ******************************************************
     // ***                                                ***
     // ***                Scrolling Functionality         ***
