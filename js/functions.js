@@ -615,4 +615,8 @@ $(document).on("click", "#loginAdmin", function(e) {
     document.getElementById("txtEmailLabel").style.display = "none";
 });
 
+// Show User Artists Page
+$(document).on("click", "#btnArtistsTab", function(e) {
+    window.location.href='../user/library-artists.php';
+});
 }
