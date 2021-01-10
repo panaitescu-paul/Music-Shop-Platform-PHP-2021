@@ -682,13 +682,15 @@ $(document).ready(function() {
     $(document).on("click", ".updateTrack", function(e) {
         const trackId = $("#updateTrackId").attr("data-id"); 
         const name = $("#updateTrackName").val(); 
-        const albumId = $("#updateAlbumId").val(); 
+        // const albumId = $("#updateAlbumId").val(); 
+        const albumId = $("#albumList :selected").val();
         const mediaTypeId = $("#updateMediaTypeId").val(); 
         const genreId = $("#updateGenreId").val(); 
         const composer = $("#updateComposer").val(); 
         const milliseconds = $("#updateMilliseconds").val(); 
         const bytes = $("#updateBytes").val(); 
         const unitPrice = $("#updateUnitPrice").val();
+        console.log(albumId);
 
         if (name === null || name.length === 0) {
             alert("The field Track Name can not be empty!");
