@@ -501,6 +501,7 @@ $(document).ready(function() {
     // Open Modal - Create Track 
     $(document).on("click", ".createTrackModal", function() {
         showModal('createTrack');
+        PopulateAlbumsDropdown();
     });
 
     // Open Modal - Update Track
@@ -511,6 +512,7 @@ $(document).ready(function() {
             type: "GET",
             success: function(data) {
                 showModal('updateTrack', id, data);
+                PopulateAlbumsDropdown();
             },
             statusCode: {
                 404: function(data) {
@@ -597,13 +599,15 @@ $(document).ready(function() {
     // Create Track
     $(document).on("click", ".createTrack", function() {
         const name = $("#createTrackName").val(); 
-        const albumId = $("#createAlbumId").val(); 
+        // const albumId = $("#createAlbumId").val(); 
+        const albumId = $("#albumList :selected").val();
         const mediaTypeId = $("#createMediaTypeId").val(); 
         const genreId = $("#createGenreId").val(); 
         const composer = $("#createComposer").val(); 
         const milliseconds = $("#createMilliseconds").val(); 
         const bytes = $("#createBytes").val(); 
         const unitPrice = $("#createUnitPrice").val();
+        console.log(albumId);
            
         if (name === null || name.length === 0) {
             alert("The field Track Name can not be empty!");
