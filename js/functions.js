@@ -619,4 +619,9 @@ $(document).on("click", "#loginAdmin", function(e) {
 $(document).on("click", "#btnArtistsTab", function(e) {
     window.location.href='../user/library-artists.php';
 });
+
+// Show User Albums Page
+$(document).on("click", "#btnAlbumsTab", function(e) {
+    window.location.href='../user/library-albums.php';
+});
 }
