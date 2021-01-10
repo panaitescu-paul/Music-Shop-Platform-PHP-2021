@@ -372,7 +372,9 @@ $(document).ready(function() {
     // Create Album
     $(document).on("click", ".createAlbum", function() {
         const albumTitle = $("#createAlbumTitle").val();
-        const artistId = $("#createArtistId").val();
+        // const artistId = $("#createArtistId").val();
+        const artistId = $("#artistList :selected").val();
+        console.log(artistId);
 
         if (albumTitle === null || albumTitle.length === 0) {
             alert("The field Album Title can not be empty!");
@@ -412,7 +414,9 @@ $(document).ready(function() {
     $(document).on("click", ".updateAlbum", function(e) {
         const albumId = $("#updateAlbumId").attr("data-id");
         const albumTitle = $("#updateAlbumTitle").val();
-        const artistId = $("#updateArtisId").val();
+        // const artistId = $("#updateArtisId").val();
+        const artistId = $("#artistList :selected").val();
+        console.log(artistId);
 
         if (albumTitle === null || albumTitle.length === 0) {
             alert("The field Album Title can not be empty!");
