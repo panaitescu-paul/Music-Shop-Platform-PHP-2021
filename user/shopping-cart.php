@@ -39,7 +39,8 @@
     <?php
         // print_r($_SESSION['ShoppingCart']);
     ?>
-    <script type="text/javascript">
+    <script type="text/javascript" nonce="EDNnf03nceIOfn39fn3e9h3sdf2">
+        console.log("nonce-EDNnf03nceIOfn39fn3e9h3sdf2");
         // Send Session data to JS 
         var shoppingCartInfo = {
             tracks: <?php echo json_encode($_SESSION['ShoppingCart']); ?>,
