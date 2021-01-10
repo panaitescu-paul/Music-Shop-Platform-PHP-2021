@@ -307,12 +307,14 @@ function showModal(action, itemId = 0, data = []) {
                         <label for="createAlbumTitle">Album Title</label>
                         <input type="text" id="createAlbumTitle" name="text" class="form-control" required>
                         </br>
-                        <label for="createArtistId">Artist Id</label>
-                        <input type="text" id="createArtistId" name="text" class="form-control" required>
+                        <label for="artistList">Artist Name</label>
+                        <select id="artistList" class="form-control" required></select>
                         </br>
                         <button type="button" class="btn btn-success mb-2 createAlbum" id="btnCreateAlbum" data-dismiss="modal">Create Album</button>
                     </div>
                 </form>`
+                // <label for="createArtistId">Artist Id</label>
+                // <input type="text" id="createArtistId" name="text" class="form-control" required></input>
             }))
             break;
         case 'updateAlbum':
