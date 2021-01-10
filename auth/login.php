@@ -103,10 +103,10 @@
     <h1 class="main-title">Login</h1>
     <div class="resultArea" id="loginArea">
         <div class="btn-group btn-group-toggle buttons buttonsLogin" data-toggle="buttons">
-            <button class="btn btn-primary active btnLibrary" id="loginUser" onclick="selectUserLogin()">
+            <button class="btn btn-primary active btnLibrary" id="loginUser">
                 <input type="radio" name="options" autocomplete="off" checked> User
             </button>
-            <button class="btn btn-primary" id="loginAdmin" onclick="selectAdminLogin()">
+            <button class="btn btn-primary" id="loginAdmin">
                 <input type="radio" name="options" autocomplete="off"> Admin
             </button>
         </div>
