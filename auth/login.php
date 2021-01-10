@@ -51,6 +51,9 @@
                 $_SESSION['email'] = $email;
 
                 header('Location: ../user/library-tracks.php');
+
+                // Unset the Session varibale with the Login Token 
+                unset($_SESSION['loginCSRFToken']);
             }
         }
     
@@ -76,6 +79,9 @@
                 $_SESSION['email'] = $email;
 
                 header('Location: ../admin/artists.php');
+
+                // Unset the Session varibale with the Login Token 
+                unset($_SESSION['loginCSRFToken']);
             }
         }
     }
