@@ -431,8 +431,8 @@ function showModal(action, itemId = 0, data = []) {
                         <label for="updateTrackName">Track Name</label>
                         <input data-id= ` + itemId + ` type="text" id="updateTrackName" name="text" value="` + data['Name'] + `" class="form-control" required>
                         </br>
-                        <label for="updateAlbumId">Album Id</label>
-                        <input data-id= ` + itemId + ` type="text" id="updateAlbumId" name="text" value="` + data['AlbumId'] + `" class="form-control" required>
+                        <label for="albumList">Album Title</label>
+                        <select id="albumList" class="form-control" required></select>
                         </br>
 
                         <label for="updateMediaTypeId">Media Type</label>
@@ -457,6 +457,8 @@ function showModal(action, itemId = 0, data = []) {
                         <button type="button" class="btn btn-success mb-2 updateTrack" id="btnUpdateTrack" data-dismiss="modal">Update Artist</button>
                     </div>
                 </form>`
+                // <label for="updateAlbumId">Album Id</label>
+                // <input data-id= ` + itemId + ` type="text" id="updateAlbumId" name="text" value="` + data['AlbumId'] + `" class="form-control" required>
             }))
             break;
 
