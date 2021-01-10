@@ -30,7 +30,10 @@
         }
 
     // If the Customer has filled the login fields, the authentication process is launched
-    } else if (isset($_POST['email']) && isset($_POST['password'])) { // TODO: also check if the button was selected for User login
+    } else if (isset($_POST['email']) && isset($_POST['password'])) { 
+
+        // Check if the submitted form has the Login Token that matches the one from the Session variable
+        if (isset($_POST['CSRFToken']) && $_POST['CSRFToken'] == $_SESSION['loginCSRFToken']) {
             $userValidation = true;
             require_once('../src/customer.php');
 
@@ -48,11 +51,14 @@
                 $_SESSION['email'] = $email;
 
                 header('Location: ../user/library-tracks.php');
+            }
         }
     
     // If the Admin has filled the password field, the authentication process is launched
-    } else if (isset($_POST['password'])) { // TODO: also check if the button was selected for admin login
+    } else if (isset($_POST['password'])) { 
 
+        // Check if the submitted form has the Login Token that matches the one from the Session variable
+        if (isset($_POST['CSRFToken']) && $_POST['CSRFToken'] == $_SESSION['loginCSRFToken']) {
             $userValidation = true;
             require_once('../src/customer.php');
 
@@ -70,6 +76,7 @@
                 $_SESSION['email'] = $email;
 
                 header('Location: ../admin/artists.php');
+            }
         }
     }
 ?>
