@@ -608,10 +608,11 @@ $(document).on("click", "#loginUser", function(e) {
     document.getElementById("txtEmailLabel").style.display = "inline-block";
 });
 
-}
-// Select Login for Admin
-function selectAdminLogin() {
+// Show Login for Admin
+$(document).on("click", "#loginAdmin", function(e) {
     document.getElementById("txtEmail").disabled = true;
     document.getElementById("txtEmail").style.display = "none";
     document.getElementById("txtEmailLabel").style.display = "none";
+});
+
 }
