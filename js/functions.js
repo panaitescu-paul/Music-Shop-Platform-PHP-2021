@@ -601,11 +601,13 @@ function showModal(action, itemId = 0, data = []) {
     $("#modalInfoContent1").append(elem);
 }
 
-// Select Login for User
-function selectUserLogin() {
+// Show Login for User
+$(document).on("click", "#loginUser", function(e) {
     document.getElementById("txtEmail").disabled = false;
     document.getElementById("txtEmail").style.display = "inline-block";
     document.getElementById("txtEmailLabel").style.display = "inline-block";
+});
+
 }
 // Select Login for Admin
 function selectAdminLogin() {

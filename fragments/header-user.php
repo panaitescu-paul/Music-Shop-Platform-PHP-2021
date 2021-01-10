@@ -29,9 +29,6 @@
     <script src="../js/bootstrap.js"></script>
     <script src="../js/functions.js"></script>
     <!-- Policy against XSS Atacks -->
-    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self'; object-src 'self';"> -->
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; object-src 'self'; child-src 'none';"> -->
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'nonce-EDNnf03nceIOfn39fn3e9h3sdfa'"> -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; 
                                                         script-src 'nonce-EDNnf03nceIOfn39fn3e9h3sdf1' 'nonce-EDNnf03nceIOfn39fn3e9h3sdf2'; 
                                                         object-src 'self'; 
