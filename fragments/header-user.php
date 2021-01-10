@@ -21,14 +21,21 @@
     <title>Music Marketplace</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self'; object-src 'self';"> -->
+ 
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="../js/jquery-3.5.1.js"></script>
     <script src="../js/script.js"></script>
     <script src="../js/bootstrap.js"></script>
-    <!-- <script src="../js/dom.js"></script> -->
     <script src="../js/functions.js"></script>
+    <!-- Policy against XSS Atacks -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self'; object-src 'self';"> -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; object-src 'self'; child-src 'none';"> -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'nonce-EDNnf03nceIOfn39fn3e9h3sdfa'"> -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; 
+                                                        script-src 'nonce-EDNnf03nceIOfn39fn3e9h3sdf1' 'nonce-EDNnf03nceIOfn39fn3e9h3sdf2'; 
+                                                        object-src 'self'; 
+                                                        child-src 'none';">
 </head>
 <body>
     <!-- -sm|-md|-lg|-xl -->
