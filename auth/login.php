@@ -124,6 +124,7 @@
                 <div class="col-sm-10">
                     <!-- Password can only have letters and numbers -->
                     <input type="password" id="txtPassword" name="password"  class="form-control" placeholder="Password" pattern="^[a-zA-Z0-9]*$" title="Password can only have letters and numbers!">
+                    <input type="hidden" name="CSRFToken" value="<?= $_SESSION['loginCSRFToken'] ?>">
                 </div>
             </div>
             
