@@ -1164,6 +1164,28 @@ $(document).ready(function() {
             }
         });
     }
+
+    // Show all Albums in a List
+    function PopulateAlbumsDropdown() {
+        $.ajax({
+            url: URL + "/albums",
+            type: "GET",
+            success: function(data) {
+                data.forEach(album => {
+                    $("#albumList").append(
+                        `<option value="${album.ArtistId}" text="${album.Title}" class="form-control">${album.Title}</option>`
+                    );
+                });
+            },
+            statusCode: {
+                404: function(data) {
+                    const errorMsg = JSON.parse(data.responseText).Error;
+                    alert(errorMsg);
+                }
+            }
+        });
+    }
+
     // ******************************************************
     // ***                                                ***
     // ***                Scrolling Functionality         ***
