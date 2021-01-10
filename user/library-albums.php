@@ -36,15 +36,9 @@
         
         <div class="controls">
             <div class="buttons">
-                <button type="button" class="btn btn-primary mb-2 btnLibrary" 
-                    onclick="window.location.href='../user/library-artists.php'">Artists
-                </button>
-                <button type="button" class="btn btn-primary mb-2 btnLibrary active" 
-                    onclick="window.location.href='../user/library-albums.php'">Albums
-                </button>
-                <button type="button" class="btn btn-primary mb-2 btnLibrary" 
-                    onclick="window.location.href='../user/library-tracks.php'">Tracks
-                </button>
+                <button type="button" id="btnArtistsTab" class="btn btn-primary mb-2 btnLibrary">Artists</button>
+                <button type="button" id="btnAlbumsTab" class="btn btn-primary mb-2 btnLibrary active">Albums</button>
+                <button type="button" id="btnTracksTab" class="btn btn-primary mb-2 btnLibrary">Tracks</button>
             </div>
             <label for="txtName" id="txtNameLabel">Album Name</label>
             <input type="text" id="searchAlbumName" name="Name" class="form-control" required>
