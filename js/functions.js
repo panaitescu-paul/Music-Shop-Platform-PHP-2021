@@ -392,8 +392,8 @@ function showModal(action, itemId = 0, data = []) {
                         <label for="createTrackName">Track Name</label>
                         <input type="text" id="createTrackName" name="text" class="form-control" required>
                         </br>
-                        <label for="createAlbumId">Album Id</label>
-                        <input type="text" id="createAlbumId" name="text" class="form-control" required>
+                        <label for="albumList">Album Title</label>
+                        <select id="albumList" class="form-control" required></select>
                         </br>
                         <label for="createMediaTypeId">MediaTypeId</label>
                         <input type="text" id="createMediaTypeId" name="text" class="form-control" required>
@@ -416,6 +416,8 @@ function showModal(action, itemId = 0, data = []) {
                         <button type="button" class="btn btn-success mb-2 createTrack" id="btnCreateTrack" data-dismiss="modal">Create Album</button>
                     </div>
                 </form>`
+                // <label for="createAlbumId">Album Id</label>
+                // <input type="text" id="createAlbumId" name="text" class="form-control" required></input>
             }))
             break;
         case 'updateTrack':
