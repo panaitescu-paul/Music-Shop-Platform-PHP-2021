@@ -51,6 +51,11 @@
         }
     </script>
 
+    <!-- <script>
+        // Test Content-Security-Policy with a XSS Atack
+        alert("Hello!");
+    </script> -->
+
     <!-- Sidebar navigation -->
     <div class="sidebar">
         <button type="button" class="btn btn-primary scrollUp">Up</button>
