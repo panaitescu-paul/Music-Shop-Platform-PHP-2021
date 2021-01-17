@@ -42,7 +42,7 @@
             <button type="button" class="btn btn-success mb-2" id="btnSearchArtist">Search Artist</button>
         </div>
         
-        <section id="artistResults">
+        <section id="artistResults" class="table-responsive">
         </section>
 
         <!-- Modal-->

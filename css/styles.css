@@ -155,6 +155,10 @@ article.item:hover {
 
 .tableList td{
     padding: 7px;
+    /* border-top: none; */
+}
+.table th, .table td {
+    border-top: none !important;
 }
 
 tr:nth-child(even) {
@@ -278,3 +282,38 @@ img.smallButton {
 }
 /* End Sidebar */
 
+
+/* Responsivity */
+@media only screen and (max-width: 600px) {
+    /* Top Navigation */
+    .navbar-text, .navName, .btnNav {
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+    
+    /* Sidebar navigation */
+    .sidebar {
+        top: 350px; /* Stay at the top */
+    }
+
+
+    .container {
+        max-width: 500px  !important;
+        padding-right: 1px !important;
+        padding-left: 1px !important;
+    }
+    .main-title {
+        font-size: 3rem;
+    } 
+    .controls {
+        width: 300px;
+    }
+    /* .tableList {
+        background-color: red;
+        width: auto;
+    } */
+
+    /* Table */
+    
+}
