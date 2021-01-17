@@ -363,3 +363,17 @@ img.smallButton {
     }
     
 }
+
+@media only screen and (max-width: 450px) {
+    body {
+        background-color: rgba(106, 154, 215, 0.0);
+    }
+    .container {
+        width: 320px;
+        padding-right: 1px !important;
+        padding-left: 1px !important;
+    }
+    .main-title {
+        font-size: 2.5rem;
+    }
+}
