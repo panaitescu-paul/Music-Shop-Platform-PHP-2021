@@ -29,7 +29,7 @@ function displayArtists(artistData, user = 'admin') {
                 const row = $("<tr />");
                 const artistID = artist["ArtistId"];
                 row.
-                    append($("<td />", { "text": artist["ArtistId"]})).
+                    append($("<td />", { "text": artist["ArtistId"], "class": "small-collumn-custom"})).
                     append($("<td />", { "text": artist["Name"]})).
                     append($("<td />", { "class": "table-actions", "html": 
                         "<button data-id='" + artistID + "' type='button' class='btn btn-danger btnDelete deleteArtist'>" +
@@ -74,9 +74,9 @@ function displayAlbums(albumData, user = 'admin') {
         const header = $("<thead />");
         const headerRow = $("<tr />");
         headerRow.
-            append($("<th />", { "text": "AlbumId"})).
+            append($("<th />", { "text": "AlbumId", "class": "small-collumn-custom"})).
             append($("<th />", { "text": "Title", "class": "number"})).
-            append($("<th />", { "text": "ArtistId", "class": "number"})).
+            append($("<th />", { "text": "ArtistId", "class": "number small-collumn-custom"})).
             append($("<th />", { "text": "Actions", "class": "number"}))
         header.append(headerRow);
         table.append(header);
@@ -107,9 +107,9 @@ function displayAlbums(albumData, user = 'admin') {
                 const row = $("<tr />");
                 const albumID = album["AlbumId"];
                 row.
-                    append($("<td />", { "text": album["AlbumId"]})).
+                    append($("<td />", { "text": album["AlbumId"], "class": "small-collumn-custom"})).
                     append($("<td />", { "text": album["Title"]})).
-                    append($("<td />", { "text": album["ArtistId"]})).
+                    append($("<td />", { "text": album["ArtistId"], "class": "small-collumn-custom"})).
                     append($("<td />", { "class": "table-actions", "html": 
                         "<button data-id='" + albumID + "' type='button' class='btn btn-success btnShow showAlbumModal' data-toggle='modal' data-target='#modal'>" +
                             "<img src='../img/card-text.svg' class='icon-show'>" +
@@ -133,9 +133,9 @@ function displayTracks(trackData, isAdmin = 0, shoppingCart = null) {
         const header = $("<thead />");
         const headerRow = $("<tr />");
         headerRow.
-            append($("<th />", { "text": "TrackId"})).
+            append($("<th />", { "text": "TrackId", "class": "small-collumn-custom"})).
             append($("<th />", { "text": "Name", "class": "number"})).
-            append($("<th />", { "text": "AlbumId", "class": "number"})).
+            append($("<th />", { "text": "AlbumId", "class": "number small-collumn-custom"})).
             append($("<th />", { "text": "Actions", "class": "number"}))
         header.append(headerRow);
         table.append(header);
@@ -145,9 +145,9 @@ function displayTracks(trackData, isAdmin = 0, shoppingCart = null) {
                 const row = $("<tr />");
                 const trackID = track["TrackId"];
                 row.
-                    append($("<td />", { "text": track["TrackId"]})).
+                    append($("<td />", { "text": track["TrackId"], "class": "small-collumn-custom"})).
                     append($("<td />", { "text": track["Name"]})).
-                    append($("<td />", { "text": track["AlbumId"]})).
+                    append($("<td />", { "text": track["AlbumId"], "class": "small-collumn-custom"})).
                     append($("<td />", { "class": "table-actions", "html": 
                         "<button data-id='" + trackID + "' type='button' class='btn btn-danger btnDelete deleteTrack'>" +
                             "<img src='../img/trash.svg' class='icon-delete'>" +
@@ -174,9 +174,9 @@ function displayTracks(trackData, isAdmin = 0, shoppingCart = null) {
                             const row = $("<tr />");
                             const trackID = track["TrackId"];
                             row.
-                                append($("<td />", { "text": track["TrackId"]})).
+                                append($("<td />", { "text": track["TrackId"], "class": "small-collumn-custom"})).
                                 append($("<td />", { "text": track["Name"]})).
-                                append($("<td />", { "text": track["AlbumId"]})).
+                                append($("<td />", { "text": track["AlbumId"], "class": "small-collumn-custom"})).
                                 append($("<td />", { "class": "table-actions", "html": 
                                     `<span>
                                         <form class='frmRemoveFromCart' action='../user/shopping-cart.php' method='POST'>
@@ -200,9 +200,9 @@ function displayTracks(trackData, isAdmin = 0, shoppingCart = null) {
                     const row = $("<tr />");
                     const trackID = track["TrackId"];
                     row.
-                        append($("<td />", { "text": track["TrackId"]})).
+                        append($("<td />", { "text": track["TrackId"], "class": "small-collumn-custom"})).
                         append($("<td />", { "text": track["Name"]})).
-                        append($("<td />", { "text": track["AlbumId"]})).
+                        append($("<td />", { "text": track["AlbumId"], "class": "small-collumn-custom"})).
                         append($("<td />", { "class": "table-actions", "html": 
                             `<span>
                                 <form class='frmAddToCart' action='../user/library-tracks.php' method='POST'>
