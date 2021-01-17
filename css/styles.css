@@ -376,4 +376,50 @@ img.smallButton {
     .main-title {
         font-size: 2.5rem;
     }
+    .tableList {
+        /* background-color: yellow; */
+        max-width: 200px !important;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    thead tr {
+        font-size: 1.0rem;
+    }
+    .tableList tr th:nth-child(1) {
+        max-width: 13px !important;
+    }
+    .tableList td {
+        margin: 5px 0px  !important;
+        vertical-align: inherit !important;
+    }
+    .tableList td:nth-child(1) {
+        max-width: 4px !important;
+        padding-right: 1px !important;
+        padding-left: 2px;
+    }
+    .tableList td:nth-child(2) {
+        max-width: 200px;
+    }
+    .tableList td:last-child {
+        max-width: 122px;
+        padding-right: 2px;
+        padding-left: 2px;
+    }
+    .table-actions {
+        display: inline-block;
+        width: 122px;
+        padding: 0;
+    }
+    .btnShow, .btnUpdate, .btnDelete, .btnAddToCart {
+        display: block;
+        margin-left: 3px;
+        margin-right: 0px;
+        float: right;
+        padding: 4px 8px !important;
+    }
+    /* Icons */
+    .icon-show, .icon-update, .icon-delete {
+        width: 18px;
+        height: 18px;
+    }
 }
