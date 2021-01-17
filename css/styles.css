@@ -161,6 +161,10 @@ article.item:hover {
     border-top: none !important;
 }
 
+.small-collumn-custom {
+    max-width: 45px ;
+}
+
 tr:nth-child(even) {
     background-color: rgba(234, 236, 239, 1);
 }
@@ -184,6 +188,7 @@ thead tr{
     color: #fff;
     font-size: 1.2rem;
     font-weight: 700;
+    text-align: center;
 }
 
 .table-actions {
@@ -331,10 +336,17 @@ img.smallButton {
         margin: 5px 0px  !important;
         vertical-align: inherit !important;
     }
-    .tableList td:nth-child(1) {
-        max-width: 4px !important;
+    .small-collumn-custom {
+        max-width: 45px;
         padding-right: 1px !important;
-        padding-left: 2px;
+        padding-left: 2px !important;
+        /* max-width: 13px !important; */
+    }
+    .tableList td:nth-child(1) {
+        /* max-width: 4px !important; */
+        /* max-width: 4px; */
+        /* padding-right: 1px !important; */
+        /* padding-left: 2px; */
     }
     .tableList td:nth-child(2) {
         max-width: 200px;
@@ -361,6 +373,15 @@ img.smallButton {
         width: 22px;
         height: 22px;
     }
+
+
+    /* Library */
+    .buttons {
+        width: 260px;
+        text-align: center;
+    }
+
+
     
 }
 
@@ -392,10 +413,15 @@ img.smallButton {
         margin: 5px 0px  !important;
         vertical-align: inherit !important;
     }
-    .tableList td:nth-child(1) {
-        max-width: 4px !important;
+    .small-collumn-custom {
+        max-width: 45px;
         padding-right: 1px !important;
-        padding-left: 2px;
+        padding-left: 2px !important;
+    }
+    .tableList td:nth-child(1) {
+        /* max-width: 4px !important; */
+        /* padding-right: 1px !important; */
+        /* padding-left: 2px; */
     }
     .tableList td:nth-child(2) {
         max-width: 200px;
