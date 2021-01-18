@@ -27,31 +27,38 @@
 </head>
 <body>
     <!-- -sm|-md|-lg|-xl -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
         <a class="navbar-brand" href="#">Music Shop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="btn btn-primary mb-2 btnNav" href="../admin/artists.php">Artists <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="btn btn-primary mb-2 btnNav" href="../admin/albums.php">Albums</a>
-            </li>
-            <li class="nav-item">
-                <a class="btn btn-primary mb-2 btnNav" href="../admin/tracks.php">Tracks</a>
-            </li>
+                <li class="nav-item">
+                    <a class="btn btn-primary mb-2 btnNav" href="../admin/artists.php">Artists <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-primary mb-2 btnNav" href="../admin/albums.php">Albums</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-primary mb-2 btnNav" href="../admin/tracks.php">Tracks</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <span class="navbar-text">
+                        <form id="frmLogout" action="../auth/login.php" method="POST">
+                            <input type="hidden" name="logout" value="logout">
+                            <button type="submit" id="btnLogOut" class="btn btn-primary mb-2 btnNav" data-toggle='modal' data-target='#modal'>
+                                Log Out from: <?php echo $firstName . ' ' . $lastName . ' '; ?> 
+                            </button>
+                        </form>
+                    </span>
+                </li>
+            </ul>
         </div>
-        <span class="navbar-text">
-            <span class="navName"><?php echo $firstName . ' ' . $lastName . ' '; ?></span>
-        </span>
-        <span class="navbar-text">
-            <form id="frmLogout" action="../auth/login.php" method="POST">
-                <input type="hidden" name="logout" value="logout">
-                <button type="submit" id="btnLogOut" class="btn btn-primary mb-2 btnNav" data-toggle='modal' data-target='#modal'>Log Out</button>
-             </form>
-        </span>
+        <!-- <span class="navbar-text">
+            <span class="navName">.....</span>
+        </span> -->
     </nav>
     <!-- End of Header
