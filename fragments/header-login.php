@@ -12,14 +12,12 @@
     <script src="../js/script.js"></script>
     <script src="../js/bootstrap.js"></script>
     <script src="../js/functions.js"></script>
+    <link rel="shortcut icon" type="image/png" href="../img/favicon.png"/>
 </head>
 <body>
     <!-- -sm|-md|-lg|-xl -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
         <a class="navbar-brand" href="#">Music Shop</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
         </div>

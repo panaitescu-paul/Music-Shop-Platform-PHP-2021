@@ -33,6 +33,8 @@
                                                         script-src 'nonce-EDNnf03nceIOfn39fn3e9h3sdf1' 'nonce-EDNnf03nceIOfn39fn3e9h3sdf2'; 
                                                         object-src 'self'; 
                                                         child-src 'none';">
+    <link rel="shortcut icon" type="image/png" href="../img/favicon.png"/>
+
 </head>
 <body>
     <!-- -sm|-md|-lg|-xl -->

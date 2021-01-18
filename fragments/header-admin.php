@@ -24,6 +24,7 @@
     <script src="../js/script.js"></script>
     <script src="../js/bootstrap.js"></script>
     <script src="../js/functions.js"></script>
+    <link rel="shortcut icon" type="image/png" href="../img/favicon.png"/>
 </head>
 <body>
     <!-- -sm|-md|-lg|-xl -->
