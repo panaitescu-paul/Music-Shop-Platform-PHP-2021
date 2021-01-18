@@ -33,8 +33,8 @@
 }
 
 #btnLogin {
-    width: 150px;
-    /* text-align: center; */
+    width: 100%;
+    /* width: 150px; */
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -300,7 +300,6 @@ img.smallButton {
 }
 
 @media only screen and (max-width: 600px) {
-    
     /* Sidebar navigation */
     .sidebar {
         top: 350px; /* Stay at the top */
@@ -368,6 +367,29 @@ img.smallButton {
     .buttons {
         width: 260px;
         text-align: center;
+    }
+
+    #loginArea .buttons {
+        width: 360px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    /* Login Page */
+    #page-login {
+        max-width: 300px !important;
+    }
+    #loginArea .buttons {
+        width: 240px;
+    }
+    #txtEmail, #txtPassword, #btnLogin {
+        width: 235px;
+        margin: 0px;
+    }
+    #signup {
+        text-align: center;
+        width: 235px;
+        padding: 0px;
     }
 }
 
