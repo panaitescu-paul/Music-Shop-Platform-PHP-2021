@@ -130,9 +130,10 @@
             
             <button type="submit" class="btn btn-success" id="btnLogin">Login</button>
         </form>
-        <div id="signup">
-            If you do not have a user, you can <a href="signup.php">sign up</a> here!
-        </div>
+        <button class="btn btn-primary createCustomerModal" data-toggle='modal' data-target='#modal' id="btnSignUp">Sign Up</button>
+        <!-- <div id="signup">
+        </div> -->
+        
     </div>
 </div>
 

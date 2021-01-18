@@ -17,6 +17,7 @@
 
 #frmLogin {
     margin: 30px;
+    margin-bottom: 0px;
 }
 
 .buttonsLogin {
@@ -37,6 +38,15 @@
     /* width: 150px; */
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 5px;
+    display: block;
+}
+#btnSignUp {
+    width: 360px;
+    /* width: 150px; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
     display: block;
 }
 
@@ -397,14 +407,17 @@ img.smallButton {
     #loginArea .buttons {
         width: 240px;
     }
-    #txtEmail, #txtPassword, #btnLogin {
+    #txtEmail, #txtPassword, #btnLogin, #btnSignUp {
         width: 235px;
         margin: 0px;
     }
-    #signup {
+    #btnSignUp {
+        margin-top: 5px;
+        margin-bottom: 25px;
         text-align: center;
+        margin-right: auto;
+        margin-left: auto;
         width: 235px;
-        padding: 0px;
     }
 }
 
