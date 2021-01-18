@@ -5,7 +5,6 @@
     border: 1px solid #b3bfca;
     border-radius: 5px;
 }
-
 .main-title {
     font-family: "Times New Roman", Times, serif;
     font-size: 4rem;
@@ -14,12 +13,10 @@
     margin-bottom: 20px;
     font-weight: 500;
 }
-
 #frmLogin {
     margin: 30px;
     margin-bottom: 0px;
 }
-
 .buttonsLogin {
     width: 200px;
 
@@ -28,14 +25,11 @@
     width: 250px;
     float: right;
 }
-
 #page-login {
     max-width: 450px !important;
 }
-
 #btnLogin {
     width: 100%;
-    /* width: 150px; */
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 5px;
@@ -43,29 +37,24 @@
 }
 #btnSignUp {
     width: 360px;
-    /* width: 150px; */
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 25px;
     display: block;
 }
-
 #resultArea {
     border: 1px solid #107df5;
     padding: 20px;
     border-radius: 5px;
     margin-bottom: 20px;
 }
-
 .buttons {
     width: 360px;
     text-align: center;
 }
-
 #loginArea {
     text-align: center;
 }
-
 .controls {
     margin-left: auto;
     margin-right: auto;
@@ -79,7 +68,6 @@
     background-color: rgba(16, 125, 245, 0.1);
     border-radius: 5px;
 }
-
 .btnNav {
     margin-top: 7px;
     margin-left: 10px;
@@ -95,13 +83,11 @@ article.item {
     border: 1px solid #b3bfca;
     border-radius: 5px;
 }
-
 article.item:hover {
     border: 1px solid #107df5;
     background-color: rgba(16, 125, 245, 0.1);
     cursor: pointer;
 }
-
 .btnLibrary {
     display: inline-block;
     margin-left: auto;
@@ -110,28 +96,23 @@ article.item:hover {
     padding-right: auto;
     width: 80px;
 }
-
 #btnAdd {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 150px;
 }
-
 #frmLogout {
     height: 20px;
     margin-top: -11px;
 }
-
 .navName {
     margin-top: 3px;
     display: block;
 }
-
 .navbar-text {
     height: 50px;
 }
-
 .footer {
     position: fixed;
     left: 0;
@@ -144,43 +125,34 @@ article.item:hover {
     line-height: 20px;
  }
 
- /* Table */
-
+/* Table */
 #tableList {
     margin: 30px 20px;
     max-width: 470px;
 }
-
 .tableList td{
     padding: 7px;
-    /* border-top: none; */
 }
 .table th, .table td {
     border-top: none !important;
 }
-
 .small-collumn-custom {
     max-width: 45px ;
 }
-
 tr:nth-child(even) {
     background-color: rgba(234, 236, 239, 1);
 }
-
 tr:nth-child(odd) {
     background-color: rgba(255, 255, 255, 1);
 }
-
 tr {
     border: 1px solid rgba(16, 125, 245, 0.0);
 }
-
 tr:hover {
     border: 1px solid #107df5;
     background-color: rgba(16, 125, 245, 0.1);
     cursor: pointer;
 }
-
 thead tr{
     background-color: rgba(2, 123, 255, 1) !important;
     color: #fff;
@@ -188,14 +160,12 @@ thead tr{
     font-weight: 700;
     text-align: center;
 }
-
 .table-actions {
     display: inline-block;
     width: 190px;
 }
 
 /* Buttons */
-
 .btnAddCart  {
     display: block;
     margin-left: 5px;
@@ -203,11 +173,9 @@ thead tr{
     width: 80px;
     float: right;
 }
-
 .btnAddCart {
     width: 110px;
 }
-
 .btnShow, .btnUpdate, .btnDelete, .btnAddToCart {
     display: block;
     margin-left: 5px;
@@ -216,12 +184,10 @@ thead tr{
 }
 
 /* Icons */
-
 .icon-show, .icon-update, .icon-delete {
     width: 22px;
     height: 22px;
 }
-
 div.smallButtons {
     float: right;
 }
@@ -246,11 +212,9 @@ img.smallButton {
     margin-left: 20px;
     font-weight: 600;
 }
-
 .modal-body {
     margin: 20px;
 }
-
 .tag {
     font-weight: 700;
     border: 1px solid rgba(2, 123, 255, 0.7);
@@ -260,7 +224,6 @@ img.smallButton {
     margin-right: 10px;
     line-height: 20px;
 }
-
 .img-actor-small {
     width: 40px;
     height: 60px;
@@ -285,6 +248,7 @@ img.smallButton {
 }
 /* End Sidebar */
 
+
 /* Navigation Toogle button */
 .navbar-toggler {
     border: 1px solid #005cbf !important;
@@ -300,7 +264,12 @@ img.smallButton {
    border: 1px solid #005cbf !important;
 }
 
-/* Responsivity */
+/* ****************************************************** */
+/* ***                                                *** */
+/* ***                Responsivity                    *** */
+/* ***                                                *** */
+/* ****************************************************** */
+
 @media only screen and (max-width: 767px) {
     /* Top Navigation */
     .navbar {
@@ -373,6 +342,7 @@ img.smallButton {
         float: right;
         padding: 4px 8px !important;
     }
+
     /* Icons */
     .icon-show, .icon-update, .icon-delete {
         width: 22px;
@@ -384,7 +354,6 @@ img.smallButton {
         width: 260px;
         text-align: center;
     }
-
     #loginArea .buttons {
         width: 360px;
     }
@@ -425,7 +394,6 @@ img.smallButton {
         font-size: 2.5rem;
     }
     .tableList {
-        /* background-color: yellow; */
         max-width: 200px !important;
         margin-right: auto;
         margin-left: auto;
@@ -476,6 +444,7 @@ img.smallButton {
         float: right;
         padding: 4px 8px !important;
     }
+
     /* Icons */
     .icon-show, .icon-update, .icon-delete {
         width: 18px;

@@ -68,9 +68,6 @@
                 </span>
             </li>
         </div>
-        <!-- <span class="navbar-text">
-            <span class="navName">....</span>
-        </span> -->
     </nav>
 
     <!-- Modal-->
@@ -89,10 +86,8 @@
                     <div class="modal-body">
                         <div id="modalInfoContent1">
                         </div>
-                        <!-- TODO: Delete modalInfoContent2 -->
-                        <div id="modalInfoContent2">
-                        </div>
                     </div>
+                    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
