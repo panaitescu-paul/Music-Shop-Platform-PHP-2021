@@ -284,6 +284,21 @@ img.smallButton {
 }
 /* End Sidebar */
 
+/* Navigation Toogle button */
+.navbar-toggler {
+    border: 1px solid #005cbf !important;
+}
+.navbar-toggler-icon{
+    width: 22px !important;
+    height: 22px !important;
+    background-image: url(../img/list.svg)!important;
+    background-repeat: no-repeat;
+}
+.navbar-toggler:hover {
+   background-color: #005cbf;
+   border: 1px solid #005cbf !important;
+}
+
 /* Responsivity */
 @media only screen and (max-width: 767px) {
     /* Top Navigation */
