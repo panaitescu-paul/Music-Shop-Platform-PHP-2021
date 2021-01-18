@@ -174,10 +174,10 @@ function displayTracks(trackData, isAdmin = 0, shoppingCart = null) {
                             const row = $("<tr />");
                             const trackID = track["TrackId"];
                             row.
-                                append($("<td />", { "text": track["TrackId"], "class": "small-collumn-custom"})).
-                                append($("<td />", { "text": track["Name"]})).
+                                append($("<td />", { "text": track["TrackId"], "class": "big-collumn-custom"})).
+                                append($("<td />", { "text": track["Name"], "class": "big-collumn-custom"})).
                                 append($("<td />", { "text": track["AlbumId"], "class": "small-collumn-custom"})).
-                                append($("<td />", { "class": "table-actions", "html": 
+                                append($("<td />", { "class": "table-actions small-collumn-custom-2", "html": 
                                     `<span>
                                         <form class='frmRemoveFromCart' action='../user/shopping-cart.php' method='POST'>
                                             <div class="form-group">
