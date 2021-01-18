@@ -43,34 +43,6 @@
         </div>
         <section id="results">
         </section>
-
-        <!-- Modal-->
-        <div class="modals">
-            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalTitle">Information</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-
-                        <!-- Information will be added here-->
-                        <div class="modal-body">
-                            <div id="modalInfoContent1">
-                            </div>
-                            <!-- TODO: Delete modalInfoContent2 -->
-                            <div id="modalInfoContent2">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 

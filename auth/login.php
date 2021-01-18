@@ -131,9 +131,6 @@
             <button type="submit" class="btn btn-success" id="btnLogin">Login</button>
         </form>
         <button class="btn btn-primary createCustomerModal" data-toggle='modal' data-target='#modal' id="btnSignUp">Sign Up</button>
-        <!-- <div id="signup">
-        </div> -->
-        
     </div>
 </div>
 
