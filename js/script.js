@@ -356,7 +356,7 @@ $(document).ready(function() {
                     title: albumTitle
                 },
                 success: function(data) {
-                    displayAlbums(data);
+                    displayAlbums(data, 'customer');
                 },
                 statusCode: {
                     404: function(data) {
