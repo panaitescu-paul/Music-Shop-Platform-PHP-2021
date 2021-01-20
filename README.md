@@ -12,7 +12,7 @@ http://_<server_name>_/WAD-MA2/_<end_point>_
 #### Endpoints for API documentation:
 | Method | Usage        | Description                         |
 | ------ |:------------ |:----------------------------------- |
-| GET    |/    | Returns the API description for GET methods     |
+| GET    |/    | Returns the API description for CRUD methods applied on Albums, Artists, Tracks, Customers     |
 
 #### Examples:
 GET http://localhost/WAD-MA2/
