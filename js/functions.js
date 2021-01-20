@@ -413,7 +413,7 @@ function showModal(action, itemId = 0, data = []) {
                         <label for="createUnitPrice">UnitPrice</label>
                         <input type="text" id="createUnitPrice" name="text" class="form-control" required>
                         </br>
-                        <button type="button" class="btn btn-success mb-2 createTrack" id="btnCreateTrack" data-dismiss="modal">Create Album</button>
+                        <button type="button" class="btn btn-success mb-2 createTrack" id="btnCreateTrack" data-dismiss="modal">Create Track</button>
                     </div>
                 </form>`
                 // <label for="createAlbumId">Album Id</label>
