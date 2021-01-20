@@ -38,15 +38,19 @@
      * Returns the REST API description
      */
     function APIDescription() {
-        // TODO: make the description for all nodes
-
-        $apiBaseUrl = 'http://{server}/WAD-MA2';
+        $apiBaseUrl = 'http://localhost/WAD-MA2';
         $entityArtists = '/artists';
-        // $entityFilms = '/films';
-        // $entityPersons = '/persons';
+        $entityAlbums = '/albums';
+        $entityTracks = '/tracks';
+        $entityCustomers = '/customers';
+        $entityCustomers = '/customers';
 
+        // API Desccription
         $apiDescription['api-description'] = array('method' => 'GET', 'url' => $apiBaseUrl);
-        $apiDescription['search-artists'] = array('method' => 'GET', 'url' => $apiBaseUrl . $entityArtists . '?name={artist-search-text}');
+        
+        // Artists
+        $apiDescription['get-artists'] = array('method' => 'GET', 'url' => $apiBaseUrl . $entityArtists);
+        $apiDescription['search-artists'] = array('method' => 'GET', 'url' => $apiBaseUrl . $entityArtists . '/?name={search-text}');
         $apiDescription['get-artist'] = array('method' => 'GET', 'url' => $apiBaseUrl . $entityArtists . '/{artist-id}');
         $apiDescription['add-artist'] = array('method' => 'POST', 'url' => $apiBaseUrl . $entityArtists, 'request-body' => array('name' => ''));
         $apiDescription['update-artist'] = array('method' => 'POST', 'url' => $apiBaseUrl . $entityArtists . '/{artist-id}', 'request-body' => array('name' => ''));
