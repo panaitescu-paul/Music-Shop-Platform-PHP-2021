@@ -149,7 +149,7 @@ $(document).ready(function() {
                     name: artistName
                 },
                 success: function(data) {
-                    displayArtists(data);
+                    displayArtists(data, 'customer');
                 },
                 statusCode: {
                     404: function(data) {
