@@ -873,7 +873,7 @@ $(document).ready(function() {
             alert("The field Phone can not contain invalid characters!");
         } else if (INVALID_TEXT.test(fax)) {
             alert("The field Fax can not contain invalid characters!");
-        } else if (INVALID_TEXT.test(email)) {
+        } else if (INVALID_EMAIL.test(email)) {
             alert("The field Email can not contain invalid characters!");
         } else {
             $.ajax({
@@ -964,10 +964,10 @@ $(document).ready(function() {
             alert("The field Phone can not contain invalid characters!");
         } else if (INVALID_TEXT.test(fax)) {
             alert("The field Fax can not contain invalid characters!");
-        } else if (INVALID_TEXT.test(email)) {
+        } else if (INVALID_EMAIL.test(email)) {
             alert("The field Email can not contain invalid characters!");
         } else {
-            if (newPassword) { // Without Password Reset
+            if (!newPassword) { // Without Password Reset
                 $.ajax({
                     url: URL + `/customers/${customerId}`,
                     type: "POST",
