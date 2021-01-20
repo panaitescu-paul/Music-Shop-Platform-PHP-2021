@@ -68,6 +68,30 @@
                                                                                                                                                 ));
         $apiDescription['delete-album'] = array('method' => 'DELETE', 'url' => $apiBaseUrl . $entityAlbums . '/{album-id}');
         
+        // Tracks
+        $apiDescription['get-tracks'] = array('method' => 'GET', 'url' => $apiBaseUrl . $entityTracks);
+        $apiDescription['search-tracks'] = array('method' => 'GET', 'url' => $apiBaseUrl . $entityTracks . '/?name={search-text}');
+        $apiDescription['get-track'] = array('method' => 'GET', 'url' => $apiBaseUrl . $entityTracks . '/{track-id}');
+        $apiDescription['add-track'] = array('method' => 'POST', 'url' => $apiBaseUrl . $entityTracks, 'request-body' => array( 'name' => '', 
+                                                                                                                                'albumId' => '',
+                                                                                                                                'mediaTypeId' => '',
+                                                                                                                                'genderId' => '',
+                                                                                                                                'composer' => '',
+                                                                                                                                'milliseconds' => '',
+                                                                                                                                'bytes' => '',
+                                                                                                                                'unitPrice' => ''
+                                                                                                                            ));
+        $apiDescription['update-track'] = array('method' => 'POST', 'url' => $apiBaseUrl . $entityTracks . '/{track-id}', 'request-body' => array(  'name' => '', 
+                                                                                                                                                    'albumId' => '',
+                                                                                                                                                    'mediaTypeId' => '',
+                                                                                                                                                    'genderId' => '',
+                                                                                                                                                    'composer' => '',
+                                                                                                                                                    'milliseconds' => '',
+                                                                                                                                                    'bytes' => '',
+                                                                                                                                                    'unitPrice' => ''
+                                                                                                                                                ));
+        $apiDescription['delete-track'] = array('method' => 'DELETE', 'url' => $apiBaseUrl . $entityTracks . '/{track-id}');
+        
         http_response_code(200);
         return json_encode($apiDescription);
     }
