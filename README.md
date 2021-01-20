@@ -78,7 +78,7 @@ DELETE http://localhost/WAD-MA2/tracks/1  </br>
 | GET    |/customers/_<customer_id>_ | Returns detailed information of the customer with ID _<customer_id>_ |
 | GET    |/customers/?email=_<search_text>_ | Returns information of those customers whose email is _<search_text>_ |
 | POST   |/customers <br><br><br>Request body | Adds a new customer<br><br>firstName, lastName, password, company, address, city, state, country, postalCode, phone, fax, email |
-| POST   |/customers/_<customer_id>_<br><br><br>Request body<br> | Updates the customer with ID _<customer_id>_<br><br>firstName, lastName, password, company, address, city, state, country, postalCode, phone, fax, email |
+| POST   |/customers/_<customer_id>_<br><br><br>Request body<br> | Updates the customer with ID _<customer_id>_<br><br>firstName, lastName, password, company, address, city, state, country, postalCode, phone, fax, email, newPassword |
 | DELETE |/customers/_<customer_id>_ | Deletes the customer with ID _<customer_id>_ |
 
 #### Examples for Customers:
