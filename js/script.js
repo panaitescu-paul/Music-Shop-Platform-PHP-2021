@@ -1,5 +1,3 @@
-// TODO: make a call to purchase() without the API, so the API is Restful
-// TODO: add if(id == null)..... to check if the parameters enterd from Front End are valid on each Ajax call
 
 /**
  * Ajax calls that consume the RESTFUL API
@@ -19,6 +17,7 @@ $(document).ready(function() {
     
     // const INVALID_TEXT = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
     const INVALID_TEXT = /[`!@#$%^&*_+\=\[\]{};"\\|<>\/?~]/;
+    const INVALID_EMAIL = /[`!#$%^&*+\=\[\]{};"\\|<>\/?~]/;
     const VALID_NUMBER = /^\d+$/;
         
     pageContent();
