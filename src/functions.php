@@ -55,6 +55,19 @@
         $apiDescription['add-artist'] = array('method' => 'POST', 'url' => $apiBaseUrl . $entityArtists, 'request-body' => array('name' => ''));
         $apiDescription['update-artist'] = array('method' => 'POST', 'url' => $apiBaseUrl . $entityArtists . '/{artist-id}', 'request-body' => array('name' => ''));
         $apiDescription['delete-artist'] = array('method' => 'DELETE', 'url' => $apiBaseUrl . $entityArtists . '/{artist-id}');
+        
+        // Albums
+        $apiDescription['get-albums'] = array('method' => 'GET', 'url' => $apiBaseUrl . $entityAlbums);
+        $apiDescription['search-albums'] = array('method' => 'GET', 'url' => $apiBaseUrl . $entityAlbums . '/?title={search-text}');
+        $apiDescription['get-album'] = array('method' => 'GET', 'url' => $apiBaseUrl . $entityAlbums . '/{album-id}');
+        $apiDescription['add-album'] = array('method' => 'POST', 'url' => $apiBaseUrl . $entityAlbums, 'request-body' => array( 'artistId' => '', 
+                                                                                                                                'title' => ''
+                                                                                                                            ));
+        $apiDescription['update-album'] = array('method' => 'POST', 'url' => $apiBaseUrl . $entityAlbums . '/{album-id}', 'request-body' => array(  'title' => '', 
+                                                                                                                                                    'artistId' => ''
+                                                                                                                                                ));
+        $apiDescription['delete-album'] = array('method' => 'DELETE', 'url' => $apiBaseUrl . $entityAlbums . '/{album-id}');
+        
         http_response_code(200);
         return json_encode($apiDescription);
     }
