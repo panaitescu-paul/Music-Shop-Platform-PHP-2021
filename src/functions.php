@@ -92,6 +92,39 @@
                                                                                                                                                 ));
         $apiDescription['delete-track'] = array('method' => 'DELETE', 'url' => $apiBaseUrl . $entityTracks . '/{track-id}');
         
+        // Customers
+        $apiDescription['get-customers'] = array('method' => 'GET', 'url' => $apiBaseUrl . $entityCustomers);
+        $apiDescription['search-customers'] = array('method' => 'GET', 'url' => $apiBaseUrl . $entityCustomers . '/?email={search-text}');
+        $apiDescription['get-customer'] = array('method' => 'GET', 'url' => $apiBaseUrl . $entityCustomers . '/{customer-id}');
+        $apiDescription['add-customer'] = array('method' => 'POST', 'url' => $apiBaseUrl . $entityCustomers, 'request-body' => array(   'firstName' => '', 
+                                                                                                                                        'lastName' => '',
+                                                                                                                                        'password' => '',
+                                                                                                                                        'company' => '',
+                                                                                                                                        'address' => '',
+                                                                                                                                        'city' => '',
+                                                                                                                                        'state' => '',
+                                                                                                                                        'country' => '',
+                                                                                                                                        'postalCode' => '',
+                                                                                                                                        'phone' => '',
+                                                                                                                                        'fax' => '',
+                                                                                                                                        'email' => '',
+                                                                                                                                    ));
+        $apiDescription['update-customer'] = array('method' => 'POST', 'url' => $apiBaseUrl . $entityCustomers . '/{customer-id}', 'request-body' => array( 'firstName' => '', 
+                                                                                                                                                            'lastName' => '',
+                                                                                                                                                            'password' => '',
+                                                                                                                                                            'company' => '',
+                                                                                                                                                            'address' => '',
+                                                                                                                                                            'city' => '',
+                                                                                                                                                            'state' => '',
+                                                                                                                                                            'country' => '',
+                                                                                                                                                            'postalCode' => '',
+                                                                                                                                                            'phone' => '',
+                                                                                                                                                            'fax' => '',
+                                                                                                                                                            'email' => '',
+                                                                                                                                                            'newPassword' => ''
+                                                                                                                                                        ));
+        $apiDescription['delete-customer'] = array('method' => 'DELETE', 'url' => $apiBaseUrl . $entityCustomers . '/{customer-id}');
+
         http_response_code(200);
         return json_encode($apiDescription);
     }
