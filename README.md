@@ -1,7 +1,8 @@
 # WAD-Mandatory-Assignment-2
 # Music Shop
 
-Platform where you can search your favourite music and purchase songs that you like.
+Music Shop is a platform where you can search your favourite music and purchase songs that you like.
+
 **The application’s architecture is divided into a Backend that serves database information in a RESTful API, and a Frontend that consumes this information using Ajax calls.**
 
 ## API Documentation
