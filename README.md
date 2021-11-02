@@ -1,5 +1,4 @@
-# WAD-Mandatory-Assignment-2
-# Music Shop
+# Music Shop Platform made with PHP
 
 Music Shop is a platform where you can search your favourite music and purchase songs that you like.
 
