@@ -4,6 +4,29 @@ Music Shop is a platform where you can search your favourite music and purchase 
 
 **The application’s architecture is divided into a Backend that serves database information in a RESTful API, and a Frontend that consumes this information using Ajax calls.**
 
+### Preview:
+
+![alt text](https://github.com/panaitescu-paul/Music-Shop-Platform-PHP-2021/blob/main/screenshots/1.png)
+
+![alt text](https://github.com/panaitescu-paul/Music-Shop-Platform-PHP-2021/blob/main/screenshots/2.png)
+
+![alt text](https://github.com/panaitescu-paul/Music-Shop-Platform-PHP-2021/blob/main/screenshots/3.png)
+
+![alt text](https://github.com/panaitescu-paul/Music-Shop-Platform-PHP-2021/blob/main/screenshots/4.png)
+
+![alt text](https://github.com/panaitescu-paul/Music-Shop-Platform-PHP-2021/blob/main/screenshots/5.png)
+
+![alt text](https://github.com/panaitescu-paul/Music-Shop-Platform-PHP-2021/blob/main/screenshots/6.png)
+
+![alt text](https://github.com/panaitescu-paul/Music-Shop-Platform-PHP-2021/blob/main/screenshots/7.png)
+
+![alt text](https://github.com/panaitescu-paul/Music-Shop-Platform-PHP-2021/blob/main/screenshots/8.png)
+
+![alt text](https://github.com/panaitescu-paul/Music-Shop-Platform-PHP-2021/blob/main/screenshots/9.png)
+
+![alt text](https://github.com/panaitescu-paul/Music-Shop-Platform-PHP-2021/blob/main/screenshots/10.png)
+
+
 ## API Documentation
 
 #### Main usage:
